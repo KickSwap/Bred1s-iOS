@@ -12,7 +12,7 @@ The following **core** functionality is completed:
 - [ ] User can accept bid on sneaker then negotiate terms and meetup locations for transaction in private chat 
 - [ ] User can search for exclusive shoes in our database
 - [ ] User can look up the newest releases and see other sneaker related news
-- [ ] User can get more information on a certain sneaker coming out soon that has been previously released
+- [ ] User can get more information on a certain sneaker coming out soon or that has been previously released
 
 The following **optional** features are implemented:
 
