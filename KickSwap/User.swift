@@ -8,6 +8,10 @@
 
 import UIKit
 import Firebase
+import FBSDKLoginKit
+
+let userDidLoginNotification = "userDidLoginNotif"
+let userDidLogoutNotification = "userDidLogoutNotif"
 
 class User: NSObject {
     
@@ -21,13 +25,12 @@ class User: NSObject {
     var auth: NSDictionary?
     var providerData: NSDictionary?
     var authData: FAuthData?
+    var authDataAsDictionary: NSDictionary?
     
     //Facebook Profile Fields
-    
-    
-    
     init(data : FAuthData) {
         self.authData = data // set callback from Firebase to object
+        self.authDataAsDictionary = NSDictionary(dictionary: ["uid":data.uid, "provider":data.provider, "token":data.token, "auth":data.auth, "providerData":data.providerData])
         
         //serialize data >> Object
         self.uid = data.uid
@@ -37,19 +40,40 @@ class User: NSObject {
         self.providerData = data.providerData
     }
     
+    init(dictionary:NSDictionary){
+        //self.authData = dictionary["authData"] as? FAuthData
+        self.authDataAsDictionary = dictionary
+        
+        self.uid = dictionary["uid"] as? String
+        self.provider = dictionary["provider"] as? String
+        self.token = dictionary["token"] as? String
+        self.auth = dictionary["auth"] as? NSDictionary
+        self.providerData = dictionary["provider"]as? NSDictionary
+    }
     
+    func logout() {
+        User.currentUser = nil
+        FirebaseClient.getRef().unauth() // for firbase
+        FBSDKLoginManager().logOut() // for Facebook
+        NSNotificationCenter.defaultCenter().postNotificationName(userDidLogoutNotification, object: nil)
+    }
     
+
     // MARK: - Current User
     // TODO: error handling
     private static var _currentUser : User? = nil
     static var currentUser : User? {
         get {
-        if _currentUser == nil {
-            // check if persisted data available
-            if let data = NSUserDefaults.standardUserDefaults().objectForKey(User.persistedKeyName) as? NSDictionary {
-                    //_currentUser = User(data: data)
-                    //_currentUser!.dictionary = JSON(data: data)
-                    print("recovered current user \(_currentUser!.uid)")
+            if _currentUser == nil {
+                let data = NSUserDefaults.standardUserDefaults().objectForKey(User.persistedKeyName) as? NSData
+                if data != nil {
+                    do {
+                        let dictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0))
+                        _currentUser = User(dictionary: dictionary as! NSDictionary)
+                    }   catch let error as NSError {
+                        //handle error
+                        print("Error : \(error)")
+                    }
                 }
             }
             return _currentUser
@@ -57,25 +81,21 @@ class User: NSObject {
         
         set(user) {
             _currentUser = user
-            if let user = user {
-                // persist current user
-                if let data = try? user.authData! as NSDictionary {
-                    //convert FauthData to NSDictionary
+            if _currentUser != nil {
+                do {
+                    let data = try NSJSONSerialization.dataWithJSONObject(user!.authDataAsDictionary!, options: NSJSONWritingOptions(rawValue: 0))
                     NSUserDefaults.standardUserDefaults().setObject(data, forKey: User.persistedKeyName)
+                }   catch let error as NSError {
+                    //handle error
+                    print("Error : \(error)")
                 }
-            } else {
-                // clear current user
-                NSUserDefaults.standardUserDefaults().removeObjectForKey(User.persistedKeyName)
+                
+                    NSUserDefaults.standardUserDefaults().synchronize()
+                }
             }
-            
-            NSUserDefaults.standardUserDefaults().synchronize()
-        }
     }
-    
-    func logout() {
-        User.currentUser = nil
-        
-      // NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.userDidLogoutNotification, object: nil)
-    }
-
 }
+    
+   
+
+

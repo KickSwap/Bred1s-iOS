@@ -21,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        //Handle user logout and subscribe to event
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
+        
+        
         // skip login if user is remembered
         if User.currentUser != nil {
             let vc = storyboard.instantiateViewControllerWithIdentifier("TimelineView") as UIViewController
@@ -28,6 +32,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions) //Facebook LaunchOptions
+    }
+    
+    func userDidLogout() {
+        //reset entire program goto start view in storyboard
+        var vc = storyboard.instantiateInitialViewController()
+        window?.rootViewController = vc
     }
 
     func applicationWillResignActive(application: UIApplication) {

@@ -24,15 +24,15 @@ class FirebaseClient {
         static let users = "users"
     }
     
-    private static func getRef() -> AnyObject {
+    static func getRef() -> AnyObject {
         return Firebase(url: baseURL)
     }
     
-    private static func getUserRef() -> AnyObject {
+    static func getUserRef() -> AnyObject {
         return Firebase(url: "\(baseURL)/\(myURIs.users)")
     }
     
-    private static func getRefWith(child:String) -> AnyObject {
+    static func getRefWith(child:String) -> AnyObject {
         return Firebase(url: "\(baseURL)/\(child)")
     }
     
