@@ -8,25 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		477970DD1C630306000F1196 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477970DC1C630306000F1196 /* AppDelegate.swift */; };
-		477970DF1C630306000F1196 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477970DE1C630306000F1196 /* ViewController.swift */; };
+		477970DF1C630306000F1196 /* KSLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477970DE1C630306000F1196 /* KSLoginViewController.swift */; };
 		477970E21C630306000F1196 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 477970E01C630306000F1196 /* Main.storyboard */; };
 		477970E51C630306000F1196 /* KickSwap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 477970E31C630306000F1196 /* KickSwap.xcdatamodeld */; };
 		477970E71C630306000F1196 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 477970E61C630306000F1196 /* Assets.xcassets */; };
 		477970EA1C630306000F1196 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 477970E81C630306000F1196 /* LaunchScreen.storyboard */; };
-		D71F1492C18911C8A0C4D5F9 /* libPods-KickSwap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F78FF163070546A5E656586 /* libPods-KickSwap.a */; };
+		47AE58801C756A42007AB49E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AE587F1C756A42007AB49E /* User.swift */; };
+		47AE58831C75730A007AB49E /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AE58821C75730A007AB49E /* Firebase.swift */; };
+		DFEE78D78899D4951CDE83C0 /* Pods_KickSwap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F46384D7C4F0A9C9B25D751 /* Pods_KickSwap.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		477970D91C630306000F1196 /* KickSwap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KickSwap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		477970DC1C630306000F1196 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		477970DE1C630306000F1196 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		477970DE1C630306000F1196 /* KSLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KSLoginViewController.swift; sourceTree = "<group>"; };
 		477970E11C630306000F1196 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		477970E41C630306000F1196 /* KickSwap.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KickSwap.xcdatamodel; sourceTree = "<group>"; };
 		477970E61C630306000F1196 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		477970E91C630306000F1196 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		477970EB1C630306000F1196 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		47AE587F1C756A42007AB49E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		47AE58821C75730A007AB49E /* Firebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
+		4F46384D7C4F0A9C9B25D751 /* Pods_KickSwap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KickSwap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65646F01B900272170F80AC6 /* Pods-KickSwap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KickSwap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KickSwap/Pods-KickSwap.debug.xcconfig"; sourceTree = "<group>"; };
-		6F78FF163070546A5E656586 /* libPods-KickSwap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KickSwap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D9C5F58332E0B426ABFA600 /* Pods-KickSwap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KickSwap.release.xcconfig"; path = "Pods/Target Support Files/Pods-KickSwap/Pods-KickSwap.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -35,7 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D71F1492C18911C8A0C4D5F9 /* libPods-KickSwap.a in Frameworks */,
+				DFEE78D78899D4951CDE83C0 /* Pods_KickSwap.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,15 +67,41 @@
 		477970DB1C630306000F1196 /* KickSwap */ = {
 			isa = PBXGroup;
 			children = (
-				477970DC1C630306000F1196 /* AppDelegate.swift */,
-				477970DE1C630306000F1196 /* ViewController.swift */,
+				47AE58811C7572F5007AB49E /* Clients */,
+				47AE587E1C756A2D007AB49E /* Models */,
+				47AE58841C758D72007AB49E /* Controllers */,
 				477970E01C630306000F1196 /* Main.storyboard */,
+				477970DC1C630306000F1196 /* AppDelegate.swift */,
 				477970E61C630306000F1196 /* Assets.xcassets */,
 				477970E81C630306000F1196 /* LaunchScreen.storyboard */,
 				477970EB1C630306000F1196 /* Info.plist */,
 				477970E31C630306000F1196 /* KickSwap.xcdatamodeld */,
 			);
 			path = KickSwap;
+			sourceTree = "<group>";
+		};
+		47AE587E1C756A2D007AB49E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				47AE587F1C756A42007AB49E /* User.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		47AE58811C7572F5007AB49E /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				47AE58821C75730A007AB49E /* Firebase.swift */,
+			);
+			name = Clients;
+			sourceTree = "<group>";
+		};
+		47AE58841C758D72007AB49E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				477970DE1C630306000F1196 /* KSLoginViewController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		7CADD7319184BB5CDF02CB39 /* Pods */ = {
@@ -86,7 +116,7 @@
 		9505686CA72C93E65C51BAC1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6F78FF163070546A5E656586 /* libPods-KickSwap.a */,
+				4F46384D7C4F0A9C9B25D751 /* Pods_KickSwap.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -214,7 +244,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				477970DF1C630306000F1196 /* ViewController.swift in Sources */,
+				47AE58831C75730A007AB49E /* Firebase.swift in Sources */,
+				47AE58801C756A42007AB49E /* User.swift in Sources */,
+				477970DF1C630306000F1196 /* KSLoginViewController.swift in Sources */,
 				477970DD1C630306000F1196 /* AppDelegate.swift in Sources */,
 				477970E51C630306000F1196 /* KickSwap.xcdatamodeld in Sources */,
 			);
