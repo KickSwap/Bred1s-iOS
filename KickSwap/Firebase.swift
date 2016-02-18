@@ -42,7 +42,10 @@ class FirebaseClient {
         - Register user into Firebase DB with FacebookID
     */
     
-    static func loginWithFacebook(fbAccessToken : String) {
+    static func loginWithFacebook(fbAccessToken:String, handler:FirebaseLoginHandler?) {
+        //connect controllers handler to self.handler
+        myHandler = handler
+        
         //Check if User Already Exist >> login
 
         //Authenticate with facebookID
