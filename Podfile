@@ -4,6 +4,6 @@
 # use_frameworks!
 
 target 'KickSwap' do
-
+  pod 'Firebase'
 end
 

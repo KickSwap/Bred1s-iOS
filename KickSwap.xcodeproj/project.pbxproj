@@ -13,6 +13,7 @@
 		477970E51C630306000F1196 /* KickSwap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 477970E31C630306000F1196 /* KickSwap.xcdatamodeld */; };
 		477970E71C630306000F1196 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 477970E61C630306000F1196 /* Assets.xcassets */; };
 		477970EA1C630306000F1196 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 477970E81C630306000F1196 /* LaunchScreen.storyboard */; };
+		D71F1492C18911C8A0C4D5F9 /* libPods-KickSwap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F78FF163070546A5E656586 /* libPods-KickSwap.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,9 @@
 		477970E61C630306000F1196 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		477970E91C630306000F1196 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		477970EB1C630306000F1196 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65646F01B900272170F80AC6 /* Pods-KickSwap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KickSwap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KickSwap/Pods-KickSwap.debug.xcconfig"; sourceTree = "<group>"; };
+		6F78FF163070546A5E656586 /* libPods-KickSwap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KickSwap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D9C5F58332E0B426ABFA600 /* Pods-KickSwap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KickSwap.release.xcconfig"; path = "Pods/Target Support Files/Pods-KickSwap/Pods-KickSwap.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D71F1492C18911C8A0C4D5F9 /* libPods-KickSwap.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +47,8 @@
 			children = (
 				477970DB1C630306000F1196 /* KickSwap */,
 				477970DA1C630306000F1196 /* Products */,
+				7CADD7319184BB5CDF02CB39 /* Pods */,
+				9505686CA72C93E65C51BAC1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +74,23 @@
 			path = KickSwap;
 			sourceTree = "<group>";
 		};
+		7CADD7319184BB5CDF02CB39 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				65646F01B900272170F80AC6 /* Pods-KickSwap.debug.xcconfig */,
+				9D9C5F58332E0B426ABFA600 /* Pods-KickSwap.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9505686CA72C93E65C51BAC1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6F78FF163070546A5E656586 /* libPods-KickSwap.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +98,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 477970EE1C630306000F1196 /* Build configuration list for PBXNativeTarget "KickSwap" */;
 			buildPhases = (
+				65B324B01C02198504F26DEC /* Check Pods Manifest.lock */,
 				477970D51C630306000F1196 /* Sources */,
 				477970D61C630306000F1196 /* Frameworks */,
 				477970D71C630306000F1196 /* Resources */,
+				D0F8A8DA9F396C021F15BC2A /* Embed Pods Frameworks */,
+				8E2F3128EDDB7B78DCC871B8 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -133,6 +160,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		65B324B01C02198504F26DEC /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8E2F3128EDDB7B78DCC871B8 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KickSwap/Pods-KickSwap-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D0F8A8DA9F396C021F15BC2A /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KickSwap/Pods-KickSwap-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		477970D51C630306000F1196 /* Sources */ = {
@@ -252,6 +327,7 @@
 		};
 		477970EF1C630306000F1196 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65646F01B900272170F80AC6 /* Pods-KickSwap.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = KickSwap/Info.plist;
@@ -263,6 +339,7 @@
 		};
 		477970F01C630306000F1196 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D9C5F58332E0B426ABFA600 /* Pods-KickSwap.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = KickSwap/Info.plist;
@@ -291,6 +368,7 @@
 				477970F01C630306000F1196 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
