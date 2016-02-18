@@ -18,6 +18,7 @@ protocol FirebaseLoginHandler {
 class FirebaseClient {
     
     private static var myHandler : FirebaseLoginHandler?
+    var loginCompletion: ((user:User?, error:NSError?) -> ())?
     
     private class myURIs{
         //auth related calls
@@ -63,6 +64,10 @@ class FirebaseClient {
                     myHandler?.loginCompletion()
             }
         })
+    }
+    
+    func loginWithCompletion(completion: (user:User?, error:NSError?) -> ()){
+        loginCompletion = completion
     }
     
     static func saveUser(user: User){

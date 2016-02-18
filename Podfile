@@ -7,6 +7,5 @@ target 'KickSwap' do
   pod 'Firebase'
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
-  pod 'LiquidFloatingActionButton'
 end
 

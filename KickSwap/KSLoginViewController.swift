@@ -25,6 +25,9 @@ class KSLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Firebas
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        if (User.currentUser != nil && loggedIn == true) {
+            self.performSegueWithIdentifier("LoginToTimeline", sender: nil)
+        }
     }
     
     
@@ -53,9 +56,7 @@ class KSLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Firebas
     
     //MARK: - FirebaseClient Protocols
     func loginCompletion() -> Void {
-        //perform segueway to next screen
-        //self.performSegueWithIdentifier("LoginToTimeline", sender: nil)
-        loggedIn = true
+        loggedIn = true //set flag to allow login
     }
     
     func loginFailure(error: NSError?) -> Void {

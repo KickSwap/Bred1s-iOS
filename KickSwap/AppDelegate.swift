@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func userDidLogout() {
         //reset entire program goto start view in storyboard
-        var vc = storyboard.instantiateInitialViewController()
+        let vc = storyboard.instantiateInitialViewController()
         window?.rootViewController = vc
     }
 
