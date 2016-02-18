@@ -7,7 +7,7 @@ Time spent: X hours spent in total
 ## User Stories
 
 The following **core** functionality is completed:
-- [ ] User can login using facebook credentials
+- [X] User can login using facebook credentials
 - [ ] User can post the sneakers on the timeline for others to bid on
 - [ ] User can accept bid on sneaker then negotiate terms and meetup locations for transaction in private chat 
 - [ ] User can search for exclusive shoes in our database
