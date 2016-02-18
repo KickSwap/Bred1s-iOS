@@ -8,16 +8,36 @@
 
 import UIKit
 import CoreData
+import Firebase
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var storyboard = UIStoryboard(name: "Main", bundle: nil)
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        return true
+        
+        //Handle user logout and subscribe to event
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
+        
+        
+        // skip login if user is remembered
+        if User.currentUser != nil {
+            let vc = storyboard.instantiateViewControllerWithIdentifier("TimelineView") as UIViewController
+            window?.rootViewController = vc
+        }
+        
+        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions) //Facebook LaunchOptions
+    }
+    
+    func userDidLogout() {
+        //reset entire program goto start view in storyboard
+        let vc = storyboard.instantiateInitialViewController()
+        window?.rootViewController = vc
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -36,6 +56,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        FBSDKAppEvents.activateApp()
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+            return FBSDKApplicationDelegate.sharedInstance()
+                .application(application, openURL: url,
+                    sourceApplication: sourceApplication, annotation: annotation)
     }
 
     func applicationWillTerminate(application: UIApplication) {
