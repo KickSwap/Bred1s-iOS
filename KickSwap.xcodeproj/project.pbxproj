@@ -15,6 +15,7 @@
 		477970EA1C630306000F1196 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 477970E81C630306000F1196 /* LaunchScreen.storyboard */; };
 		47AE58801C756A42007AB49E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AE587F1C756A42007AB49E /* User.swift */; };
 		47AE58831C75730A007AB49E /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AE58821C75730A007AB49E /* Firebase.swift */; };
+		47AE58861C75F5D8007AB49E /* KSTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AE58851C75F5D8007AB49E /* KSTimelineViewController.swift */; };
 		DFEE78D78899D4951CDE83C0 /* Pods_KickSwap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F46384D7C4F0A9C9B25D751 /* Pods_KickSwap.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		477970EB1C630306000F1196 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47AE587F1C756A42007AB49E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		47AE58821C75730A007AB49E /* Firebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
+		47AE58851C75F5D8007AB49E /* KSTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTimelineViewController.swift; sourceTree = "<group>"; };
 		4F46384D7C4F0A9C9B25D751 /* Pods_KickSwap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KickSwap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65646F01B900272170F80AC6 /* Pods-KickSwap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KickSwap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KickSwap/Pods-KickSwap.debug.xcconfig"; sourceTree = "<group>"; };
 		9D9C5F58332E0B426ABFA600 /* Pods-KickSwap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KickSwap.release.xcconfig"; path = "Pods/Target Support Files/Pods-KickSwap/Pods-KickSwap.release.xcconfig"; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				477970DE1C630306000F1196 /* KSLoginViewController.swift */,
+				47AE58851C75F5D8007AB49E /* KSTimelineViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				477970DF1C630306000F1196 /* KSLoginViewController.swift in Sources */,
 				477970DD1C630306000F1196 /* AppDelegate.swift in Sources */,
 				477970E51C630306000F1196 /* KickSwap.xcdatamodeld in Sources */,
+				47AE58861C75F5D8007AB49E /* KSTimelineViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

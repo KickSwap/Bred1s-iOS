@@ -55,26 +55,17 @@ class FirebaseClient {
                     print("Login failed. \(error)")
                 } else {
                     //set global currentUser
-                    let currentUser = User(data: authData)
+                    let newUser = User(data: authData)
+                    User.currentUser = newUser
                     
                     //set value back into Firebase
-                    setUser(currentUser)
+                    saveUser(User.currentUser!)
                     myHandler?.loginCompletion()
-                    
-//                    //Does user already Exist
-//                    if checkIfUserExist(currentUser) {
-//                       //normal login
-//                        print("user exist")
-//                    
-//                    } else {
-//                        //create completion to all segue way to initUser
-//
-//                    }
-                }
+            }
         })
     }
     
-    static func setUser(user: User){
+    static func saveUser(user: User){
         //set User information into firebase
         getUserRef().childByAppendingPath(user.uid).setValue(user.providerData)
     }

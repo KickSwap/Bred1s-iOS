@@ -12,6 +12,8 @@ import FBSDKLoginKit
 
 class KSLoginViewController: UIViewController, FBSDKLoginButtonDelegate, FirebaseLoginHandler {
     
+    var loggedIn: Bool?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -19,6 +21,10 @@ class KSLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Firebas
         loginBtn.delegate = self
         loginBtn.center = self.view.center
         self.view.addSubview(loginBtn)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     
@@ -48,7 +54,8 @@ class KSLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Firebas
     //MARK: - FirebaseClient Protocols
     func loginCompletion() -> Void {
         //perform segueway to next screen
-        self.performSegueWithIdentifier("LoginToTimeline", sender: nil)
+        //self.performSegueWithIdentifier("LoginToTimeline", sender: nil)
+        loggedIn = true
     }
     
     func loginFailure(error: NSError?) -> Void {
