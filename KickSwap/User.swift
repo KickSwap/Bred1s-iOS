@@ -28,6 +28,11 @@ class User: NSObject {
     var authDataAsDictionary: NSDictionary?
     
     //Facebook Profile Fields
+    
+    //User Wants/Detail Fields
+    var wishlist: [Shoe]?
+    var watching: [Shoe]?
+    
     init(data : FAuthData) {
         self.authData = data // set callback from Firebase to object
         self.authDataAsDictionary = NSDictionary(dictionary: ["uid":data.uid, "provider":data.provider, "token":data.token, "auth":data.auth, "providerData":data.providerData])
