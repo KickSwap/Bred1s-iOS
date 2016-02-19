@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -16,7 +17,19 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="main-logo" translatesAutoresizingMaskIntoConstraints="NO" id="dgc-ma-YAd">
+                                <rect key="frame" x="67" y="135" width="240" height="163"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="dgc-ma-YAd" secondAttribute="height" multiplier="253:172" id="31w-rF-5vM"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.99607843137254903" green="0.96470588235294119" blue="0.87450980392156863" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="dgc-ma-YAd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2l5-qf-tGU"/>
+                            <constraint firstItem="dgc-ma-YAd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="115" id="cr5-Za-uuG"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
@@ -25,6 +38,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="356.5" y="225.5"/>
         </scene>
         <!--Timeline View Controller-->
         <scene sceneID="hG9-be-4I5">
@@ -61,4 +75,7 @@
             <point key="canvasLocation" x="918.5" y="225.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="main-logo" width="240" height="163"/>
+    </resources>
 </document>

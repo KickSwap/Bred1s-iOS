@@ -14,10 +14,10 @@ let userDidLoginNotification = "userDidLoginNotif"
 let userDidLogoutNotification = "userDidLogoutNotif"
 
 class User: NSObject {
-    
+
     //Core Data
     private static let persistedKeyName = "KickSwap.CURRENT_USER"
-    
+
     //Firebase FAuth Data
     var uid: String?
     var provider: String?
@@ -26,12 +26,17 @@ class User: NSObject {
     var providerData: NSDictionary?
     var authData: FAuthData?
     var authDataAsDictionary: NSDictionary?
-    
+
     //Facebook Profile Fields
+
+    //User Wants/Detail Fields
+    var wishlist: [Shoe]?
+    var watching: [Shoe]?
+
     init(data : FAuthData) {
         self.authData = data // set callback from Firebase to object
         self.authDataAsDictionary = NSDictionary(dictionary: ["uid":data.uid, "provider":data.provider, "token":data.token, "auth":data.auth, "providerData":data.providerData])
-        
+
         //serialize data >> Object
         self.uid = data.uid
         self.provider = data.provider
@@ -39,25 +44,26 @@ class User: NSObject {
         self.auth = data.auth
         self.providerData = data.providerData
     }
-    
+
     init(dictionary:NSDictionary){
         //self.authData = dictionary["authData"] as? FAuthData
         self.authDataAsDictionary = dictionary
-        
+
         self.uid = dictionary["uid"] as? String
         self.provider = dictionary["provider"] as? String
         self.token = dictionary["token"] as? String
         self.auth = dictionary["auth"] as? NSDictionary
         self.providerData = dictionary["provider"]as? NSDictionary
     }
-    
+
     func logout() {
         User.currentUser = nil
         FirebaseClient.getRef().unauth() // for firbase
         FBSDKLoginManager().logOut() // for Facebook
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(User.persistedKeyName) // removeKey in CoreData
         NSNotificationCenter.defaultCenter().postNotificationName(userDidLogoutNotification, object: nil)
     }
-    
+
 
     // MARK: - Current User
     // TODO: error handling
@@ -76,9 +82,10 @@ class User: NSObject {
                     }
                 }
             }
+
             return _currentUser
         }
-        
+
         set(user) {
             _currentUser = user
             if _currentUser != nil {
@@ -89,13 +96,9 @@ class User: NSObject {
                     //handle error
                     print("Error : \(error)")
                 }
-                
+
                     NSUserDefaults.standardUserDefaults().synchronize()
                 }
             }
     }
 }
-    
-   
-
-
