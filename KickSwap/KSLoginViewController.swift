@@ -12,13 +12,17 @@ import FBSDKLoginKit
 
 class KSLoginViewController: UIViewController, FBSDKLoginButtonDelegate, FirebaseLoginDelegate {
     
-    var loggedIn = false
+    var loggedIn: Bool?
     
     var firebaseClient = FirebaseClient.sharedClient
     
     override func viewDidLoad() {
         super.viewDidLoad()
         firebaseClient.loginDelegate = self
+        
+        if User.currentUser == nil {
+            loggedIn = false
+        }
         
         // Do any additional setup after loading the view, typically from a nib.
         let loginBtn = FBSDKLoginButton()
@@ -29,10 +33,10 @@ class KSLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Firebas
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        if (User.currentUser != nil && loggedIn) {
+        if (User.currentUser != nil && loggedIn == true) {
             self.performSegueWithIdentifier("LoginToTimeline", sender: nil)
         } else {
-            print("NO CURRENT USER")
+            print("No Current User")
         }
     }
 
