@@ -19,7 +19,7 @@ class KSLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Firebas
         // Do any additional setup after loading the view, typically from a nib.
         let loginBtn = FBSDKLoginButton()
         loginBtn.delegate = self
-        loginBtn.center = self.view.center
+        loginBtn.center = CGPoint(x: self.view.bounds.width/2, y: self.view.bounds.height - 150)
         self.view.addSubview(loginBtn)
     }
     
@@ -29,7 +29,6 @@ class KSLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Firebas
             self.performSegueWithIdentifier("LoginToTimeline", sender: nil)
         }
     }
-    
     
     // MARK: - Facebook Login Button
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
