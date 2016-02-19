@@ -8,17 +8,17 @@
 
 import Firebase
 
-let baseURL = "https://kickswap.firebaseio.com"
-
-protocol FirebaseLoginHandler {
+protocol FirebaseLoginDelegate: class {
     func loginCompletion() -> Void
     func loginFailure(error: NSError?) -> Void
 }
 
-class FirebaseClient {
+class FirebaseClient: NSObject {
     
-    private static var myHandler : FirebaseLoginHandler?
-    var loginCompletion: ((user:User?, error:NSError?) -> ())?
+    static let sharedClient = FirebaseClient()
+    static let baseURL = "https://kickswap.firebaseio.com"
+    
+    weak var loginDelegate: FirebaseLoginDelegate?
     
     private class myURIs{
         //auth related calls
@@ -37,37 +37,30 @@ class FirebaseClient {
         return Firebase(url: "\(baseURL)/\(child)")
     }
     
-    
-    
     /* Login w/ Facebook
         - Register user into Firebase DB with FacebookID
     */
     
-    static func loginWithFacebook(fbAccessToken:String, handler:FirebaseLoginHandler?) {
+    func loginWithFacebook(fbAccessToken:String) {
         //connect controllers handler to self.handler
-        myHandler = handler
-        
         //Check if User Already Exist >> login
 
         //Authenticate with facebookID
-        getRef().authWithOAuthProvider("facebook", token: fbAccessToken,
+        FirebaseClient.getRef().authWithOAuthProvider("facebook", token: fbAccessToken,
             withCompletionBlock: { error, authData in
                 if error != nil {
                     print("Login failed. \(error)")
+                    self.loginDelegate?.loginFailure(error)
                 } else {
                     //set global currentUser
                     let newUser = User(data: authData)
                     User.currentUser = newUser
                     
                     //set value back into Firebase
-                    saveUser(User.currentUser!)
-                    myHandler?.loginCompletion()
+                    FirebaseClient.saveUser(User.currentUser!)
+                    self.loginDelegate?.loginCompletion()
             }
         })
-    }
-    
-    func loginWithCompletion(completion: (user:User?, error:NSError?) -> ()){
-        loginCompletion = completion
     }
     
     static func saveUser(user: User){

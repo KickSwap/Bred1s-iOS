@@ -64,7 +64,6 @@ class User: NSObject {
         NSNotificationCenter.defaultCenter().postNotificationName(userDidLogoutNotification, object: nil)
     }
 
-
     // MARK: - Current User
     // TODO: error handling
     private static var _currentUser : User? = nil
@@ -96,8 +95,6 @@ class User: NSObject {
                     //handle error
                     print("Error : \(error)")
                 }
-
-                    NSUserDefaults.standardUserDefaults().synchronize()
                 }
             }
     }

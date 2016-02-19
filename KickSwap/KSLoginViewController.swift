@@ -10,12 +10,16 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-class KSLoginViewController: UIViewController, FBSDKLoginButtonDelegate, FirebaseLoginHandler {
+class KSLoginViewController: UIViewController, FBSDKLoginButtonDelegate, FirebaseLoginDelegate {
     
-    var loggedIn: Bool?
+    var loggedIn = false
+    
+    var firebaseClient = FirebaseClient.sharedClient
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        firebaseClient.loginDelegate = self
+        
         // Do any additional setup after loading the view, typically from a nib.
         let loginBtn = FBSDKLoginButton()
         loginBtn.delegate = self
@@ -25,11 +29,13 @@ class KSLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Firebas
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        if (User.currentUser != nil && loggedIn == true) {
+        if (User.currentUser != nil && loggedIn) {
             self.performSegueWithIdentifier("LoginToTimeline", sender: nil)
+        } else {
+            print("NO CURRENT USER")
         }
     }
-    
+
     // MARK: - Facebook Login Button
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         if ((error) != nil) {
@@ -41,12 +47,14 @@ class KSLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Firebas
         else {
             // Navigate to other view
             let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
-            FirebaseClient.loginWithFacebook(accessToken, handler: self)
+            FirebaseClient.sharedClient.loginWithFacebook(accessToken)
         }
+        
     }
     
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!)
-    {}
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
