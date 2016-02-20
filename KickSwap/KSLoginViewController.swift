@@ -20,10 +20,6 @@ class KSLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Firebas
         super.viewDidLoad()
         firebaseClient.loginDelegate = self
         
-        if User.currentUser == nil {
-            loggedIn = false
-        }
-        
         // Do any additional setup after loading the view, typically from a nib.
         let loginBtn = FBSDKLoginButton()
         loginBtn.delegate = self
@@ -67,7 +63,7 @@ class KSLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Firebas
     
     //MARK: - FirebaseClient Protocols
     func loginCompletion() -> Void {
-        loggedIn = true //set flag to allow login
+        loggedIn = true //set flag to indicate loginHasBeenCompleted
     }
     
     func loginFailure(error: NSError?) -> Void {

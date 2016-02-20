@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import LiquidFloatingActionButton
-
 class KSTimelineViewController: UIViewController {
 
     override func viewDidLoad() {
