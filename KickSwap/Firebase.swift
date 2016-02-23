@@ -23,6 +23,7 @@ class FirebaseClient: NSObject {
     private class myURIs{
         //auth related calls
         static let users = "users"
+        static let shoes = "shoes"
     }
     
     static func getRef() -> AnyObject {
@@ -42,9 +43,6 @@ class FirebaseClient: NSObject {
     */
     
     func loginWithFacebook(fbAccessToken:String) {
-        //connect controllers handler to self.handler
-        //Check if User Already Exist >> login
-
         //Authenticate with facebookID
         FirebaseClient.getRef().authWithOAuthProvider("facebook", token: fbAccessToken,
             withCompletionBlock: { error, authData in
@@ -71,6 +69,15 @@ class FirebaseClient: NSObject {
     static func checkIfUserExist(userToCheck:User) -> Bool {
         //return getUserRef().childSnapshotForPath("/\(userToCheck.uid)").exists()
         return true
+    }
+    
+    //MARK: - KickSwap Methods
+    static func saveShoes(shoeToSave: Shoe){
+        let shoeRef = getRefWith("shoes").childByAutoId()
+        shoeRef.setValue(shoeToSave.getShoe())
+        
+        //TODO: append key to user locker
+        //var shoeId = shoeRef.key
     }
     
 }
