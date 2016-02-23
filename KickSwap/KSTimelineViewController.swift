@@ -30,6 +30,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         userProfileImage.clipsToBounds = true
         prepareView()
         prepareTextView()
+        addToolBar(textView)
     }
     
     /// General preparation statements.
@@ -56,10 +57,13 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         text.delegate = self
         text.textStorage.addLayoutManager(layoutManager)
         
+        
         textView = TextView(textContainer: textContainer)
         textView.backgroundColor = UIColor.clearColor()
         textView.delegate = self
         textView.font = RobotoFont.regular
+        textView.textColor = UIColor.whiteColor()
+        textView.textContainer.maximumNumberOfLines = 1
         
         textView.placeholderLabel = UILabel()
         textView.placeholderLabel!.textColor = MaterialColor.white
@@ -76,11 +80,12 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         MaterialLayout.alignToParent(view, child: textView!, top: 40, left: 24, bottom: 608, right: 100)
     }
     
-    func addToolBar(textField: UITextField){
+    func addToolBar(textView: UITextView){
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.Default
         toolBar.translucent = true
-        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        toolBar.tintColor = UIColor(hexString: "FA4A07")
+        //toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
         let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "discoverPressed")
         let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: "cancelPressed")
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
