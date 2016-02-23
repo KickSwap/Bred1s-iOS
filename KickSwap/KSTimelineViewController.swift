@@ -38,12 +38,12 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         addToolBar(textView)
         
         //set image initially
-        pictureIndex = random() % 4
+        pictureIndex = 0
         timelineBackground.image = backgroundImages[pictureIndex!]
         
         
         //start timer
-        var timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: Selector("loadImage"), userInfo: nil, repeats: true)
+        var timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: Selector("loadImage"), userInfo: nil, repeats: true)
 
     }
     
@@ -54,8 +54,12 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
             pictureIndex = 0
             newIndex = pictureIndex!
         }
-        timelineBackground.image = backgroundImages[newIndex]
         
+        UIView.transitionWithView(self.timelineBackground,
+            duration:5,
+            options: UIViewAnimationOptions.TransitionCrossDissolve,
+            animations: { self.timelineBackground.image = self.backgroundImages[newIndex]},
+            completion: nil)
     }
     
     /// General preparation statements.
