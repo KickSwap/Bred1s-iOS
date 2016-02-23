@@ -34,8 +34,8 @@ class Shoe: NSObject {
         self.color = data["color"] as? String
         self.imageURL = data["imageURL"] as? String
         
-        // make call w/ ownerId
-        //self.owner = d
+        // TODO: - make call w/ ownerId
+        self.owner = User.currentUser! //.... for testing purposes
     }
     
     func getShoe() -> [String:String]{

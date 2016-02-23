@@ -24,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Handle user logout and subscribe to event
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
         
+        let data:NSDictionary = ["name":"test", "brand":"test", "color":"test"]
+        FirebaseClient.saveShoes(Shoe(data: data))
+        
         
         // skip login if user is remembered
         if User.currentUser != nil {
