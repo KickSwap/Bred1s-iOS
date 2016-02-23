@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="main-logo" translatesAutoresizingMaskIntoConstraints="NO" id="dgc-ma-YAd">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="main-logo" translatesAutoresizingMaskIntoConstraints="NO" id="dgc-ma-YAd">
                                 <rect key="frame" x="67" y="135" width="240" height="163"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dgc-ma-YAd" secondAttribute="height" multiplier="253:172" id="31w-rF-5vM"/>
@@ -59,7 +59,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KFY-Dg-cRh">
-                                <rect key="frame" x="163" y="520" width="48" height="30"/>
+                                <rect key="frame" x="163" y="562" width="48" height="30"/>
                                 <state key="normal" title="Logout"/>
                                 <connections>
                                     <action selector="logOutPressed:" destination="6dI-Qr-hek" eventType="touchUpInside" id="zdv-14-Lhx"/>

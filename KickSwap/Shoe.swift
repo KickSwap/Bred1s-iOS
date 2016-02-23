@@ -27,13 +27,15 @@ class Shoe: NSObject {
     //var willingToTradeFor: [Shoe]?
     //var bids:[Bids]
     
-    init(data:NSDictionary, owner:User) {
+    init(data:NSDictionary) {
         self.name = data["name"] as? String
         self.brand = data["brand"] as? String
         self.color = data["color"] as? String
-        self.owner = owner
+        
+        // make call w/ ownerId
+        //self.owner = d
     }
-
+    
     func getShoe() -> [String:String]{
         return ["name": name!, "color": color!, "brand": brand!, "ownerId":(owner?.uid)!]
     }
