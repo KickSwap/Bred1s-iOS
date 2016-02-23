@@ -14,6 +14,7 @@ class Shoe: NSObject {
     var name: String?
     var color: String?
     var brand: String?
+    var imageURL: String?
     
     var condition: String?
     var size: Double?
@@ -31,6 +32,7 @@ class Shoe: NSObject {
         self.name = data["name"] as? String
         self.brand = data["brand"] as? String
         self.color = data["color"] as? String
+        self.imageURL = data["imageURL"] as? String
         
         // make call w/ ownerId
         //self.owner = d
