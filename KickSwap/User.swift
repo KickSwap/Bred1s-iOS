@@ -65,7 +65,6 @@ class User: NSObject {
     }
 
     // MARK: - Current User
-    // TODO: error handling
     private static var _currentUser : User? = nil
     static var currentUser : User? {
         get {
@@ -92,9 +91,9 @@ class User: NSObject {
                     let data = try NSJSONSerialization.dataWithJSONObject(user!.authDataAsDictionary!, options: NSJSONWritingOptions(rawValue: 0))
                     NSUserDefaults.standardUserDefaults().setObject(data, forKey: User.persistedKeyName)
                 }   catch let error as NSError {
-                    //handle error
-                    print("Error : \(error)")
-                }
+                        //handle error
+                        print("Error : \(error)")
+                    }
                 }
             }
     }

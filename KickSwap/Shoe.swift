@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class Shoe: NSObject {
 
@@ -25,4 +26,16 @@ class Shoe: NSObject {
     
     //var willingToTradeFor: [Shoe]?
     //var bids:[Bids]
+    
+    init(data:NSDictionary, owner:User) {
+        self.name = data["name"] as? String
+        self.brand = data["brand"] as? String
+        self.color = data["color"] as? String
+        self.owner = owner
+    }
+
+    func getShoe() -> [String:String]{
+        return ["name": name!, "color": color!, "brand": brand!, "ownerId":(owner?.uid)!]
+    }
 }
+
