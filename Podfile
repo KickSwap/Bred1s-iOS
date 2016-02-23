@@ -9,5 +9,7 @@ target 'KickSwap' do
   pod 'FBSDKLoginKit'
   pod 'Material'
   pod 'ChameleonFramework/Swift'
+  pod 'Canvas'
+  pod 'IBAnimatable'
 end
 

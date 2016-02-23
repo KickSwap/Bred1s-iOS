@@ -53,7 +53,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nikeSB" translatesAutoresizingMaskIntoConstraints="NO" id="OKc-jk-YOC">
+                            <imageView userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nikeSB" translatesAutoresizingMaskIntoConstraints="NO" id="OKc-jk-YOC" customClass="AnimatableImageView" customModule="IBAnimatable">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="eKb-Zf-R6p">
@@ -183,6 +183,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="timeline" destination="Re8-1B-Ztw" id="Qja-vn-Lkf"/>
+                        <outlet property="timelineBackground" destination="OKc-jk-YOC" id="ozl-tQ-uNG"/>
                         <outlet property="userProfileImage" destination="Pln-BB-Fu7" id="ZH4-gi-pv0"/>
                     </connections>
                 </viewController>

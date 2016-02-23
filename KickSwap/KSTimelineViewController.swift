@@ -9,8 +9,13 @@
 import UIKit
 import Material
 import ChameleonFramework
+import IBAnimatable
 
 class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, TextDelegate, TextViewDelegate {
+    
+    @IBOutlet var timelineBackground: AnimatableImageView!
+    let backgroundImages = [UIImage(named:"blackBox"),UIImage(named:"boxStack"),UIImage(named:"nikeSB"),UIImage(named:"greenBox")]
+    var pictureIndex:Int?
     
     @IBOutlet var timeline: UICollectionView!
     var shoeTimeline: [Shoe]?
@@ -31,6 +36,26 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         prepareView()
         prepareTextView()
         addToolBar(textView)
+        
+        //set image initially
+        pictureIndex = random() % 4
+        timelineBackground.image = backgroundImages[pictureIndex!]
+        
+        
+        //start timer
+        var timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: Selector("loadImage"), userInfo: nil, repeats: true)
+
+    }
+    
+    func loadImage(){
+        //setImages
+        var newIndex = pictureIndex!++
+        if newIndex > 3 {
+            pictureIndex = 0
+            newIndex = pictureIndex!
+        }
+        timelineBackground.image = backgroundImages[newIndex]
+        
     }
     
     /// General preparation statements.
