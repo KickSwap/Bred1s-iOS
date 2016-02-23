@@ -71,12 +71,13 @@ class FirebaseClient: NSObject {
         return true
     }
     
+    //MARK: - KickSwap Methods
     static func saveShoes(shoeToSave: Shoe){
         let shoeRef = getRefWith("shoes").childByAutoId()
         shoeRef.setValue(shoeToSave.getShoe())
         
         //TODO: append key to user locker
-        var shoeId = shoeRef.key
+        //var shoeId = shoeRef.key
     }
     
 }
