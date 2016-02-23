@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		024327011C7CA881009893B8 /* KSTimelineCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024327001C7CA881009893B8 /* KSTimelineCollectionViewCell.swift */; };
+		024327031C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024327021C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift */; };
 		477970DD1C630306000F1196 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477970DC1C630306000F1196 /* AppDelegate.swift */; };
 		477970DF1C630306000F1196 /* KSLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477970DE1C630306000F1196 /* KSLoginViewController.swift */; };
 		477970E21C630306000F1196 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 477970E01C630306000F1196 /* Main.storyboard */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		024327001C7CA881009893B8 /* KSTimelineCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTimelineCollectionViewCell.swift; sourceTree = "<group>"; };
+		024327021C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterCellCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		477970D91C630306000F1196 /* KickSwap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KickSwap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		477970DC1C630306000F1196 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		477970DE1C630306000F1196 /* KSLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KSLoginViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 			children = (
 				477970DE1C630306000F1196 /* KSLoginViewController.swift */,
 				47AE58851C75F5D8007AB49E /* KSTimelineViewController.swift */,
+				024327001C7CA881009893B8 /* KSTimelineCollectionViewCell.swift */,
+				024327021C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -165,7 +171,7 @@
 				TargetAttributes = {
 					477970D81C630306000F1196 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = GDB3SZ2MTH;
+						DevelopmentTeam = ELJV42N84Z;
 					};
 				};
 			};
@@ -255,6 +261,8 @@
 			files = (
 				47AE58831C75730A007AB49E /* Firebase.swift in Sources */,
 				47AE58801C756A42007AB49E /* User.swift in Sources */,
+				024327011C7CA881009893B8 /* KSTimelineCollectionViewCell.swift in Sources */,
+				024327031C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift in Sources */,
 				47AE58881C769904007AB49E /* Shoe.swift in Sources */,
 				47AE588A1C769C2F007AB49E /* Bid.swift in Sources */,
 				477970DF1C630306000F1196 /* KSLoginViewController.swift in Sources */,
@@ -374,10 +382,13 @@
 			baseConfigurationReference = 65646F01B900272170F80AC6 /* Pods-KickSwap.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = KickSwap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = hamtech.KickSwap;
+				PRODUCT_BUNDLE_IDENTIFIER = hamtech.KickSwap.me;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -386,10 +397,13 @@
 			baseConfigurationReference = 9D9C5F58332E0B426ABFA600 /* Pods-KickSwap.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = KickSwap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = hamtech.KickSwap;
+				PRODUCT_BUNDLE_IDENTIFIER = hamtech.KickSwap.me;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

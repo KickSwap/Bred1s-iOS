@@ -12,6 +12,7 @@ import FBSDKLoginKit
 
 class KSLoginViewController: UIViewController, FBSDKLoginButtonDelegate, FirebaseLoginDelegate {
     
+    
     var loggedIn: Bool?
     
     var firebaseClient = FirebaseClient.sharedClient
