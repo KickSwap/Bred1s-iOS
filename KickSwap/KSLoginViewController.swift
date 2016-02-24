@@ -12,8 +12,6 @@ import FBSDKLoginKit
 
 class KSLoginViewController: UIViewController, FBSDKLoginButtonDelegate, FirebaseLoginDelegate {
     
-    var loggedIn: Bool?
-    
     var firebaseClient = FirebaseClient.sharedClient
     
     override func viewDidLoad() {
@@ -28,9 +26,8 @@ class KSLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Firebas
     }
     
     override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        if (User.currentUser != nil && loggedIn == true) {
-            self.performSegueWithIdentifier("LoginToTimeline", sender: nil)
+        if(User.currentUser != nil){
+          self.performSegueWithIdentifier("LoginToTimeline", sender: nil) //takes care recurring case of userExisting
         } else {
             print("No Current User")
         }
@@ -63,7 +60,13 @@ class KSLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Firebas
     
     //MARK: - FirebaseClient Protocols
     func loginCompletion() -> Void {
-        loggedIn = true //set flag to indicate loginHasBeenCompleted
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+            // do some task
+            dispatch_async(dispatch_get_main_queue(), {
+                // update some UI
+                self.performSegueWithIdentifier("LoginToTimeline", sender: nil) //edge on first login waits for FBView to end
+            });
+        });
     }
     
     func loginFailure(error: NSError?) -> Void {
