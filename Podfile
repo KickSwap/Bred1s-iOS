@@ -11,5 +11,6 @@ target 'KickSwap' do
   pod 'ChameleonFramework/Swift'
   pod 'Canvas'
   pod 'IBAnimatable'
+  pod 'AFNetworking'
 end
 

@@ -9,8 +9,18 @@
 import UIKit
 import ChameleonFramework
 import Material
+import AFNetworking
 
 class KSTimelineCollectionViewCell: UICollectionViewCell {
+    
+    var shoe: Shoe! {
+        didSet {
+            shoeImageView.setImageWithURL(shoe.imageURL!)
+            shoeNameLabel.text = shoe.name!
+            sizeLabel.text = String(shoe.size)
+            //conditionLabel.text = shoe.condition!
+        }
+    }
     
 
     @IBOutlet var shoeImageView: UIImageView!

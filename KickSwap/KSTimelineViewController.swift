@@ -18,7 +18,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     var pictureIndex:Int?
     
     @IBOutlet var timeline: UICollectionView!
-    var shoeTimeline: [Shoe]?
+    var shoes: [Shoe]?
     @IBOutlet var userProfileImage: UIImageView!
     
     /// A Text storage object that monitors the changes within the textView.
@@ -41,10 +41,11 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         pictureIndex = 0
         timelineBackground.image = backgroundImages[pictureIndex!]
         
-        
+        //query shoes
+        self.getShoes()
+
         //start timer
         var timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: Selector("loadImage"), userInfo: nil, repeats: true)
-
     }
     
     func loadImage(){
@@ -154,11 +155,17 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     }
     
     func collectionView(timeline: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        if shoes != nil {
+            return (shoes?.count)!
+        } else {
+        return 0
+        }
     }
     
     func collectionView(timeline: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = timeline.dequeueReusableCellWithReuseIdentifier("TimelineCell", forIndexPath: indexPath) as! KSTimelineCollectionViewCell
+        
+        cell.shoe = shoes![indexPath.row]
         
         return cell
     }
@@ -167,18 +174,25 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     func getShoes() {
         // Get a reference to our posts
         let ref = FirebaseClient.getRefWith("shoes")
+        var myShoes: Array<Shoe> = Array<Shoe>();
         
         // Attach a closure to read the data at our posts reference
         ref.observeEventType(.Value, withBlock: { snapshot in
             let dict = snapshot.value as! NSDictionary
             for x in dict {
                 let shoeToAppend = Shoe(data: x.value as! NSDictionary)
-                self.shoeTimeline?.append(shoeToAppend)
+                myShoes.append(shoeToAppend)
             }
+            
+            self.shoes = myShoes
+            self.timeline.reloadData()
             
             }, withCancelBlock: { error in
                 print(error.description)
         })
+        
+        
+        self.timeline.reloadData()
         
     }
 

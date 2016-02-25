@@ -10,6 +10,8 @@ import UIKit
 
 class CenterCellCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
+    
+    
     override func targetContentOffsetForProposedContentOffset(proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
         
         if let cv = self.collectionView {
