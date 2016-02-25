@@ -13,14 +13,20 @@ import IBAnimatable
 
 class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, TextDelegate, TextViewDelegate {
     
-    @IBOutlet var timelineBackground: AnimatableImageView!
+   // @IBOutlet var timelineBackground: AnimatableImageView!
+    @IBOutlet weak var timelineBackground: AnimatableImageView!
+   // @IBOutlet var timeline: UICollectionView!
+    @IBOutlet weak var timeline: UICollectionView!
+   
+   // @IBOutlet var userProfileImage: UIImageView!
+    @IBOutlet weak var userProfileImage: UIImageView!
+    
+    
+    var shoeTimeline: [Shoe]?
     let backgroundImages = [UIImage(named:"blackBox"),UIImage(named:"boxStack"),UIImage(named:"nikeSB"),UIImage(named:"greenBox")]
     var pictureIndex:Int?
     
-    @IBOutlet var timeline: UICollectionView!
-    var shoeTimeline: [Shoe]?
-    @IBOutlet var userProfileImage: UIImageView!
-    
+
     /// A Text storage object that monitors the changes within the textView.
     lazy var text: Text = Text()
     
