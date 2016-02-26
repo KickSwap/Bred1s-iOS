@@ -15,11 +15,22 @@ class KSMenuViewController: MenuViewController {
 	
 	/// MenuView inset.
 	private let menuViewInset: CGFloat = 16
+    
+    //MenuView Constants
+    private class myViews {
+        var buy = "buy"
+        var sell = "sell"
+        var news = "news"
+    }
+    
+    // CurrentViewController
+    private var currentView:String?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		prepareView()
 		prepareMenuView()
+        m
         //add long guesture tap
 	}
 	
@@ -61,7 +72,7 @@ class KSMenuViewController: MenuViewController {
 		if (mainViewController as? NavigationBarViewController)?.mainViewController is YellowViewController {
 			return
 		}
-		
+
 		closeMenu { [weak self] in
 			self?.transitionFromMainViewController(YellowViewController(), options: [.TransitionCrossDissolve])
 		}
@@ -103,11 +114,11 @@ class KSMenuViewController: MenuViewController {
 		
 		image = UIImage(named: "ic_photo_camera_white")
 		let btn3: FabButton = FabButton()
-		btn3.backgroundColor = MaterialColor.orange.base
+		btn3.backgroundColor = MaterialColor.green.base
 		btn3.setImage(image, forState: .Normal)
 		btn3.setImage(image, forState: .Highlighted)
 		menuView.addSubview(btn3)
-		btn3.addTarget(self, action: "handleGreenButton", forControlEvents: .TouchUpInside)
+		btn3.addTarget(self, action: "handleNewsBtn", forControlEvents: .TouchUpInside)
 		
 		image = UIImage(named: "ic_note_add_white")
 		let btn4: FabButton = FabButton()
@@ -115,7 +126,7 @@ class KSMenuViewController: MenuViewController {
 		btn4.setImage(image, forState: .Normal)
 		btn4.setImage(image, forState: .Highlighted)
 		menuView.addSubview(btn4)
-		btn4.addTarget(self, action: "handleYellowButton", forControlEvents: .TouchUpInside)
+		btn4.addTarget(self, action: "handleBuyBtn", forControlEvents: .TouchUpInside)
 		
 		// Initialize the menu and setup the configuration options.
 		menuView.menu.baseViewSize = baseViewSize
@@ -127,28 +138,25 @@ class KSMenuViewController: MenuViewController {
 		MaterialLayout.alignFromBottomLeft(view, child: menuView, bottom: 0, left: (view.bounds.size.width - baseViewSize.width)/2)
 	}
     
-    //MARK: TimelineView Controls
+    //MARK: - TimelineView Controls
     func handleSellBtn() {
         
-        //getMainViewController >> TabBar
-        let tabBarController = self.mainViewController as! UITabBarController
-        tabBarController.selectedIndex = 1
-        let controllers = tabBarController.viewControllers
-        
-        if controllers![1] is KSSellViewController {
+        //check if user is already on this view
+        if currentView == "sell" {
+            closeOurMenu() //close menu on our Tabbar
             return
         }
         
         closeMenu { [weak self] in
             //getMainViewController
-            //let tabBarController = self?.mainViewController as! UITabBarController
+            let tabBarController = self?.mainViewController as! UITabBarController
             tabBarController.selectedIndex = 1
             let controllers = tabBarController.viewControllers
             
             //getNavigationController
             let nav = controllers![1] //second value in tabBar
             nav.performSegueWithIdentifier("toSell", sender: self)
-            
+            self?.currentView = "sell"
             //remove opacity
             self!.menuViewController?.mainViewController.view.alpha = 1
             
@@ -156,7 +164,64 @@ class KSMenuViewController: MenuViewController {
         }
 
     }
-    func handleBuyBtn() {}
-    func handleNewsBtn() {}
+    
+    func handleBuyBtn() {
+        
+        //check if user is already on this view
+        if currentView == "buy" {
+            closeOurMenu() //close menu on our Tabbar
+            return
+        }
+        
+        closeMenu { [weak self] in
+            //getMainViewController
+            let tabBarController = self?.mainViewController as! UITabBarController
+            tabBarController.selectedIndex = 1
+            let controllers = tabBarController.viewControllers
+            
+            //getNavigationController
+            let nav = controllers![1] //second value in tabBar
+            nav.performSegueWithIdentifier("toBuy", sender: self)
+            self?.currentView = "buy"
+            //remove opacity
+            self!.menuViewController?.mainViewController.view.alpha = 1
+            
+            //self?.transitionFromMainViewController(BlueViewController(), options: [.TransitionCrossDissolve])
+        }
+
+    }
+    
+    
+    func handleNewsBtn() {
+        
+        //check if user is already on this view
+        if currentView == "news" {
+            closeOurMenu() //close menu on our Tabbar
+            return
+        }
+        
+        closeMenu { [weak self] in
+            //getMainViewController
+            let tabBarController = self?.mainViewController as! UITabBarController
+            tabBarController.selectedIndex = 1
+            let controllers = tabBarController.viewControllers
+            
+            //getNavigationController
+            let nav = controllers![1] //second value in tabBar
+            nav.performSegueWithIdentifier("toNews", sender: self)
+            self?.currentView = "news"
+            
+            //remove opacity
+            self!.menuViewController?.mainViewController.view.alpha = 1
+            
+            //self?.transitionFromMainViewController(BlueViewController(), options: [.TransitionCrossDissolve])
+        }
+    }
+    
+    //MARK: - KickSwap Helpers
+    func closeOurMenu() {
+        closeMenu()
+        self.menuViewController?.mainViewController.view.alpha = 1
+    }
 }
 
