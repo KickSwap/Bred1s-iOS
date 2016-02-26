@@ -23,7 +23,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     
     
     var shoeTimeline: [Shoe]?
-    let backgroundImages = [UIImage(named:"blackBox"),UIImage(named:"boxStack"),UIImage(named:"nikeSB"),UIImage(named:"greenBox")]
+    let backgroundImages = [UIImage(named:"blackBox"),UIImage(named:"boxStack"),UIImage(named:"greenBox")]
     var pictureIndex:Int?
     
 
@@ -54,9 +54,9 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     }
     
     func loadImage(){
-        //setImages
+        //setImage2
         var newIndex = pictureIndex!++
-        if newIndex > 3 {
+        if newIndex > 1 {
             pictureIndex = 0
             newIndex = pictureIndex!
         }

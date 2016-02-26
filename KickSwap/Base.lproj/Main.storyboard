@@ -79,9 +79,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="nikeSB" translatesAutoresizingMaskIntoConstraints="NO" id="OKc-jk-YOC" customClass="AnimatableImageView" customModule="IBAnimatable">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="nikeSB" translatesAutoresizingMaskIntoConstraints="NO" id="OKc-jk-YOC" customClass="AnimatableImageView" customModule="IBAnimatable">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="0.51218606211656437" colorSpace="calibratedWhite"/>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7m2-FE-kxb">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="0.69815231978527603" colorSpace="calibratedWhite"/>
+                            </view>
                             <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eKb-Zf-R6p">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
@@ -168,14 +173,6 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gZ8-fH-6aD">
-                                        <rect key="frame" x="0.0" y="618" width="375" height="49"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <items>
-                                            <tabBarItem systemItem="favorites" id="1BI-0d-TLf"/>
-                                            <tabBarItem systemItem="more" id="4Bd-pT-gye"/>
-                                        </items>
-                                    </tabBar>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pln-BB-Fu7">
                                         <rect key="frame" x="19" y="528" width="51" height="49"/>
                                         <constraints>
@@ -186,12 +183,9 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Pln-BB-Fu7" firstAttribute="top" secondItem="Re8-1B-Ztw" secondAttribute="bottom" constant="8" id="Ed0-zC-5ab"/>
-                                    <constraint firstItem="Re8-1B-Ztw" firstAttribute="leading" secondItem="gZ8-fH-6aD" secondAttribute="leading" id="Gt4-Ce-rN3"/>
                                     <constraint firstAttribute="trailing" secondItem="Pln-BB-Fu7" secondAttribute="trailing" constant="305" id="LF4-3V-Z2G"/>
                                     <constraint firstAttribute="trailing" secondItem="Re8-1B-Ztw" secondAttribute="trailing" id="RNX-4i-Aig"/>
-                                    <constraint firstItem="gZ8-fH-6aD" firstAttribute="top" secondItem="Pln-BB-Fu7" secondAttribute="bottom" constant="41" id="X7a-3H-i59"/>
                                     <constraint firstItem="Re8-1B-Ztw" firstAttribute="top" secondItem="eKb-Zf-R6p" secondAttribute="top" constant="59" id="age-0S-dPi"/>
-                                    <constraint firstItem="Re8-1B-Ztw" firstAttribute="trailing" secondItem="gZ8-fH-6aD" secondAttribute="trailing" id="fui-1N-nXX"/>
                                     <constraint firstItem="Re8-1B-Ztw" firstAttribute="leading" secondItem="eKb-Zf-R6p" secondAttribute="leading" id="t4G-cJ-PMM"/>
                                 </constraints>
                             </view>
@@ -200,8 +194,12 @@
                             <constraint firstItem="eKb-Zf-R6p" firstAttribute="trailing" secondItem="OKc-jk-YOC" secondAttribute="trailing" id="0tF-5t-cRv"/>
                             <constraint firstItem="j9m-IL-ydI" firstAttribute="top" secondItem="OKc-jk-YOC" secondAttribute="bottom" id="3g7-II-Jli"/>
                             <constraint firstAttribute="trailing" secondItem="OKc-jk-YOC" secondAttribute="trailing" id="4hS-zO-ob2"/>
+                            <constraint firstAttribute="bottom" secondItem="7m2-FE-kxb" secondAttribute="bottom" id="JhG-C2-5Zz"/>
                             <constraint firstItem="eKb-Zf-R6p" firstAttribute="bottom" secondItem="j9m-IL-ydI" secondAttribute="top" id="OwW-FL-8WY"/>
+                            <constraint firstItem="7m2-FE-kxb" firstAttribute="top" secondItem="vJc-pi-K6z" secondAttribute="top" id="T0j-93-IBB"/>
                             <constraint firstItem="eKb-Zf-R6p" firstAttribute="leading" secondItem="OKc-jk-YOC" secondAttribute="leading" id="hJQ-zU-Ebj"/>
+                            <constraint firstAttribute="trailing" secondItem="7m2-FE-kxb" secondAttribute="trailing" id="jBc-fp-0KZ"/>
+                            <constraint firstItem="7m2-FE-kxb" firstAttribute="leading" secondItem="vJc-pi-K6z" secondAttribute="leading" id="nMf-If-2SC"/>
                             <constraint firstItem="eKb-Zf-R6p" firstAttribute="top" secondItem="OKc-jk-YOC" secondAttribute="top" id="s6Z-sh-9u9"/>
                             <constraint firstItem="OKc-jk-YOC" firstAttribute="leading" secondItem="vJc-pi-K6z" secondAttribute="leading" id="sZf-Xa-G9q"/>
                             <constraint firstItem="OKc-jk-YOC" firstAttribute="top" secondItem="vJc-pi-K6z" secondAttribute="top" id="wNL-ws-fkf"/>
@@ -217,7 +215,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jOw-8D-MKf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="832.5" y="2178.5"/>
+            <point key="canvasLocation" x="840.5" y="2206.5"/>
         </scene>
         <!--News View Controller-->
         <scene sceneID="uF6-2C-Kp3">
@@ -384,11 +382,11 @@
             </objects>
             <point key="canvasLocation" x="146.5" y="1214.5"/>
         </scene>
-        <!--Navigation Controller-->
+        <!-- -->
         <scene sceneID="FtW-lc-HAa">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="ZtA-48-qxi" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="search" id="Bll-Vc-ISs"/>
+                    <tabBarItem key="tabBarItem" title=" " id="Bll-Vc-ISs"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Drz-8R-Kb8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -398,12 +396,12 @@
                     <connections>
                         <segue destination="bLu-aP-iDf" kind="show" identifier="toSell" id="kLI-or-lSz"/>
                         <segue destination="uP7-wl-nRi" kind="show" identifier="toNews" id="bhQ-Sa-yDw"/>
-                        <segue destination="6dI-Qr-hek" kind="relationship" relationship="rootViewController" id="4Bn-Ae-8xz"/>
+                        <segue destination="6dI-Qr-hek" kind="show" identifier="toBuy" id="1Qx-Ko-7Gt"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MxP-zM-eSw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="832.5" y="1214.5"/>
+            <point key="canvasLocation" x="840.5" y="1248.5"/>
         </scene>
     </scenes>
     <resources>
