@@ -29,8 +29,7 @@ class KSMenuViewController: MenuViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		prepareView()
-		prepareMenuView()
-        m
+		prepareMenuView()  
         //add long guesture tap
 	}
 	

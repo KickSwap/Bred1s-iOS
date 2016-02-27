@@ -42,6 +42,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         prepareView()
         prepareTextView()
         addToolBar(textView)
+        getShoes()
         
         //set image initially
         pictureIndex = 0
@@ -176,10 +177,11 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         
         // Attach a closure to read the data at our posts reference
         ref.observeEventType(.Value, withBlock: { snapshot in
+            var shoeArray = [Shoe]()
             let dict = snapshot.value as! NSDictionary
             for x in dict {
                 let shoeToAppend = Shoe(data: x.value as! NSDictionary)
-                self.shoeTimeline?.append(shoeToAppend)
+                shoeArray.append(shoeToAppend)
             }
             
             }, withCancelBlock: { error in

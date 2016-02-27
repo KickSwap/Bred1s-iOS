@@ -12,5 +12,6 @@ target 'KickSwap' do
   pod 'Canvas'
   pod 'IBAnimatable'
   pod 'SnapKit'
+  pod 'AFNetworking'
 end
 
