@@ -50,7 +50,6 @@ class User: NSObject {
     init(dictionary:NSDictionary){
         //self.authData = dictionary["authData"] as? FAuthData
         self.authDataAsDictionary = dictionary
-        print(dictionary)
         
         self.displayName = dictionary["providerData"]!["displayName"] as? String
         self.profilePicUrl = dictionary["providerData"]!["profileImageURL"] as? String

@@ -33,9 +33,6 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         
         nameLabel.text = User.currentUser?.displayName
         profilePicImageView.setImageWithURL(NSURL(string: (User.currentUser?.profilePicUrl)!)!)
-        
-        print(User.currentUser?.uid)
-        print(User.currentUser)
         getShoes()
         
     }
@@ -58,7 +55,6 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         
         cell.shoeImageView.setImageWithURL(NSURL(string: allShoes![indexPath.row].imageURL!)!)
         cell.shoeNameLabel.text = allShoes![indexPath.row].name
-        
         
         return cell
     }
@@ -89,18 +85,6 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
                 print(error.description)
         })
         
-    }
-    
-    func filterShoes(shoeArray: [Shoe]) {
-        var tempShoeArray = [Shoe]()
-        for s in shoeArray {
-            if s.owner?.uid == User.currentUser!.uid {
-                tempShoeArray.append(s)
-            }
-            print(s.owner!.uid)
-        }
-        
-        print(tempShoeArray)
     }
     
 
