@@ -14,8 +14,12 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     var allShoes: [Shoe]?
     var currentUserShoesArray: [Shoe]?
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var profilePicImageView: UIImageView!
+    
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var kicksLabel: UILabel!
     
 
     override func viewDidLoad() {
@@ -24,8 +28,11 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        print(User.currentUser?.uid)
-        print(User.currentUser)
+        profilePicImageView.layer.cornerRadius = 3
+        profilePicImageView.clipsToBounds = true
+        
+        nameLabel.text = User.currentUser?.displayName
+        profilePicImageView.setImageWithURL(NSURL(string: (User.currentUser?.profilePicUrl)!)!)
         getShoes()
         
     }
@@ -49,7 +56,6 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         cell.shoeImageView.setImageWithURL(NSURL(string: allShoes![indexPath.row].imageURL!)!)
         cell.shoeNameLabel.text = allShoes![indexPath.row].name
         
-        
         return cell
     }
     
@@ -64,11 +70,15 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             let dict = snapshot.value as! NSDictionary
             for x in dict {
                 var shoeToAppend = Shoe(data: x.value as! NSDictionary)
-                tempShoeArray.append(shoeToAppend)
+                if shoeToAppend.ownerId == User.currentUser?.uid {
+                    tempShoeArray.append(shoeToAppend)
+                }
             }
             
             //print(tempShoeArray)
             self.allShoes = tempShoeArray
+            //self.filterShoes(tempShoeArray)
+            self.kicksLabel.text = "\(tempShoeArray.count)"
             self.collectionView.reloadData()
             
             }, withCancelBlock: { error in
@@ -76,18 +86,6 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         })
         
     }
-    
-//    func filterShoes(shoeArray: [Shoe]) {
-//        var tempShoeArray = [Shoe]()
-//        for s in shoeArray {
-//            if s.owner?.uid == User.currentUser!.uid {
-//                tempShoeArray.append(s)
-//            }
-//            print(s.owner!.uid)
-//        }
-//        
-//        print(tempShoeArray)
-//    }
     
 
     /*
