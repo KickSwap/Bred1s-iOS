@@ -312,34 +312,28 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Followers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRx-JU-t45">
-                                        <rect key="frame" x="305" y="46" width="62" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" red="0.0" green="0.10196078431372549" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Following" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vth-5S-W1C">
                                         <rect key="frame" x="305" y="73" width="62" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" red="0.0" green="0.10196078431372549" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.94607089430000002" green="0.94034479390000003" blue="0.9218147699" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0S-tL-Nt6">
                                         <rect key="frame" x="270" y="104" width="27" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" red="0.0" green="0.10196078431372549" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.94607089430000002" green="0.94034479390000003" blue="0.9218147699" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="101" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ky2-T9-bMF">
                                         <rect key="frame" x="270" y="75" width="27" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" red="0.0" green="0.10196078431372549" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.94607089430000002" green="0.94034479390000003" blue="0.9218147699" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="75" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="psH-fL-i8P">
                                         <rect key="frame" x="270" y="48" width="27" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" red="0.0" green="0.10196078431372549" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.94607089430000002" green="0.94034479390000003" blue="0.9218147699" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JHarden" translatesAutoresizingMaskIntoConstraints="NO" id="aLu-bh-voR">
@@ -352,11 +346,17 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Kicks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FYL-UK-2nt">
                                         <rect key="frame" x="305" y="102" width="33" height="16"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" red="0.054901960784313725" green="0.066666666666666666" blue="0.22352941176470589" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.94607089430000002" green="0.94034479390000003" blue="0.9218147699" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Followers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRx-JU-t45">
+                                        <rect key="frame" x="305" y="46" width="62" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="0.94607089430000002" green="0.94034479390000003" blue="0.9218147699" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.97647058823529409" green="0.18823529411764706" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.2901960784" blue="0.027450980390000001" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="FYL-UK-2nt" firstAttribute="leading" secondItem="d0S-tL-Nt6" secondAttribute="trailing" constant="8" id="2Ju-An-8ue"/>
                                     <constraint firstItem="FYL-UK-2nt" firstAttribute="leading" secondItem="d0S-tL-Nt6" secondAttribute="trailing" constant="8" id="5ER-iy-nUQ"/>
@@ -459,7 +459,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kLE-lL-4Ez" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1467.5" y="1214.5"/>
+            <point key="canvasLocation" x="1473.5" y="1214.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Oo4-6r-Sza">
@@ -507,9 +507,9 @@
     </scenes>
     <resources>
         <image name="Activity_icon" width="27" height="33"/>
+        <image name="Facebook" width="36" height="36"/>
         <image name="JHarden" width="210" height="210"/>
         <image name="Profile_Icon" width="29" height="29"/>
-        <image name="Facebook" width="36" height="36"/>
         <image name="main-logo" width="240" height="163"/>
         <image name="nikeSB" width="500" height="333"/>
     </resources>
