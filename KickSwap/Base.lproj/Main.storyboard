@@ -25,11 +25,35 @@
                                     <constraint firstAttribute="width" secondItem="dgc-ma-YAd" secondAttribute="height" multiplier="253:172" id="31w-rF-5vM"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vxv-fz-Hq8" customClass="LogoButton" customModule="KickSwap" customModuleProvider="target">
+                                <rect key="frame" x="71" y="318.5" width="233" height="30"/>
+                                <color key="backgroundColor" red="0.23137254900000001" green="0.34901960780000002" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="233" id="3ve-zS-0Zt"/>
+                                    <constraint firstAttribute="height" constant="30" id="aR0-ca-WBe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Log in with Facebook">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="trueBackgroundColor">
+                                        <color key="value" red="0.23137254901960785" green="0.34901960784313724" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="logo" value="Facebook"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="loginBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hvt-JY-54r"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.99607843137254903" green="0.96470588235294119" blue="0.87450980392156863" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="dgc-ma-YAd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2l5-qf-tGU"/>
                             <constraint firstItem="dgc-ma-YAd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="115" id="cr5-Za-uuG"/>
+                            <constraint firstItem="Vxv-fz-Hq8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jic-lQ-f2a"/>
+                            <constraint firstItem="Vxv-fz-Hq8" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="lUa-dZ-8WS"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -485,6 +509,7 @@
         <image name="Activity_icon" width="27" height="33"/>
         <image name="JHarden" width="210" height="210"/>
         <image name="Profile_Icon" width="29" height="29"/>
+        <image name="Facebook" width="36" height="36"/>
         <image name="main-logo" width="240" height="163"/>
         <image name="nikeSB" width="500" height="333"/>
     </resources>
