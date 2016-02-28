@@ -65,7 +65,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7XP-on-OTe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="268" y="2179"/>
+            <point key="canvasLocation" x="146.5" y="2206.5"/>
         </scene>
         <!--Timeline View Controller-->
         <scene sceneID="hG9-be-4I5">
@@ -242,7 +242,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="afL-kY-Cb3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1434.5" y="2178.5"/>
+            <point key="canvasLocation" x="1467.5" y="2188.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="pS6-Py-7Aq">
@@ -263,7 +263,7 @@
             </objects>
             <point key="canvasLocation" x="840.5" y="209.5"/>
         </scene>
-        <!--Profile-->
+        <!--View Controller-->
         <scene sceneID="BbV-kW-kGZ">
             <objects>
                 <viewController id="WlP-9u-UWJ" customClass="KSProfileViewController" customModule="KickSwap" customModuleProvider="target" sceneMemberID="viewController">
@@ -422,7 +422,9 @@
                             <constraint firstAttribute="trailing" secondItem="K3v-bl-nao" secondAttribute="trailing" id="zKA-x6-eed"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="Profile_Icon" id="fD1-3g-WHq"/>
+                    <tabBarItem key="tabBarItem" title="" image="Profile_Icon" id="fD1-3g-WHq">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-10"/>
+                    </tabBarItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="collectionView" destination="K3v-bl-nao" id="9iU-cJ-qB5"/>
@@ -448,7 +450,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="topRated" id="gyX-Wv-TL3"/>
+                    <tabBarItem key="tabBarItem" image="Activity_icon" id="gyX-Wv-TL3">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Id7-I8-4v1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -474,10 +478,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MxP-zM-eSw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="840.5" y="1248.5"/>
+            <point key="canvasLocation" x="840.5" y="1214.5"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Activity_icon" width="27" height="33"/>
         <image name="JHarden" width="210" height="210"/>
         <image name="Profile_Icon" width="29" height="29"/>
         <image name="main-logo" width="240" height="163"/>
