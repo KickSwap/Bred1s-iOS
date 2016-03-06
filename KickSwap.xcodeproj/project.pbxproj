@@ -74,14 +74,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		471282911C7E15090007855B /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				471282921C7E15170007855B /* LogoButton.swift */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
 		477970D01C630306000F1196 = {
 			isa = PBXGroup;
 			children = (
@@ -103,7 +95,6 @@
 		477970DB1C630306000F1196 /* KickSwap */ = {
 			isa = PBXGroup;
 			children = (
-				471282911C7E15090007855B /* Views */,
 				47AE58811C7572F5007AB49E /* Clients */,
 				47BBC0FD1C7EC4EB007DFF67 /* Views */,
 				47AE587E1C756A2D007AB49E /* Models */,
@@ -155,6 +146,7 @@
 		47BBC0FD1C7EC4EB007DFF67 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				471282921C7E15170007855B /* LogoButton.swift */,
 				024327001C7CA881009893B8 /* KSTimelineCollectionViewCell.swift */,
 				024327021C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift */,
 				A198C0601C82136B001C69E0 /* KSProfileCollectionViewCell.swift */,

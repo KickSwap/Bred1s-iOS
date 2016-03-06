@@ -95,33 +95,33 @@ class KSMenuViewController: MenuViewController {
 
 	/// Prepares the add button.
 	private func prepareMenuView() {
-		var image: UIImage? = UIImage(named: "ic_add_white")
+		var image: UIImage? = UIImage(named: "")
 		let btn1: FabButton = FabButton()
-        btn1.backgroundColor = MaterialColor.orange.base
+        btn1.backgroundColor = UIColor(hexString: "FB6E39")
 		btn1.setImage(image, forState: .Normal)
 		btn1.setImage(image, forState: .Highlighted)
 		btn1.addTarget(self, action: "handleMenu", forControlEvents: .TouchUpInside)
 		menuView.addSubview(btn1)
 
-		image = UIImage(named: "ic_create_white")
+		image = UIImage(named: "ic_sell_icon")
 		let btn2: FabButton = FabButton()
-		btn2.backgroundColor = UIColor.flatOrangeColor()
+		btn2.backgroundColor = UIColor(hexString: "FB6E39")
 		btn2.setImage(image, forState: .Normal)
 		btn2.setImage(image, forState: .Highlighted)
 		menuView.addSubview(btn2)
 		btn2.addTarget(self, action: "handleSellBtn", forControlEvents: .TouchUpInside)
 
-		image = UIImage(named: "ic_photo_camera_white")
+		image = UIImage(named: "ic_news_white")
 		let btn3: FabButton = FabButton()
-		btn3.backgroundColor = MaterialColor.green.base
+		btn3.backgroundColor = UIColor(hexString: "FB6E39")
 		btn3.setImage(image, forState: .Normal)
 		btn3.setImage(image, forState: .Highlighted)
 		menuView.addSubview(btn3)
 		btn3.addTarget(self, action: "handleNewsBtn", forControlEvents: .TouchUpInside)
 
-		image = UIImage(named: "ic_note_add_white")
+		image = UIImage(named: "ic_buy_white")
 		let btn4: FabButton = FabButton()
-		btn4.backgroundColor = MaterialColor.orange.base
+		btn4.backgroundColor = UIColor(hexString: "FB6E39")
 		btn4.setImage(image, forState: .Normal)
 		btn4.setImage(image, forState: .Highlighted)
 		menuView.addSubview(btn4)
