@@ -24,11 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Handle user logout and subscribe to event
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
         
-        
         // skip login if user is remembered
         if User.currentUser != nil {
-            let vc = storyboard.instantiateViewControllerWithIdentifier("TimelineView") as UIViewController
-            window?.rootViewController = vc
+            let vc = storyboard.instantiateViewControllerWithIdentifier("tabBar") as UIViewController
+            window?.rootViewController = KSMenuViewController(mainViewController: vc)
         }
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions) //Facebook LaunchOptions

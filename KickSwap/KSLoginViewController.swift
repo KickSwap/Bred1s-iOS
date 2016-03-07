@@ -11,14 +11,14 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 
 class KSLoginViewController: UIViewController {
-    
+
     var firebaseClient = FirebaseClient.sharedClient
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-    
+
     override func viewDidAppear(animated: Bool) {
         if(User.currentUser != nil){
           self.performSegueWithIdentifier("LoginToTimeline", sender: nil) //takes care recurring case of userExisting
@@ -41,14 +41,14 @@ class KSLoginViewController: UIViewController {
                 //In order to obtain info from Facebook you must grant us permission. Alert Message")
                 return
             }
-            
+
             //If User is authenticated and ready to go
             let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
             FirebaseClient.sharedClient.loginWithFacebook(accessToken)
             self.performSegueWithIdentifier("LoginToTimeline", sender: nil) //takes care recurring case of userExisting
-            
+
         }
-        
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,4 +57,3 @@ class KSLoginViewController: UIViewController {
     }
 
 }
-

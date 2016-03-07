@@ -1,0 +1,30 @@
+class User {
+    var uid: String?
+    var provider: String?
+    var token: String?
+    var auth: NSDictionary?
+    var providerData: NSDictionary?
+    var authData: FAuthData?
+    var authDataAsDictionary: NSDictionary?
+}
+
+class Shoe {
+    var name: String?
+    var color: String?
+    var brand: String?
+    var imageURL: String?
+    var condition: String?
+    var size: Double?
+    var originalBox: Bool?
+    var reciept: Bool?
+    var owner: User?
+    var price: Double?
+    var createdAt: NSDate?
+    var createdAtString: String?
+}
+
+class Bid {
+    var bidder:User?
+    var offerPrice:Double?
+    var offerShoes: [Shoe]?
+}

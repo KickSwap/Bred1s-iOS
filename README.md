@@ -10,7 +10,7 @@ Time spent: X hours spent in total
  
 ###### Tier 1
 - [X] User can login using facebook credentials
-- [ ] User can view their profile information
+- [X] User can view their profile information
 - [ ] User can add shoes to their profile
   
 ###### Tier 2

@@ -8,5 +8,10 @@ target 'KickSwap' do
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
   pod 'Material'
+  pod 'ChameleonFramework/Swift'
+  pod 'Canvas'
+  pod 'IBAnimatable'
+  pod 'SnapKit'
+  pod 'AFNetworking'
 end
 
