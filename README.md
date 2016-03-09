@@ -21,8 +21,10 @@ Time spent: X hours spent in total
 ###### Tier 3
 - [ ] User can filter for shoes on the timeline
 - [ ] User can get more information on a certain sneaker coming out soon or that has been previously released
-More Coming ...
+  More Coming ...
+
 #### The following **optional** features are implemented:
+- [ ] User can post multiple pictures for one shoe post
 - [ ] User can create a wish list of shoes they want
 - [ ] User can set meetup point using Google Maps api inside private chat room
 - [ ] User can send Venmo request via chat room when transaction is about to occur
