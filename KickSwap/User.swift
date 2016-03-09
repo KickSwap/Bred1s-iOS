@@ -19,6 +19,8 @@ class User: NSObject {
     private static let persistedKeyName = "KickSwap.CURRENT_USER"
 
     //Firebase FAuth Data
+    var displayName: String?
+    var profilePicUrl: String?
     var uid: String?
     var provider: String?
     var token: String?
@@ -48,12 +50,15 @@ class User: NSObject {
     init(dictionary:NSDictionary){
         //self.authData = dictionary["authData"] as? FAuthData
         self.authDataAsDictionary = dictionary
-
+        
+        self.displayName = dictionary["providerData"]!["displayName"] as? String
+        self.profilePicUrl = dictionary["providerData"]!["profileImageURL"] as? String
+        
         self.uid = dictionary["uid"] as? String
         self.provider = dictionary["provider"] as? String
         self.token = dictionary["token"] as? String
         self.auth = dictionary["auth"] as? NSDictionary
-        self.providerData = dictionary["provider"]as? NSDictionary
+        self.providerData = dictionary["providerData"]as? NSDictionary
     }
 
     func logout() {

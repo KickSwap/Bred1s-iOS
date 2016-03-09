@@ -10,64 +10,50 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-class KSLoginViewController: UIViewController, FBSDKLoginButtonDelegate, FirebaseLoginDelegate {
-    
-    var loggedIn: Bool?
-    
+class KSLoginViewController: UIViewController {
+
     var firebaseClient = FirebaseClient.sharedClient
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        firebaseClient.loginDelegate = self
-        
         // Do any additional setup after loading the view, typically from a nib.
-        let loginBtn = FBSDKLoginButton()
-        loginBtn.delegate = self
-        loginBtn.center = CGPoint(x: self.view.bounds.width/2, y: self.view.bounds.height - 150)
-        self.view.addSubview(loginBtn)
     }
-    
+
     override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        if (User.currentUser != nil && loggedIn == true) {
-            self.performSegueWithIdentifier("LoginToTimeline", sender: nil)
+        if(User.currentUser != nil){
+          self.performSegueWithIdentifier("LoginToTimeline", sender: nil) //takes care recurring case of userExisting
         } else {
             print("No Current User")
         }
     }
 
     // MARK: - Facebook Login Button
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        if ((error) != nil) {
-            // Process error
-        }
-        else if result.isCancelled {
-            // Handle cancellations
-        }
-        else {
-            // Navigate to other view
+    @IBAction func loginBtnPressed(sender: AnyObject) {
+        let fbManager = FBSDKLoginManager()
+        fbManager.logInWithReadPermissions(["public_profile", "email"], fromViewController: self) { (result, error) -> Void in
+            if (error != nil || result == nil) {
+                //Something went wrong with Facebook. Please try again later!",
+                return
+            } else if (result.isCancelled) {
+                //user decided not login
+                return
+            } else if (!result.declinedPermissions.isEmpty) {
+                //In order to obtain info from Facebook you must grant us permission. Alert Message")
+                return
+            }
+
+            //If User is authenticated and ready to go
             let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
             FirebaseClient.sharedClient.loginWithFacebook(accessToken)
+            self.performSegueWithIdentifier("LoginToTimeline", sender: nil) //takes care recurring case of userExisting
+
         }
-        
-    }
-    
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    //MARK: - FirebaseClient Protocols
-    func loginCompletion() -> Void {
-        loggedIn = true //set flag to indicate loginHasBeenCompleted
-    }
-    
-    func loginFailure(error: NSError?) -> Void {
-        print("Login error: \(error)")
-    }
-}
 
+}

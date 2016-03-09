@@ -7,19 +7,187 @@
 //
 
 import UIKit
-class KSTimelineViewController: UIViewController {
+import Material
+import ChameleonFramework
+import IBAnimatable
+
+class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, TextDelegate, TextViewDelegate {
+    
+   // @IBOutlet var timelineBackground: AnimatableImageView!
+    @IBOutlet weak var timelineBackground: AnimatableImageView!
+   // @IBOutlet var timeline: UICollectionView!
+    @IBOutlet weak var timeline: UICollectionView!
+   
+   // @IBOutlet var userProfileImage: UIImageView!
+    @IBOutlet weak var userProfileImage: UIImageView!
+    
+    
+    var shoeTimeline: [Shoe]?
+    let backgroundImages = [UIImage(named:"blackBox"),UIImage(named:"boxStack"),UIImage(named:"greenBox")]
+    var pictureIndex:Int?
+    
+
+    /// A Text storage object that monitors the changes within the textView.
+    lazy var text: Text = Text()
+    
+    /// A TextView UI Component.
+    var textView: TextView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        timeline.dataSource = self
+        timeline.delegate = self
+        userProfileImage.image = UIImage(named: "JHarden")
+        userProfileImage.clipsToBounds = true
+        prepareView()
+        prepareTextView()
+        addToolBar(textView)
+        getShoes()
+        
+        //set image initially
+        pictureIndex = 0
+        timelineBackground.image = backgroundImages[pictureIndex!]
+        
+        
+        //start timer
+        var timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: Selector("loadImage"), userInfo: nil, repeats: true)
+
+    }
+    
+    func loadImage(){
+        //setImage2
+        var newIndex = pictureIndex!++
+        if newIndex > 1 {
+            pictureIndex = 0
+            newIndex = pictureIndex!
+        }
+        
+        UIView.transitionWithView(self.timelineBackground,
+            duration:5,
+            options: UIViewAnimationOptions.TransitionCrossDissolve,
+            animations: { self.timelineBackground.image = self.backgroundImages[newIndex]},
+            completion: nil)
+    }
+    
+    /// General preparation statements.
+    private func prepareView() {
+        view.backgroundColor = UIColor.clearColor()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
+    
+    /// Prepares the textView.
+    func prepareTextView() {
+        let layoutManager: NSLayoutManager = NSLayoutManager()
+        let textContainer: NSTextContainer = NSTextContainer(size: view.bounds.size)
+        layoutManager.addTextContainer(textContainer)
+        
+        text.delegate = self
+        text.textStorage.addLayoutManager(layoutManager)
+        
+        
+        textView = TextView(textContainer: textContainer)
+        textView.backgroundColor = UIColor.clearColor()
+        textView.delegate = self
+        textView.font = RobotoFont.regular
+        textView.textColor = UIColor.whiteColor()
+        textView.textContainer.maximumNumberOfLines = 1
+        
+        textView.placeholderLabel = UILabel()
+        textView.placeholderLabel!.textColor = MaterialColor.white
+        textView.placeholderLabel!.text = "Discover"
+        
+        // Discover label
+        textView.titleLabel = UILabel()
+        textView.titleLabel!.font = RobotoFont.mediumWithSize(12)
+        textView.titleLabelColor = MaterialColor.white
+        textView.titleLabelActiveColor = UIColor(hexString: "FA4A07")
+        
+        view.addSubview(textView)
+        textView!.translatesAutoresizingMaskIntoConstraints = false
+        MaterialLayout.alignToParent(view, child: textView!, top: 40, left: 24, bottom: 608, right: 100)
+    }
+    
+    func addToolBar(textView: UITextView){
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.Default
+        toolBar.translucent = true
+        toolBar.tintColor = UIColor(hexString: "FA4A07")
+        //toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "discoverPressed")
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: "cancelPressed")
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar.userInteractionEnabled = true
+        toolBar.sizeToFit()
+        
+        textView.delegate = self
+        textView.inputAccessoryView = toolBar
+    }
+    func discoverPressed(){
+        view.endEditing(true)
+    }
+    func cancelPressed(){
+        view.endEditing(true) // or do something
+    }
+    
+    /**
+     When changes in the textView text are made, this delegation method
+     is executed with the added text string and range.
+     */
+    func textWillProcessEdit(text: Text, textStorage: TextStorage, string: String, range: NSRange) {
+        textStorage.removeAttribute(NSFontAttributeName, range: range)
+        textStorage.addAttribute(NSFontAttributeName, value: RobotoFont.regular, range: range)
+    }
+    
+    /**
+     When a match is detected within the textView text, this delegation
+     method is executed with the added text string and range.
+     */
+    func textDidProcessEdit(text: Text, textStorage: TextStorage, string: String, result: NSTextCheckingResult?, flags: NSMatchingFlags, stop: UnsafeMutablePointer<ObjCBool>) {
+        textStorage.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFontOfSize(16), range: result!.range)
+    }
 
     @IBAction func logOutPressed(sender: AnyObject) {
         User.currentUser?.logout()
+    }
+    
+    func collectionView(timeline: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionView(timeline: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = timeline.dequeueReusableCellWithReuseIdentifier("TimelineCell", forIndexPath: indexPath) as! KSTimelineCollectionViewCell
+        
+        return cell
+    }
+    
+    //MARK: - Firebase Get Methods
+    func getShoes() {
+        // Get a reference to our posts
+        let ref = FirebaseClient.getRefWith("shoes")
+        
+        // Attach a closure to read the data at our posts reference
+        ref.observeEventType(.Value, withBlock: { snapshot in
+            var shoeArray = [Shoe]()
+            let dict = snapshot.value as! NSDictionary
+            for x in dict {
+                let shoeToAppend = Shoe(data: x.value as! NSDictionary)
+                shoeArray.append(shoeToAppend)
+            }
+            
+            }, withCancelBlock: { error in
+                print(error.description)
+        })
+        
     }
 
     /*
