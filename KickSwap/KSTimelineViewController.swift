@@ -10,6 +10,7 @@ import UIKit
 import Material
 import ChameleonFramework
 import IBAnimatable
+import SnapKit
 
 class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, TextDelegate, TextViewDelegate {
     
@@ -20,7 +21,10 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
    
    // @IBOutlet var userProfileImage: UIImageView!
     @IBOutlet weak var userProfileImage: UIImageView!
-    
+    @IBOutlet var profileTrayView: UIView!
+    @IBOutlet var trayViewButton: UIButton!
+    var trayOriginalCenter: CGPoint!
+    var tapCount = 0
     
     var shoeTimeline: [Shoe]?
     let backgroundImages = [UIImage(named:"blackBox"),UIImage(named:"boxStack"),UIImage(named:"greenBox")]
@@ -35,6 +39,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        prefersStatusBarHidden()
         timeline.dataSource = self
         timeline.delegate = self
         userProfileImage.image = UIImage(named: "JHarden")
@@ -67,6 +72,14 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
             options: UIViewAnimationOptions.TransitionCrossDissolve,
             animations: { self.timelineBackground.image = self.backgroundImages[newIndex]},
             completion: nil)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        // set initial tray view location
+        self.profileTrayView.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo((profileTrayView.superview?.frame.height)! * 0.82).constraint
+        }
+        
     }
     
     /// General preparation statements.
@@ -155,6 +168,92 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     func textDidProcessEdit(text: Text, textStorage: TextStorage, string: String, result: NSTextCheckingResult?, flags: NSMatchingFlags, stop: UnsafeMutablePointer<ObjCBool>) {
         textStorage.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFontOfSize(16), range: result!.range)
     }
+    
+
+    
+    @IBAction func onTrayPanGesture(sender: UIPanGestureRecognizer) {
+        // Absolute (x,y) coordinates in parent view's coordinate system
+        let point = sender.locationInView(view)
+        
+        // Total translation (x,y) over time in parent view's coordinate system
+        let translation = sender.translationInView(view)
+        
+        if sender.state == UIGestureRecognizerState.Began {
+            print("Gesture began at: \(point)")
+            trayOriginalCenter = profileTrayView.center
+        } else if sender.state == UIGestureRecognizerState.Changed {
+            print("Gesture changed at: \(point)")
+            profileTrayView.center = CGPoint(x: trayOriginalCenter.x, y: trayOriginalCenter.y + translation.y)
+        } else if sender.state == UIGestureRecognizerState.Ended {
+            print("Gesture ended at: \(point)")
+            let velocity = sender.velocityInView(view)
+            if velocity.y > 0 {
+                self.profileTrayView.snp_remakeConstraints { (make) -> Void in
+                    //make.top.equalTo(self.timeline.snp_bottom)
+                    make.top.equalTo((profileTrayView.superview?.frame.height)! * 0.82)
+                }
+                //profileTrayView.superview?.userInteractionEnabled = true
+                profileTrayView.setNeedsLayout()
+                UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] , animations: { () -> Void in
+                    //self.trayView.center = self.trayDown
+                    self.profileTrayView.layoutIfNeeded()
+                    }, completion: { (Bool) -> Void in
+                })
+            } else {
+                self.profileTrayView.snp_remakeConstraints { (make) -> Void in
+                    make.top.equalTo((profileTrayView.superview?.snp_top)!)
+                }
+                //trayView.superview?.userInteractionEnabled = false
+                //ignoreView.hidden = false
+                textView.userInteractionEnabled = false
+                textView.hidden = true
+                profileTrayView.setNeedsLayout()
+                UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] , animations: { () -> Void in
+                    //self.trayView.center = self.trayUp
+                    self.profileTrayView.layoutIfNeeded()
+                    }, completion: { (Bool) -> Void in
+                })
+            }
+        }
+        
+
+    }
+    
+    @IBAction func onTapTrayViewButton(sender: AnyObject) {
+        
+        tapCount++
+        //print(tapCount)
+        if tapCount % 2 == 0 {
+            self.profileTrayView.snp_remakeConstraints { (make) -> Void in
+                make.top.equalTo((profileTrayView.superview?.frame.height)! * 0.82).constraint
+            }
+            //ignoreView.userInteractionEnabled = false
+            //ignoreView.hidden = true
+            profileTrayView.setNeedsLayout()
+            UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options:[] , animations: { () -> Void in
+                //self.trayView.center = self.trayUp
+                self.profileTrayView.layoutIfNeeded()
+                }, completion: { (Bool) -> Void in
+            })
+            
+        } else {
+            self.profileTrayView.snp_remakeConstraints { (make) -> Void in
+                make.top.equalTo((profileTrayView.superview?.snp_top)!).offset(0).constraint
+            }
+            //trayView.superview?.userInteractionEnabled = false
+            //ignoreView.hidden = false
+            textView.userInteractionEnabled = false
+            textView.hidden = true
+            profileTrayView.setNeedsLayout()
+            UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options:[] , animations: { () -> Void in
+                //self.trayView.center = self.trayDown
+                self.profileTrayView.layoutIfNeeded()
+                }, completion: { (Bool) -> Void in
+            })
+        }
+
+    }
+   
 
     @IBAction func logOutPressed(sender: AnyObject) {
         User.currentUser?.logout()
