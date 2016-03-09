@@ -214,13 +214,45 @@
                                                     <constraint firstAttribute="height" constant="49" id="NsN-rZ-eb3"/>
                                                 </constraints>
                                             </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="James Harden (23)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I2U-ac-Gft">
+                                                <rect key="frame" x="67" y="15" width="140" height="18"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@jharden23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O1X-to-LEa">
+                                                <rect key="frame" x="67" y="34" width="74" height="16"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wishList_icon" translatesAutoresizingMaskIntoConstraints="NO" id="RcU-CS-v2c">
+                                                <rect key="frame" x="267" y="25" width="23" height="20"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Share_icon" translatesAutoresizingMaskIntoConstraints="NO" id="hKP-y7-fGf">
+                                                <rect key="frame" x="298" y="26" width="21" height="18"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bid_icon" translatesAutoresizingMaskIntoConstraints="NO" id="2TA-mk-0bj">
+                                                <rect key="frame" x="327" y="25" width="23" height="20"/>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.83529411764705885" green="0.20392156862745098" blue="0.15294117647058825" alpha="0.53000000000000003" colorSpace="calibratedRGB"/>
                                         <gestureRecognizers/>
                                         <constraints>
+                                            <constraint firstItem="I2U-ac-Gft" firstAttribute="leading" secondItem="Pln-BB-Fu7" secondAttribute="trailing" constant="8" id="50N-PP-zIz"/>
+                                            <constraint firstItem="hKP-y7-fGf" firstAttribute="leading" secondItem="RcU-CS-v2c" secondAttribute="trailing" constant="8" id="CZe-gp-Cze"/>
                                             <constraint firstAttribute="height" constant="837" id="H0Q-I8-Mwc"/>
+                                            <constraint firstItem="hKP-y7-fGf" firstAttribute="centerY" secondItem="Pln-BB-Fu7" secondAttribute="centerY" id="HLi-8I-rxr"/>
+                                            <constraint firstItem="2TA-mk-0bj" firstAttribute="leading" secondItem="hKP-y7-fGf" secondAttribute="trailing" constant="8" id="Psb-YG-dHR"/>
+                                            <constraint firstItem="I2U-ac-Gft" firstAttribute="top" secondItem="773-sl-Ouj" secondAttribute="top" constant="15" id="WlD-CA-7Se"/>
+                                            <constraint firstItem="O1X-to-LEa" firstAttribute="top" secondItem="I2U-ac-Gft" secondAttribute="bottom" constant="1" id="af4-7w-Oi5"/>
+                                            <constraint firstItem="2TA-mk-0bj" firstAttribute="centerY" secondItem="Pln-BB-Fu7" secondAttribute="centerY" id="bSI-dZ-xUj"/>
+                                            <constraint firstItem="RcU-CS-v2c" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="I2U-ac-Gft" secondAttribute="trailing" constant="18" id="csF-7l-KgD"/>
+                                            <constraint firstItem="RcU-CS-v2c" firstAttribute="centerY" secondItem="Pln-BB-Fu7" secondAttribute="centerY" id="eH2-TZ-9QK"/>
                                             <constraint firstItem="Pln-BB-Fu7" firstAttribute="top" secondItem="773-sl-Ouj" secondAttribute="top" constant="10" id="eJr-Wq-nT2"/>
                                             <constraint firstItem="Pln-BB-Fu7" firstAttribute="leading" secondItem="773-sl-Ouj" secondAttribute="leading" constant="8" id="lNq-eZ-jqc"/>
+                                            <constraint firstAttribute="trailing" secondItem="2TA-mk-0bj" secondAttribute="trailing" constant="25" id="n2E-J4-xoP"/>
+                                            <constraint firstItem="O1X-to-LEa" firstAttribute="leading" secondItem="Pln-BB-Fu7" secondAttribute="trailing" constant="8" id="zVE-BF-Y1u"/>
                                         </constraints>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="eyt-Zq-BBv" appends="YES" id="C5c-vo-6Cu"/>
@@ -538,11 +570,14 @@
     </scenes>
     <resources>
         <image name="Activity_icon" width="27" height="33"/>
+        <image name="Bid_icon" width="23" height="20"/>
         <image name="Detail_Icon" width="23" height="7"/>
         <image name="Facebook" width="36" height="36"/>
         <image name="JHarden" width="210" height="210"/>
         <image name="Profile_Icon" width="29" height="29"/>
+        <image name="Share_icon" width="21" height="18"/>
         <image name="main-logo" width="240" height="163"/>
         <image name="nikeSB" width="500" height="333"/>
+        <image name="wishList_icon" width="23" height="20"/>
     </resources>
 </document>
