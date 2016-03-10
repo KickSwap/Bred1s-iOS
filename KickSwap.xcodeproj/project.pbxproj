@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		024327011C7CA881009893B8 /* KSTimelineCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024327001C7CA881009893B8 /* KSTimelineCollectionViewCell.swift */; };
 		024327031C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024327021C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift */; };
+		02DED1CE1C91D3460098DA39 /* KSTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DED1CD1C91D3450098DA39 /* KSTabBarController.swift */; };
+		02DED1D01C91D3740098DA39 /* KSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DED1CF1C91D3740098DA39 /* KSNavigationController.swift */; };
 		471282931C7E15170007855B /* LogoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471282921C7E15170007855B /* LogoButton.swift */; };
 		477970DD1C630306000F1196 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477970DC1C630306000F1196 /* AppDelegate.swift */; };
 		477970DF1C630306000F1196 /* KSLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477970DE1C630306000F1196 /* KSLoginViewController.swift */; };
@@ -35,6 +37,8 @@
 /* Begin PBXFileReference section */
 		024327001C7CA881009893B8 /* KSTimelineCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTimelineCollectionViewCell.swift; sourceTree = "<group>"; };
 		024327021C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterCellCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		02DED1CD1C91D3450098DA39 /* KSTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTabBarController.swift; sourceTree = "<group>"; };
+		02DED1CF1C91D3740098DA39 /* KSNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSNavigationController.swift; sourceTree = "<group>"; };
 		471282921C7E15170007855B /* LogoButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoButton.swift; sourceTree = "<group>"; };
 		477970D91C630306000F1196 /* KickSwap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KickSwap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		477970DC1C630306000F1196 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,14 +78,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		471282911C7E15090007855B /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				471282921C7E15170007855B /* LogoButton.swift */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
 		477970D01C630306000F1196 = {
 			isa = PBXGroup;
 			children = (
@@ -103,7 +99,6 @@
 		477970DB1C630306000F1196 /* KickSwap */ = {
 			isa = PBXGroup;
 			children = (
-				471282911C7E15090007855B /* Views */,
 				47AE58811C7572F5007AB49E /* Clients */,
 				47BBC0FD1C7EC4EB007DFF67 /* Views */,
 				47AE587E1C756A2D007AB49E /* Models */,
@@ -148,6 +143,8 @@
 				47B90F041C7F6F9B006B4BD6 /* KSSellViewController.swift */,
 				47B90F061C7F6FA9006B4BD6 /* KSNewsViewController.swift */,
 				A198C05E1C820287001C69E0 /* KSProfileViewController.swift */,
+				02DED1CD1C91D3450098DA39 /* KSTabBarController.swift */,
+				02DED1CF1C91D3740098DA39 /* KSNavigationController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -155,6 +152,7 @@
 		47BBC0FD1C7EC4EB007DFF67 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				471282921C7E15170007855B /* LogoButton.swift */,
 				024327001C7CA881009893B8 /* KSTimelineCollectionViewCell.swift */,
 				024327021C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift */,
 				A198C0601C82136B001C69E0 /* KSProfileCollectionViewCell.swift */,
@@ -316,9 +314,11 @@
 				47AE588A1C769C2F007AB49E /* Bid.swift in Sources */,
 				477970DF1C630306000F1196 /* KSLoginViewController.swift in Sources */,
 				477970DD1C630306000F1196 /* AppDelegate.swift in Sources */,
+				02DED1D01C91D3740098DA39 /* KSNavigationController.swift in Sources */,
 				477970E51C630306000F1196 /* KickSwap.xcdatamodeld in Sources */,
 				47AE58861C75F5D8007AB49E /* KSTimelineViewController.swift in Sources */,
 				47BBC0F91C7E8B6D007DFF67 /* BlueViewcontroller.swift in Sources */,
+				02DED1CE1C91D3460098DA39 /* KSTabBarController.swift in Sources */,
 				47B90F071C7F6FA9006B4BD6 /* KSNewsViewController.swift in Sources */,
 				471282931C7E15170007855B /* LogoButton.swift in Sources */,
 			);

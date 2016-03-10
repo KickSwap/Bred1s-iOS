@@ -419,7 +419,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.98039215690000003" green="0.2901960784" blue="0.027450980390000001" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.98431372549019602" green="0.43137254901960786" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="FYL-UK-2nt" firstAttribute="leading" secondItem="d0S-tL-Nt6" secondAttribute="trailing" constant="8" id="2Ju-An-8ue"/>
                                     <constraint firstItem="FYL-UK-2nt" firstAttribute="leading" secondItem="d0S-tL-Nt6" secondAttribute="trailing" constant="8" id="5ER-iy-nUQ"/>
@@ -549,7 +549,7 @@
         <!-- -->
         <scene sceneID="FtW-lc-HAa">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="ZtA-48-qxi" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="ZtA-48-qxi" customClass="KSNavigationController" customModule="KickSwap" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title=" " id="Bll-Vc-ISs"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Drz-8R-Kb8">
