@@ -486,7 +486,7 @@
         <!-- -->
         <scene sceneID="FtW-lc-HAa">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="ZtA-48-qxi" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="ZtA-48-qxi" customClass="KSNavigationController" customModule="KickSwap" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title=" " id="Bll-Vc-ISs"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Drz-8R-Kb8">
