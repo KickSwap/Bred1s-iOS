@@ -9,7 +9,7 @@
 import UIKit
 import Material
 
-class KSMenuViewController: MenuViewController {
+class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 	/// MenuView diameter.
 	private let baseViewSize: CGSize = CGSizeMake(56, 56)
 
@@ -25,12 +25,18 @@ class KSMenuViewController: MenuViewController {
 
     // CurrentViewController
     private var currentView:String?
+    
+    //NSUserDefaults
+    let defaults = NSUserDefaults.standardUserDefaults()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		prepareView()
 		prepareMenuView()  
         //add long guesture tap
+        //let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: "onPress:")
+        //FabButton().addGestureRecognizer(longPressGestureRecognizer)
+        //btn1.addGestureRecognizer(long)
 	}
 
 	/// Loads the BlueViewController into the menuViewControllers mainViewController.
@@ -100,7 +106,10 @@ class KSMenuViewController: MenuViewController {
         btn1.backgroundColor = UIColor(hexString: "FB6E39")
 		btn1.setImage(image, forState: .Normal)
 		btn1.setImage(image, forState: .Highlighted)
-		btn1.addTarget(self, action: "handleMenu", forControlEvents: .TouchUpInside)
+		btn1.addTarget(self, action: "onTap:", forControlEvents: .TouchUpInside)
+        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: "onPress:")
+        longPressGestureRecognizer.minimumPressDuration = 0.3
+        btn1.addGestureRecognizer(longPressGestureRecognizer)
 		menuView.addSubview(btn1)
 
 		image = UIImage(named: "ic_sell_icon")
@@ -132,16 +141,60 @@ class KSMenuViewController: MenuViewController {
 		menuView.menu.views = [btn1, btn2, btn3, btn4]
 
 		view.addSubview(menuView)
+        
 		menuView.translatesAutoresizingMaskIntoConstraints = false
 		MaterialLayout.size(view, child: menuView, width: baseViewSize.width, height: baseViewSize.height)
 		MaterialLayout.alignFromBottomLeft(view, child: menuView, bottom: 0, left: (view.bounds.size.width - baseViewSize.width)/2)
 	}
+    
+    func onPress(sender: UILongPressGestureRecognizer? = nil) {
+        //handleMenu()
+        menuViewController?.mainViewController.view.alpha = 0.5
+        openMenu()
+    }
+    
+    func onTap(sender: UITapGestureRecognizer? = nil) {
+        if menuView.menu.opened {
+            menuViewController?.mainViewController.view.alpha = 1
+            closeMenu()
+        } else {
+            returnCurrentView()
+            //return to current timlineview
+            //let tabBarController = self.mainViewController as! UITabBarController
+//            if defaults.integerForKey("currentBtn") == 0 {
+//              //self.currentView = "sell"
+////              return  tabBarController.selectedIndex = 1
+//                print(defaults.integerForKey("currentBtn"))
+//            } else if defaults.integerForKey("currentBtn") == 1 {
+//                
+//            } else {
+//                
+//            }
+        }
+    }
+    
+    func returnCurrentView() {
+        if defaults.integerForKey("currentBtn") == 0 {
+            //self.currentView = "sell"
+            //              return  tabBarController.selectedIndex = 1
+            print(defaults.integerForKey("currentBtn"))
+        } else if defaults.integerForKey("currentBtn") == 1 {
+            print(defaults.integerForKey("currentBtn"))
+        } else {
+            
+        }
+    }
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
 
     //MARK: - TimelineView Controls
     func handleSellBtn() {
-
+        
         //check if user is already on this view
         if currentView == "sell" {
+            //defaults.setValue(0, forKey: "currentBtn")
             closeOurMenu() //close menu on our Tabbar
             return
         }
@@ -158,10 +211,15 @@ class KSMenuViewController: MenuViewController {
             self?.currentView = "sell"
             //remove opacity
             self!.menuViewController?.mainViewController.view.alpha = 1
+            
+            //self!.defaults.setValue(1, forKey: "currentBtn")
 
             //self?.transitionFromMainViewController(BlueViewController(), options: [.TransitionCrossDissolve])
         }
-
+        //defaults.removeObjectForKey("currentBtn")
+        defaults.setInteger(0, forKey: "currentBtn")
+        //defaults.synchronize()
+        print(defaults.integerForKey("currentBtn"))
     }
 
     func handleBuyBtn() {
@@ -187,7 +245,9 @@ class KSMenuViewController: MenuViewController {
 
             //self?.transitionFromMainViewController(BlueViewController(), options: [.TransitionCrossDissolve])
         }
-
+        //defaults.removeObjectForKey("currentBtn")
+        defaults.setInteger(1, forKey: "currentBtn")
+        print(defaults.integerForKey("currentBtn"))
     }
 
 
@@ -215,6 +275,9 @@ class KSMenuViewController: MenuViewController {
 
             //self?.transitionFromMainViewController(BlueViewController(), options: [.TransitionCrossDissolve])
         }
+        //defaults.removeObjectForKey("currentBtn")
+        defaults.setInteger(2, forKey: "currentBtn")
+        print(defaults.integerForKey("currentBtn"))
     }
 
     //MARK: - KickSwap Helpers
