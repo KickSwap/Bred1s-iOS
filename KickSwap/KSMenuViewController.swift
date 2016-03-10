@@ -154,34 +154,14 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
     }
     
     func onTap(sender: UITapGestureRecognizer? = nil) {
+        let tabBarController = self.mainViewController as! UITabBarController
         if menuView.menu.opened {
             menuViewController?.mainViewController.view.alpha = 1
             closeMenu()
         } else {
-            returnCurrentView()
-            //return to current timlineview
-            //let tabBarController = self.mainViewController as! UITabBarController
-//            if defaults.integerForKey("currentBtn") == 0 {
-//              //self.currentView = "sell"
-////              return  tabBarController.selectedIndex = 1
-//                print(defaults.integerForKey("currentBtn"))
-//            } else if defaults.integerForKey("currentBtn") == 1 {
-//                
-//            } else {
-//                
-//            }
-        }
-    }
-    
-    func returnCurrentView() {
-        if defaults.integerForKey("currentBtn") == 0 {
-            //self.currentView = "sell"
-            //              return  tabBarController.selectedIndex = 1
-            print(defaults.integerForKey("currentBtn"))
-        } else if defaults.integerForKey("currentBtn") == 1 {
-            print(defaults.integerForKey("currentBtn"))
-        } else {
+            //reload data here
             
+            return  tabBarController.selectedIndex = 1
         }
     }
     
@@ -194,7 +174,6 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
         
         //check if user is already on this view
         if currentView == "sell" {
-            //defaults.setValue(0, forKey: "currentBtn")
             closeOurMenu() //close menu on our Tabbar
             return
         }
@@ -211,15 +190,9 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
             self?.currentView = "sell"
             //remove opacity
             self!.menuViewController?.mainViewController.view.alpha = 1
-            
-            //self!.defaults.setValue(1, forKey: "currentBtn")
 
             //self?.transitionFromMainViewController(BlueViewController(), options: [.TransitionCrossDissolve])
         }
-        //defaults.removeObjectForKey("currentBtn")
-        defaults.setInteger(0, forKey: "currentBtn")
-        //defaults.synchronize()
-        print(defaults.integerForKey("currentBtn"))
     }
 
     func handleBuyBtn() {
@@ -245,9 +218,6 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 
             //self?.transitionFromMainViewController(BlueViewController(), options: [.TransitionCrossDissolve])
         }
-        //defaults.removeObjectForKey("currentBtn")
-        defaults.setInteger(1, forKey: "currentBtn")
-        print(defaults.integerForKey("currentBtn"))
     }
 
 
@@ -275,9 +245,6 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 
             //self?.transitionFromMainViewController(BlueViewController(), options: [.TransitionCrossDissolve])
         }
-        //defaults.removeObjectForKey("currentBtn")
-        defaults.setInteger(2, forKey: "currentBtn")
-        print(defaults.integerForKey("currentBtn"))
     }
 
     //MARK: - KickSwap Helpers
