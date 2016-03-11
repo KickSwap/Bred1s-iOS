@@ -13,7 +13,18 @@ import DropDown
 class KSConfirmViewController: UIViewController, MaterialSwitchDelegate {
     
     var imageToPost: UIImage?
-    var shoeCondition: String?
+    var shoeToPost: Shoe?
+    
+    let nameField = TextField()
+    let bidField = TextField()
+    let conditionButton = FlatButton()
+    let sizeButton = FlatButton()
+    var boxSwitch = MaterialSwitch()
+    var receiptSwitch = MaterialSwitch()
+    
+    
+    @IBOutlet weak var detailsScrollView: UIScrollView!
+    
     
     let conditionDropDown = DropDown()
     let sizeDropDown = DropDown()
@@ -23,24 +34,56 @@ class KSConfirmViewController: UIViewController, MaterialSwitchDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        detailsScrollView.contentSize = CGSize(width: detailsScrollView.frame.size.width, height: 375)
+        
         var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
         view.addGestureRecognizer(tap)
         
-        let closeButton: FlatButton = FlatButton(frame: CGRectMake(12, 30, 30, 30))
-        closeButton.setImage(UIImage(named: "ic_close_black"), forState: .Normal)
+        let closeButton: FlatButton = FlatButton(frame: CGRectMake(12, 30, 60, 30))
+        closeButton.setImage(UIImage(named: "ic_close_white"), forState: .Normal)
         closeButton.addTarget(self, action: "closePost", forControlEvents: UIControlEvents.TouchUpInside)
         
         view.addSubview(closeButton)
         
+        let nameLabel: MaterialLabel = MaterialLabel(frame: CGRectMake(12, 25, 80, 24))
+        nameLabel.font = RobotoFont.regularWithSize(18)
+        nameLabel.textColor = MaterialColor.black
+        nameLabel.text = "Name"
         
-        let bidLabel: MaterialLabel = MaterialLabel(frame: CGRectMake(12, 100, 135, 24))
+        detailsScrollView.addSubview(nameLabel)
+        
+        nameField.frame = CGRectMake(100, 25, 250, 24)
+        nameField.placeholder = "Name"
+        nameField.placeholderTextColor = MaterialColor.grey.base
+        nameField.font = RobotoFont.regularWithSize(16)
+        nameField.textColor = MaterialColor.black
+        
+        nameField.titleLabel = UILabel()
+        nameField.titleLabel!.font = RobotoFont.mediumWithSize(12)
+        nameField.titleLabelColor = MaterialColor.grey.base
+        nameField.titleLabelActiveColor = MaterialColor.blue.accent3
+        
+        let image = UIImage(named: "ic_close")?.imageWithRenderingMode(.AlwaysTemplate)
+        
+        let clearButton: FlatButton = FlatButton()
+        clearButton.pulseColor = MaterialColor.grey.base
+        clearButton.pulseScale = false
+        clearButton.tintColor = MaterialColor.grey.base
+        clearButton.setImage(image, forState: .Normal)
+        clearButton.setImage(image, forState: .Highlighted)
+        
+        nameField.clearButton = clearButton
+        
+        detailsScrollView.addSubview(nameField)
+        
+        let bidLabel: MaterialLabel = MaterialLabel(frame: CGRectMake(12, 85, 140, 24))
         bidLabel.font = RobotoFont.regularWithSize(18)
         bidLabel.textColor = MaterialColor.black
         bidLabel.text = "Set Starting Bid"
         
-        view.addSubview(bidLabel)
+        detailsScrollView.addSubview(bidLabel)
 
-        let bidField: TextField = TextField(frame: CGRectMake(270, 100, 75, 24))
+        bidField.frame = CGRectMake(270, 85, 75, 24)
         bidField.placeholder = "Bid"
         bidField.placeholderTextColor = MaterialColor.grey.base
         bidField.font = RobotoFont.regularWithSize(16)
@@ -52,27 +95,18 @@ class KSConfirmViewController: UIViewController, MaterialSwitchDelegate {
         bidField.titleLabelColor = MaterialColor.grey.base
         bidField.titleLabelActiveColor = MaterialColor.blue.accent3
         
-        let image = UIImage(named: "ic_close")?.imageWithRenderingMode(.AlwaysTemplate)
-        
-        let clearButton: FlatButton = FlatButton()
-        clearButton.pulseColor = MaterialColor.grey.base
-        clearButton.pulseScale = false
-        clearButton.tintColor = MaterialColor.grey.base
-        clearButton.setImage(image, forState: .Normal)
-        clearButton.setImage(image, forState: .Highlighted)
-        
         bidField.clearButton = clearButton
         
-        view.addSubview(bidField)
+        detailsScrollView.addSubview(bidField)
         
-        let conditionLabel: MaterialLabel = MaterialLabel(frame: CGRectMake(12, 155, 100, 24))
+        let conditionLabel: MaterialLabel = MaterialLabel(frame: CGRectMake(12, 145, 100, 24))
         conditionLabel.font = RobotoFont.regularWithSize(18)
         conditionLabel.textColor = MaterialColor.black
         conditionLabel.text = "Condition"
         
-        view.addSubview(conditionLabel)
+        detailsScrollView.addSubview(conditionLabel)
         
-        let conditionButton: FlatButton = FlatButton(frame: CGRectMake(245, 150, 100, 38))
+        conditionButton.frame = CGRectMake(245, 145, 100, 38)
         conditionButton.contentHorizontalAlignment = .Left
         conditionButton.setTitleColor(MaterialColor.black, forState: .Normal)
         conditionButton.titleLabel?.font = RobotoFont.regularWithSize(16)
@@ -85,7 +119,7 @@ class KSConfirmViewController: UIViewController, MaterialSwitchDelegate {
         conditionDropDown.width = 100
         conditionDropDown.dataSource = ["DS", "VNDS", "Used"]
         conditionDropDown.selectionAction = { [unowned self] (index, item) in
-            conditionButton.setTitle(item, forState: .Normal)
+            self.conditionButton.setTitle(item, forState: .Normal)
         }
         conditionDropDown.dismissMode = .Automatic
         conditionDropDown.bottomOffset = CGPoint(x: 0, y:conditionButton.bounds.height)
@@ -95,16 +129,16 @@ class KSConfirmViewController: UIViewController, MaterialSwitchDelegate {
         //DropDown.appearance().backgroundColor = MaterialColor.white
         DropDown.appearance().selectionBackgroundColor = UIColor.lightGrayColor()
         
-        view.addSubview(conditionButton)
+        detailsScrollView.addSubview(conditionButton)
         
-        let sizeLabel: MaterialLabel = MaterialLabel(frame: CGRectMake(12, 210, 135, 24))
+        let sizeLabel: MaterialLabel = MaterialLabel(frame: CGRectMake(12, 205, 135, 24))
         sizeLabel.font = RobotoFont.regularWithSize(18)
         sizeLabel.textColor = MaterialColor.black
         sizeLabel.text = "Size (US)"
         
-        view.addSubview(sizeLabel)
+        detailsScrollView.addSubview(sizeLabel)
         
-        let sizeButton: FlatButton = FlatButton(frame: CGRectMake(245, 205, 100, 38))
+        sizeButton.frame = CGRectMake(245, 205, 100, 38)
         sizeButton.contentHorizontalAlignment = .Left
         sizeButton.setTitleColor(MaterialColor.black, forState: .Normal)
         sizeButton.titleLabel?.font = RobotoFont.regularWithSize(16)
@@ -117,24 +151,24 @@ class KSConfirmViewController: UIViewController, MaterialSwitchDelegate {
         sizeDropDown.width = 100
         sizeDropDown.dataSource = ["6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13", "13.5", "14", "14.5", "15"]
         sizeDropDown.selectionAction = { [unowned self] (index, item) in
-            sizeButton.setTitle(item, forState: .Normal)
+            self.sizeButton.setTitle(item, forState: .Normal)
         }
         sizeDropDown.dismissMode = .Automatic
         sizeDropDown.bottomOffset = CGPoint(x: 0, y:sizeButton.bounds.height)
         
-        view.addSubview(sizeButton)
+        detailsScrollView.addSubview(sizeButton)
         
-        let boxLabel: MaterialLabel = MaterialLabel(frame: CGRectMake(12, 255, 135, 24))
+        let boxLabel: MaterialLabel = MaterialLabel(frame: CGRectMake(12, 265, 135, 24))
         boxLabel.font = RobotoFont.regularWithSize(18)
         boxLabel.textColor = MaterialColor.black
         boxLabel.text = "Original Box?"
         
-        view.addSubview(boxLabel)
+        detailsScrollView.addSubview(boxLabel)
         
-        let boxSwitchView: MaterialView = MaterialView(frame: CGRectMake(280, 255, 50, 32))
-        view.addSubview(boxSwitchView)
+        let boxSwitchView: MaterialView = MaterialView(frame: CGRectMake(280, 265, 50, 32))
+        detailsScrollView.addSubview(boxSwitchView)
         
-        let boxSwitch: MaterialSwitch = MaterialSwitch(state: .Off, style: .Default, size: .Default)
+        boxSwitch = MaterialSwitch(state: .Off, style: .Default, size: .Default)
         boxSwitch.delegate = self
         boxSwitch.translatesAutoresizingMaskIntoConstraints = false
         boxSwitchView.addSubview(boxSwitch)
@@ -142,17 +176,17 @@ class KSConfirmViewController: UIViewController, MaterialSwitchDelegate {
         MaterialLayout.alignToParentHorizontally(boxSwitchView, child: boxSwitch)
         MaterialLayout.alignToParentVertically(boxSwitchView, child: boxSwitch)
         
-        let receiptLabel: MaterialLabel = MaterialLabel(frame: CGRectMake(12, 305, 135, 24))
+        let receiptLabel: MaterialLabel = MaterialLabel(frame: CGRectMake(12, 325, 135, 24))
         receiptLabel.font = RobotoFont.regularWithSize(18)
         receiptLabel.textColor = MaterialColor.black
         receiptLabel.text = "Reciept?"
         
-        view.addSubview(receiptLabel)
+        detailsScrollView.addSubview(receiptLabel)
         
-        let receiptSwitchView: MaterialView = MaterialView(frame: CGRectMake(280, 305, 50, 32))
-        view.addSubview(receiptSwitchView)
+        let receiptSwitchView: MaterialView = MaterialView(frame: CGRectMake(280, 325, 50, 32))
+        detailsScrollView.addSubview(receiptSwitchView)
         
-        let receiptSwitch: MaterialSwitch = MaterialSwitch(state: .Off, style: .Default, size: .Default)
+        receiptSwitch = MaterialSwitch(state: .Off, style: .Default, size: .Default)
         receiptSwitch.delegate = self
         receiptSwitch.translatesAutoresizingMaskIntoConstraints = false
         receiptSwitchView.addSubview(receiptSwitch)
@@ -190,14 +224,51 @@ class KSConfirmViewController: UIViewController, MaterialSwitchDelegate {
         }
     }
     
-//    func closePost() {
-//        performSegueWithIdentifier("toProfi", sender: self)
-//    }
+    func closePost() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     internal func materialSwitchStateChanged(control: MaterialSwitch) {
         print("MaterialSwitch - Style: \(control.switchStyle), Size: \(control.switchSize), State: \(control.switchState), On: \(control.on), Selected: \(control.selected),  Highlighted: \(control.highlighted)")
     }
     
+    @IBAction func confirmPost(sender: AnyObject) {
+        
+        shoeToPost?.name = nameField.text
+        shoeToPost?.price = Double(bidField.text!)
+        shoeToPost?.condition = conditionButton.titleLabel!.text
+        shoeToPost?.size = Double(sizeButton.titleLabel!.text!)
+        shoeToPost?.ownerId = User.currentUser!.uid
+        
+        if boxSwitch.on == true {
+            shoeToPost?.originalBox = true
+        } else {
+            shoeToPost?.originalBox = false
+        }
+        
+        if receiptSwitch.on == true {
+            shoeToPost?.reciept = true
+        } else {
+            shoeToPost?.reciept = false
+        }
+        
+        print(shoeToPost?.size)
+        print(shoeToPost?.condition)
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        //saveShoe(shoeToPost!)
+    }
+    
+    func saveShoe(shoe: Shoe) {
+        let shoeRef = FirebaseClient.getRefWith("shoes")
+        
+        //shoeRef.childByAppendingPath
+        let newShoe = shoeRef.childByAutoId()
+        newShoe.setValue(shoe)
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
 
 //    // In a storyboard-based application, you will often want to do a little preparation before navigation

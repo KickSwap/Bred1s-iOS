@@ -36,7 +36,7 @@ class KSCaptureViewController: UIViewController, CaptureViewDelegate, CaptureSes
     }
     
     func captureViewDidPressCloseButton(captureView: CaptureView, button: UIButton) {
-        performSegueWithIdentifier("closeCamera", sender: self)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     /**
@@ -170,7 +170,9 @@ class KSCaptureViewController: UIViewController, CaptureViewDelegate, CaptureSes
      :name:	captureViewDidPressCameraButton
      */
     func captureViewDidPressCameraButton(captureView: CaptureView, button: UIButton) {
-        captureButton.backgroundColor = MaterialColor.blue.darken1.colorWithAlphaComponent(0.3)
+        //captureButton.backgroundColor = MaterialColor.blue.darken1.colorWithAlphaComponent(0.3)
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     /**
@@ -269,7 +271,7 @@ class KSCaptureViewController: UIViewController, CaptureViewDelegate, CaptureSes
      :name:	prepareCameraButton
      */
     private func prepareCameraButton() {
-        let img4: UIImage? = UIImage(named: "ic_camera_36")
+        let img4: UIImage? = UIImage(named: "ic_close_white")
         cameraButton.width = 72
         cameraButton.height = 72
         cameraButton.pulseColor = nil
@@ -297,14 +299,16 @@ class KSCaptureViewController: UIViewController, CaptureViewDelegate, CaptureSes
      :name:	prepareSwitchCamerasButton
      */
     private func prepareCloseButton() {
-        let cameraCloseButton: FlatButton = FlatButton(frame: CGRectMake(8, 8, 30, 30))
-        let img: UIImage? = UIImage(named: "ic_close")
+        let cameraCloseButton: FlatButton = FlatButton(frame: CGRect(x: 60, y: 30, width: 60, height: 30))
+        let img: UIImage? = UIImage(named: "ic_close_white")
         cameraCloseButton.pulseColor = nil
         cameraCloseButton.setImage(img, forState: .Normal)
         cameraCloseButton.setImage(img, forState: .Highlighted)
-        cameraCloseButton.addTarget(self, action: "closeCamera:", forControlEvents: UIControlEvents.TouchUpInside)
+        //cameraCloseButton.addTarget(self, action: "closeCamera:", forControlEvents: UIControlEvents.TouchUpInside)
         
-        captureView.addSubview(cameraCloseButton)
+        //captureView.addSubview(cameraCloseButton)
+        
+        captureView.cameraCloseButton = cameraCloseButton
     }
     
     /**
