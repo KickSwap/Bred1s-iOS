@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -65,10 +65,10 @@
             </objects>
             <point key="canvasLocation" x="324.5" y="169.5"/>
         </scene>
-        <!--Sell View Controller-->
+        <!--Capture View Controller-->
         <scene sceneID="aMM-6g-dUR">
             <objects>
-                <viewController storyboardIdentifier="selling" id="bLu-aP-iDf" customClass="KSSellViewController" customModule="KickSwap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="selling" id="bLu-aP-iDf" customClass="KSCaptureViewController" customModule="KickSwap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pfS-Nd-gAi"/>
                         <viewControllerLayoutGuide type="bottom" id="Mhf-es-Thg"/>
@@ -86,10 +86,41 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="dZc-7U-jCA" kind="show" identifier="segueToConfirmation" id="dZb-Tt-ciq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7XP-on-OTe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="146.5" y="2206.5"/>
+        </scene>
+        <!--Confirm View Controller-->
+        <scene sceneID="Efl-ll-Lua">
+            <objects>
+                <viewController id="dZc-7U-jCA" customClass="KSConfirmViewController" customModule="KickSwap" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eO4-KB-AcS"/>
+                        <viewControllerLayoutGuide type="bottom" id="bPS-tk-czU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tYr-0T-GLg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v50-NA-HXJ">
+                                <rect key="frame" x="67" y="398" width="241" height="215"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="previewImageView" destination="v50-NA-HXJ" id="Qp8-D9-KIq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TKt-fw-byJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="146.5" y="2941.5"/>
         </scene>
         <!--Timeline View Controller-->
         <scene sceneID="hG9-be-4I5">
@@ -103,7 +134,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="nikeSB" translatesAutoresizingMaskIntoConstraints="NO" id="OKc-jk-YOC" customClass="AnimatableImageView" customModule="IBAnimatable">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nikeSB" translatesAutoresizingMaskIntoConstraints="NO" id="OKc-jk-YOC" customClass="AnimatableImageView" customModule="IBAnimatable">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="0.51218606211656437" colorSpace="calibratedWhite"/>
                             </imageView>
@@ -111,7 +142,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="0.69815231978527603" colorSpace="calibratedWhite"/>
                             </view>
-                            <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eKb-Zf-R6p">
+                            <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="eKb-Zf-R6p">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Re8-1B-Ztw">
@@ -397,7 +428,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="K3v-bl-nao">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="K3v-bl-nao">
                                 <rect key="frame" x="0.0" y="180" width="375" height="438"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tx1-fS-QoL">
@@ -495,7 +526,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="bLu-aP-iDf" kind="show" identifier="toSell" id="kLI-or-lSz"/>
+                        <segue destination="bLu-aP-iDf" kind="presentation" identifier="toSell" id="kLI-or-lSz"/>
                         <segue destination="uP7-wl-nRi" kind="show" identifier="toNews" id="bhQ-Sa-yDw"/>
                         <segue destination="6dI-Qr-hek" kind="show" identifier="toBuy" id="1Qx-Ko-7Gt"/>
                     </connections>
