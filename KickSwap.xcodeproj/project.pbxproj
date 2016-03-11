@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		024327011C7CA881009893B8 /* KSTimelineCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024327001C7CA881009893B8 /* KSTimelineCollectionViewCell.swift */; };
 		024327031C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024327021C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift */; };
+		02DED1CE1C91D3460098DA39 /* KSTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DED1CD1C91D3450098DA39 /* KSTabBarController.swift */; };
+		02DED1D01C91D3740098DA39 /* KSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DED1CF1C91D3740098DA39 /* KSNavigationController.swift */; };
 		471282931C7E15170007855B /* LogoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471282921C7E15170007855B /* LogoButton.swift */; };
 		477970DD1C630306000F1196 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477970DC1C630306000F1196 /* AppDelegate.swift */; };
 		477970DF1C630306000F1196 /* KSLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477970DE1C630306000F1196 /* KSLoginViewController.swift */; };
@@ -36,6 +38,8 @@
 /* Begin PBXFileReference section */
 		024327001C7CA881009893B8 /* KSTimelineCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTimelineCollectionViewCell.swift; sourceTree = "<group>"; };
 		024327021C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterCellCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		02DED1CD1C91D3450098DA39 /* KSTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTabBarController.swift; sourceTree = "<group>"; };
+		02DED1CF1C91D3740098DA39 /* KSNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSNavigationController.swift; sourceTree = "<group>"; };
 		471282921C7E15170007855B /* LogoButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoButton.swift; sourceTree = "<group>"; };
 		477970D91C630306000F1196 /* KickSwap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KickSwap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		477970DC1C630306000F1196 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +146,8 @@
 				47B90F061C7F6FA9006B4BD6 /* KSNewsViewController.swift */,
 				A198C05E1C820287001C69E0 /* KSProfileViewController.swift */,
 				A1E02DAC1C920F3B00F3BC92 /* KSConfirmViewController.swift */,
+				02DED1CD1C91D3450098DA39 /* KSTabBarController.swift */,
+				02DED1CF1C91D3740098DA39 /* KSNavigationController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -209,7 +215,7 @@
 				TargetAttributes = {
 					477970D81C630306000F1196 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 4CFBTQ63L7;
+						DevelopmentTeam = ELJV42N84Z;
 					};
 				};
 			};
@@ -312,9 +318,11 @@
 				47AE588A1C769C2F007AB49E /* Bid.swift in Sources */,
 				477970DF1C630306000F1196 /* KSLoginViewController.swift in Sources */,
 				477970DD1C630306000F1196 /* AppDelegate.swift in Sources */,
+				02DED1D01C91D3740098DA39 /* KSNavigationController.swift in Sources */,
 				477970E51C630306000F1196 /* KickSwap.xcdatamodeld in Sources */,
 				47AE58861C75F5D8007AB49E /* KSTimelineViewController.swift in Sources */,
 				47BBC0F91C7E8B6D007DFF67 /* BlueViewcontroller.swift in Sources */,
+				02DED1CE1C91D3460098DA39 /* KSTabBarController.swift in Sources */,
 				47B90F071C7F6FA9006B4BD6 /* KSNewsViewController.swift in Sources */,
 				471282931C7E15170007855B /* LogoButton.swift in Sources */,
 			);
