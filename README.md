@@ -11,8 +11,8 @@ Time spent: X hours spent in total
 ###### Tier 1
 - [X] User can login using facebook credentials
 - [X] User can view their profile information
-- [ ] User can add shoes to their profile
-- [ ] User can post the sneakers on the timeline for others to bid on
+- [X] User can add shoes to their profile
+- [X] User can post the sneakers on the timeline for others to bid on
 
 ###### Tier 2
 - [ ] User can look up the newest releases and see other sneaker related news (vote for cop or not)
