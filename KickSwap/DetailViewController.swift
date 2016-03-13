@@ -12,12 +12,12 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     @IBOutlet var tableView: UITableView!
     @IBOutlet var shoeDetailImage: UIImageView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 //        tableView.delegate = self
 //        tableView.dataSource = self
-        
+
         // Do any additional setup after loading the view.
     }
 
@@ -25,14 +25,14 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
-    
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TimelineDetailTableViewCell", forIndexPath: indexPath)
-        
+
         return cell
     }
 

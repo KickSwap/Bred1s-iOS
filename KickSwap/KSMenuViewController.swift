@@ -25,10 +25,10 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 
     // CurrentViewController
     private var currentView:String?
-    
+
     //NSUserDefaults
     let defaults = NSUserDefaults.standardUserDefaults()
-    
+
     //Menu button dynamic image
     var menuButtonImage: String?
 
@@ -36,6 +36,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 		super.viewDidLoad()
 		prepareView()
 		prepareMenuView()
+        //menuButtonImage = "ic_buy_white"
 	}
 
 	/// Loads the BlueViewController into the menuViewControllers mainViewController.
@@ -129,25 +130,25 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 		menuView.menu.views = [btn1, btn2, btn3, btn4]
 
 		view.addSubview(menuView)
-        
+
 		menuView.translatesAutoresizingMaskIntoConstraints = false
 		MaterialLayout.size(view, child: menuView, width: baseViewSize.width, height: baseViewSize.height)
 		MaterialLayout.alignFromBottomLeft(view, child: menuView, bottom: 0, left: (view.bounds.size.width - baseViewSize.width)/2)
 	}
-    
+
     func setMainBtnImage() {
         //get starter btn
         let mainBtn = self.menuView.menu.views![0] as! FabButton
         //set btn image
         mainBtn.setImage(UIImage(named: (self.menuButtonImage)!), forState: .Normal)
     }
-    
+
     func onPress(sender: UILongPressGestureRecognizer? = nil) {
         //handleMenu()
         menuViewController?.mainViewController.view.alpha = 0.5
         openMenu()
     }
-    
+
     func onTap(sender: UITapGestureRecognizer? = nil) {
         let tabBarController = self.mainViewController as! UITabBarController
         if menuView.menu.opened {
@@ -155,18 +156,18 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
             closeMenu()
         } else {
             //reload data here
-            
+
             return  tabBarController.selectedIndex = 1
         }
     }
-    
+
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
 
     //MARK: - TimelineView Controls
     func handleSellBtn() {
-        
+
         //check if user is already on this view
         if currentView == "sell" {
             closeOurMenu() //close menu on our Tabbar
@@ -185,13 +186,13 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
             self?.currentView = "sell"
             //remove opacity
             self!.menuViewController?.mainViewController.view.alpha = 1
-            
+
             self?.menuButtonImage = "ic_sell_icon"
             self!.setMainBtnImage()
 
             //self?.transitionFromMainViewController(BlueViewController(), options: [.TransitionCrossDissolve])
         }
-        
+
     }
 
     func handleBuyBtn() {
@@ -214,7 +215,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
             self?.currentView = "buy"
             //remove opacity
             self!.menuViewController?.mainViewController.view.alpha = 1
-            
+
             self?.menuButtonImage = "ic_buy_white"
             self!.setMainBtnImage()
             //self?.transitionFromMainViewController(BlueViewController(), options: [.TransitionCrossDissolve])
