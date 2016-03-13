@@ -11,8 +11,9 @@ import Material
 import ChameleonFramework
 import IBAnimatable
 import SnapKit
+import PagingMenuController
 
-class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, TextDelegate, TextViewDelegate {
+class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, TextDelegate, TextViewDelegate, PagingMenuControllerDelegate {
     
    // @IBOutlet var timelineBackground: AnimatableImageView!
     @IBOutlet weak var timelineBackground: AnimatableImageView!
@@ -72,6 +73,61 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
             options: UIViewAnimationOptions.TransitionCrossDissolve,
             animations: { self.timelineBackground.image = self.backgroundImages[newIndex]},
             completion: nil)
+        
+//        //Instantiate pages for container view
+//        let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
+//        let detailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
+//        profileViewController.title = "Profile"
+//        detailViewController.title = "Details"
+//        let viewControllers = [profileViewController, detailViewController]
+//        
+//        //instantiate PagingMenuController and customization
+//        let pagingMenuController = self.childViewControllers.first as! PagingMenuController
+//        
+//        let options = PagingMenuOptions()
+//        options.defaultPage = 0
+//        options.backgroundColor = UIColor.darkGrayColor()
+//        options.selectedBackgroundColor = UIColor.blackColor()
+//        options.textColor = UIColor.lightGrayColor()
+//        options.selectedTextColor = UIColor.whiteColor()
+//        options.menuHeight = 20
+//        //options.menuPosition = .Bottom
+//        pagingMenuController.delegate = self
+//        options.menuDisplayMode = .SegmentedControl
+//        //(widthMode: .Flexible, centerItem: true, scrollingMode: .PagingEnabled)
+//        pagingMenuController.setup(viewControllers: viewControllers, options: options)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.profileTrayView.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo((profileTrayView.superview?.frame.height)! * 0.82).constraint
+        }
+        
+        //Instantiate pages for container view
+        let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
+        let detailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
+        profileViewController.title = "Profile"
+        detailViewController.title = "Details"
+        let viewControllers = [detailViewController, profileViewController]
+        
+        //instantiate PagingMenuController and customization
+        let pagingMenuController = self.childViewControllers.first as! PagingMenuController
+        
+        let options = PagingMenuOptions()
+        options.defaultPage = 0
+        options.backgroundColor = UIColor(hexString: "FA4A07")
+        options.selectedBackgroundColor = UIColor(hexString: "C33500")
+        options.textColor = UIColor(hexString: "012755")
+        options.selectedTextColor = UIColor.flatWhiteColor()
+        options.menuHeight = 22
+        options.font = RobotoFont.regular
+        options.selectedFont = RobotoFont.bold
+        options.menuItemMode = .Underline(height: 3, color: UIColor(hexString: "012755"), horizontalPadding: 0, verticalPadding: 0)
+        //options.menuPosition = .Bottom
+        pagingMenuController.delegate = self
+        options.menuDisplayMode = .SegmentedControl
+        //(widthMode: .Flexible, centerItem: true, scrollingMode: .PagingEnabled)
+        pagingMenuController.setup(viewControllers: viewControllers, options: options)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -194,7 +250,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                 }
                 //profileTrayView.superview?.userInteractionEnabled = true
                 profileTrayView.setNeedsLayout()
-                UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] , animations: { () -> Void in
+                UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options:[] , animations: { () -> Void in
                     //self.trayView.center = self.trayDown
                     self.profileTrayView.layoutIfNeeded()
                     }, completion: { (Bool) -> Void in
@@ -208,7 +264,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                 textView.userInteractionEnabled = false
                 textView.hidden = true
                 profileTrayView.setNeedsLayout()
-                UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] , animations: { () -> Void in
+                UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options:[] , animations: { () -> Void in
                     //self.trayView.center = self.trayUp
                     self.profileTrayView.layoutIfNeeded()
                     }, completion: { (Bool) -> Void in
@@ -230,7 +286,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
             //ignoreView.userInteractionEnabled = false
             //ignoreView.hidden = true
             profileTrayView.setNeedsLayout()
-            UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options:[] , animations: { () -> Void in
+            UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options:[] , animations: { () -> Void in
                 //self.trayView.center = self.trayUp
                 self.profileTrayView.layoutIfNeeded()
                 }, completion: { (Bool) -> Void in
@@ -245,7 +301,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
             textView.userInteractionEnabled = false
             textView.hidden = true
             profileTrayView.setNeedsLayout()
-            UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options:[] , animations: { () -> Void in
+            UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.2, options:[] , animations: { () -> Void in
                 //self.trayView.center = self.trayDown
                 self.profileTrayView.layoutIfNeeded()
                 }, completion: { (Bool) -> Void in
@@ -267,6 +323,20 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         let cell = timeline.dequeueReusableCellWithReuseIdentifier("TimelineCell", forIndexPath: indexPath) as! KSTimelineCollectionViewCell
         
         return cell
+    }
+    
+    func collectionView(timeline: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        tapCount++
+        self.profileTrayView.snp_remakeConstraints { (make) -> Void in
+            make.top.equalTo((profileTrayView.superview?.snp_top)!).offset(0).constraint
+        }
+        textView.userInteractionEnabled = false
+        textView.hidden = true
+        profileTrayView.setNeedsLayout()
+        UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.85, initialSpringVelocity: 0.5, options:[] , animations: { () -> Void in
+            self.profileTrayView.layoutIfNeeded()
+            }, completion: { (Bool) -> Void in
+        })
     }
     
     //MARK: - Firebase Get Methods
