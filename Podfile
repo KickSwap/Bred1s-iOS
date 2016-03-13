@@ -13,5 +13,6 @@ target 'KickSwap' do
   pod 'IBAnimatable'
   pod 'SnapKit'
   pod 'AFNetworking'
+  pod 'PagingMenuController'
 end
 

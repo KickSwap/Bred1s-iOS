@@ -28,15 +28,15 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
     
     //NSUserDefaults
     let defaults = NSUserDefaults.standardUserDefaults()
+    
+    //Menu button dynamic image
+    var menuButtonImage: String?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		prepareView()
-		prepareMenuView()  
-        //add long guesture tap
-        //let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: "onPress:")
-        //FabButton().addGestureRecognizer(longPressGestureRecognizer)
-        //btn1.addGestureRecognizer(long)
+		prepareMenuView()
+        //menuButtonImage = "ic_buy_white"
 	}
 
 	/// Loads the BlueViewController into the menuViewControllers mainViewController.
@@ -101,7 +101,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 
 	/// Prepares the add button.
 	private func prepareMenuView() {
-		var image: UIImage? = UIImage(named: "")
+		var image: UIImage? = UIImage(named: "ic_buy_white")
 		let btn1: FabButton = FabButton()
         btn1.backgroundColor = UIColor(hexString: "FB6E39")
 		btn1.setImage(image, forState: .Normal)
@@ -147,6 +147,13 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 		MaterialLayout.alignFromBottomLeft(view, child: menuView, bottom: 0, left: (view.bounds.size.width - baseViewSize.width)/2)
 	}
     
+    func setMainBtnImage() {
+        //get starter btn
+        let mainBtn = self.menuView.menu.views![0] as! FabButton
+        //set btn image
+        mainBtn.setImage(UIImage(named: (self.menuButtonImage)!), forState: .Normal)
+    }
+    
     func onPress(sender: UILongPressGestureRecognizer? = nil) {
         //handleMenu()
         menuViewController?.mainViewController.view.alpha = 0.5
@@ -190,9 +197,13 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
             self?.currentView = "sell"
             //remove opacity
             self!.menuViewController?.mainViewController.view.alpha = 1
+            
+            self?.menuButtonImage = "ic_sell_icon"
+            self!.setMainBtnImage()
 
             //self?.transitionFromMainViewController(BlueViewController(), options: [.TransitionCrossDissolve])
         }
+        
     }
 
     func handleBuyBtn() {
@@ -215,7 +226,9 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
             self?.currentView = "buy"
             //remove opacity
             self!.menuViewController?.mainViewController.view.alpha = 1
-
+            
+            self?.menuButtonImage = "ic_buy_white"
+            self!.setMainBtnImage()
             //self?.transitionFromMainViewController(BlueViewController(), options: [.TransitionCrossDissolve])
         }
     }
@@ -242,7 +255,8 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 
             //remove opacity
             self!.menuViewController?.mainViewController.view.alpha = 1
-
+            self?.menuButtonImage = "ic_news_white"
+            self!.setMainBtnImage()
             //self?.transitionFromMainViewController(BlueViewController(), options: [.TransitionCrossDissolve])
         }
     }

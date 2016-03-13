@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		024327011C7CA881009893B8 /* KSTimelineCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024327001C7CA881009893B8 /* KSTimelineCollectionViewCell.swift */; };
 		024327031C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024327021C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift */; };
+		0256D2BC1C95988700B8CD4B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D2BB1C95988700B8CD4B /* ProfileViewController.swift */; };
+		0256D2BE1C95989300B8CD4B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D2BD1C95989300B8CD4B /* DetailViewController.swift */; };
 		02DED1CE1C91D3460098DA39 /* KSTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DED1CD1C91D3450098DA39 /* KSTabBarController.swift */; };
 		02DED1D01C91D3740098DA39 /* KSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DED1CF1C91D3740098DA39 /* KSNavigationController.swift */; };
 		471282931C7E15170007855B /* LogoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471282921C7E15170007855B /* LogoButton.swift */; };
@@ -37,6 +39,8 @@
 /* Begin PBXFileReference section */
 		024327001C7CA881009893B8 /* KSTimelineCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTimelineCollectionViewCell.swift; sourceTree = "<group>"; };
 		024327021C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterCellCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		0256D2BB1C95988700B8CD4B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		0256D2BD1C95989300B8CD4B /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		02DED1CD1C91D3450098DA39 /* KSTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTabBarController.swift; sourceTree = "<group>"; };
 		02DED1CF1C91D3740098DA39 /* KSNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSNavigationController.swift; sourceTree = "<group>"; };
 		471282921C7E15170007855B /* LogoButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoButton.swift; sourceTree = "<group>"; };
@@ -145,6 +149,8 @@
 				A198C05E1C820287001C69E0 /* KSProfileViewController.swift */,
 				02DED1CD1C91D3450098DA39 /* KSTabBarController.swift */,
 				02DED1CF1C91D3740098DA39 /* KSNavigationController.swift */,
+				0256D2BB1C95988700B8CD4B /* ProfileViewController.swift */,
+				0256D2BD1C95989300B8CD4B /* DetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -302,10 +308,12 @@
 			files = (
 				47BBC0FA1C7E8B6D007DFF67 /* GreenViewController.swift in Sources */,
 				47AE58831C75730A007AB49E /* Firebase.swift in Sources */,
+				0256D2BE1C95989300B8CD4B /* DetailViewController.swift in Sources */,
 				47B90F051C7F6F9B006B4BD6 /* KSSellViewController.swift in Sources */,
 				47AE58801C756A42007AB49E /* User.swift in Sources */,
 				A198C0611C82136B001C69E0 /* KSProfileCollectionViewCell.swift in Sources */,
 				024327011C7CA881009893B8 /* KSTimelineCollectionViewCell.swift in Sources */,
+				0256D2BC1C95988700B8CD4B /* ProfileViewController.swift in Sources */,
 				024327031C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift in Sources */,
 				47BBC0FB1C7E8B6D007DFF67 /* YellowViewController.swift in Sources */,
 				A198C05F1C820287001C69E0 /* KSProfileViewController.swift in Sources */,
