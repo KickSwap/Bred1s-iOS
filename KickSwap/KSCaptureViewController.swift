@@ -306,9 +306,9 @@ class KSCaptureViewController: UIViewController, CaptureViewDelegate, CaptureSes
         cameraCloseButton.setImage(img, forState: .Highlighted)
         //cameraCloseButton.addTarget(self, action: "closeCamera:", forControlEvents: UIControlEvents.TouchUpInside)
         
-        //captureView.addSubview(cameraCloseButton)
+        captureView.addSubview(cameraCloseButton)
         
-        captureView.cameraCloseButton = cameraCloseButton
+        //captureView.cameraCloseButton = cameraCloseButton
     }
     
     /**
