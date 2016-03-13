@@ -11,6 +11,7 @@
 		024327031C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024327021C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift */; };
 		0256D2BC1C95988700B8CD4B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D2BB1C95988700B8CD4B /* ProfileViewController.swift */; };
 		0256D2BE1C95989300B8CD4B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D2BD1C95989300B8CD4B /* DetailViewController.swift */; };
+		0256D2C01C95A35C00B8CD4B /* TimelineDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D2BF1C95A35C00B8CD4B /* TimelineDetailTableViewCell.swift */; };
 		02DED1CE1C91D3460098DA39 /* KSTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DED1CD1C91D3450098DA39 /* KSTabBarController.swift */; };
 		02DED1D01C91D3740098DA39 /* KSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DED1CF1C91D3740098DA39 /* KSNavigationController.swift */; };
 		471282931C7E15170007855B /* LogoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471282921C7E15170007855B /* LogoButton.swift */; };
@@ -41,6 +42,7 @@
 		024327021C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterCellCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		0256D2BB1C95988700B8CD4B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		0256D2BD1C95989300B8CD4B /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		0256D2BF1C95A35C00B8CD4B /* TimelineDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineDetailTableViewCell.swift; sourceTree = "<group>"; };
 		02DED1CD1C91D3450098DA39 /* KSTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTabBarController.swift; sourceTree = "<group>"; };
 		02DED1CF1C91D3740098DA39 /* KSNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSNavigationController.swift; sourceTree = "<group>"; };
 		471282921C7E15170007855B /* LogoButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoButton.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				024327001C7CA881009893B8 /* KSTimelineCollectionViewCell.swift */,
 				024327021C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift */,
 				A198C0601C82136B001C69E0 /* KSProfileCollectionViewCell.swift */,
+				0256D2BF1C95A35C00B8CD4B /* TimelineDetailTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				024327031C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift in Sources */,
 				47BBC0FB1C7E8B6D007DFF67 /* YellowViewController.swift in Sources */,
 				A198C05F1C820287001C69E0 /* KSProfileViewController.swift in Sources */,
+				0256D2C01C95A35C00B8CD4B /* TimelineDetailTableViewCell.swift in Sources */,
 				47AE58881C769904007AB49E /* Shoe.swift in Sources */,
 				47BBC0FC1C7E8B6D007DFF67 /* KSMenuViewController.swift in Sources */,
 				47AE588A1C769C2F007AB49E /* Bid.swift in Sources */,
