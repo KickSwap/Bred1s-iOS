@@ -73,29 +73,6 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
             options: UIViewAnimationOptions.TransitionCrossDissolve,
             animations: { self.timelineBackground.image = self.backgroundImages[newIndex]},
             completion: nil)
-        
-//        //Instantiate pages for container view
-//        let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
-//        let detailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
-//        profileViewController.title = "Profile"
-//        detailViewController.title = "Details"
-//        let viewControllers = [profileViewController, detailViewController]
-//        
-//        //instantiate PagingMenuController and customization
-//        let pagingMenuController = self.childViewControllers.first as! PagingMenuController
-//        
-//        let options = PagingMenuOptions()
-//        options.defaultPage = 0
-//        options.backgroundColor = UIColor.darkGrayColor()
-//        options.selectedBackgroundColor = UIColor.blackColor()
-//        options.textColor = UIColor.lightGrayColor()
-//        options.selectedTextColor = UIColor.whiteColor()
-//        options.menuHeight = 20
-//        //options.menuPosition = .Bottom
-//        pagingMenuController.delegate = self
-//        options.menuDisplayMode = .SegmentedControl
-//        //(widthMode: .Flexible, centerItem: true, scrollingMode: .PagingEnabled)
-//        pagingMenuController.setup(viewControllers: viewControllers, options: options)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -104,7 +81,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         }
         
         //Instantiate pages for container view
-        let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
+        let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("KSProfileViewController") as! KSProfileViewController
         let detailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
         profileViewController.title = "Profile"
         detailViewController.title = "Details"
@@ -119,7 +96,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         options.selectedBackgroundColor = UIColor(hexString: "C33500")
         options.textColor = UIColor(hexString: "012755")
         options.selectedTextColor = UIColor.flatWhiteColor()
-        options.menuHeight = 22
+        options.menuHeight = 25
         options.font = RobotoFont.regular
         options.selectedFont = RobotoFont.bold
         options.menuItemMode = .Underline(height: 3, color: UIColor(hexString: "012755"), horizontalPadding: 0, verticalPadding: 0)
