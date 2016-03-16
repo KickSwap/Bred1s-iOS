@@ -33,6 +33,61 @@ import UIKit
 @objc(MaterialCollectionViewCell)
 public class MaterialCollectionViewCell : UICollectionViewCell {
 	/**
+	A property that manages an image for the visualLayer's contents
+	property. Images should not be set to the backing layer's contents
+	property to avoid conflicts when using clipsToBounds.
+	*/
+	public var image: UIImage? {
+		didSet {
+			visualLayer.contents = image?.CGImage
+		}
+	}
+	
+	/// Determines how content should be aligned within the visualLayer's bounds.
+	public var contentsGravity: MaterialGravity {
+		didSet {
+			visualLayer.contentsGravity = MaterialGravityToString(contentsGravity)
+		}
+	}
+	
+	/// A preset wrapper around contentInset.
+	public var contentInsetPreset: MaterialEdgeInset {
+		get {
+			return contentView.grid.contentInsetPreset
+		}
+		set(value) {
+			contentView.grid.contentInsetPreset = value
+		}
+	}
+	
+	/// A wrapper around grid.contentInset.
+	public var contentInset: UIEdgeInsets {
+		get {
+			return contentView.grid.contentInset
+		}
+		set(value) {
+			contentView.grid.contentInset = value
+		}
+	}
+	
+	/// A preset wrapper around spacing.
+	public var spacingPreset: MaterialSpacing = .None {
+		didSet {
+			spacing = MaterialSpacingToValue(spacingPreset)
+		}
+	}
+	
+	/// A wrapper around grid.spacing.
+	public var spacing: CGFloat {
+		get {
+			return contentView.grid.spacing
+		}
+		set(value) {
+			contentView.grid.spacing = value
+		}
+	}
+	
+	/**
 	A CAShapeLayer used to manage elements that would be affected by
 	the clipToBounds property of the backing layer. For example, this
 	allows the dropshadow effect on the backing layer, while clipping
@@ -169,6 +224,27 @@ public class MaterialCollectionViewCell : UICollectionViewCell {
 		}
 	}
 	
+	/// A property that accesses the backing layer's shadowPath.
+	public var shadowPath: CGPath? {
+		get {
+			return layer.shadowPath
+		}
+		set(value) {
+			layer.shadowPath = value
+		}
+	}
+	
+	/// Enables automatic shadowPath sizing.
+	public var shadowPathAutoSizeEnabled: Bool = false {
+		didSet {
+			if shadowPathAutoSizeEnabled {
+				layoutShadowPath()
+			} else {
+				shadowPath = nil
+			}
+		}
+	}
+	
 	/**
 	A property that sets the shadowOffset, shadowOpacity, and shadowRadius
 	for the backing layer. This is the preferred method of setting depth
@@ -180,6 +256,7 @@ public class MaterialCollectionViewCell : UICollectionViewCell {
 			shadowOffset = value.offset
 			shadowOpacity = value.opacity
 			shadowRadius = value.radius
+			layoutShadowPath()
 		}
 	}
 	
@@ -192,17 +269,21 @@ public class MaterialCollectionViewCell : UICollectionViewCell {
 		didSet {
 			if let v: MaterialRadius = cornerRadiusPreset {
 				cornerRadius = MaterialRadiusToValue(v)
-				if .Circle == shape {
-					shape = .None
-				}
 			}
 		}
 	}
 	
 	/// A property that accesses the layer.cornerRadius.
-	public var cornerRadius: CGFloat = 0 {
-		didSet {
-			layer.cornerRadius = cornerRadius
+	public var cornerRadius: CGFloat {
+		get {
+			return layer.cornerRadius
+		}
+		set(value) {
+			layer.cornerRadius = value
+			layoutShadowPath()
+			if .Circle == shape {
+				shape = .None
+			}
 		}
 	}
 	
@@ -219,21 +300,35 @@ public class MaterialCollectionViewCell : UICollectionViewCell {
 				} else {
 					frame.size.height = width
 				}
+				layoutShadowPath()
 			}
+		}
+	}
+	
+	/// A preset property to set the borderWidth.
+	public var borderWidthPreset: MaterialBorder = .None {
+		didSet {
+			borderWidth = MaterialBorderToValue(borderWidthPreset)
 		}
 	}
 	
 	/// A property that accesses the layer.borderWith.
 	public var borderWidth: CGFloat {
-		didSet {
-			layer.borderWidth = borderWidth
+		get {
+			return layer.borderWidth
+		}
+		set(value) {
+			layer.borderWidth = value
 		}
 	}
 	
 	/// A property that accesses the layer.borderColor property.
 	public var borderColor: UIColor? {
-		didSet {
-			layer.borderColor = borderColor?.CGColor
+		get {
+			return nil == layer.borderColor ? nil : UIColor(CGColor: layer.borderColor!)
+		}
+		set(value) {
+			layer.borderColor = value?.CGColor
 		}
 	}
 	
@@ -265,7 +360,7 @@ public class MaterialCollectionViewCell : UICollectionViewCell {
 		depth = .None
 		cornerRadiusPreset = .None
 		shape = .None
-		borderWidth = 0
+		contentsGravity = .ResizeAspectFill
 		super.init(coder: aDecoder)
 		prepareView()
 	}
@@ -280,7 +375,7 @@ public class MaterialCollectionViewCell : UICollectionViewCell {
 		depth = .None
 		cornerRadiusPreset = .None
 		shape = .None
-		borderWidth = 0
+		contentsGravity = .ResizeAspectFill
 		super.init(frame: frame)
 		prepareView()
 	}
@@ -296,6 +391,7 @@ public class MaterialCollectionViewCell : UICollectionViewCell {
 		if self.layer == layer {
 			layoutShape()
 			layoutVisualLayer()
+			layoutShadowPath()
 		}
 	}
 	
@@ -336,14 +432,21 @@ public class MaterialCollectionViewCell : UICollectionViewCell {
 	if interrupted.
 	*/
 	public override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
-		if anim is CAPropertyAnimation {
+		if let a: CAPropertyAnimation = anim as? CAPropertyAnimation {
+			if let b: CABasicAnimation = a as? CABasicAnimation {
+				if let v: AnyObject = b.toValue {
+					if let k: String = b.keyPath {
+						layer.setValue(v, forKeyPath: k)
+						layer.removeAnimationForKey(k)
+					}
+				}
+			}
 			(delegate as? MaterialAnimationDelegate)?.materialAnimationDidStop?(anim, finished: flag)
 		} else if let a: CAAnimationGroup = anim as? CAAnimationGroup {
 			for x in a.animations! {
 				animationDidStop(x, finished: true)
 			}
 		}
-		layoutVisualLayer()
 	}
 	
 	/**
@@ -419,14 +522,29 @@ public class MaterialCollectionViewCell : UICollectionViewCell {
 	/// Manages the layout for the visualLayer property.
 	internal func layoutVisualLayer() {
 		visualLayer.frame = bounds
-		visualLayer.position = CGPointMake(width / 2, height / 2)
-		visualLayer.cornerRadius = layer.cornerRadius
+		visualLayer.cornerRadius = cornerRadius
 	}
 	
 	/// Manages the layout for the shape of the view instance.
 	internal func layoutShape() {
 		if .Circle == shape {
-			layer.cornerRadius = width / 2
+			let w: CGFloat = (width / 2)
+			if w != cornerRadius {
+				cornerRadius = w
+			}
+		}
+	}
+	
+	/// Sets the shadow path.
+	internal func layoutShadowPath() {
+		if shadowPathAutoSizeEnabled {
+			if .None == depth {
+				shadowPath = nil
+			} else if nil == shadowPath {
+				shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).CGPath
+			} else {
+				animate(MaterialAnimation.shadowPath(UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).CGPath, duration: 0))
+			}
 		}
 	}
 	
@@ -444,7 +562,7 @@ public class MaterialCollectionViewCell : UICollectionViewCell {
 			let d: CGFloat = 2 * f
 			let s: CGFloat = 1.05
 			
-			var t: CFTimeInterval = CFTimeInterval(1.5 * width / UIScreen.mainScreen().bounds.width)
+			var t: CFTimeInterval = CFTimeInterval(1.5 * width / MaterialDevice.bounds.width)
 			if 0.55 < t || 0.25 > t {
 				t = 0.55
 			}
@@ -487,7 +605,7 @@ public class MaterialCollectionViewCell : UICollectionViewCell {
 	/// Executes the shrink animation for the pulse effect.
 	internal func shrinkAnimation() {
 		if pulseScale {
-			var t: CFTimeInterval = CFTimeInterval(1.5 * width / UIScreen.mainScreen().bounds.width)
+			var t: CFTimeInterval = CFTimeInterval(1.5 * width / MaterialDevice.bounds.width)
 			if 0.55 < t || 0.25 > t {
 				t = 0.55
 			}

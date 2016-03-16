@@ -14,5 +14,6 @@ target 'KickSwap' do
   pod 'SnapKit'
   pod 'AFNetworking'
   pod 'DropDown'
+  pod 'PagingMenuController'
 end
 
