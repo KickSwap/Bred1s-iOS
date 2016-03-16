@@ -28,10 +28,6 @@
 * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-public protocol MaterialCollectionViewDataSource : UICollectionViewDataSource {
-	/**
-	Retrieves the items for the collectionView.
-	- Returns: An Array of Arrays of MaterialDataSourceItem objects.
-	*/
-	func items() -> Array<MaterialDataSourceItem>
+public protocol MaterialCollectionViewDataSource : MaterialDelegate, UICollectionViewDataSource {
+	func items() -> Array<MaterialCollectionViewDataSourceItem>
 }

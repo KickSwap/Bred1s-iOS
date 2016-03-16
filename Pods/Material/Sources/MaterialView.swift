@@ -81,7 +81,8 @@ public class MaterialView : UIView {
 	/**
 	A floating point value that defines a ratio between the pixel 
 	dimensions of the visualLayer's contents property and the size 
-	of the view. By default, this value is set to the MaterialDevice.scale.
+	of the view. By default, this value is set to the UIScreen's 
+	scale value, UIScreen.mainScreen().scale.
 	*/
 	public var contentsScale: CGFloat {
 		didSet {
@@ -211,27 +212,6 @@ public class MaterialView : UIView {
 		}
 	}
 	
-	/// A property that accesses the backing layer's shadowPath.
-	public var shadowPath: CGPath? {
-		get {
-			return layer.shadowPath
-		}
-		set(value) {
-			layer.shadowPath = value
-		}
-	}
-	
-	/// Enables automatic shadowPath sizing.
-	public var shadowPathAutoSizeEnabled: Bool = false {
-		didSet {
-			if shadowPathAutoSizeEnabled {
-				layoutShadowPath()
-			} else {
-				shadowPath = nil
-			}
-		}
-	}
-	
 	/**
 	A property that sets the shadowOffset, shadowOpacity, and shadowRadius 
 	for the backing layer. This is the preferred method of setting depth 
@@ -243,7 +223,6 @@ public class MaterialView : UIView {
 			shadowOffset = value.offset
 			shadowOpacity = value.opacity
 			shadowRadius = value.radius
-			layoutShadowPath()
 		}
 	}
 	
@@ -256,21 +235,17 @@ public class MaterialView : UIView {
 		didSet {
 			if let v: MaterialRadius = cornerRadiusPreset {
 				cornerRadius = MaterialRadiusToValue(v)
+				if .Circle == shape {
+					shape = .None
+				}
 			}
 		}
 	}
 	
 	/// A property that accesses the layer.cornerRadius.
-	public var cornerRadius: CGFloat {
-		get {
-			return layer.cornerRadius
-		}
-		set(value) {
-			layer.cornerRadius = value
-			layoutShadowPath()
-			if .Circle == shape {
-				shape = .None
-			}
+	public var cornerRadius: CGFloat = 0 {
+		didSet {
+			layer.cornerRadius = cornerRadius
 		}
 	}
 	
@@ -287,7 +262,6 @@ public class MaterialView : UIView {
 				} else {
 					frame.size.height = width
 				}
-				layoutShadowPath()
 			}
 		}
 	}
@@ -300,22 +274,16 @@ public class MaterialView : UIView {
 	}
 	
 	/// A property that accesses the layer.borderWith.
-	public var borderWidth: CGFloat {
-		get {
-			return layer.borderWidth
-		}
-		set(value) {
-			layer.borderWidth = value
+	public var borderWidth: CGFloat = 0 {
+		didSet {
+			layer.borderWidth = borderWidth
 		}
 	}
 	
 	/// A property that accesses the layer.borderColor property.
 	public var borderColor: UIColor? {
-		get {
-			return nil == layer.borderColor ? nil : UIColor(CGColor: layer.borderColor!)
-		}
-		set(value) {
-			layer.borderColor = value?.CGColor
+		didSet {
+			layer.borderColor = borderColor?.CGColor
 		}
 	}
 	
@@ -346,7 +314,7 @@ public class MaterialView : UIView {
 	public required init?(coder aDecoder: NSCoder) {
 		contentsRect = CGRectMake(0, 0, 1, 1)
 		contentsCenter = CGRectMake(0, 0, 1, 1)
-		contentsScale = MaterialDevice.scale
+		contentsScale = UIScreen.mainScreen().scale
 		contentsGravity = .ResizeAspectFill
 		super.init(coder: aDecoder)
 		prepareView()
@@ -361,7 +329,7 @@ public class MaterialView : UIView {
 	public override init(frame: CGRect) {
 		contentsRect = CGRectMake(0, 0, 1, 1)
 		contentsCenter = CGRectMake(0, 0, 1, 1)
-		contentsScale = MaterialDevice.scale
+		contentsScale = UIScreen.mainScreen().scale
 		contentsGravity = .ResizeAspectFill
 		super.init(frame: frame)
 		prepareView()
@@ -378,7 +346,6 @@ public class MaterialView : UIView {
 		if self.layer == layer {
 			layoutShape()
 			layoutVisualLayer()
-			layoutShadowPath()
 		}
 	}
 	
@@ -419,21 +386,14 @@ public class MaterialView : UIView {
 	if interrupted.
 	*/
 	public override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
-		if let a: CAPropertyAnimation = anim as? CAPropertyAnimation {
-			if let b: CABasicAnimation = a as? CABasicAnimation {
-				if let v: AnyObject = b.toValue {
-					if let k: String = b.keyPath {
-						layer.setValue(v, forKeyPath: k)
-						layer.removeAnimationForKey(k)
-					}
-				}
-			}
+		if anim is CAPropertyAnimation {
 			(delegate as? MaterialAnimationDelegate)?.materialAnimationDidStop?(anim, finished: flag)
 		} else if let a: CAAnimationGroup = anim as? CAAnimationGroup {
 			for x in a.animations! {
 				animationDidStop(x, finished: true)
 			}
 		}
+		layoutVisualLayer()
 	}
 	
 	/**
@@ -446,6 +406,8 @@ public class MaterialView : UIView {
 	public func prepareView() {
 		prepareVisualLayer()
 		backgroundColor = MaterialColor.white
+		shadowColor = MaterialColor.black
+		borderColor = MaterialColor.black
 	}
 	
 	/// Prepares the visualLayer property.
@@ -458,29 +420,14 @@ public class MaterialView : UIView {
 	/// Manages the layout for the visualLayer property.
 	internal func layoutVisualLayer() {
 		visualLayer.frame = bounds
-		visualLayer.cornerRadius = cornerRadius
+		visualLayer.position = CGPointMake(width / 2, height / 2)
+		visualLayer.cornerRadius = layer.cornerRadius
 	}
 	
 	/// Manages the layout for the shape of the view instance.
 	internal func layoutShape() {
 		if .Circle == shape {
-			let w: CGFloat = (width / 2)
-			if w != cornerRadius {
-				cornerRadius = w
-			}
-		}
-	}
-	
-	/// Sets the shadow path.
-	internal func layoutShadowPath() {
-		if shadowPathAutoSizeEnabled {
-			if .None == depth {
-				shadowPath = nil
-			} else if nil == shadowPath {
-				shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).CGPath
-			} else {
-				animate(MaterialAnimation.shadowPath(UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).CGPath, duration: 0))
-			}
+			layer.cornerRadius = width / 2
 		}
 	}
 }

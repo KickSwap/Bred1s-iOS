@@ -31,14 +31,8 @@
 import UIKit
 
 public class StatusBarView : ControlView {
-	/// The height of the StatusBar.
-	public var heightForStatusBar: CGFloat = 20
-	
-	/// The height when in Portrait orientation mode.
-	public var heightForPortraitOrientation: CGFloat = 64
-	
-	/// The height when in Landscape orientation mode.
-	public var heightForLandscapeOrientation: CGFloat = 44
+	/// Tracks the old frame size.
+	private var oldFrame: CGRect?
 	
 	/// Device status bar style.
 	public var statusBarStyle: UIStatusBarStyle = UIApplication.sharedApplication().statusBarStyle {
@@ -47,44 +41,50 @@ public class StatusBarView : ControlView {
 		}
 	}
 	
-	/// A convenience initializer.
-	public convenience init() {
-		self.init(frame: CGRectZero)
-	}
-	
 	/**
 	A convenience initializer with parameter settings.
 	- Parameter leftControls: An Array of UIControls that go on the left side.
 	- Parameter rightControls: An Array of UIControls that go on the right side.
 	*/
 	public convenience init?(leftControls: Array<UIControl>? = nil, rightControls: Array<UIControl>? = nil) {
-		self.init(frame: CGRectZero)
+		self.init(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, 64))
 		prepareProperties(leftControls, rightControls: rightControls)
 	}
 	
+	/// A convenience initializer.
+	public convenience init() {
+		self.init(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, 64))
+	}
+	
 	public override func layoutSubviews() {
-		// Ensures a width.
-		if !willRenderView {
-			width = MaterialDevice.width
+		super.layoutSubviews()
+		// General alignment.
+		if UIApplication.sharedApplication().statusBarOrientation.isLandscape {
+			grid.contentInset.top = 8
+			height = 44
+		} else {
+			grid.contentInset.top = 28
+			height = 64
 		}
 		
-		grid.axis.columns = Int(width / 48)
+		width = UIScreen.mainScreen().bounds.width
 		
-		// We can call super now that we have a width.
-		super.layoutSubviews()
+		reloadView()
 		
-		// General alignment.
-		if .iPhone == MaterialDevice.type && MaterialDevice.landscape {
-			grid.contentInset.top = 8
-			height = heightForLandscapeOrientation
-		} else {
-			grid.contentInset.top = heightForStatusBar + 8
-			height = heightForPortraitOrientation
+		if frame.origin.x != oldFrame!.origin.x || frame.origin.y != oldFrame!.origin.y || frame.width != oldFrame!.width || frame.height != oldFrame!.height {
+			if nil != delegate {
+				statusBarViewDidChangeLayout()
+			}
+			oldFrame = frame
 		}
 	}
 	
 	public override func intrinsicContentSize() -> CGSize {
-		return CGSizeMake(MaterialDevice.width, .iPhone == MaterialDevice.type && MaterialDevice.landscape ? heightForLandscapeOrientation : heightForPortraitOrientation)
+		if UIApplication.sharedApplication().statusBarOrientation.isLandscape {
+			return CGSizeMake(UIScreen.mainScreen().bounds.width, 44)
+		} else {
+			return CGSizeMake(UIScreen.mainScreen().bounds.width, 64)
+		}
 	}
 	
 	/**
@@ -97,8 +97,14 @@ public class StatusBarView : ControlView {
 	public override func prepareView() {
 		super.prepareView()
 		depth = .Depth1
-		spacingPreset = .Spacing2
-		contentInsetPreset = .Square2
-		autoresizingMask = .FlexibleWidth
+		oldFrame = frame
+		grid.spacing = 8
+		grid.contentInset.left = 8
+		grid.contentInset.bottom = 8
+		grid.contentInset.right = 8
+		grid.axis.inherited = false
 	}
+	
+	/// Chaining method for subclasses to offer delegation or other useful features.
+	internal func statusBarViewDidChangeLayout() {}
 }

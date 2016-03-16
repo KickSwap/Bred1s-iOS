@@ -50,6 +50,7 @@ public protocol MaterialSwitchDelegate {
 	/**
 	A MaterialSwitch delegate method for state changes.
 	- Parameter control: MaterialSwitch control.
+	- Parameter state: The new state for the control.
 	*/
 	func materialSwitchStateChanged(control: MaterialSwitch)
 }
@@ -167,16 +168,31 @@ public class MaterialSwitch: UIControl {
 		}
 	}
 	
-	/// A boolean indicating if the switch is on or not.
-	public var on: Bool {
+	public override var selected: Bool {
 		get {
 			return .On == internalSwitchState
 		}
 		set(value) {
-			setOn(value, animated: true)
+			setOn(selected, animated: true)
 		}
 	}
-
+	
+	public override var highlighted: Bool {
+		get {
+			return .On == internalSwitchState
+		}
+		set(value) {
+			setOn(highlighted, animated: true)
+		}
+	}
+	
+	public override var state: UIControlState {
+		if enabled {
+			return selected ? [.Selected, .Highlighted] : [.Normal]
+		}
+		return selected ? [.Selected, .Highlighted, .Disabled] : [.Normal, .Disabled]
+	}
+	
 	/// MaterialSwitch state.
 	public var switchState: MaterialSwitchState {
 		get {
@@ -186,6 +202,16 @@ public class MaterialSwitch: UIControl {
 			if value != internalSwitchState {
 				internalSwitchState = value
 			}
+		}
+	}
+	
+	/// A boolean indicating if the switch is on or not.
+	public var on: Bool {
+		get {
+			return .On == internalSwitchState
+		}
+		set(value) {
+			setOn(on, animated: true)
 		}
 	}
 	
@@ -252,9 +278,10 @@ public class MaterialSwitch: UIControl {
 	- Parameter aDecoder: A NSCoder instance.
 	*/
 	public required init?(coder aDecoder: NSCoder) {
-		trackLayer = MaterialLayer()
-		button = FabButton()
+		trackLayer = MaterialLayer(frame: CGRectZero)
+		button = FabButton(frame: CGRectZero)
 		super.init(coder: aDecoder)
+		prepareView()
 		prepareTrack()
 		prepareButton()
 		prepareSwitchSize(.Default)
@@ -269,16 +296,17 @@ public class MaterialSwitch: UIControl {
 	- Parameter size: A MaterialSwitchSize value.
 	*/
 	public init(state: MaterialSwitchState = .Off, style: MaterialSwitchStyle = .Default, size: MaterialSwitchSize = .Default) {
-		trackLayer = MaterialLayer()
-		button = FabButton()
-		super.init(frame: CGRectNull)
+		trackLayer = MaterialLayer(frame: CGRectZero)
+		button = FabButton(frame: CGRectZero)
+		super.init(frame: CGRectZero)
+		prepareView()
 		prepareTrack()
 		prepareButton()
 		prepareSwitchSize(size)
 		prepareSwitchStyle(style)
 		prepareSwitchState(state)
 	}
-	
+
 	public override func willMoveToSuperview(newSuperview: UIView?) {
 		super.willMoveToSuperview(newSuperview)
 		styleForState(internalSwitchState)
@@ -296,6 +324,17 @@ public class MaterialSwitch: UIControl {
 	}
 	
 	/**
+	Prepares the view instance when intialized. When subclassing,
+	it is recommended to override the prepareView method
+	to initialize property values and other setup operations.
+	The super.prepareView method should always be called immediately
+	when subclassing.
+	*/
+	public func prepareView() {
+		addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTapped:"))
+	}
+	
+	/**
 	Toggle the MaterialSwitch state, if On will be Off, and if Off will be On.
 	- Parameter completion: An Optional completion block.
 	*/
@@ -309,7 +348,7 @@ public class MaterialSwitch: UIControl {
 	- Parameter animated: A Boolean indicating to set the animation or not.
 	*/
 	public func setOn(on: Bool, animated: Bool, completion: ((control: MaterialSwitch) -> Void)? = nil) {
-		setSwitchState(on ? .On : .Off, animated: animated, completion: completion)
+		setSwitchState(on == true ? .On : .Off, animated: animated, completion: completion)
 	}
 	
 	/**
@@ -319,21 +358,27 @@ public class MaterialSwitch: UIControl {
 	- Parameter completion: An Optional completion block.
 	*/
 	public func setSwitchState(state: MaterialSwitchState, animated: Bool = true, completion: ((control: MaterialSwitch) -> Void)? = nil) {
-		if enabled && internalSwitchState != state {
+		if internalSwitchState != state {
 			internalSwitchState = state
 			if animated {
 				animateToState(state) { [unowned self] _ in
 					self.sendActionsForControlEvents(.ValueChanged)
-					completion?(control: self)
 					self.delegate?.materialSwitchStateChanged(self)
 				}
 			} else {
 				button.x = .On == state ? self.onPosition : self.offPosition
 				styleForState(state)
 				sendActionsForControlEvents(.ValueChanged)
-				completion?(control: self)
 				delegate?.materialSwitchStateChanged(self)
+				completion?(control: self)
 			}
+		}
+	}
+	
+	/// Handles the tap gesture.
+	internal func handleTapped(recognizer: UITapGestureRecognizer) {
+		if true == CGRectContainsPoint(trackLayer.frame, layer.convertPoint(recognizer.locationInView(self), fromLayer: layer)) {
+			setSwitchState(.On == internalSwitchState ? .Off : .On)
 		}
 	}
 	
@@ -349,7 +394,9 @@ public class MaterialSwitch: UIControl {
 	*/
 	internal func handleTouchUpOutsideOrCanceled(sender: FabButton, event: UIEvent) {
 		if let v: UITouch = event.touchesForView(sender)?.first {
-			let q: CGFloat = sender.x + v.locationInView(sender).x - v.previousLocationInView(sender).x
+			let t: CGPoint = v.previousLocationInView(sender)
+			let p: CGPoint = v.locationInView(sender)
+			let q: CGFloat = sender.x + p.x - t.x
 			setSwitchState(q > (width - button.width) / 2 ? .On : .Off, animated: true)
 		}
 	}
@@ -361,16 +408,12 @@ public class MaterialSwitch: UIControl {
 	*/
 	internal func handleTouchDragInside(sender: FabButton, event: UIEvent) {
 		if let v = event.touchesForView(sender)?.first {
-			let q: CGFloat = max(min(sender.x + v.locationInView(sender).x - v.previousLocationInView(sender).x, onPosition), offPosition)
+			let t: CGPoint = v.previousLocationInView(sender)
+			let p: CGPoint = v.locationInView(sender)
+			let q: CGFloat = max(min(sender.x + (p.x - t.x), onPosition), offPosition)
 			if q != sender.x {
 				sender.x = q
 			}
-		}
-	}
-	
-	public override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-		if true == CGRectContainsPoint(trackLayer.frame, layer.convertPoint(touches.first!.locationInView(self), fromLayer: layer)) {
-			setOn(.On != internalSwitchState, animated: true)
 		}
 	}
 	

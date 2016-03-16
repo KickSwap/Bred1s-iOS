@@ -26,6 +26,8 @@
 		477970E51C630306000F1196 /* KickSwap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 477970E31C630306000F1196 /* KickSwap.xcdatamodeld */; };
 		477970E71C630306000F1196 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 477970E61C630306000F1196 /* Assets.xcassets */; };
 		477970EA1C630306000F1196 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 477970E81C630306000F1196 /* LaunchScreen.storyboard */; };
+		4789AC1D1C998076002907CA /* KSVoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4789AC1C1C998076002907CA /* KSVoteViewController.swift */; };
+		4789AC1F1C99813C002907CA /* KSVoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4789AC1E1C99813C002907CA /* KSVoteTableViewCell.swift */; };
 		47AE58801C756A42007AB49E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AE587F1C756A42007AB49E /* User.swift */; };
 		47AE58831C75730A007AB49E /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AE58821C75730A007AB49E /* Firebase.swift */; };
 		47AE58861C75F5D8007AB49E /* KSTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AE58851C75F5D8007AB49E /* KSTimelineViewController.swift */; };
@@ -65,6 +67,8 @@
 		477970E61C630306000F1196 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		477970E91C630306000F1196 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		477970EB1C630306000F1196 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4789AC1C1C998076002907CA /* KSVoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSVoteViewController.swift; sourceTree = "<group>"; };
+		4789AC1E1C99813C002907CA /* KSVoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSVoteTableViewCell.swift; sourceTree = "<group>"; };
 		47AE587F1C756A42007AB49E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		47AE58821C75730A007AB49E /* Firebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
 		47AE58851C75F5D8007AB49E /* KSTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTimelineViewController.swift; sourceTree = "<group>"; };
@@ -96,7 +100,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0256D3041C99774700B8CD4B /* webviews */ = {
+		0256D3041C99774700B8CD4B /* WebViews */ = {
 			isa = PBXGroup;
 			children = (
 				0256D3101C9978CD00B8CD4B /* SwiftWebVC */,
@@ -104,7 +108,7 @@
 				0256D3131C9978FD00B8CD4B /* SoleCollectorViewController.swift */,
 				0256D3151C99790E00B8CD4B /* MJisBackViewController.swift */,
 			);
-			name = webviews;
+			name = WebViews;
 			sourceTree = "<group>";
 		};
 		0256D3101C9978CD00B8CD4B /* SwiftWebVC */ = {
@@ -175,11 +179,12 @@
 		47AE58841C758D72007AB49E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				0256D3041C99774700B8CD4B /* webviews */,
+				0256D3041C99774700B8CD4B /* WebViews */,
 				47BBC0F51C7E8B6D007DFF67 /* BlueViewcontroller.swift */,
 				47BBC0F61C7E8B6D007DFF67 /* GreenViewController.swift */,
 				47BBC0F71C7E8B6D007DFF67 /* YellowViewController.swift */,
 				47BBC0F81C7E8B6D007DFF67 /* KSMenuViewController.swift */,
+				4789AC1C1C998076002907CA /* KSVoteViewController.swift */,
 				477970DE1C630306000F1196 /* KSLoginViewController.swift */,
 				47AE58851C75F5D8007AB49E /* KSTimelineViewController.swift */,
 				47B90F041C7F6F9B006B4BD6 /* KSCaptureViewController.swift */,
@@ -199,6 +204,7 @@
 				024327001C7CA881009893B8 /* KSTimelineCollectionViewCell.swift */,
 				024327021C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift */,
 				A198C0601C82136B001C69E0 /* KSProfileCollectionViewCell.swift */,
+				4789AC1E1C99813C002907CA /* KSVoteTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -362,6 +368,7 @@
 				0256D3141C9978FD00B8CD4B /* SoleCollectorViewController.swift in Sources */,
 				47AE588A1C769C2F007AB49E /* Bid.swift in Sources */,
 				0256D30C1C99775800B8CD4B /* SwiftWebVCActivity.swift in Sources */,
+				4789AC1F1C99813C002907CA /* KSVoteTableViewCell.swift in Sources */,
 				477970DF1C630306000F1196 /* KSLoginViewController.swift in Sources */,
 				477970DD1C630306000F1196 /* AppDelegate.swift in Sources */,
 				0256D3121C9978ED00B8CD4B /* NiceKicksViewController.swift in Sources */,
@@ -369,6 +376,7 @@
 				0256D30A1C99775800B8CD4B /* SwiftModalWebVC.swift in Sources */,
 				477970E51C630306000F1196 /* KickSwap.xcdatamodeld in Sources */,
 				47AE58861C75F5D8007AB49E /* KSTimelineViewController.swift in Sources */,
+				4789AC1D1C998076002907CA /* KSVoteViewController.swift in Sources */,
 				47BBC0F91C7E8B6D007DFF67 /* BlueViewcontroller.swift in Sources */,
 				02DED1CE1C91D3460098DA39 /* KSTabBarController.swift in Sources */,
 				47B90F071C7F6FA9006B4BD6 /* KSNewsViewController.swift in Sources */,

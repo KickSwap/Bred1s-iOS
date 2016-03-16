@@ -43,7 +43,9 @@ public enum MaterialRadius {
 	case Radius9
 }
 
-/// Converts the MaterialRadius enum to a CGFloat value.
+/**
+	:name:	MaterialRadiusToValue
+*/
 public func MaterialRadiusToValue(radius: MaterialRadius) -> CGFloat {
 	switch radius {
 	case .None:

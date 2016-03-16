@@ -41,7 +41,7 @@ public class GridAxis {
 	unowned var grid: Grid
 	
 	/// Inherit grid rows and columns.
-	public var inherited: Bool = false
+	public var inherited: Bool = true
 	
 	/// The direction the grid layouts its views out.
 	public var direction: GridAxisDirection = .Horizontal
@@ -136,13 +136,6 @@ public class Grid {
 	public var contentInset: UIEdgeInsets = MaterialEdgeInsetToValue(.None) {
 		didSet {
 			reloadLayout()
-		}
-	}
-	
-	/// A preset wrapper around spacing.
-	public var spacingPreset: MaterialSpacing = .None {
-		didSet {
-			spacing = MaterialSpacingToValue(spacingPreset)
 		}
 	}
 	

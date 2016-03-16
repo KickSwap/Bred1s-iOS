@@ -405,10 +405,9 @@ public class CardView : MaterialPulseView {
 	*/
 	public override func prepareView() {
 		super.prepareView()
-		pulseColor = MaterialColor.grey.lighten1
+		pulseColor = MaterialColor.blueGrey.lighten4
 		depth = .Depth1
-		dividerColor = MaterialColor.grey.lighten3
-		cornerRadiusPreset = .Radius1
+		dividerColor = MaterialColor.blueGrey.lighten5
 	}
 	
 	/**

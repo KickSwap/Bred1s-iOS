@@ -211,7 +211,7 @@ public class MaterialTextLayer : CATextLayer {
 		textColor = MaterialColor.black
 		textAlignment = .Left
 		wrapped = true
-		contentsScale = MaterialDevice.scale
+		contentsScale = UIScreen.mainScreen().scale
 		lineBreakMode = .ByWordWrapping
 	}
 }

@@ -89,8 +89,8 @@ public extension MaterialAnimation {
 		if let d = direction {
 			animation.subtype = MaterialAnimationTransitionSubTypeToValue(d)
 		}
-		if let v: CFTimeInterval = duration {
-			animation.duration = v
+		if let d = duration {
+			animation.duration = d
 		}
 		return animation
 	}

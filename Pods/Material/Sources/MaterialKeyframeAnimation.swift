@@ -61,8 +61,8 @@ public extension MaterialAnimation {
 		animation.keyPath = "position"
 		animation.path = bezierPath.CGPath
 		animation.rotationMode = MaterialAnimationRotationModeToValue(mode)
-		if let v: CFTimeInterval = duration {
-			animation.duration = v
+		if let d = duration {
+			animation.duration = d
 		}
 		return animation
 	}

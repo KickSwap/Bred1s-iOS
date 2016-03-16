@@ -31,18 +31,13 @@
 import UIKit
 
 public class ControlView : MaterialView {
-	/// Will render the view.
-	public var willRenderView: Bool {
-		return 0 < width
-	}
+	/// ContentView that holds the any desired subviews.
+	public private(set) lazy var contentView: MaterialView = MaterialView()
 	
 	/// A preset wrapper around contentInset.
-	public var contentInsetPreset: MaterialEdgeInset {
-		get {
-			return grid.contentInsetPreset
-		}
-		set(value) {
-			grid.contentInsetPreset = value
+	public var contentInsetPreset: MaterialEdgeInset = .None {
+		didSet {
+			contentInset = MaterialEdgeInsetToValue(contentInsetPreset)
 		}
 	}
 	
@@ -52,14 +47,8 @@ public class ControlView : MaterialView {
 			return grid.contentInset
 		}
 		set(value) {
-			grid.contentInset = value
-		}
-	}
-	
-	/// A preset wrapper around spacing.
-	public var spacingPreset: MaterialSpacing = .None {
-		didSet {
-			spacing = MaterialSpacingToValue(spacingPreset)
+			grid.contentInset = contentInset
+			reloadView()
 		}
 	}
 	
@@ -69,46 +58,22 @@ public class ControlView : MaterialView {
 			return grid.spacing
 		}
 		set(value) {
-			grid.spacing = value
+			grid.spacing = spacing
+			reloadView()
 		}
 	}
-	
-	/// ContentView that holds the any desired subviews.
-	public private(set) lazy var contentView: MaterialView = MaterialView()
 	
 	/// Left side UIControls.
 	public var leftControls: Array<UIControl>? {
 		didSet {
-			if let v: Array<UIControl> = oldValue {
-				for b in v {
-					b.removeFromSuperview()
-				}
-			}
-			
-			if let v: Array<UIControl> = leftControls {
-				for b in v {
-					addSubview(b)
-				}
-			}
-			layoutSubviews()
+			reloadView()
 		}
 	}
 	
 	/// Right side UIControls.
 	public var rightControls: Array<UIControl>? {
 		didSet {
-			if let v: Array<UIControl> = oldValue {
-				for b in v {
-					b.removeFromSuperview()
-				}
-			}
-			
-			if let v: Array<UIControl> = rightControls {
-				for b in v {
-					addSubview(b)
-				}
-			}
-			layoutSubviews()
+			reloadView()
 		}
 	}
 	
@@ -136,53 +101,75 @@ public class ControlView : MaterialView {
 	- Parameter rightControls: An Array of UIControls that go on the right side.
 	*/
 	public convenience init?(leftControls: Array<UIControl>? = nil, rightControls: Array<UIControl>? = nil) {
-		self.init(frame: CGRectZero)
+		self.init(frame: CGRectNull)
 		prepareProperties(leftControls, rightControls: rightControls)
 	}
 	
 	public override func layoutSubviews() {
 		super.layoutSubviews()
-		if willRenderView {
-			// Size of single grid column.
-			if let g: CGFloat = width / CGFloat(0 < grid.axis.columns ? grid.axis.columns : 1) {
-				grid.views = []
-				contentView.grid.views = []
-				contentView.grid.columns = grid.axis.columns
-				
-				// leftControls
-				if let v: Array<UIControl> = leftControls {
-					for c in v {
-						let w: CGFloat = c.intrinsicContentSize().width
-						if let b: UIButton = c as? UIButton {
-							b.contentEdgeInsets = UIEdgeInsetsZero
-						}
-						
-						c.grid.columns = 0 == g ? 1 : Int(ceil(w / g))
-						contentView.grid.columns -= c.grid.columns
-						grid.views?.append(c)
-					}
-				}
-				
-				grid.views?.append(contentView)
-				
-				// rightControls
-				if let v: Array<UIControl> = rightControls {
-					for c in v {
-						let w: CGFloat = c.intrinsicContentSize().width
-						if let b: UIButton = c as? UIButton {
-							b.contentEdgeInsets = UIEdgeInsetsZero
-						}
-						
-						c.grid.columns = 0 == g ? 1 : Int(ceil(w / g))
-						contentView.grid.columns -= c.grid.columns
-						
-						grid.views?.append(c)
-					}
-				}
-				
-				grid.reloadLayout()
+		reloadView()
+	}
+	
+	public override func didMoveToSuperview() {
+		super.didMoveToSuperview()
+		reloadView()
+	}
+	
+	/// Reloads the view.
+	public func reloadView() {
+		layoutIfNeeded()
+		
+		// clear constraints so new ones do not conflict
+		removeConstraints(constraints)
+		for v in subviews {
+			if v != contentView {
+				v.removeFromSuperview()
 			}
 		}
+		
+		// Size of single grid column.
+		let g: CGFloat = width / CGFloat(0 < grid.axis.columns ? grid.axis.columns : 1)
+		
+		grid.views = []
+		contentView.grid.columns = grid.axis.columns
+		
+		// leftControls
+		if let v: Array<UIControl> = leftControls {
+			for c in v {
+				let w: CGFloat = c.intrinsicContentSize().width
+				if let b: UIButton = c as? UIButton {
+					b.contentEdgeInsets = UIEdgeInsetsZero
+				}
+				
+				c.grid.columns = 0 == g ? 1 : Int(ceil(w / g))
+				contentView.grid.columns -= c.grid.columns
+				
+				addSubview(c)
+				grid.views?.append(c)
+			}
+		}
+		
+		grid.views?.append(contentView)
+		
+		// rightControls
+		if let v: Array<UIControl> = rightControls {
+			for c in v {
+				let w: CGFloat = c.intrinsicContentSize().width
+				if let b: UIButton = c as? UIButton {
+					b.contentEdgeInsets = UIEdgeInsetsZero
+				}
+				
+				c.grid.columns = 0 == g ? 1 : Int(ceil(w / g))
+				contentView.grid.columns -= c.grid.columns
+				
+				addSubview(c)
+				grid.views?.append(c)
+			}
+		}
+		
+		contentView.grid.columns -= contentView.grid.offset.columns
+		
+		grid.reloadLayout()
 	}
 	
 	/**
