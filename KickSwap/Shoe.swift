@@ -14,11 +14,13 @@ class Shoe: NSObject {
     var color: String?
     var brand: String?
     var imageURL: String?
+    var imageString: NSString?
+    var shoeImage: UIImage?
     
     var condition: String?
     var size: Double?
     var originalBox: Bool?
-    var reciept: Bool?
+    var receipt: Bool?
     var owner: User?
     var ownerId: String?
     var price: Double?
@@ -34,6 +36,12 @@ class Shoe: NSObject {
         self.color = data["color"] as? String
         self.imageURL = data["imageURL"] as? String
         self.ownerId = data["ownerId"] as? String
+        self.condition = data["condition"] as? String
+        self.size = data["size"] as? Double
+        self.originalBox = data["originalBox"] as? Bool
+        self.receipt = data["receipt"] as? Bool
+        self.imageString = data["imageString"] as? NSString
+        self.shoeImage = UIImage()
         //self.owner?.uid = data["ownerId"] as? String
         
         // make call w/ ownerId
@@ -41,7 +49,28 @@ class Shoe: NSObject {
     }
     
     func getShoe() -> [String:String]{
-        return ["name": name!, "color": color!, "brand": brand!, "ownerId":ownerId!]
+        let strSize = String(size)
+        return ["name": name!,
+                "color": "",
+                "brand": "",
+                "ownerId": ownerId!,
+                "condition": condition!,
+                "size": strSize,
+                "originalBox": "",
+                "receipt": "",
+                "imageString": imageString! as String
+        ]
+    }
+    
+    func printShoe(){
+        print(name)
+        print(price)
+        print(brand)
+        print(ownerId)
+        print(condition)
+        print(size)
+        print(originalBox)
+        print(receipt)
     }
     
 //    class func shoesWithArray(array: [NSDictionary]) -> [Shoe] {
