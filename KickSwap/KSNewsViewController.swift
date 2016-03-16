@@ -7,12 +7,41 @@
 //
 
 import UIKit
+import PagingMenuController
 
-class KSNewsViewController: UIViewController {
+class KSNewsViewController: UIViewController, PagingMenuControllerDelegate {
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let niceKicksViewController = self.storyboard?.instantiateViewControllerWithIdentifier("NiceKicksViewController") as! NiceKicksViewController
+        let JisBackViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MJisBackViewController") as! MJisBackViewController
+        let soleCollectorViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SoleCollectorViewController") as! SoleCollectorViewController
+        niceKicksViewController.title = "Nice Kicks"
+        JisBackViewController.title = "Release Dates"
+        soleCollectorViewController.title = "Sole Collector"
+        let viewControllers = [niceKicksViewController, JisBackViewController, soleCollectorViewController]
+        
+        let pagingMenuController = self.childViewControllers.first as! PagingMenuController
+        //pagingMenuController.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        let options = PagingMenuOptions()
+        options.defaultPage = 0
+        options.backgroundColor = UIColor.darkGrayColor()
+        options.selectedBackgroundColor = UIColor.blackColor()
+        options.textColor = UIColor.lightGrayColor()
+        options.selectedTextColor = UIColor.whiteColor()
+        options.menuHeight = 50
+        //options.menuPosition = .Bottom
+        pagingMenuController.delegate = self
+        options.menuDisplayMode = .SegmentedControl
+        //(widthMode: .Flexible, centerItem: true, scrollingMode: .PagingEnabled)
+        //.Infinite(widthMode: .Flexible)
+        //
+        pagingMenuController.setup(viewControllers: viewControllers, options: options)
+        
         // Do any additional setup after loading the view.
     }
 
