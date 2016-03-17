@@ -33,9 +33,9 @@ class Shoe: NSObject {
         self.brand = data["brand"] as? String
         self.color = data["color"] as? String
         self.imageURL = data["imageURL"] as? String
+        
         self.ownerId = data["ownerId"] as? String
         //self.owner?.uid = data["ownerId"] as? String
-        
         // make call w/ ownerId
         //self.owner = d
     }
@@ -43,17 +43,5 @@ class Shoe: NSObject {
     func getShoe() -> [String:String]{
         return ["name": name!, "color": color!, "brand": brand!, "ownerId":ownerId!]
     }
-    
-//    class func shoesWithArray(array: [NSDictionary]) -> [Shoe] {
-//        
-//        var shoes = [Shoe]()
-//        
-//        for dictionary in array {
-//            shoes.append(Shoe(data: dictionary))
-//        }
-//        
-//        return shoes
-//        
-//    }
 }
 
