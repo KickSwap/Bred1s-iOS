@@ -29,10 +29,11 @@ class SwiftModalWebVC: UINavigationController {
         self.init(request: NSURLRequest(URL: pageURL), theme: theme)
     }
     
+    //SwiftWebVC Dissmiss Image: SwiftWebVC.bundle/SwiftWebVCDismiss
     init(request: NSURLRequest, theme: String) {
         webViewController = SwiftWebVC(aRequest: request)
         webViewController.storedStatusColor = UINavigationBar.appearance().barStyle
-        let doneButton = UIBarButtonItem(image: UIImage(named: "SwiftWebVC.bundle/SwiftWebVCDismiss"),
+        let doneButton = UIBarButtonItem(image: UIImage(named: ""),
                                          style: UIBarButtonItemStyle.Plain,
                                          target: webViewController,
                                          action: Selector("doneButtonTapped:"))
@@ -42,17 +43,20 @@ class SwiftModalWebVC: UINavigationController {
             doneButton.tintColor = UIColor.darkGrayColor()
             webViewController.buttonColor = UIColor.darkGrayColor()
             webViewController.titleColor = UIColor.blackColor()
-            UINavigationBar.appearance().barStyle = UIBarStyle.Default
+            //UINavigationBar.appearance().barStyle = UIBarStyle.Default
+            UINavigationBar.appearance().hidden = true
         case "Dark":
-            doneButton.tintColor = UIColor.whiteColor()
+            doneButton.tintColor = UIColor.blackColor()
             webViewController.buttonColor = UIColor.blackColor()
             webViewController.titleColor = UIColor.groupTableViewBackgroundColor()
-            UINavigationBar.appearance().barStyle = UIBarStyle.Black
+            //UINavigationBar.appearance().barStyle = UIBarStyle.Black
+            UINavigationBar.appearance().hidden = true
         default:
             doneButton.tintColor = nil
             webViewController.buttonColor = nil
             webViewController.titleColor = UIColor.blackColor()
-            UINavigationBar.appearance().barStyle = UIBarStyle.Default
+            //UINavigationBar.appearance().barStyle = UIBarStyle.Default
+            UINavigationBar.appearance().hidden = true
         }
         
         if (UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad) {

@@ -383,14 +383,20 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lCe-cA-5Fv">
-                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lCe-cA-5Fv">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <connections>
                                     <segue destination="yWb-36-Ob5" kind="embed" id="drx-kl-IJ8"/>
                                 </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lCe-cA-5Fv" firstAttribute="top" secondItem="BEk-7c-Vli" secondAttribute="bottom" id="DaC-Gh-pH6"/>
+                            <constraint firstItem="lCe-cA-5Fv" firstAttribute="leading" secondItem="loC-f3-CEX" secondAttribute="leading" id="GWB-rz-NaA"/>
+                            <constraint firstAttribute="trailing" secondItem="lCe-cA-5Fv" secondAttribute="trailing" id="JmA-lZ-cZ2"/>
+                            <constraint firstAttribute="bottom" secondItem="lCe-cA-5Fv" secondAttribute="bottom" id="uh9-ty-n0A"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
@@ -638,8 +644,12 @@
         <scene sceneID="sQy-wR-DSG">
             <objects>
                 <viewController id="yWb-36-Ob5" customClass="PagingMenuController" customModule="PagingMenuController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lDK-CB-RSa"/>
+                        <viewControllerLayoutGuide type="bottom" id="OaI-xk-u16"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="GVk-pU-EOc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="598"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

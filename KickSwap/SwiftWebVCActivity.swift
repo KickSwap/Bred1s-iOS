@@ -24,8 +24,10 @@ class SwiftWebVCActivity: UIActivity {
         if (UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad) {
             return UIImage(named: type+"-iPad")!
         }
-        else {
+        else if UIImage(named: type) != nil {
             return UIImage(named: type)!
+        } else {
+            return UIImage(named: "")!
         }
     }
             

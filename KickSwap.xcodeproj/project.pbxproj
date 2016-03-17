@@ -17,6 +17,7 @@
 		0256D3121C9978ED00B8CD4B /* NiceKicksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D3111C9978ED00B8CD4B /* NiceKicksViewController.swift */; };
 		0256D3141C9978FD00B8CD4B /* SoleCollectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D3131C9978FD00B8CD4B /* SoleCollectorViewController.swift */; };
 		0256D3161C99790E00B8CD4B /* MJisBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D3151C99790E00B8CD4B /* MJisBackViewController.swift */; };
+		0256D3181C997C4E00B8CD4B /* SwiftWebVC.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0256D3171C997C4E00B8CD4B /* SwiftWebVC.bundle */; };
 		02DED1CE1C91D3460098DA39 /* KSTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DED1CD1C91D3450098DA39 /* KSTabBarController.swift */; };
 		02DED1D01C91D3740098DA39 /* KSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DED1CF1C91D3740098DA39 /* KSNavigationController.swift */; };
 		471282931C7E15170007855B /* LogoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471282921C7E15170007855B /* LogoButton.swift */; };
@@ -54,6 +55,7 @@
 		0256D3111C9978ED00B8CD4B /* NiceKicksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NiceKicksViewController.swift; sourceTree = "<group>"; };
 		0256D3131C9978FD00B8CD4B /* SoleCollectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoleCollectorViewController.swift; sourceTree = "<group>"; };
 		0256D3151C99790E00B8CD4B /* MJisBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MJisBackViewController.swift; sourceTree = "<group>"; };
+		0256D3171C997C4E00B8CD4B /* SwiftWebVC.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SwiftWebVC.bundle; sourceTree = "<group>"; };
 		02DED1CD1C91D3450098DA39 /* KSTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTabBarController.swift; sourceTree = "<group>"; };
 		02DED1CF1C91D3740098DA39 /* KSNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSNavigationController.swift; sourceTree = "<group>"; };
 		471282921C7E15170007855B /* LogoButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoButton.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				0256D3071C99775700B8CD4B /* SwiftWebVCActivity.swift */,
 				0256D3081C99775700B8CD4B /* SwiftWebVCActivitySafari.swift */,
 				0256D3091C99775700B8CD4B /* SwiftWebVC.swift */,
+				0256D3171C997C4E00B8CD4B /* SwiftWebVC.bundle */,
 			);
 			name = SwiftWebVC;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				477970EA1C630306000F1196 /* LaunchScreen.storyboard in Resources */,
+				0256D3181C997C4E00B8CD4B /* SwiftWebVC.bundle in Resources */,
 				477970E71C630306000F1196 /* Assets.xcassets in Resources */,
 				477970E21C630306000F1196 /* Main.storyboard in Resources */,
 			);
