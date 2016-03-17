@@ -28,12 +28,43 @@
 * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-public struct MaterialCollectionViewDataSourceItem {
-	var data: AnyObject
-	var height: CGFloat
-	
-	public init(data: AnyObject, height: CGFloat) {
-		self.data = data
-		self.height = height
+import UIKit
+
+public enum MaterialSpacing {
+	case None
+	case Spacing1
+	case Spacing2
+	case Spacing3
+	case Spacing4
+	case Spacing5
+	case Spacing6
+	case Spacing7
+	case Spacing8
+	case Spacing9
+}
+
+/// Converts the MaterialSpacing enum to a CGFloat value.
+public func MaterialSpacingToValue(radius: MaterialSpacing) -> CGFloat {
+	switch radius {
+	case .None:
+		return 0
+	case .Spacing1:
+		return 4
+	case .Spacing2:
+		return 8
+	case .Spacing3:
+		return 16
+	case .Spacing4:
+		return 24
+	case .Spacing5:
+		return 32
+	case .Spacing6:
+		return 40
+	case .Spacing7:
+		return 48
+	case .Spacing8:
+		return 56
+	case .Spacing9:
+		return 64
 	}
 }
