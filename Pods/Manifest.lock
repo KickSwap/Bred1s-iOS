@@ -25,13 +25,13 @@ PODS:
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
   - DropDown (0.1.4)
-  - FBSDKCoreKit (4.10.0):
+  - FBSDKCoreKit (4.10.1):
     - Bolts (~> 1.5)
-  - FBSDKLoginKit (4.10.0):
+  - FBSDKLoginKit (4.10.1):
     - FBSDKCoreKit
   - Firebase (2.5.1)
   - IBAnimatable (1.2)
-  - Material (1.35.3)
+  - Material (1.37.0)
   - PagingMenuController (0.8.0)
   - SnapKit (0.19.1)
 
@@ -54,12 +54,14 @@ SPEC CHECKSUMS:
   Canvas: eb861e3b555d032648146c8ffda1a5dea40059ca
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   DropDown: 09ab078ba0f11d426689526b45d4d5179420e321
-  FBSDKCoreKit: 13bec8373fb3af94d44daf2aa1e0958687897fbd
-  FBSDKLoginKit: d3d4a2e9d31954deb00bfea964167a05ca1ea976
+  FBSDKCoreKit: d2aaed5e9ab7d8d6301c533376a1fbff1cf3deb5
+  FBSDKLoginKit: 699ff169080e3072de4b9b0faca90bf23dc36deb
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
   IBAnimatable: bcebfaf34b041949da5ed668ac5ab2e28a4b2357
-  Material: 2989ce92c519fbdc265525819c37df0851701c4c
+  Material: de15eb13d4763affec353f68286d16b3e9350ae0
   PagingMenuController: 1a9ff8ad0ab9704f215706997c1a624bc951f508
   SnapKit: eff58d6e3451bf2f482db2eccf86aecf371dc62d
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 099e548dd01291fb854f7bf9f008207fd8ae60f8
+
+COCOAPODS: 1.0.0.beta.2

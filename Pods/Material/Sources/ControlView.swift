@@ -64,7 +64,7 @@ public class ControlView : MaterialView {
 	}
 	
 	/// A wrapper around grid.spacing.
-	public var spacing: CGFloat {
+	@IBInspectable public var spacing: CGFloat {
 		get {
 			return grid.spacing
 		}
@@ -156,7 +156,7 @@ public class ControlView : MaterialView {
 						if let b: UIButton = c as? UIButton {
 							b.contentEdgeInsets = UIEdgeInsetsZero
 						}
-						
+						c.frame.size.height = height - contentInset.top - contentInset.bottom
 						c.grid.columns = 0 == g ? 1 : Int(ceil(w / g))
 						contentView.grid.columns -= c.grid.columns
 						grid.views?.append(c)
@@ -172,10 +172,9 @@ public class ControlView : MaterialView {
 						if let b: UIButton = c as? UIButton {
 							b.contentEdgeInsets = UIEdgeInsetsZero
 						}
-						
+						c.frame.size.height = height - contentInset.top - contentInset.bottom
 						c.grid.columns = 0 == g ? 1 : Int(ceil(w / g))
 						contentView.grid.columns -= c.grid.columns
-						
 						grid.views?.append(c)
 					}
 				}

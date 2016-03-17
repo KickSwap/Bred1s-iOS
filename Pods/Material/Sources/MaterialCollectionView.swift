@@ -30,6 +30,7 @@
 
 import UIKit
 
+@IBDesignable
 public class MaterialCollectionView : UICollectionView {
 	/// A preset wrapper around contentInset.
 	public var contentInsetPreset: MaterialEdgeInset {
@@ -68,7 +69,7 @@ public class MaterialCollectionView : UICollectionView {
 	}
 	
 	/// Spacing between items.
-	public var spacing: CGFloat {
+	@IBInspectable public var spacing: CGFloat {
 		get {
 			return (collectionViewLayout as? MaterialCollectionViewLayout)!.spacing
 		}
