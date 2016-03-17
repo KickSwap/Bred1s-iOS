@@ -31,7 +31,7 @@ PODS:
     - FBSDKCoreKit
   - Firebase (2.5.1)
   - IBAnimatable (1.2)
-  - Material (1.37.0)
+  - Material (1.35.3)
   - PagingMenuController (0.8.0)
   - SnapKit (0.19.1)
 
@@ -44,7 +44,7 @@ DEPENDENCIES:
   - FBSDKLoginKit
   - Firebase
   - IBAnimatable
-  - Material
+  - Material (~> 1.35.0)
   - PagingMenuController
   - SnapKit
 
@@ -58,10 +58,10 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 699ff169080e3072de4b9b0faca90bf23dc36deb
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
   IBAnimatable: bcebfaf34b041949da5ed668ac5ab2e28a4b2357
-  Material: de15eb13d4763affec353f68286d16b3e9350ae0
+  Material: 2989ce92c519fbdc265525819c37df0851701c4c
   PagingMenuController: 1a9ff8ad0ab9704f215706997c1a624bc951f508
   SnapKit: eff58d6e3451bf2f482db2eccf86aecf371dc62d
 
-PODFILE CHECKSUM: 099e548dd01291fb854f7bf9f008207fd8ae60f8
+PODFILE CHECKSUM: 7dd52bc91e3272910dba223bbf66b004cbd4b1f7
 
 COCOAPODS: 1.0.0.beta.2

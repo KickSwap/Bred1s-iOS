@@ -28,30 +28,45 @@
 * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-/**
-Gets the Obj-C reference for the Grid object within the UIView extension.
-- Parameter base: Base object.
-- Parameter key: Memory key pointer.
-- Parameter initializer: Object initializer.
-- Returns: The associated reference for the initializer object.
-*/
-public func MaterialAssociatedObject<T: AnyObject>(base: AnyObject, key: UnsafePointer<UInt8>, initializer: () -> T) -> T {
-	if let v: T = objc_getAssociatedObject(base, key) as? T {
-		return v
-	}
-	
-	let v: T = initializer()
-	objc_setAssociatedObject(base, key, v, .OBJC_ASSOCIATION_RETAIN)
-	return v
-}
+import UIKit
+import AVFoundation
 
-/**
-Sets the Obj-C reference for the Grid object within the UIView extension.
-- Parameter base: Base object.
-- Parameter key: Memory key pointer.
-- Parameter value: The object instance to set for the associated object.
-- Returns: The associated reference for the initializer object.
-*/
-public func MaterialAssociateObject<T: AnyObject>(base: AnyObject, key: UnsafePointer<UInt8>, value: T) {
-	objc_setAssociatedObject(base, key, value, .OBJC_ASSOCIATION_RETAIN)
+public class CapturePreviewView : MaterialView {
+	/**
+	:name:	layerClass
+	*/
+	public override class func layerClass() -> AnyClass {
+		return AVCaptureVideoPreviewLayer.self
+	}
+
+	/**
+	:name:	captureDevicePointOfInterestForPoint
+	*/
+	public func captureDevicePointOfInterestForPoint(point: CGPoint) -> CGPoint {
+		return (layer as! AVCaptureVideoPreviewLayer).captureDevicePointOfInterestForPoint(point)
+	}
+
+	/**
+	:name:	pointForCaptureDevicePointOfInterest
+	*/
+	public func pointForCaptureDevicePointOfInterest(point: CGPoint) -> CGPoint {
+		return (layer as! AVCaptureVideoPreviewLayer).pointForCaptureDevicePointOfInterest(point)
+	}
+
+	/**
+	:name:	prepareView
+	*/
+	public override func prepareView() {
+		super.prepareView()
+		preparePreviewLayer()
+	}
+
+	/**
+	:name:	preparePreviewLayer
+	*/
+	private func preparePreviewLayer() {
+		layer.backgroundColor = MaterialColor.black.CGColor
+		layer.masksToBounds = true
+		(layer as! AVCaptureVideoPreviewLayer).videoGravity = AVLayerVideoGravityResizeAspectFill
+	}
 }

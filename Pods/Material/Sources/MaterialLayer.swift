@@ -44,7 +44,7 @@ public class MaterialLayer : CAShapeLayer {
 	public private(set) lazy var visualLayer: CAShapeLayer = CAShapeLayer()
 
 	/// A property that accesses the layer.frame.origin.x property.
-	@IBInspectable public var x: CGFloat {
+	public var x: CGFloat {
 		get {
 			return frame.origin.x
 		}
@@ -54,7 +54,7 @@ public class MaterialLayer : CAShapeLayer {
 	}
 	
 	/// A property that accesses the layer.frame.origin.y property.
-	@IBInspectable public var y: CGFloat {
+	public var y: CGFloat {
 		get {
 			return frame.origin.y
 		}
@@ -69,7 +69,7 @@ public class MaterialLayer : CAShapeLayer {
 	value that is not .None, the height will be adjusted to maintain the correct
 	shape.
 	*/
-	@IBInspectable public var width: CGFloat {
+	public var width: CGFloat {
 		get {
 			return frame.size.width
 		}
@@ -87,7 +87,7 @@ public class MaterialLayer : CAShapeLayer {
 	value that is not .None, the width will be adjusted to maintain the correct
 	shape.
 	*/
-	@IBInspectable public var height: CGFloat {
+	public var height: CGFloat {
 		get {
 			return frame.size.height
 		}
@@ -104,7 +104,7 @@ public class MaterialLayer : CAShapeLayer {
 	property. Images should not be set to the backing layer's contents
 	property to avoid conflicts when using clipsToBounds.
 	*/
-	@IBInspectable public var image: UIImage? {
+	public var image: UIImage? {
 		didSet {
 			visualLayer.contents = image?.CGImage
 		}
@@ -137,21 +137,14 @@ public class MaterialLayer : CAShapeLayer {
 	dimensions of the visualLayer's contents property and the size
 	of the layer. By default, this value is set to the MaterialDevice.scale.
 	*/
-	@IBInspectable public override var contentsScale: CGFloat {
+	public override var contentsScale: CGFloat {
 		didSet {
 			visualLayer.contentsScale = contentsScale
 		}
 	}
 	
-	/// A Preset for the contentsGravity property.
-	public var contentsGravityPreset: MaterialGravity {
-		didSet {
-			contentsGravity = MaterialGravityToString(contentsGravityPreset)
-		}
-	}
-	
 	/// Determines how content should be aligned within the visualLayer's bounds.
-	@IBInspectable public override var contentsGravity: String {
+	public override var contentsGravity: String {
 		get {
 			return visualLayer.contentsGravity
 		}
@@ -161,7 +154,7 @@ public class MaterialLayer : CAShapeLayer {
 	}
 	
 	/// Enables automatic shadowPath sizing.
-	@IBInspectable public var shadowPathAutoSizeEnabled: Bool = true {
+	public var shadowPathAutoSizeEnabled: Bool = false {
 		didSet {
 			if shadowPathAutoSizeEnabled {
 				layoutShadowPath()
@@ -204,7 +197,7 @@ public class MaterialLayer : CAShapeLayer {
 	property has a value of .Circle when the cornerRadius is set, it will
 	become .None, as it no longer maintains its circle shape.
 	*/
-	@IBInspectable public override var cornerRadius: CGFloat {
+	public override var cornerRadius: CGFloat {
 		didSet {
 			layoutShadowPath()
 			if .Circle == shape {
@@ -243,7 +236,6 @@ public class MaterialLayer : CAShapeLayer {
 	- Parameter aDecoder: A NSCoder instance.
 	*/
 	public required init?(coder aDecoder: NSCoder) {
-		contentsGravityPreset = .ResizeAspectFill
 		super.init(coder: aDecoder)
 		prepareVisualLayer()
 	}
@@ -254,13 +246,12 @@ public class MaterialLayer : CAShapeLayer {
 	- Parameter layer: AnyObject.
 	*/
 	public override init(layer: AnyObject) {
-		contentsGravityPreset = .ResizeAspectFill
 		super.init()
+		prepareVisualLayer()
 	}
 	
 	/// A convenience initializer.
 	public override init() {
-		contentsGravityPreset = .ResizeAspectFill
 		super.init()
 		prepareVisualLayer()
 	}

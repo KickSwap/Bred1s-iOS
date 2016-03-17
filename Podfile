@@ -7,7 +7,7 @@ target 'KickSwap' do
   pod 'Firebase'
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
-  pod 'Material'
+  pod 'Material', '~> 1.35.0'
   pod 'ChameleonFramework/Swift'
   pod 'Canvas'
   pod 'IBAnimatable'

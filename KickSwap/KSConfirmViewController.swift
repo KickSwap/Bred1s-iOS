@@ -37,7 +37,7 @@ class KSConfirmViewController: UIViewController, MaterialSwitchDelegate {
         previewImageView.clipsToBounds = true
         detailsScrollView.contentSize = CGSize(width: detailsScrollView.frame.size.width, height: 375)
         
-        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
         view.addGestureRecognizer(tap)
         
         let closeButton: FlatButton = FlatButton(frame: CGRectMake(12, 30, 60, 30))

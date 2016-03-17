@@ -30,7 +30,6 @@
 
 import UIKit
 
-@IBDesignable
 @objc(MaterialButton)
 public class MaterialButton : UIButton {
 	/**
@@ -46,20 +45,14 @@ public class MaterialButton : UIButton {
 	*/
 	public weak var delegate: MaterialDelegate?
 	
-	/// To use a single pulse and have it focused when held.
-	@IBInspectable public var pulseFocus: Bool = false
-	
-	/// A pulse layer for focus handling.
-	public private(set) var pulseLayer: CAShapeLayer?
-	
 	/// Sets whether the scaling animation should be used.
-	@IBInspectable public lazy var pulseScale: Bool = true
+	public lazy var pulseScale: Bool = true
 	
 	/// The opcaity value for the pulse animation.
-	@IBInspectable public var pulseOpacity: CGFloat = 0.25
+	public var pulseColorOpacity: CGFloat = 0.25
 	
 	/// The color of the pulse effect.
-	@IBInspectable public var pulseColor: UIColor?
+	public var pulseColor: UIColor?
 	
 	/**
 	This property is the same as clipsToBounds. It crops any of the view's
@@ -67,7 +60,7 @@ public class MaterialButton : UIButton {
 	the image property, then this value does not need to be set, since the
 	visualLayer's maskToBounds is set to true by default.
 	*/
-	@IBInspectable public var masksToBounds: Bool {
+	public var masksToBounds: Bool {
 		get {
 			return layer.masksToBounds
 		}
@@ -77,14 +70,14 @@ public class MaterialButton : UIButton {
 	}
 	
 	/// A property that accesses the backing layer's backgroundColor.
-	@IBInspectable public override var backgroundColor: UIColor? {
+	public override var backgroundColor: UIColor? {
 		didSet {
 			layer.backgroundColor = backgroundColor?.CGColor
 		}
 	}
 	
 	/// A property that accesses the layer.frame.origin.x property.
-	@IBInspectable public var x: CGFloat {
+	public var x: CGFloat {
 		get {
 			return layer.frame.origin.x
 		}
@@ -94,7 +87,7 @@ public class MaterialButton : UIButton {
 	}
 	
 	/// A property that accesses the layer.frame.origin.y property.
-	@IBInspectable public var y: CGFloat {
+	public var y: CGFloat {
 		get {
 			return layer.frame.origin.y
 		}
@@ -109,7 +102,7 @@ public class MaterialButton : UIButton {
 	value that is not .None, the height will be adjusted to maintain the correct
 	shape.
 	*/
-	@IBInspectable public var width: CGFloat {
+	public var width: CGFloat {
 		get {
 			return layer.frame.size.width
 		}
@@ -127,7 +120,7 @@ public class MaterialButton : UIButton {
 	value that is not .None, the width will be adjusted to maintain the correct
 	shape.
 	*/
-	@IBInspectable public var height: CGFloat {
+	public var height: CGFloat {
 		get {
 			return layer.frame.size.height
 		}
@@ -140,14 +133,14 @@ public class MaterialButton : UIButton {
 	}
 	
 	/// A property that accesses the backing layer's shadowColor.
-	@IBInspectable public var shadowColor: UIColor? {
+	public var shadowColor: UIColor? {
 		didSet {
 			layer.shadowColor = shadowColor?.CGColor
 		}
 	}
 	
 	/// A property that accesses the backing layer's shadowOffset.
-	@IBInspectable public var shadowOffset: CGSize {
+	public var shadowOffset: CGSize {
 		get {
 			return layer.shadowOffset
 		}
@@ -157,7 +150,7 @@ public class MaterialButton : UIButton {
 	}
 	
 	/// A property that accesses the backing layer's shadowOpacity.
-	@IBInspectable public var shadowOpacity: Float {
+	public var shadowOpacity: Float {
 		get {
 			return layer.shadowOpacity
 		}
@@ -167,7 +160,7 @@ public class MaterialButton : UIButton {
 	}
 	
 	/// A property that accesses the backing layer's shadowRadius.
-	@IBInspectable public var shadowRadius: CGFloat {
+	public var shadowRadius: CGFloat {
 		get {
 			return layer.shadowRadius
 		}
@@ -177,7 +170,7 @@ public class MaterialButton : UIButton {
 	}
 	
 	/// A property that accesses the backing layer's shadowPath.
-	@IBInspectable public var shadowPath: CGPath? {
+	public var shadowPath: CGPath? {
 		get {
 			return layer.shadowPath
 		}
@@ -187,7 +180,7 @@ public class MaterialButton : UIButton {
 	}
 	
 	/// Enables automatic shadowPath sizing.
-	@IBInspectable public var shadowPathAutoSizeEnabled: Bool = true {
+	public var shadowPathAutoSizeEnabled: Bool = false {
 		didSet {
 			if shadowPathAutoSizeEnabled {
 				layoutShadowPath()
@@ -226,7 +219,7 @@ public class MaterialButton : UIButton {
 	}
 	
 	/// A property that accesses the layer.cornerRadius.
-	@IBInspectable public var cornerRadius: CGFloat {
+	public var cornerRadius: CGFloat {
 		get {
 			return layer.cornerRadius
 		}
@@ -265,7 +258,7 @@ public class MaterialButton : UIButton {
 	}
 	
 	/// A property that accesses the layer.borderWith.
-	@IBInspectable public var borderWidth: CGFloat {
+	public var borderWidth: CGFloat {
 		get {
 			return layer.borderWidth
 		}
@@ -275,7 +268,7 @@ public class MaterialButton : UIButton {
 	}
 	
 	/// A property that accesses the layer.borderColor property.
-	@IBInspectable public var borderColor: UIColor? {
+	public var borderColor: UIColor? {
 		get {
 			return nil == layer.borderColor ? nil : UIColor(CGColor: layer.borderColor!)
 		}
@@ -285,7 +278,7 @@ public class MaterialButton : UIButton {
 	}
 	
 	/// A property that accesses the layer.position property.
-	@IBInspectable public var position: CGPoint {
+	public var position: CGPoint {
 		get {
 			return layer.position
 		}
@@ -295,7 +288,7 @@ public class MaterialButton : UIButton {
 	}
 	
 	/// A property that accesses the layer.zPosition property.
-	@IBInspectable public var zPosition: CGFloat {
+	public var zPosition: CGFloat {
 		get {
 			return layer.zPosition
 		}
@@ -404,34 +397,6 @@ public class MaterialButton : UIButton {
 	}
 	
 	/**
-	Triggers the pulse animation.
-	- Parameter point: A Optional point to pulse from, otherwise pulses
-	from the center.
-	*/
-	public func pulse(var point: CGPoint? = nil) {
-		if nil == point {
-			point = CGPointMake(CGFloat(width / 2), CGFloat(height / 2))
-		}
-		
-		let duration: NSTimeInterval = MaterialAnimation.pulseDuration(width)
-		
-		if let v: UIColor = pulseColor {
-			MaterialAnimation.pulseAnimation(layer, visualLayer: visualLayer, color: v.colorWithAlphaComponent(pulseOpacity), point: point!, width: width, height: height, duration: duration)
-		}
-		
-		if pulseScale {
-			MaterialAnimation.expandAnimation(layer, scale: 1.05, duration: duration)
-			MaterialAnimation.delay(duration) { [weak self] in
-				if let l: CALayer = self?.layer {
-					if let w: CGFloat = self?.width {
-						MaterialAnimation.shrinkAnimation(l, width: w, duration: duration)
-					}
-				}
-			}
-		}
-	}
-	
-	/**
 	A delegation method that is executed when the view has began a
 	touch event.
 	- Parameter touches: A set of UITouch objects.
@@ -439,19 +404,7 @@ public class MaterialButton : UIButton {
 	*/
 	public override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
 		super.touchesBegan(touches, withEvent: event)
-		let duration: NSTimeInterval = MaterialAnimation.pulseDuration(width)
-		
-		if pulseFocus {
-			pulseLayer = CAShapeLayer()
-		}
-		
-		if let v: UIColor = pulseColor {
-			MaterialAnimation.pulseAnimation(layer, visualLayer: visualLayer, color: v.colorWithAlphaComponent(pulseOpacity), point: layer.convertPoint(touches.first!.locationInView(self), fromLayer: layer), width: width, height: height, duration: duration, pulseLayer: pulseLayer)
-		}
-		
-		if pulseScale {
-			MaterialAnimation.expandAnimation(layer, scale: 1.05, duration: duration)
-		}
+		pulseAnimation(layer.convertPoint(touches.first!.locationInView(self), fromLayer: layer))
 	}
 	
 	/**
@@ -462,7 +415,7 @@ public class MaterialButton : UIButton {
 	*/
 	public override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
 		super.touchesEnded(touches, withEvent: event)
-		MaterialAnimation.shrinkAnimation(layer, width: width, duration: MaterialAnimation.pulseDuration(width), pulseLayer: pulseLayer)
+		shrinkAnimation()
 	}
 	
 	/**
@@ -473,7 +426,24 @@ public class MaterialButton : UIButton {
 	*/
 	public override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
 		super.touchesCancelled(touches, withEvent: event)
-		MaterialAnimation.shrinkAnimation(layer, width: width, duration: MaterialAnimation.pulseDuration(width), pulseLayer: pulseLayer)
+		shrinkAnimation()
+	}
+	
+	/**
+	Triggers the pulse animation.
+	- Parameter point: A Optional point to pulse from, otherwise pulses
+	from the center.
+	*/
+	public func pulse(var point: CGPoint? = nil) {
+		if nil == point {
+			point = CGPointMake(CGFloat(width / 2), CGFloat(height / 2))
+		}
+		
+		if let v: CFTimeInterval = pulseAnimation(point!) {
+			MaterialAnimation.delay(v) { [weak self] in
+				self?.shrinkAnimation()
+			}
+		}
 	}
 	
 	/**
@@ -521,6 +491,72 @@ public class MaterialButton : UIButton {
 			} else {
 				animate(MaterialAnimation.shadowPath(UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).CGPath, duration: 0))
 			}
+		}
+	}
+	
+	/**
+	Triggers the pulse animation.
+	- Parameter point: A point to pulse from.
+	- Returns: A Ooptional CFTimeInternal if the point exists within
+	the view. The time internal represents the animation time.
+	*/
+	internal func pulseAnimation(point: CGPoint) -> CFTimeInterval? {
+		if true == layer.containsPoint(point) {
+			let r: CGFloat = (width < height ? height : width) / 2
+			let f: CGFloat = 3
+			let v: CGFloat = r / f
+			let d: CGFloat = 2 * f
+			let s: CGFloat = 1.05
+			
+			var t: CFTimeInterval = CFTimeInterval(1.5 * width / MaterialDevice.bounds.width)
+			if 0.55 < t || 0.25 > t {
+				t = 0.55
+			}
+			t /= 1.3
+			
+			if nil != pulseColor && 0 < pulseColorOpacity {
+				let pulseLayer: CAShapeLayer = CAShapeLayer()
+				
+				pulseLayer.hidden = true
+				pulseLayer.zPosition = 1
+				pulseLayer.backgroundColor = pulseColor?.colorWithAlphaComponent(pulseColorOpacity).CGColor
+				visualLayer.addSublayer(pulseLayer)
+				
+				MaterialAnimation.animationDisabled {
+					pulseLayer.bounds = CGRectMake(0, 0, v, v)
+					pulseLayer.position = point
+					pulseLayer.cornerRadius = r / d
+					pulseLayer.hidden = false
+				}
+				pulseLayer.addAnimation(MaterialAnimation.scale(3 * d, duration: t), forKey: nil)
+				MaterialAnimation.delay(t) { [weak self] in
+					if nil != self && nil != self!.pulseColor && 0 < self!.pulseColorOpacity {
+						MaterialAnimation.animateWithDuration(t, animations: {
+							pulseLayer.hidden = true
+							}) {
+								pulseLayer.removeFromSuperlayer()
+						}
+					}
+				}
+			}
+			
+			if pulseScale {
+				layer.addAnimation(MaterialAnimation.scale(s, duration: t), forKey: nil)
+				return t
+			}
+		}
+		return nil
+	}
+	
+	/// Executes the shrink animation for the pulse effect.
+	internal func shrinkAnimation() {
+		if pulseScale {
+			var t: CFTimeInterval = CFTimeInterval(1.5 * width / MaterialDevice.bounds.width)
+			if 0.55 < t || 0.25 > t {
+				t = 0.55
+			}
+			t /= 1.3
+			layer.addAnimation(MaterialAnimation.scale(1, duration: t), forKey: nil)
 		}
 	}
 }

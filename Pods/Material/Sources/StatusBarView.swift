@@ -32,26 +32,20 @@ import UIKit
 
 public class StatusBarView : ControlView {
 	/// The height of the StatusBar.
-	@IBInspectable public var heightForStatusBar: CGFloat = 20
+	public var heightForStatusBar: CGFloat = 20
 	
 	/// The height when in Portrait orientation mode.
-	@IBInspectable public var heightForPortraitOrientation: CGFloat = 64
+	public var heightForPortraitOrientation: CGFloat = 64
 	
 	/// The height when in Landscape orientation mode.
-	@IBInspectable public var heightForLandscapeOrientation: CGFloat = 44
+	public var heightForLandscapeOrientation: CGFloat = 44
 	
 	/// Device status bar style.
-	public var statusBarStyle: UIStatusBarStyle {
-		get {
-			return MaterialDevice.statusBarStyle
-		}
-		set(value) {
-			MaterialDevice.statusBarStyle = value
+	public var statusBarStyle: UIStatusBarStyle = UIApplication.sharedApplication().statusBarStyle {
+		didSet {
+			UIApplication.sharedApplication().statusBarStyle = statusBarStyle
 		}
 	}
-	
-	/// Handles the rotation factor top inset.
-	internal var rotationFactor: CGFloat = 0
 	
 	/// A convenience initializer.
 	public convenience init() {
@@ -74,25 +68,19 @@ public class StatusBarView : ControlView {
 			width = MaterialDevice.width
 		}
 		
-		grid.axis.columns = Int(width / 56)
-		
-		// General alignment.
-		if .iPhone == MaterialDevice.type && MaterialDevice.landscape {
-			if heightForStatusBar == rotationFactor {
-				contentInset.top -= rotationFactor
-				rotationFactor = 0
-			}
-			height = heightForLandscapeOrientation
-		} else {
-			if 0 == rotationFactor {
-				rotationFactor = heightForStatusBar
-				contentInset.top += rotationFactor
-			}
-			height = heightForPortraitOrientation
-		}
+		grid.axis.columns = Int(width / 48)
 		
 		// We can call super now that we have a width.
 		super.layoutSubviews()
+		
+		// General alignment.
+		if .iPhone == MaterialDevice.type && MaterialDevice.landscape {
+			grid.contentInset.top = 8
+			height = heightForLandscapeOrientation
+		} else {
+			grid.contentInset.top = heightForStatusBar + 8
+			height = heightForPortraitOrientation
+		}
 	}
 	
 	public override func intrinsicContentSize() -> CGSize {
@@ -109,9 +97,8 @@ public class StatusBarView : ControlView {
 	public override func prepareView() {
 		super.prepareView()
 		depth = .Depth1
-		spacingPreset = .Spacing1
-		contentInset = UIEdgeInsetsMake(2, 2, 2, 2)
+		spacingPreset = .Spacing2
+		contentInsetPreset = .Square2
 		autoresizingMask = .FlexibleWidth
-		shadowPathAutoSizeEnabled = false
 	}
 }

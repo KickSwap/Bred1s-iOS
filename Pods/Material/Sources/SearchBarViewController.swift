@@ -32,15 +32,15 @@ import UIKit
 
 public extension UIViewController {
 	/**
-	A convenience property that provides access to the SearchBarController.
-	This is the recommended method of accessing the SearchBarController
+	A convenience property that provides access to the SearchBarViewController.
+	This is the recommended method of accessing the SearchBarViewController
 	through child UIViewControllers.
 	*/
-	public var searchBarController: SearchBarController? {
+	public var searchBarViewController: SearchBarViewController? {
 		var viewController: UIViewController? = self
 		while nil != viewController {
-			if viewController is SearchBarController {
-				return viewController as? SearchBarController
+			if viewController is SearchBarViewController {
+				return viewController as? SearchBarViewController
 			}
 			viewController = viewController?.parentViewController
 		}
@@ -48,39 +48,39 @@ public extension UIViewController {
 	}
 }
 
-public class SearchBarController : StatusBarViewController {
+public class SearchBarViewController: StatusBarViewController {
 	/// The height of the StatusBar.
-	@IBInspectable public override var heightForStatusBar: CGFloat {
+	public override var heightForStatusBar: CGFloat {
 		get {
-			return searchBar.heightForStatusBar
+			return searchBarView.heightForStatusBar
 		}
 		set(value) {
-			searchBar.heightForStatusBar = value
+			searchBarView.heightForStatusBar = value
 		}
 	}
 	
 	/// The height when in Portrait orientation mode.
-	@IBInspectable public override var heightForPortraitOrientation: CGFloat {
+	public override var heightForPortraitOrientation: CGFloat {
 		get {
-			return searchBar.heightForPortraitOrientation
+			return searchBarView.heightForPortraitOrientation
 		}
 		set(value) {
-			searchBar.heightForPortraitOrientation = value
+			searchBarView.heightForPortraitOrientation = value
 		}
 	}
 	
 	/// The height when in Landscape orientation mode.
-	@IBInspectable public override var heightForLandscapeOrientation: CGFloat {
+	public override var heightForLandscapeOrientation: CGFloat {
 		get {
-			return searchBar.heightForLandscapeOrientation
+			return searchBarView.heightForLandscapeOrientation
 		}
 		set(value) {
-			searchBar.heightForLandscapeOrientation = value
+			searchBarView.heightForLandscapeOrientation = value
 		}
 	}
 	
-	/// Reference to the SearchBar.
-	public private(set) lazy var searchBar: SearchBar = SearchBar()
+	/// Reference to the SearchBarView.
+	public private(set) lazy var searchBarView: SearchBarView = SearchBarView()
 	
 	/**
 	Prepares the view instance when intialized. When subclassing,
@@ -91,12 +91,12 @@ public class SearchBarController : StatusBarViewController {
 	*/
 	public override func prepareView() {
 		super.prepareView()
-		prepareSearchBar()
+		prepareSearchBarView()
 	}
 	
-	/// Prepares the SearchBar.
-	private func prepareSearchBar() {
-		searchBar.zPosition = 1000
-		view.addSubview(searchBar)
+	/// Prepares the SearchBarView.
+	private func prepareSearchBarView() {
+		searchBarView.zPosition = 1000
+		view.addSubview(searchBarView)
 	}
 }

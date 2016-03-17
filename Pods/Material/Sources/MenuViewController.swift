@@ -48,8 +48,7 @@ public extension UIViewController {
 	}
 }
 
-@IBDesignable
-public class MenuViewController : UIViewController {
+public class MenuViewController: UIViewController {
 	/// Reference to the MenuView.
 	public private(set) lazy var menuView: MenuView = MenuView()
 	
@@ -57,7 +56,7 @@ public class MenuViewController : UIViewController {
 	A Boolean property used to enable and disable interactivity
 	with the mainViewController.
 	*/
-	@IBInspectable public var userInteractionEnabled: Bool {
+	public var userInteractionEnabled: Bool {
 		get {
 			return mainViewController.view.userInteractionEnabled
 		}

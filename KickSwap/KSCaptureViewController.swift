@@ -96,7 +96,7 @@ class KSCaptureViewController: UIViewController, CaptureViewDelegate, CaptureSes
      :name:	captureViewDidUpdateRecordTimer
      */
     func captureViewDidUpdateRecordTimer(captureView: CaptureView, hours: Int, minutes: Int, seconds: Int) {
-        navigationBarView.titleLabel!.text = String(format: "%02i:%02i:%02i", arguments: [hours, minutes, seconds])
+//        navigationBarView.titleLabel!.text = String(format: "%02i:%02i:%02i", arguments: [hours, minutes, seconds])
     }
     
     /**
@@ -235,7 +235,7 @@ class KSCaptureViewController: UIViewController, CaptureViewDelegate, CaptureSes
         titleLabel.textAlignment = .Center
         titleLabel.textColor = MaterialColor.white
         titleLabel.font = RobotoFont.regular
-        navigationBarView.titleLabel = titleLabel
+//        navigationBarView.titleLabel = titleLabel
         
         // Detail label.
         let detailLabel: UILabel = UILabel()
@@ -244,10 +244,10 @@ class KSCaptureViewController: UIViewController, CaptureViewDelegate, CaptureSes
         detailLabel.textAlignment = .Center
         detailLabel.textColor = MaterialColor.red.accent1
         detailLabel.font = RobotoFont.regular
-        navigationBarView.detailLabel = detailLabel
-        
-        navigationBarView.leftControls = [switchCamerasButton]
-        navigationBarView.rightControls = [flashButton]
+//        navigationBarView.detailLabel = detailLabel
+//        
+//        navigationBarView.leftControls = [switchCamerasButton]
+//        navigationBarView.rightControls = [flashButton]
         
         view.addSubview(navigationBarView)
     }

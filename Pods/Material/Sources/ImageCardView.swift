@@ -39,7 +39,7 @@ public class ImageCardView : MaterialPulseView {
 	/**
 	:name:	dividerColor
 	*/
-	@IBInspectable public var dividerColor: UIColor? {
+	public var dividerColor: UIColor? {
 		didSet {
 			dividerLayer?.backgroundColor = dividerColor?.CGColor
 		}
@@ -48,7 +48,7 @@ public class ImageCardView : MaterialPulseView {
 	/**
 	:name:	divider
 	*/
-	@IBInspectable public var divider: Bool = true {
+	public var divider: Bool = true {
 		didSet {
 			reloadView()
 		}
@@ -80,7 +80,7 @@ public class ImageCardView : MaterialPulseView {
 	/**
 	:name:	image
 	*/
-	@IBInspectable public override var image: UIImage? {
+	public override var image: UIImage? {
 		get {
 			return nil == imageLayer?.contents ? nil : UIImage(CGImage: imageLayer?.contents as! CGImage)
 		}
@@ -108,26 +108,24 @@ public class ImageCardView : MaterialPulseView {
 	/**
 	:name:	maxImageHeight
 	*/
-	@IBInspectable public var maxImageHeight: CGFloat = 0 {
+	public var maxImageHeight: CGFloat = 0 {
 		didSet {
-			if let v: UIImage = image {
-				if 0 < maxImageHeight {
-					prepareImageLayer()
-					let h: CGFloat = v.size.height / contentsScale
-					imageLayer?.frame.size.height = maxImageHeight < h ? maxImageHeight : h
-				} else {
-					maxImageHeight = 0
-					imageLayer?.frame.size.height = nil == image ? 0 : v.size.height / contentsScale
-				}
-				reloadView()
+			if 0 < maxImageHeight {
+				prepareImageLayer()
+				let h: CGFloat = image!.size.height / contentsScale
+				imageLayer?.frame.size.height = maxImageHeight < h ? maxImageHeight : h
+			} else {
+				maxImageHeight = 0
+				imageLayer?.frame.size.height = nil == image ? 0 : image!.size.height / contentsScale
 			}
+			reloadView()
 		}
 	}
 	
 	/**
 	:name:	contentsRect
 	*/
-	@IBInspectable public override var contentsRect: CGRect {
+	public override var contentsRect: CGRect {
 		didSet {
 			prepareImageLayer()
 			imageLayer?.contentsRect = contentsRect
@@ -137,7 +135,7 @@ public class ImageCardView : MaterialPulseView {
 	/**
 	:name:	contentsCenter
 	*/
-	@IBInspectable public override var contentsCenter: CGRect {
+	public override var contentsCenter: CGRect {
 		didSet {
 			prepareImageLayer()
 			imageLayer?.contentsCenter = contentsCenter
@@ -147,28 +145,27 @@ public class ImageCardView : MaterialPulseView {
 	/**
 	:name:	contentsScale
 	*/
-	@IBInspectable public override var contentsScale: CGFloat {
+	public override var contentsScale: CGFloat {
 		didSet {
 			prepareImageLayer()
 			imageLayer?.contentsScale = contentsScale
 		}
 	}
 	
-	/// Determines how content should be aligned within the visualLayer's bounds.
-	@IBInspectable public override var contentsGravity: String {
-		get {
-			return nil == imageLayer ? "" : imageLayer!.contentsGravity
-		}
-		set(value) {
+	/**
+	:name:	contentsGravity
+	*/
+	public override var contentsGravity: MaterialGravity {
+		didSet {
 			prepareImageLayer()
-			imageLayer?.contentsGravity = value
+			imageLayer?.contentsGravity = MaterialGravityToString(contentsGravity)
 		}
 	}
 	
 	/**
 	:name:	contentInsets
 	*/
-	public var contentInsetPreset: MaterialEdgeInset = .Square2 {
+	public var contentInsetPreset: MaterialEdgeInset = .None {
 		didSet {
 			contentInset = MaterialEdgeInsetToValue(contentInsetPreset)
 		}
@@ -186,7 +183,7 @@ public class ImageCardView : MaterialPulseView {
 	/**
 	:name:	titleLabelInsets
 	*/
-	public var titleLabelInsetPreset: MaterialEdgeInset = .Square2 {
+	public var titleLabelInsetPreset: MaterialEdgeInset = .None {
 		didSet {
 			titleLabelInset = MaterialEdgeInsetToValue(titleLabelInsetPreset)
 		}
@@ -214,7 +211,7 @@ public class ImageCardView : MaterialPulseView {
 	/**
 	:name:	detailViewInsets
 	*/
-	public var detailViewInsetPreset: MaterialEdgeInset = .Square2 {
+	public var detailViewInsetPreset: MaterialEdgeInset = .None {
 		didSet {
 			detailViewInset = MaterialEdgeInsetToValue(detailViewInsetPreset)
 		}

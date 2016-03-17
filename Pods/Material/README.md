@@ -12,7 +12,7 @@ Express your creativity with Material, an animation and graphics framework for G
 - [x] Grid System For Complex UIs
 - [x] Layout Library To Simplify AutoLayout
 - [x] Base Material Layers & Material Views To Create New UI Components
-- [x] Navigation Controls
+- [x] Navigation Controllers
 - [x] Material Buttons
 - [x] Material Switch
 - [x] Material Card Views
@@ -52,7 +52,7 @@ Material is a growing project and will encounter changes throughout its developm
 * Visit the Examples directory to see example projects using Material.
 * The [Installation](https://github.com/CosmicMind/Material/wiki/Installation) page has documentation on how to run the example projects.
 
-# Quick Access  
+## A Tour  
 
 #### Colors
 
@@ -78,44 +78,48 @@ Material is a growing project and will encounter changes throughout its developm
 
 #### Control
 
-* [MaterialSwitch](#materialswitch)
+* [MaterialSwitch](#materialswitch) (New)
 
 #### Collection Management
 
-* [Menu](#menu)
+* [Menu](#menu) (New)
 
 #### Layout
 
-* [Grid](#grid)
+* [Grid](#grid) (New)
 * MaterialLayout
 
 #### Collections
 
-* [MaterialTableViewCell](#materialtableviewcell)
-* MaterialCollectionViewCell
+* [MaterialTableViewCell](#materialtableviewcell) (New)
 
 #### Cards
 
-* [CardView](#cardview)
+* [CardView](#cardview) (New)
 * [ImageCardView](#imagecardview)
 
-#### Navigation Controls
+#### Navigation
 
-* [MenuView](#menuview)
-* [MenuViewController](#menuviewcontroller)
-* NavigationBar
-* NavigationController
-* [Toolbar](#toolbar)
-* [ToolbarController](#toolbarcontroller)
-* [SearchBar](#searchbar)
-* [SearchBarController](#searchbarcontroller)
-* [SideNavigationController](#sidenavigationcontroller)
+* [MenuView](#menuview) (New)
+* [MenuViewController](#menuviewcontroller) (New)
+* [NavigationBarView](#navigationbarview) (New)
+* [NavigationBarViewController](#navigationbarviewcontroller) (New)
+* [SearchBarView](#searchbarview) (New)
+* [SearchBarViewController](#searchbarviewcontroller) (New)
+* [SideNavigationViewController](#sidenavigationviewcontroller)
 
 #### Photo / Video Camera
 
 * [CaptureView](#captureview)
 
-# Explore
+#### Upcoming
+
+* TabView
+* TabViewController
+* Scrolling Techniques
+* Snackbar
+* Advanced Camera / Audio Toolset & Views
+* More Examples
 
 <a name="materialcolor"></a>
 #### MaterialColor
@@ -287,7 +291,7 @@ Remove elements, such as details to create a fresh look for your images.
 
 [Learn More About ImageCardView](https://github.com/CosmicMind/Material/wiki/ImageCardView)
 
-#### Navigation Controls
+#### Navigation
 
 Navigation controls create smooth transitions between UIViewControllers. They may be used individually or stacked. Transitions are customizable and dimensions are flexible with auto management for both Portrait and Landscape modes.
 
@@ -307,44 +311,44 @@ A MenuViewController manages UIViewControllers using a MenuView component.
 
 ![MaterialMenuViewController](http://www.cosmicmind.io/MK/MaterialMenuViewController.gif)
 
-<a name="toolbar"></a>
-#### Toolbar
+<a name="navigationbarview"></a>
+#### NavigationBarView
 
-A Toolbar is a fully featured navigation bar that supports orientation changes, background images, title and detail labels, both left and right UIControl sets, and status bar settings.
+A NavigationBarView is a fully featured navigation bar that supports orientation changes, background images, title and detail labels, both left and right UIControl sets, and status bar settings.
 
-![MaterialToolbar](http://www.cosmicmind.io/MK/MaterialToolbar.gif)
+![MaterialNavigationBarView](http://www.cosmicmind.io/MK/MaterialNavigationBarView.gif)
 
-[Learn More About Toolbar](https://github.com/CosmicMind/Material/wiki/Toolbar)
+[Learn More About NavigationBarView](https://github.com/CosmicMind/Material/wiki/NavigationBarView)
 
-<a href="#toolbarcontroller"></a>
-#### ToolbarController
+<a href="#navigationbarviewcontroller"></a>
+#### NavigationBarViewController
 
-A ToolbarController manages UIViewControllers using a NavigationBar component.
+A NavigationBarViewController manages UIViewControllers using a NavigationBarView component.
 
-![MaterialToolbarController](http://www.cosmicmind.io/MK/MaterialToolbarController.gif)
+![MaterialNavigationBarViewController](http://www.cosmicmind.io/MK/MaterialNavigationBarViewController.gif)
 
-<a name="searchbar"></a>
-#### SearchBar
+<a name="searchbarview"></a>
+#### SearchBarView
 
-A SearchBar is a fully featured search bar that supports orientation changes, background images, title and detail labels, both left and right UIControl sets, and status bar settings.
+A SearchBarView is a fully featured search bar that supports orientation changes, background images, title and detail labels, both left and right UIControl sets, and status bar settings.
 
-![MaterialSearchBar](http://www.cosmicmind.io/MK/MaterialSearchBar.gif)
+![MaterialSearchBarView](http://www.cosmicmind.io/MK/MaterialSearchBarView.gif)
 
-[Learn More About SearchBar](https://github.com/CosmicMind/Material/wiki/SearchBar)
+[Learn More About SearchBarView](https://github.com/CosmicMind/Material/wiki/SearchBarView)
 
-<a href="#searchbarcontroller"></a>
-#### SearchBarController
+<a href="#searchbarviewcontroller"></a>
+#### SearchBarViewController
 
-A SearchBarController manages UIViewControllers using a SearchBar component.
+A SearchBarViewController manages UIViewControllers using a SearchBarView component.
 
-![MaterialSearchBarController](http://www.cosmicmind.io/MK/MaterialSearchBarController.gif)
+![MaterialSearchBarViewController](http://www.cosmicmind.io/MK/MaterialSearchBarViewController.gif)
 
-<a href="#sidenavigationcontroller"></a>
-#### SideNavigationController
+<a href="#sidenavigationviewcontroller"></a>
+#### SideNavigationViewController
 
-A SideNavigationController manages UIViewControllers that are available as hidden drawers on the left and right of the view port.
+A SideNavigationViewController manages UIViewControllers that are available as hidden drawers on the left and right of the view port.
 
-![MaterialSideNavigationController](http://www.cosmicmind.io/MK/MaterialSideNavigationController.gif)
+![MaterialSideNavigationViewController](http://www.cosmicmind.io/MK/MaterialSideNavigationViewController.gif)
 
 <a name="captureview"></a>
 #### CaptureView
@@ -355,16 +359,7 @@ Add a new dimension of interactivity with CaptureView. CaptureView is a fully fu
 
 [Learn More About CaptureView](https://github.com/CosmicMind/Material/wiki/CaptureView)
 
-# Upcoming
-
-* TabView
-* TabViewController
-* Scrolling Techniques
-* Snackbar
-* Advanced Camera / Audio Toolset & Views
-* More Examples
-
-# License
+## License
 
 Copyright (C) 2015 - 2016, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.io>. All rights reserved.
 

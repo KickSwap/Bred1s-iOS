@@ -30,7 +30,6 @@
 
 import UIKit
 
-@IBDesignable
 public class MaterialLabel : UILabel {
 	/**
 	:name:	layerClass
@@ -49,7 +48,7 @@ public class MaterialLabel : UILabel {
 	/**
 	:name:	text
 	*/
-	@IBInspectable public override var text: String? {
+	public override var text: String? {
 		didSet {
 			textLayer.text = text
 		}
@@ -58,7 +57,7 @@ public class MaterialLabel : UILabel {
 	/**
 	:name:	textColor
 	*/
-	@IBInspectable public override var textColor: UIColor? {
+	public override var textColor: UIColor? {
 		didSet {
 			textLayer.textColor = textColor
 		}
@@ -85,7 +84,7 @@ public class MaterialLabel : UILabel {
 	/**
 	:name:	wrapped
 	*/
-	@IBInspectable public var wrapped: Bool {
+	public var wrapped: Bool {
 		didSet {
 			textLayer.wrapped = wrapped
 		}
@@ -94,7 +93,7 @@ public class MaterialLabel : UILabel {
 	/**
 	:name:	contentsScale
 	*/
-	@IBInspectable public var contentsScale: CGFloat {
+	public var contentsScale: CGFloat {
 		didSet {
 			textLayer.contentsScale = contentsScale
 		}

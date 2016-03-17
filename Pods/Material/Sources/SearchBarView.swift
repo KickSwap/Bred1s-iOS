@@ -29,44 +29,79 @@
 */
 
 import UIKit
-import AVFoundation
 
-public class CapturePreview : MaterialView {
-	/**
-	:name:	layerClass
-	*/
-	public override class func layerClass() -> AnyClass {
-		return AVCaptureVideoPreviewLayer.self
+public class SearchBarView : StatusBarView {
+	/// The UITextField for the searchBar.
+	public private(set) lazy var textField: TextField = TextField()
+	
+	/// The UIImage for the clear icon.
+	public var clearButton: UIButton? {
+		get {
+			return textField.clearButton
+		}
+		set(value) {
+			textField.clearButton = value
+		}
 	}
-
-	/**
-	:name:	captureDevicePointOfInterestForPoint
-	*/
-	public func captureDevicePointOfInterestForPoint(point: CGPoint) -> CGPoint {
-		return (layer as! AVCaptureVideoPreviewLayer).captureDevicePointOfInterestForPoint(point)
+	
+	/// TintColor for searchBar.
+	public override var tintColor: UIColor? {
+		didSet {
+			textField.tintColor = tintColor
+		}
 	}
-
-	/**
-	:name:	pointForCaptureDevicePointOfInterest
-	*/
-	public func pointForCaptureDevicePointOfInterest(point: CGPoint) -> CGPoint {
-		return (layer as! AVCaptureVideoPreviewLayer).pointForCaptureDevicePointOfInterest(point)
+	
+	/// TextColor for searchBar.
+	public var textColor: UIColor? {
+		didSet {
+			textField.textColor = textColor
+		}
 	}
-
-	/**
-	:name:	prepareView
-	*/
-	public override func prepareView() {
-		super.prepareView()
-		preparePreviewLayer()
+	
+	/// A wrapper for searchBar.placeholder.
+	public var placeholder: String? {
+		didSet {
+			textField.placeholder = placeholder
+		}
 	}
-
-	/**
-	:name:	preparePreviewLayer
-	*/
-	private func preparePreviewLayer() {
-		layer.backgroundColor = MaterialColor.black.CGColor
-		layer.masksToBounds = true
-		(layer as! AVCaptureVideoPreviewLayer).videoGravity = AVLayerVideoGravityResizeAspectFill
+	
+	/// Placeholder textColor.
+	public var placeholderTextColor: UIColor {
+		get {
+			return textField.placeholderTextColor
+		}
+		set(value) {
+			textField.placeholderTextColor = value
+		}
+	}
+	
+	/// A convenience initializer.
+	public convenience init() {
+		self.init(frame: CGRectZero)
+	}
+	
+	public override func layoutSubviews() {
+		super.layoutSubviews()
+		if willRenderView {
+			contentView.grid.views?.append(textField)
+			contentView.grid.reloadLayout()
+			textField.font = textField.font?.fontWithSize(20)
+			textField.reloadView()
+		}
+	}
+	
+	/// Prepares the contentView.
+	public override func prepareContentView() {
+		super.prepareContentView()
+		prepareTextField()
+	}
+	
+	
+	/// Prepares the textField.
+	private func prepareTextField() {
+		textField.placeholder = "Search"
+		textField.backgroundColor = MaterialColor.clear
+		textField.clearButtonMode = .WhileEditing
+		contentView.addSubview(textField)
 	}
 }

@@ -39,7 +39,7 @@ public class CardView : MaterialPulseView {
 	/**
 	:name:	dividerColor
 	*/
-	@IBInspectable public var dividerColor: UIColor? {
+	public var dividerColor: UIColor? {
 		didSet {
 			dividerLayer?.backgroundColor = dividerColor?.CGColor
 		}
@@ -48,7 +48,7 @@ public class CardView : MaterialPulseView {
 	/**
 	:name:	divider
 	*/
-	@IBInspectable public var divider: Bool = true {
+	public var divider: Bool = true {
 		didSet {
 			reloadView()
 		}
@@ -75,7 +75,7 @@ public class CardView : MaterialPulseView {
 	/**
 	:name:	contentInsets
 	*/
-	public var contentInsetPreset: MaterialEdgeInset = .Square2 {
+	public var contentInsetPreset: MaterialEdgeInset = .None {
 		didSet {
 			contentInset = MaterialEdgeInsetToValue(contentInsetPreset)
 		}
@@ -93,7 +93,7 @@ public class CardView : MaterialPulseView {
 	/**
 	:name:	titleLabelInsets
 	*/
-	public var titleLabelInsetPreset: MaterialEdgeInset = .Square2 {
+	public var titleLabelInsetPreset: MaterialEdgeInset = .None {
 		didSet {
 			titleLabelInset = MaterialEdgeInsetToValue(titleLabelInsetPreset)
 		}
@@ -121,7 +121,7 @@ public class CardView : MaterialPulseView {
 	/**
 	:name:	detailViewInsets
 	*/
-	public var detailViewInsetPreset: MaterialEdgeInset = .Square2 {
+	public var detailViewInsetPreset: MaterialEdgeInset = .None {
 		didSet {
 			detailViewInset = MaterialEdgeInsetToValue(detailViewInsetPreset)
 		}
