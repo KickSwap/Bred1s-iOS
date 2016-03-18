@@ -368,7 +368,6 @@
 				0256D30D1C99775800B8CD4B /* SwiftWebVCActivitySafari.swift in Sources */,
 				A1E02DAD1C920F3B00F3BC92 /* KSConfirmViewController.swift in Sources */,
 				0256D2BE1C95989300B8CD4B /* DetailViewController.swift in Sources */,
-				47B90F051C7F6F9B006B4BD6 /* KSSellViewController.swift in Sources */,
 				47AE58801C756A42007AB49E /* User.swift in Sources */,
 				A198C0611C82136B001C69E0 /* KSProfileCollectionViewCell.swift in Sources */,
 				024327011C7CA881009893B8 /* KSTimelineCollectionViewCell.swift in Sources */,
