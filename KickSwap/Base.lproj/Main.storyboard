@@ -259,6 +259,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="773-sl-Ouj">
                                         <rect key="frame" x="0.0" y="544" width="375" height="837"/>
                                         <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eF1-di-DhW" userLabel="Pan Gesture Area">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="ECy-mW-kLL" appends="YES" id="ck9-eJ-9hB"/>
+                                                </connections>
+                                            </view>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Kg-3C-d3Y">
                                                 <rect key="frame" x="176" y="-5" width="23" height="22"/>
                                                 <state key="normal" image="Detail_Icon"/>
@@ -309,10 +317,13 @@
                                         <constraints>
                                             <constraint firstItem="xZx-vV-mhf" firstAttribute="leading" secondItem="773-sl-Ouj" secondAttribute="leading" id="1aE-MK-sU1"/>
                                             <constraint firstItem="I2U-ac-Gft" firstAttribute="leading" secondItem="Pln-BB-Fu7" secondAttribute="trailing" constant="8" id="50N-PP-zIz"/>
+                                            <constraint firstItem="eF1-di-DhW" firstAttribute="top" secondItem="773-sl-Ouj" secondAttribute="top" id="8uX-Ad-ROB"/>
                                             <constraint firstItem="hKP-y7-fGf" firstAttribute="leading" secondItem="RcU-CS-v2c" secondAttribute="trailing" constant="8" id="CZe-gp-Cze"/>
                                             <constraint firstAttribute="trailing" secondItem="xZx-vV-mhf" secondAttribute="trailing" id="ClG-eZ-eOh"/>
                                             <constraint firstAttribute="height" constant="837" id="H0Q-I8-Mwc"/>
                                             <constraint firstItem="hKP-y7-fGf" firstAttribute="centerY" secondItem="Pln-BB-Fu7" secondAttribute="centerY" id="HLi-8I-rxr"/>
+                                            <constraint firstItem="xZx-vV-mhf" firstAttribute="top" secondItem="eF1-di-DhW" secondAttribute="bottom" id="JSz-18-D3g"/>
+                                            <constraint firstItem="eF1-di-DhW" firstAttribute="leading" secondItem="773-sl-Ouj" secondAttribute="leading" id="Pkf-yo-d93"/>
                                             <constraint firstItem="2TA-mk-0bj" firstAttribute="leading" secondItem="hKP-y7-fGf" secondAttribute="trailing" constant="8" id="Psb-YG-dHR"/>
                                             <constraint firstItem="I2U-ac-Gft" firstAttribute="top" secondItem="773-sl-Ouj" secondAttribute="top" constant="15" id="WlD-CA-7Se"/>
                                             <constraint firstItem="O1X-to-LEa" firstAttribute="top" secondItem="I2U-ac-Gft" secondAttribute="bottom" constant="1" id="af4-7w-Oi5"/>
@@ -320,14 +331,12 @@
                                             <constraint firstItem="RcU-CS-v2c" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="I2U-ac-Gft" secondAttribute="trailing" constant="18" id="csF-7l-KgD"/>
                                             <constraint firstItem="RcU-CS-v2c" firstAttribute="centerY" secondItem="Pln-BB-Fu7" secondAttribute="centerY" id="eH2-TZ-9QK"/>
                                             <constraint firstItem="Pln-BB-Fu7" firstAttribute="top" secondItem="773-sl-Ouj" secondAttribute="top" constant="10" id="eJr-Wq-nT2"/>
+                                            <constraint firstAttribute="trailing" secondItem="eF1-di-DhW" secondAttribute="trailing" id="gqm-HF-Lok"/>
                                             <constraint firstItem="Pln-BB-Fu7" firstAttribute="leading" secondItem="773-sl-Ouj" secondAttribute="leading" constant="8" id="lNq-eZ-jqc"/>
                                             <constraint firstAttribute="trailing" secondItem="2TA-mk-0bj" secondAttribute="trailing" constant="25" id="n2E-J4-xoP"/>
                                             <constraint firstItem="xZx-vV-mhf" firstAttribute="top" secondItem="Pln-BB-Fu7" secondAttribute="bottom" constant="15" id="z7m-xS-aG7"/>
                                             <constraint firstItem="O1X-to-LEa" firstAttribute="leading" secondItem="Pln-BB-Fu7" secondAttribute="trailing" constant="8" id="zVE-BF-Y1u"/>
                                         </constraints>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="eyt-Zq-BBv" appends="YES" id="C5c-vo-6Cu"/>
-                                        </connections>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -366,9 +375,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jOw-8D-MKf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="eyt-Zq-BBv">
+                <panGestureRecognizer minimumNumberOfTouches="1" id="ECy-mW-kLL">
                     <connections>
-                        <action selector="onTrayPanGesture:" destination="6dI-Qr-hek" id="a0W-YL-Y4z"/>
+                        <action selector="onTrayPanGesture:" destination="6dI-Qr-hek" id="8qh-CZ-biJ"/>
                     </connections>
                 </panGestureRecognizer>
             </objects>
