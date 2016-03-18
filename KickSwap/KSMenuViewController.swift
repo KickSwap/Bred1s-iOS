@@ -39,6 +39,8 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
         
         //To prevent redundant segue, close menu properly
         self.currentView = "buy"
+        
+        //To prevent unwrapping nil in setmainbtnimage()
         //menuButtonImage = "ic_buy_white"
 	}
 
@@ -144,6 +146,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
         let mainBtn = self.menuView.menu.views![0] as! FabButton
         //set btn image
         mainBtn.setImage(UIImage(named: (self.menuButtonImage)!), forState: .Normal)
+        mainBtn.setImage(UIImage(named: (self.menuButtonImage)!), forState: .Highlighted)
     }
 
     func onPress(sender: UILongPressGestureRecognizer? = nil) {
@@ -159,7 +162,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
             closeMenu()
         } else {
             //reload data here
-
+            
             return  tabBarController.selectedIndex = 1
         }
     }
@@ -170,6 +173,9 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 
     //MARK: - TimelineView Controls
     func handleSellBtn() {
+        
+        self.menuButtonImage = "ic_sell_icon"
+        self.setMainBtnImage()
 
         //check if user is already on this view
         if currentView == "sell" {
@@ -190,8 +196,6 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
             //remove opacity
             self!.menuViewController?.mainViewController.view.alpha = 1
 
-            self?.menuButtonImage = "ic_sell_icon"
-            self!.setMainBtnImage()
 
             //self?.transitionFromMainViewController(BlueViewController(), options: [.TransitionCrossDissolve])
         }
@@ -199,6 +203,9 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
     }
 
     func handleBuyBtn() {
+        
+        self.menuButtonImage = "ic_buy_white"
+        self.setMainBtnImage()
 
         //check if user is already on this view
         if currentView == "buy" {
@@ -219,14 +226,15 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
             //remove opacity
             self!.menuViewController?.mainViewController.view.alpha = 1
 
-            self?.menuButtonImage = "ic_buy_white"
-            self!.setMainBtnImage()
             //self?.transitionFromMainViewController(BlueViewController(), options: [.TransitionCrossDissolve])
         }
     }
 
 
     func handleNewsBtn() {
+        
+        self.menuButtonImage = "ic_news_white"
+        setMainBtnImage()
 
         //check if user is already on this view
         if currentView == "news" {
@@ -247,8 +255,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 
             //remove opacity
             self!.menuViewController?.mainViewController.view.alpha = 1
-            self?.menuButtonImage = "ic_news_white"
-            self!.setMainBtnImage()
+            
             //self?.transitionFromMainViewController(BlueViewController(), options: [.TransitionCrossDissolve])
         }
     }
