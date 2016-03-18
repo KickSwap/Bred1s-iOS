@@ -39,6 +39,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        getShoesFromFirebase()
         prefersStatusBarHidden()
         timeline.dataSource = self
         timeline.delegate = self
@@ -47,7 +48,6 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         prepareView()
         prepareTextView()
         addToolBar(textView)
-        getShoes()
         
         //set image initially
         pictureIndex = 0
@@ -260,34 +260,57 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     }
     
     func collectionView(timeline: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        if shoeTimeline != nil {
+            return (shoeTimeline?.count)!
+        } else {
+            return 0
+        }
     }
     
     func collectionView(timeline: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = timeline.dequeueReusableCellWithReuseIdentifier("TimelineCell", forIndexPath: indexPath) as! KSTimelineCollectionViewCell
         
+        cell.shoeNameLabel.text = shoeTimeline![indexPath.row].name
+        cell.shoeImageView.image = shoeTimeline![indexPath.row].shoeImage
+        cell.sizeLabel.text = shoeTimeline![indexPath.row].size!
+        cell.conditionLabel.text = shoeTimeline![indexPath.row].condition
+        
         return cell
     }
     
     //MARK: - Firebase Get Methods
-    func getShoes() {
+    func getShoesFromFirebase() {
+        //Correct way
+//        self.shoeTimeline = FirebaseClient.getShoes()
+        
         // Get a reference to our posts
-        let ref = FirebaseClient.getRefWith("shoes")
+        let shoeRef = FirebaseClient.getRefWith("shoes")
+
+        //let shoeRef = Firebase.init(url: "https://kickswap.firebaseio.com/shoes")
         
         // Attach a closure to read the data at our posts reference
-        ref.observeEventType(.Value, withBlock: { snapshot in
-            var shoeArray = [Shoe]()
+        shoeRef.observeEventType(.Value, withBlock: { snapshot in
+            var tempShoeArray = [Shoe]()
             let dict = snapshot.value as! NSDictionary
             for x in dict {
-                let shoeToAppend = Shoe(data: x.value as! NSDictionary)
-                shoeArray.append(shoeToAppend)
+                var shoeToAppend = Shoe(data: x.value as! NSDictionary)
+                if shoeToAppend.imageString != nil {
+                    var decodedImageString = NSData(base64EncodedString: shoeToAppend.imageString as! String, options: NSDataBase64DecodingOptions(arrayLiteral: NSDataBase64DecodingOptions.IgnoreUnknownCharacters))
+                    var decodedImage = UIImage(data: decodedImageString!)
+                    shoeToAppend.shoeImage = decodedImage
+                    tempShoeArray.append(shoeToAppend)
+                }
             }
+            
+            self.shoeTimeline = tempShoeArray
+            self.timeline.reloadData()
             
             }, withCancelBlock: { error in
                 print(error.description)
         })
         
     }
+    
 
     /*
     // MARK: - Navigation

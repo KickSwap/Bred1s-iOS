@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -173,7 +173,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="0.69815231978527603" colorSpace="calibratedWhite"/>
                             </view>
-                            <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eKb-Zf-R6p">
+                            <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="eKb-Zf-R6p">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Re8-1B-Ztw">
@@ -190,7 +190,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TimelineCell" id="UVa-5o-boK" customClass="KSTimelineCollectionViewCell" customModule="KickSwap" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="7" width="332" height="448"/>
+                                                <rect key="frame" x="20" y="6.5" width="332" height="448"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="332" height="448"/>
@@ -200,25 +200,22 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="332" height="448"/>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="noT-oy-qNW">
-                                                            <rect key="frame" x="0.0" y="0.0" width="332" height="75"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="332" height="74.5"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPl-mX-PfJ">
-                                                                    <rect key="frame" x="8" y="34" width="36" height="27"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPl-mX-PfJ">
+                                                                    <rect key="frame" x="8" y="33.5" width="47" height="27"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="22"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wtS-V7-RTt">
-                                                                    <rect key="frame" x="45" y="42" width="21" height="17"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="21" id="ixo-yJ-9yJ"/>
-                                                                    </constraints>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="DS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wtS-V7-RTt">
+                                                                    <rect key="frame" x="72" y="42" width="21" height="17"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="14"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yeezy Boost Low Oxford Tan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z8U-pU-StR">
-                                                                    <rect key="frame" x="8" y="8" width="252" height="22"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yeezy Boost Low Oxford Tan" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z8U-pU-StR">
+                                                                    <rect key="frame" x="8" y="8" width="244.5" height="21.5"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
@@ -228,7 +225,7 @@
                                                             <constraints>
                                                                 <constraint firstItem="z8U-pU-StR" firstAttribute="top" secondItem="noT-oy-qNW" secondAttribute="topMargin" id="74t-LW-383"/>
                                                                 <constraint firstItem="DPl-mX-PfJ" firstAttribute="baseline" secondItem="wtS-V7-RTt" secondAttribute="baseline" id="8gY-K3-Y6W"/>
-                                                                <constraint firstAttribute="trailing" secondItem="z8U-pU-StR" secondAttribute="trailing" constant="72" id="ExW-2S-efh"/>
+                                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="z8U-pU-StR" secondAttribute="trailing" constant="8" id="ExW-2S-efh"/>
                                                                 <constraint firstItem="z8U-pU-StR" firstAttribute="leading" secondItem="noT-oy-qNW" secondAttribute="leadingMargin" id="Ifi-3j-u3t"/>
                                                                 <constraint firstAttribute="bottom" secondItem="DPl-mX-PfJ" secondAttribute="bottom" constant="14" id="STX-d8-ffI"/>
                                                                 <constraint firstItem="wtS-V7-RTt" firstAttribute="top" secondItem="z8U-pU-StR" secondAttribute="bottom" constant="12" id="Vdw-4x-83z"/>
@@ -248,7 +245,7 @@
                                                     <constraint firstItem="noT-oy-qNW" firstAttribute="top" secondItem="wrE-NR-5nY" secondAttribute="top" id="gXG-qW-SU8"/>
                                                     <constraint firstAttribute="trailing" secondItem="noT-oy-qNW" secondAttribute="trailing" id="jEc-Ea-2DF"/>
                                                     <constraint firstAttribute="bottom" secondItem="wrE-NR-5nY" secondAttribute="bottom" id="r7V-k4-Adh"/>
-                                                    <constraint firstAttribute="bottom" secondItem="noT-oy-qNW" secondAttribute="bottom" constant="373" id="uOY-ma-bnD"/>
+                                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="noT-oy-qNW" secondAttribute="bottom" constant="360" id="uOY-ma-bnD"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="conditionLabel" destination="wtS-V7-RTt" id="tAj-9N-ZKc"/>

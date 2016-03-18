@@ -18,7 +18,7 @@ class Shoe: NSObject {
     var shoeImage: UIImage?
     
     var condition: String?
-    var size: Double?
+    var size: String?
     var originalBox: Bool?
     var receipt: Bool?
     var owner: User?
@@ -37,7 +37,7 @@ class Shoe: NSObject {
         self.imageURL = data["imageURL"] as? String
         self.ownerId = data["ownerId"] as? String
         self.condition = data["condition"] as? String
-        self.size = data["size"] as? Double
+        self.size = data["size"] as? String
         self.originalBox = data["originalBox"] as? Bool
         self.receipt = data["receipt"] as? Bool
         self.imageString = data["imageString"] as? NSString
@@ -49,13 +49,12 @@ class Shoe: NSObject {
     }
     
     func getShoe() -> [String:String]{
-        let strSize = String(size)
         return ["name": name!,
                 "color": "",
                 "brand": "",
                 "ownerId": ownerId!,
                 "condition": condition!,
-                "size": strSize,
+                "size": size!,
                 "originalBox": "",
                 "receipt": "",
                 "imageString": imageString! as String
