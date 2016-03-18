@@ -11,12 +11,12 @@ import UIKit
 class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var tableView: UITableView!
-    @IBOutlet var shoeDetailImage: UIImageView!
+    //@IBOutlet var shoeDetailImage: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        tableView.delegate = self
-//        tableView.dataSource = self
+       tableView.delegate = self
+       tableView.dataSource = self
 
         // Do any additional setup after loading the view.
     }
@@ -31,8 +31,11 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TimelineDetailTableViewCell", forIndexPath: indexPath)
-
+        let cell = tableView.dequeueReusableCellWithIdentifier("TimelineDetailTableViewCell", forIndexPath: indexPath) as! TimelineDetailTableViewCell
+        
+        cell.shoeDetailedImage.image = UIImage(named: "blackYeezy")
+        
+        
         return cell
     }
 

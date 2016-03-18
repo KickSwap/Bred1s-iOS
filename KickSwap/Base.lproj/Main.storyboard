@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="main-logo" translatesAutoresizingMaskIntoConstraints="NO" id="dgc-ma-YAd">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="main-logo" translatesAutoresizingMaskIntoConstraints="NO" id="dgc-ma-YAd">
                                 <rect key="frame" x="67" y="135" width="240" height="163"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dgc-ma-YAd" secondAttribute="height" multiplier="253:172" id="31w-rF-5vM"/>
@@ -190,7 +190,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TimelineCell" id="UVa-5o-boK" customClass="KSTimelineCollectionViewCell" customModule="KickSwap" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="6.5" width="332" height="448"/>
+                                                <rect key="frame" x="20" y="7" width="332" height="448"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="332" height="448"/>
@@ -200,10 +200,10 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="332" height="448"/>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="noT-oy-qNW">
-                                                            <rect key="frame" x="0.0" y="0.0" width="332" height="74.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="332" height="75"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPl-mX-PfJ">
-                                                                    <rect key="frame" x="8" y="33.5" width="47" height="27"/>
+                                                                    <rect key="frame" x="8" y="34" width="47" height="27"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="22"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
@@ -215,7 +215,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yeezy Boost Low Oxford Tan" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z8U-pU-StR">
-                                                                    <rect key="frame" x="8" y="8" width="244.5" height="21.5"/>
+                                                                    <rect key="frame" x="8" y="8" width="245" height="22"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
@@ -273,7 +273,7 @@
                                                     <constraint firstAttribute="height" constant="49" id="NsN-rZ-eb3"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="James Harden (23)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I2U-ac-Gft">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="James Harden (23)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I2U-ac-Gft">
                                                 <rect key="frame" x="67" y="15" width="140" height="18"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -285,13 +285,13 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="wishList_icon" translatesAutoresizingMaskIntoConstraints="NO" id="RcU-CS-v2c">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wishList_icon" translatesAutoresizingMaskIntoConstraints="NO" id="RcU-CS-v2c">
                                                 <rect key="frame" x="267" y="25" width="23" height="20"/>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Share_icon" translatesAutoresizingMaskIntoConstraints="NO" id="hKP-y7-fGf">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Share_icon" translatesAutoresizingMaskIntoConstraints="NO" id="hKP-y7-fGf">
                                                 <rect key="frame" x="298" y="26" width="21" height="18"/>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Bid_icon" translatesAutoresizingMaskIntoConstraints="NO" id="2TA-mk-0bj">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bid_icon" translatesAutoresizingMaskIntoConstraints="NO" id="2TA-mk-0bj">
                                                 <rect key="frame" x="327" y="25" width="23" height="20"/>
                                             </imageView>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xZx-vV-mhf">
@@ -377,7 +377,7 @@
         <!--News View Controller-->
         <scene sceneID="uF6-2C-Kp3">
             <objects>
-                <viewController id="uP7-wl-nRi" customClass="KSNewsViewController" customModule="KickSwap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="KSNewsViewController" id="uP7-wl-nRi" customClass="KSNewsViewController" customModule="KickSwap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BEk-7c-Vli"/>
                         <viewControllerLayoutGuide type="bottom" id="gx6-d3-eAN"/>
@@ -394,6 +394,9 @@
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lCe-cA-5Fv">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <connections>
+                                    <segue destination="aCL-A0-eQB" kind="embed" id="VHB-1T-3CN"/>
+                                </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -408,7 +411,64 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="afL-kY-Cb3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1467.5" y="2188.5"/>
+            <point key="canvasLocation" x="1467.5" y="2206.5"/>
+        </scene>
+        <!--Paging Menu Controller-->
+        <scene sceneID="HnW-Zf-Kp5">
+            <objects>
+                <viewController id="aCL-A0-eQB" customClass="PagingMenuController" customModule="PagingMenuController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dzV-FX-a3f"/>
+                        <viewControllerLayoutGuide type="bottom" id="5Zs-aq-73w"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gTf-Aa-rwe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Ca-Sc-XKM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1918.5" y="2206.5"/>
+        </scene>
+        <!--Nice Kicks View Controller-->
+        <scene sceneID="PYG-RO-aiP">
+            <objects>
+                <viewController storyboardIdentifier="NiceKicksViewController" id="ugp-jV-kMg" customClass="NiceKicksViewController" customModule="KickSwap" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EL2-aC-MPf"/>
+                        <viewControllerLayoutGuide type="bottom" id="IYI-c7-BGa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rMz-u1-ZTC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g4b-s6-4lH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2461" y="1981"/>
+        </scene>
+        <!--Jis Back View Controller-->
+        <scene sceneID="RLm-a2-Lm1">
+            <objects>
+                <viewController storyboardIdentifier="MJisBackViewController" id="gIZ-Ax-UDb" customClass="MJisBackViewController" customModule="KickSwap" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="C3q-VU-CwJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="aHB-qC-cMo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PzA-gp-LmH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fiZ-X6-ZyP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2898.5" y="1980.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="pS6-Py-7Aq">
@@ -674,7 +734,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="thp-YU-zLt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1931.5" y="2172"/>
+            <point key="canvasLocation" x="840.5" y="2942"/>
         </scene>
         <!--Sole Collector View Controller-->
         <scene sceneID="a3u-g4-wIW">
@@ -693,7 +753,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ool-mP-m2d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2460.5" y="2672.5"/>
+            <point key="canvasLocation" x="2460.5" y="2720.5"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="wFc-ir-XTU">
@@ -706,32 +766,40 @@
                     <view key="view" contentMode="scaleToFill" id="eK5-6c-o7u">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="641" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PvA-JA-THJ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimelineDetailTableViewCell" rowHeight="641" id="QiV-K0-Mb3" customClass="TimelineDetailTableViewCell" customModule="KickSwap" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="641"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QiV-K0-Mb3" id="89d-t8-Oxf">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="640"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vAH-KI-BjX">
+                                                    <rect key="frame" x="8" y="81" width="240" height="128"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="shoeDetailedImage" destination="vAH-KI-BjX" id="cJI-X2-T9m"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="tableView" destination="PvA-JA-THJ" id="7Cl-Ep-TZP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lQe-nz-0Re" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2460.5" y="1894.5"/>
-        </scene>
-        <!--Profile View Controller-->
-        <scene sceneID="1r1-SM-mhE">
-            <objects>
-                <viewController storyboardIdentifier="ProfileViewController" id="Boj-0Z-JpC" customClass="ProfileViewController" customModule="KickSwap" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="nQN-2t-N9t"/>
-                        <viewControllerLayoutGuide type="bottom" id="cqh-4k-2hG"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="9PD-uc-N8F">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OZF-lH-V9f" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1101.5" y="3652.5"/>
+            <point key="canvasLocation" x="840.5" y="3646.5"/>
         </scene>
     </scenes>
     <resources>

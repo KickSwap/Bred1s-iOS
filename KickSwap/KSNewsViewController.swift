@@ -53,6 +53,11 @@ class KSNewsViewController: UIViewController, PagingMenuControllerDelegate {
         
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        //Adding view controllers and customizztion to paging menu controller
+        let pagingMenuController = self.childViewControllers.first as! PagingMenuController
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

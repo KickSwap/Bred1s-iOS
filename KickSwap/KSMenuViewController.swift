@@ -36,6 +36,9 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 		super.viewDidLoad()
 		prepareView()
 		prepareMenuView()
+        
+        //To prevent redundant segue, close menu properly
+        self.currentView = "buy"
         //menuButtonImage = "ic_buy_white"
 	}
 
