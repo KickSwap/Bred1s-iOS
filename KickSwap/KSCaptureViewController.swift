@@ -27,7 +27,7 @@ class KSCaptureViewController: UIViewController, CaptureViewDelegate, CaptureSes
         prepareView()
         prepareCaptureButton()
         prepareCameraButton()
-        prepareCloseButton()
+        //prepareCloseButton()
         //prepareVideoButton()
         prepareSwitchCamerasButton()
         prepareFlashButton()
@@ -246,8 +246,8 @@ class KSCaptureViewController: UIViewController, CaptureViewDelegate, CaptureSes
         detailLabel.font = RobotoFont.regular
 //        navigationBarView.detailLabel = detailLabel
 //        
-//        navigationBarView.leftControls = [switchCamerasButton]
-//        navigationBarView.rightControls = [flashButton]
+        navigationBarView.leftControls = [switchCamerasButton]
+        navigationBarView.rightControls = [flashButton]
         
         view.addSubview(navigationBarView)
     }
