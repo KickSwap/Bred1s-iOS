@@ -53,7 +53,8 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     func collectionView(timeline: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = timeline.dequeueReusableCellWithReuseIdentifier("ProfileCell", forIndexPath: indexPath) as! KSProfileCollectionViewCell
         
-        cell.shoeImageView.setImageWithURL(NSURL(string: allShoes![indexPath.row].imageURL!)!)
+        cell.shoeImageView.clipsToBounds = true
+        cell.shoeImageView.image = allShoes![indexPath.row].shoeImage
         cell.shoeNameLabel.text = allShoes![indexPath.row].name
         
         return cell
@@ -70,7 +71,12 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             let dict = snapshot.value as! NSDictionary
             for x in dict {
                 var shoeToAppend = Shoe(data: x.value as! NSDictionary)
-                if shoeToAppend.ownerId == User.currentUser?.uid {
+                if shoeToAppend.ownerId == User.currentUser?.uid && shoeToAppend.imageString != nil {
+                    var decodedImageString = NSData(base64EncodedString: shoeToAppend.imageString as! String, options: NSDataBase64DecodingOptions(arrayLiteral: NSDataBase64DecodingOptions.IgnoreUnknownCharacters))
+                    var decodedImage = UIImage(data: decodedImageString!)
+                    shoeToAppend.shoeImage = decodedImage
+                    print(shoeToAppend.shoeImage)
+                    print(decodedImage)
                     tempShoeArray.append(shoeToAppend)
                 }
             }

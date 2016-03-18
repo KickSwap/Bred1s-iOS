@@ -12,6 +12,15 @@
 		0256D2BC1C95988700B8CD4B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D2BB1C95988700B8CD4B /* ProfileViewController.swift */; };
 		0256D2BE1C95989300B8CD4B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D2BD1C95989300B8CD4B /* DetailViewController.swift */; };
 		0256D2C01C95A35C00B8CD4B /* TimelineDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D2BF1C95A35C00B8CD4B /* TimelineDetailTableViewCell.swift */; };
+		0256D30A1C99775800B8CD4B /* SwiftModalWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D3051C99775700B8CD4B /* SwiftModalWebVC.swift */; };
+		0256D30B1C99775800B8CD4B /* SwiftWebVCActivityChrome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D3061C99775700B8CD4B /* SwiftWebVCActivityChrome.swift */; };
+		0256D30C1C99775800B8CD4B /* SwiftWebVCActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D3071C99775700B8CD4B /* SwiftWebVCActivity.swift */; };
+		0256D30D1C99775800B8CD4B /* SwiftWebVCActivitySafari.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D3081C99775700B8CD4B /* SwiftWebVCActivitySafari.swift */; };
+		0256D30E1C99775800B8CD4B /* SwiftWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D3091C99775700B8CD4B /* SwiftWebVC.swift */; };
+		0256D3121C9978ED00B8CD4B /* NiceKicksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D3111C9978ED00B8CD4B /* NiceKicksViewController.swift */; };
+		0256D3141C9978FD00B8CD4B /* SoleCollectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D3131C9978FD00B8CD4B /* SoleCollectorViewController.swift */; };
+		0256D3161C99790E00B8CD4B /* MJisBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D3151C99790E00B8CD4B /* MJisBackViewController.swift */; };
+		0256D3181C997C4E00B8CD4B /* SwiftWebVC.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0256D3171C997C4E00B8CD4B /* SwiftWebVC.bundle */; };
 		02DED1CE1C91D3460098DA39 /* KSTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DED1CD1C91D3450098DA39 /* KSTabBarController.swift */; };
 		02DED1D01C91D3740098DA39 /* KSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DED1CF1C91D3740098DA39 /* KSNavigationController.swift */; };
 		471282931C7E15170007855B /* LogoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471282921C7E15170007855B /* LogoButton.swift */; };
@@ -26,7 +35,7 @@
 		47AE58861C75F5D8007AB49E /* KSTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AE58851C75F5D8007AB49E /* KSTimelineViewController.swift */; };
 		47AE58881C769904007AB49E /* Shoe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AE58871C769904007AB49E /* Shoe.swift */; };
 		47AE588A1C769C2F007AB49E /* Bid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AE58891C769C2F007AB49E /* Bid.swift */; };
-		47B90F051C7F6F9B006B4BD6 /* KSSellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B90F041C7F6F9B006B4BD6 /* KSSellViewController.swift */; };
+		47B90F051C7F6F9B006B4BD6 /* KSCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B90F041C7F6F9B006B4BD6 /* KSCaptureViewController.swift */; };
 		47B90F071C7F6FA9006B4BD6 /* KSNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B90F061C7F6FA9006B4BD6 /* KSNewsViewController.swift */; };
 		47BBC0F91C7E8B6D007DFF67 /* BlueViewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BBC0F51C7E8B6D007DFF67 /* BlueViewcontroller.swift */; };
 		47BBC0FA1C7E8B6D007DFF67 /* GreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BBC0F61C7E8B6D007DFF67 /* GreenViewController.swift */; };
@@ -34,6 +43,7 @@
 		47BBC0FC1C7E8B6D007DFF67 /* KSMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BBC0F81C7E8B6D007DFF67 /* KSMenuViewController.swift */; };
 		A198C05F1C820287001C69E0 /* KSProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A198C05E1C820287001C69E0 /* KSProfileViewController.swift */; };
 		A198C0611C82136B001C69E0 /* KSProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A198C0601C82136B001C69E0 /* KSProfileCollectionViewCell.swift */; };
+		A1E02DAD1C920F3B00F3BC92 /* KSConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E02DAC1C920F3B00F3BC92 /* KSConfirmViewController.swift */; };
 		DFEE78D78899D4951CDE83C0 /* Pods_KickSwap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F46384D7C4F0A9C9B25D751 /* Pods_KickSwap.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +53,15 @@
 		0256D2BB1C95988700B8CD4B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		0256D2BD1C95989300B8CD4B /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		0256D2BF1C95A35C00B8CD4B /* TimelineDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineDetailTableViewCell.swift; sourceTree = "<group>"; };
+		0256D3051C99775700B8CD4B /* SwiftModalWebVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftModalWebVC.swift; sourceTree = "<group>"; };
+		0256D3061C99775700B8CD4B /* SwiftWebVCActivityChrome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftWebVCActivityChrome.swift; sourceTree = "<group>"; };
+		0256D3071C99775700B8CD4B /* SwiftWebVCActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftWebVCActivity.swift; sourceTree = "<group>"; };
+		0256D3081C99775700B8CD4B /* SwiftWebVCActivitySafari.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftWebVCActivitySafari.swift; sourceTree = "<group>"; };
+		0256D3091C99775700B8CD4B /* SwiftWebVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftWebVC.swift; sourceTree = "<group>"; };
+		0256D3111C9978ED00B8CD4B /* NiceKicksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NiceKicksViewController.swift; sourceTree = "<group>"; };
+		0256D3131C9978FD00B8CD4B /* SoleCollectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoleCollectorViewController.swift; sourceTree = "<group>"; };
+		0256D3151C99790E00B8CD4B /* MJisBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MJisBackViewController.swift; sourceTree = "<group>"; };
+		0256D3171C997C4E00B8CD4B /* SwiftWebVC.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SwiftWebVC.bundle; sourceTree = "<group>"; };
 		02DED1CD1C91D3450098DA39 /* KSTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTabBarController.swift; sourceTree = "<group>"; };
 		02DED1CF1C91D3740098DA39 /* KSNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSNavigationController.swift; sourceTree = "<group>"; };
 		471282921C7E15170007855B /* LogoButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoButton.swift; sourceTree = "<group>"; };
@@ -59,7 +78,7 @@
 		47AE58851C75F5D8007AB49E /* KSTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTimelineViewController.swift; sourceTree = "<group>"; };
 		47AE58871C769904007AB49E /* Shoe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shoe.swift; sourceTree = "<group>"; };
 		47AE58891C769C2F007AB49E /* Bid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bid.swift; sourceTree = "<group>"; };
-		47B90F041C7F6F9B006B4BD6 /* KSSellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSSellViewController.swift; sourceTree = "<group>"; };
+		47B90F041C7F6F9B006B4BD6 /* KSCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSCaptureViewController.swift; sourceTree = "<group>"; };
 		47B90F061C7F6FA9006B4BD6 /* KSNewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSNewsViewController.swift; sourceTree = "<group>"; };
 		47BBC0F51C7E8B6D007DFF67 /* BlueViewcontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlueViewcontroller.swift; sourceTree = "<group>"; };
 		47BBC0F61C7E8B6D007DFF67 /* GreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreenViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +89,7 @@
 		9D9C5F58332E0B426ABFA600 /* Pods-KickSwap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KickSwap.release.xcconfig"; path = "Pods/Target Support Files/Pods-KickSwap/Pods-KickSwap.release.xcconfig"; sourceTree = "<group>"; };
 		A198C05E1C820287001C69E0 /* KSProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSProfileViewController.swift; sourceTree = "<group>"; };
 		A198C0601C82136B001C69E0 /* KSProfileCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSProfileCollectionViewCell.swift; sourceTree = "<group>"; };
+		A1E02DAC1C920F3B00F3BC92 /* KSConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSConfirmViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +104,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0256D3041C99774700B8CD4B /* webviews */ = {
+			isa = PBXGroup;
+			children = (
+				0256D3101C9978CD00B8CD4B /* SwiftWebVC */,
+				0256D3111C9978ED00B8CD4B /* NiceKicksViewController.swift */,
+				0256D3131C9978FD00B8CD4B /* SoleCollectorViewController.swift */,
+				0256D3151C99790E00B8CD4B /* MJisBackViewController.swift */,
+			);
+			name = webviews;
+			sourceTree = "<group>";
+		};
+		0256D3101C9978CD00B8CD4B /* SwiftWebVC */ = {
+			isa = PBXGroup;
+			children = (
+				0256D3051C99775700B8CD4B /* SwiftModalWebVC.swift */,
+				0256D3061C99775700B8CD4B /* SwiftWebVCActivityChrome.swift */,
+				0256D3071C99775700B8CD4B /* SwiftWebVCActivity.swift */,
+				0256D3081C99775700B8CD4B /* SwiftWebVCActivitySafari.swift */,
+				0256D3091C99775700B8CD4B /* SwiftWebVC.swift */,
+				0256D3171C997C4E00B8CD4B /* SwiftWebVC.bundle */,
+			);
+			name = SwiftWebVC;
+			sourceTree = "<group>";
+		};
 		477970D01C630306000F1196 = {
 			isa = PBXGroup;
 			children = (
@@ -140,15 +184,17 @@
 		47AE58841C758D72007AB49E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0256D3041C99774700B8CD4B /* webviews */,
 				47BBC0F51C7E8B6D007DFF67 /* BlueViewcontroller.swift */,
 				47BBC0F61C7E8B6D007DFF67 /* GreenViewController.swift */,
 				47BBC0F71C7E8B6D007DFF67 /* YellowViewController.swift */,
 				47BBC0F81C7E8B6D007DFF67 /* KSMenuViewController.swift */,
 				477970DE1C630306000F1196 /* KSLoginViewController.swift */,
 				47AE58851C75F5D8007AB49E /* KSTimelineViewController.swift */,
-				47B90F041C7F6F9B006B4BD6 /* KSSellViewController.swift */,
+				47B90F041C7F6F9B006B4BD6 /* KSCaptureViewController.swift */,
 				47B90F061C7F6FA9006B4BD6 /* KSNewsViewController.swift */,
 				A198C05E1C820287001C69E0 /* KSProfileViewController.swift */,
+				A1E02DAC1C920F3B00F3BC92 /* KSConfirmViewController.swift */,
 				02DED1CD1C91D3450098DA39 /* KSTabBarController.swift */,
 				02DED1CF1C91D3740098DA39 /* KSNavigationController.swift */,
 				0256D2BB1C95988700B8CD4B /* ProfileViewController.swift */,
@@ -221,7 +267,7 @@
 				TargetAttributes = {
 					477970D81C630306000F1196 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = ELJV42N84Z;
+						DevelopmentTeam = GDB3SZ2MTH;
 					};
 				};
 			};
@@ -249,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				477970EA1C630306000F1196 /* LaunchScreen.storyboard in Resources */,
+				0256D3181C997C4E00B8CD4B /* SwiftWebVC.bundle in Resources */,
 				477970E71C630306000F1196 /* Assets.xcassets in Resources */,
 				477970E21C630306000F1196 /* Main.storyboard in Resources */,
 			);
@@ -309,10 +356,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0256D30B1C99775800B8CD4B /* SwiftWebVCActivityChrome.swift in Sources */,
 				47BBC0FA1C7E8B6D007DFF67 /* GreenViewController.swift in Sources */,
 				47AE58831C75730A007AB49E /* Firebase.swift in Sources */,
 				0256D2BE1C95989300B8CD4B /* DetailViewController.swift in Sources */,
 				47B90F051C7F6F9B006B4BD6 /* KSSellViewController.swift in Sources */,
+				47B90F051C7F6F9B006B4BD6 /* KSCaptureViewController.swift in Sources */,
+				0256D3161C99790E00B8CD4B /* MJisBackViewController.swift in Sources */,
+				0256D30D1C99775800B8CD4B /* SwiftWebVCActivitySafari.swift in Sources */,
+				A1E02DAD1C920F3B00F3BC92 /* KSConfirmViewController.swift in Sources */,
 				47AE58801C756A42007AB49E /* User.swift in Sources */,
 				A198C0611C82136B001C69E0 /* KSProfileCollectionViewCell.swift in Sources */,
 				024327011C7CA881009893B8 /* KSTimelineCollectionViewCell.swift in Sources */,
@@ -323,10 +375,15 @@
 				0256D2C01C95A35C00B8CD4B /* TimelineDetailTableViewCell.swift in Sources */,
 				47AE58881C769904007AB49E /* Shoe.swift in Sources */,
 				47BBC0FC1C7E8B6D007DFF67 /* KSMenuViewController.swift in Sources */,
+				0256D30E1C99775800B8CD4B /* SwiftWebVC.swift in Sources */,
+				0256D3141C9978FD00B8CD4B /* SoleCollectorViewController.swift in Sources */,
 				47AE588A1C769C2F007AB49E /* Bid.swift in Sources */,
+				0256D30C1C99775800B8CD4B /* SwiftWebVCActivity.swift in Sources */,
 				477970DF1C630306000F1196 /* KSLoginViewController.swift in Sources */,
 				477970DD1C630306000F1196 /* AppDelegate.swift in Sources */,
+				0256D3121C9978ED00B8CD4B /* NiceKicksViewController.swift in Sources */,
 				02DED1D01C91D3740098DA39 /* KSNavigationController.swift in Sources */,
+				0256D30A1C99775800B8CD4B /* SwiftModalWebVC.swift in Sources */,
 				477970E51C630306000F1196 /* KickSwap.xcdatamodeld in Sources */,
 				47AE58861C75F5D8007AB49E /* KSTimelineViewController.swift in Sources */,
 				47BBC0F91C7E8B6D007DFF67 /* BlueViewcontroller.swift in Sources */,

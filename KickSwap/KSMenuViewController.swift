@@ -71,17 +71,6 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 		}
 	}
 
-	/// Loads the YellowViewController into the menuViewControllers mainViewController.
-	func handleYellowButton() {
-		if (mainViewController as? NavigationBarViewController)?.mainViewController is YellowViewController {
-			return
-		}
-
-		closeMenu { [weak self] in
-			self?.transitionFromMainViewController(YellowViewController(), options: [.TransitionCrossDissolve])
-		}
-	}
-
 	/// Handle the menuView touch event.
 	func handleMenu() {
 		if menuView.menu.opened {

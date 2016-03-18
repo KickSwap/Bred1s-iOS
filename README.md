@@ -11,16 +11,13 @@ Time spent: X hours spent in total
 ###### Tier 1
 - [X] User can login using facebook credentials
 - [X] User can view their profile information
-- [ ] User can add shoes to their profile
-- [ ] User can post the sneakers on the timeline for others to bid on
+- [X] User can add shoes to their profile
+- [X] User can post the sneakers on the timeline for others to bid on
 
 ###### Tier 2
-- [ ] User can look up the newest releases and see other sneaker related news (vote for cop or not)
+- [X] User can look up the newest releases and see other sneaker related news (vote for cop or not)
+- [X] User can get more information on a certain sneaker coming out soon or that has been previously released
 - [ ] User can accept bid on sneaker then negotiate terms and meetup locations for transaction in private chat 
-
-###### Tier 3
-- [ ] User can filter for shoes on the timeline
-- [ ] User can get more information on a certain sneaker coming out soon or that has been previously released
 
 #### The following **optional** features are implemented:
 - [ ] User can post multiple pictures for one shoe post
@@ -28,7 +25,7 @@ Time spent: X hours spent in total
 - [ ] User can set meetup point using Google Maps api inside private chat room
 - [ ] User can send Venmo request via chat room when transaction is about to occur
 - [ ] User will recieve push notifications for any activity with bids, chat, and news if permissions allow
-- [ ] User can change themes 
+- [ ] User can change app themes 
 
 ## Video Walkthrough
 
