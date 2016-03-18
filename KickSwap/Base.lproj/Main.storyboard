@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -582,6 +581,10 @@
         <scene sceneID="58y-oJ-7gZ">
             <objects>
                 <viewController id="o0K-Ao-Km2" customClass="PagingMenuController" customModule="PagingMenuController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Fej-H9-5bK"/>
+                        <viewControllerLayoutGuide type="bottom" id="hag-th-g4l"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="sSN-Ac-6nt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="592"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -595,7 +598,6 @@
         <!--Detail View Controller-->
         <scene sceneID="wFc-ir-XTU">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eyf-13-6xm" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="DetailViewController" id="w7h-SY-GJY" customClass="DetailViewController" customModule="KickSwap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Eo5-ki-LMx"/>
@@ -635,6 +637,7 @@
                         <outlet property="tableView" destination="3jQ-wL-nZQ" id="imF-rh-cXf"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eyf-13-6xm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="411.5" y="3652.5"/>
         </scene>

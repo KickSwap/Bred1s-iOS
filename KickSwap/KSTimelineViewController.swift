@@ -226,6 +226,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                     make.top.equalTo((profileTrayView.superview?.frame.height)! * 0.82)
                 }
                 //profileTrayView.superview?.userInteractionEnabled = true
+                tapCount++
                 profileTrayView.setNeedsLayout()
                 UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options:[] , animations: { () -> Void in
                     //self.trayView.center = self.trayDown
@@ -240,6 +241,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                 //ignoreView.hidden = false
                 textView.userInteractionEnabled = false
                 textView.hidden = true
+                tapCount++
                 profileTrayView.setNeedsLayout()
                 UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options:[] , animations: { () -> Void in
                     //self.trayView.center = self.trayUp
