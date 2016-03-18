@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">    <dependencies>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -702,19 +703,6 @@
                         <viewControllerLayoutGuide type="top" id="Eo5-ki-LMx"/>
                         <viewControllerLayoutGuide type="bottom" id="bAw-kv-EpS"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Kue-Do-paC">
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MCz-oC-8Ws" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="840.5" y="2954"/>
-        </scene>
-        <!--Detail View Controller-->
-        <scene sceneID="wFc-ir-XTU">
-            <objects>
-                <viewController storyboardIdentifier="DetailViewController" id="w7h-SY-GJY" customClass="DetailViewController" customModule="KickSwap" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Eo5-ki-LMx"/>
-                        <viewControllerLayoutGuide type="bottom" id="bAw-kv-EpS"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eK5-6c-o7u">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -725,19 +713,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lQe-nz-0Re" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2460.5" y="1894.5"/>
-        </scene>
-        <!--Profile View Controller-->
-        <scene sceneID="1r1-SM-mhE">
-            <objects>
-                <viewController storyboardIdentifier="ProfileViewController" id="Boj-0Z-JpC" customClass="ProfileViewController" customModule="KickSwap" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="nQN-2t-N9t"/>
-                        <viewControllerLayoutGuide type="bottom" id="cqh-4k-2hG"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="aFe-3a-8yz">
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eyf-13-6xm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="603.5" y="3652.5"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="1r1-SM-mhE">
