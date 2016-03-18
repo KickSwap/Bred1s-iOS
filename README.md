@@ -31,6 +31,8 @@ Time spent: X hours spent in total
 
 Here's a walkthrough of implemented user stories:
 
+![alt tag](https://raw.githubusercontent.com/hamtech-CodePath/Twitter/master/kickswap.gif)
+
 <!--![alt tag](https://raw.githubusercontent.com/hamtech-CodePath/Twitter/master/TwitterClient.gif)-->
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
