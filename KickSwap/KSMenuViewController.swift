@@ -36,7 +36,6 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 		super.viewDidLoad()
 		prepareView()
 		prepareMenuView()
-        //menuButtonImage = "ic_buy_white"
 	}
 
 	/// Loads the BlueViewController into the menuViewControllers mainViewController.

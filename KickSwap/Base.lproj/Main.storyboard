@@ -753,7 +753,6 @@
                         <outlet property="tableView" destination="3jQ-wL-nZQ" id="imF-rh-cXf"/>
                     </connections>
                 </viewController>
-<<<<<<< f7b5882e6e27e6e3efa3a55821b29b8e48045e1a
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lQe-nz-0Re" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2460.5" y="1894.5"/>
@@ -768,8 +767,6 @@
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="aFe-3a-8yz">
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eyf-13-6xm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-=======
->>>>>>> connected KSProfileViewController to timeline Tray View
             </objects>
             <point key="canvasLocation" x="411.5" y="3652.5"/>
         </scene>
