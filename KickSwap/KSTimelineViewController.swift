@@ -12,16 +12,20 @@ import ChameleonFramework
 import IBAnimatable
 import SnapKit
 
-class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, TextDelegate, TextViewDelegate {
+class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, CardAnimationViewDataSource, TextDelegate, TextViewDelegate {
+    
+    public weak var dataSourceDelegate : CardAnimationViewDataSource?
+    
     
    // @IBOutlet var timelineBackground: AnimatableImageView!
     @IBOutlet weak var timelineBackground: AnimatableImageView!
    // @IBOutlet var timeline: UICollectionView!
     @IBOutlet weak var timeline: UICollectionView!
    
+    @IBOutlet var panGestureAreaView: ImageCardView!
    // @IBOutlet var userProfileImage: UIImageView!
     @IBOutlet weak var userProfileImage: UIImageView!
-    @IBOutlet var profileTrayView: UIView!
+    @IBOutlet var profileTrayView: AnimatableView!
     @IBOutlet var trayViewButton: UIButton!
     var trayOriginalCenter: CGPoint!
     var tapCount = 0
@@ -48,6 +52,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         prepareTextView()
         addToolBar(textView)
         getShoes()
+        //profileTrayView.dataSourceDelegate = self
         
         //set image initially
         pictureIndex = 0
@@ -288,6 +293,157 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         })
         
     }
+    
+    func numberOfCards() -> Int {
+       return 3
+    }
+    
+    func numberOfVisibleCards() -> Int {
+      return  1
+    }
+    
+    func cardNumber(number: Int, reusedView: BaseCardView?) -> BaseCardView {
+        var retView : ImageCardView? = reusedView as? ImageCardView
+        if retView == nil {
+            retView = panGestureAreaView //ImageCardView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        } else {
+            print(" ✌️ View Cached ✌️ ")
+        }
+        //retView!.imageView.image = UIImage(named: "JHarden")
+        return retView!
+    }
+    
+    private lazy var flipUpTransform3D : CATransform3D = {
+        var transform = CATransform3DIdentity
+        transform.m34 = -1.0 / 1000.0
+        //transform = CATransform3DRotate(transform, CGFloat(-M_PI), 1, 0, 0)
+        transform = CATransform3DRotate(transform, 0, 1, 0, 0)
+        return transform
+    }()
+    
+    private lazy var flipDownTransform3D : CATransform3D = {
+        var transform = CATransform3DIdentity
+        transform.m34 = -1.0 / 1000.0
+        transform = CATransform3DRotate(transform, CGFloat(-M_PI), 1, 0, 0)
+        return transform
+    }()
+
+    func flipUp() {
+        
+        //currentIndex--
+        
+        //let newView = addNewCardViewWithIndex(currentIndex)
+        //profileTrayView.layer.transform = flipDownTransform3D
+        
+        //let shouldRemoveLast = cardArray.count > maxVisibleCardCount
+        
+        UIView.animateKeyframesWithDuration(1, delay: 0, options: UIViewKeyframeAnimationOptions(), animations: {
+            
+            UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 1, animations: {
+                self.panGestureAreaView.layer.transform = self.flipUpTransform3D
+            })
+            
+            UIView.addKeyframeWithRelativeStartTime(0.5, relativeDuration: 0.01, animations: {
+                //self.profileTrayView.layoutSubviews()
+            })
+            
+            }, completion: { _ in
+                //self.relayoutSubViewsAnimated(true, removeLast: shouldRemoveLast)
+                //self.profileTrayView.hidden = false
+        })
+        
+    }
+    
+    func flipDown() {
+        
+        //currentIndex--
+        
+        //let newView = addNewCardViewWithIndex(currentIndex)
+        //profileTrayView.layer.transform = flipUpTransform3D
+        
+        //let shouldRemoveLast = cardArray.count > maxVisibleCardCount
+        
+        UIView.animateKeyframesWithDuration(1, delay: 0, options: UIViewKeyframeAnimationOptions(), animations: {
+            
+            UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 1.5, animations: {
+                self.panGestureAreaView.layer.transform = self.flipDownTransform3D
+            })
+            
+            UIView.addKeyframeWithRelativeStartTime(0.5, relativeDuration: 0.01, animations: {
+                //self.profileTrayView.slideInDown()
+                //self.profileTrayView.hidden = true
+            })
+            
+            }, completion: { _ in
+                //self.relayoutSubViewsAnimated(true, removeLast: shouldRemoveLast)
+                //self.profileTrayView.hidden = true
+        })
+        
+    }
+
+
+    
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        //profileTrayView.flipDown()
+//        profileTrayView.animationType = "FadeOutDown"
+////        profileTrayView.delay = 0
+////        profileTrayView.damping = 0.5
+////        profileTrayView.velocity = 2
+//        profileTrayView.force = 1
+//        profileTrayView.fadeOutDown()
+//        UIView.transitionWithView(profileTrayView, duration: 1, options: UIViewAnimationOptions.TransitionFlipFromBottom, animations: { self.profileTrayView = self.profileTrayView}, completion: { (value: Bool) in
+//            //self.profileTrayView.alpha = 0
+//        })
+        //flipDown()
+        //profileTrayView.layer.transform = flipDownTransform3D
+        
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        //flipDown()
+//        UIView.transitionWithView(profileTrayView, duration: 1, options: UIViewAnimationOptions.TransitionFlipFromBottom, animations: { self.profileTrayView = self.profileTrayView}, completion: { (value: Bool) in
+//            //            //self.profileTrayView.hidden = true
+//                   })
+    }
+    
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        //flipUp()
+//        UIView.transitionWithView(profileTrayView, duration: 1, options: UIViewAnimationOptions.TransitionFlipFromBottom, animations: { self.profileTrayView = self.profileTrayView}, completion: { (value: Bool) in
+//                        //self.profileTrayView.alpha = 1
+//        })
+    }
+    
+    func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
+        UIView.transitionWithView(profileTrayView, duration: 1, options: UIViewAnimationOptions.TransitionFlipFromBottom, animations: { self.profileTrayView = self.profileTrayView}, completion: { (value: Bool) in
+            //self.profileTrayView.alpha = 1
+        })
+    }
+    
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        UIView.transitionWithView(profileTrayView, duration: 1, options: UIViewAnimationOptions.TransitionFlipFromBottom, animations: { self.profileTrayView = self.profileTrayView}, completion: { (value: Bool) in
+//            self.profileTrayView.hidden = false
+//            })
+//        UIView.transitionWithView(profileTrayView, duration: 1, options: UIViewAnimationOptions.TransitionFlipFromBottom, animations: { self.profileTrayView = self.profileTrayView}, completion: { (value: Bool) in
+//            //            //self.profileTrayView.hidden = true
+//                    })
+
+        //flipUp()
+    }
+    
+//    UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+//    self.birdTypeLabel.alpha = 0.0
+//    }, completion: {
+//    (finished: Bool) -> Void in
+//    
+//    //Once the label is completely invisible, set the text and fade it back in
+//    self.birdTypeLabel.text = "Bird Type: Swift"
+//    
+//    // Fade in
+//    UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+//    self.birdTypeLabel.alpha = 1.0
+//    }, completion: nil)
+//    })
+//}
 
     /*
     // MARK: - Navigation

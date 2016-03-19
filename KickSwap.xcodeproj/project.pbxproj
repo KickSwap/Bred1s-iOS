@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0230029E1C9CCC9D00125DCD /* CardAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0230029C1C9CCC9D00125DCD /* CardAnimationView.swift */; };
+		0230029F1C9CCC9D00125DCD /* ImageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0230029D1C9CCC9D00125DCD /* ImageCardView.swift */; };
+		023002A11C9CCCA600125DCD /* UICardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023002A01C9CCCA600125DCD /* UICardContainerView.swift */; };
 		024327011C7CA881009893B8 /* KSTimelineCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024327001C7CA881009893B8 /* KSTimelineCollectionViewCell.swift */; };
 		024327031C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024327021C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift */; };
 		0256D30A1C99775800B8CD4B /* SwiftModalWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D3051C99775700B8CD4B /* SwiftModalWebVC.swift */; };
@@ -45,6 +48,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0230029C1C9CCC9D00125DCD /* CardAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardAnimationView.swift; sourceTree = "<group>"; };
+		0230029D1C9CCC9D00125DCD /* ImageCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCardView.swift; sourceTree = "<group>"; };
+		023002A01C9CCCA600125DCD /* UICardContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICardContainerView.swift; sourceTree = "<group>"; };
 		024327001C7CA881009893B8 /* KSTimelineCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTimelineCollectionViewCell.swift; sourceTree = "<group>"; };
 		024327021C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterCellCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		0256D3051C99775700B8CD4B /* SwiftModalWebVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftModalWebVC.swift; sourceTree = "<group>"; };
@@ -98,6 +104,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		023002A21C9CCCAC00125DCD /* CardAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				0230029C1C9CCC9D00125DCD /* CardAnimationView.swift */,
+				0230029D1C9CCC9D00125DCD /* ImageCardView.swift */,
+				023002A01C9CCCA600125DCD /* UICardContainerView.swift */,
+			);
+			name = CardAnimation;
+			sourceTree = "<group>";
+		};
 		0256D3041C99774700B8CD4B /* webviews */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +194,7 @@
 		47AE58841C758D72007AB49E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				023002A21C9CCCAC00125DCD /* CardAnimation */,
 				0256D3041C99774700B8CD4B /* webviews */,
 				47BBC0F51C7E8B6D007DFF67 /* BlueViewcontroller.swift */,
 				47BBC0F61C7E8B6D007DFF67 /* GreenViewController.swift */,
@@ -352,6 +369,8 @@
 				47AE58831C75730A007AB49E /* Firebase.swift in Sources */,
 				47B90F051C7F6F9B006B4BD6 /* KSCaptureViewController.swift in Sources */,
 				0256D3161C99790E00B8CD4B /* MJisBackViewController.swift in Sources */,
+				0230029E1C9CCC9D00125DCD /* CardAnimationView.swift in Sources */,
+				0230029F1C9CCC9D00125DCD /* ImageCardView.swift in Sources */,
 				0256D30D1C99775800B8CD4B /* SwiftWebVCActivitySafari.swift in Sources */,
 				A1E02DAD1C920F3B00F3BC92 /* KSConfirmViewController.swift in Sources */,
 				47AE58801C756A42007AB49E /* User.swift in Sources */,
@@ -366,6 +385,7 @@
 				0256D3141C9978FD00B8CD4B /* SoleCollectorViewController.swift in Sources */,
 				47AE588A1C769C2F007AB49E /* Bid.swift in Sources */,
 				0256D30C1C99775800B8CD4B /* SwiftWebVCActivity.swift in Sources */,
+				023002A11C9CCCA600125DCD /* UICardContainerView.swift in Sources */,
 				477970DF1C630306000F1196 /* KSLoginViewController.swift in Sources */,
 				477970DD1C630306000F1196 /* AppDelegate.swift in Sources */,
 				0256D3121C9978ED00B8CD4B /* NiceKicksViewController.swift in Sources */,
