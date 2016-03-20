@@ -17,13 +17,20 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     
    // @IBOutlet var timelineBackground: AnimatableImageView!
     @IBOutlet weak var timelineBackground: AnimatableImageView!
+    
+    @IBOutlet var timelineColorBackground: UIView!
    // @IBOutlet var timeline: UICollectionView!
     @IBOutlet weak var timeline: UICollectionView!
    
    // @IBOutlet var userProfileImage: UIImageView!
     @IBOutlet weak var userProfileImage: UIImageView!
-    @IBOutlet var profileTrayView: UIView!
+    @IBOutlet var profileTrayView: CardView!
     @IBOutlet var trayViewButton: UIButton!
+    @IBOutlet var profileName: UILabel!
+    
+    
+    
+    
     var trayOriginalCenter: CGPoint!
     var tapCount = 0
     
@@ -73,32 +80,11 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
             options: UIViewAnimationOptions.TransitionCrossDissolve,
             animations: { self.timelineBackground.image = self.backgroundImages[newIndex]},
             completion: nil)
-        
-//        //Instantiate pages for container view
-//        let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
-//        let detailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
-//        profileViewController.title = "Profile"
-//        detailViewController.title = "Details"
-//        let viewControllers = [profileViewController, detailViewController]
-//        
-//        //instantiate PagingMenuController and customization
-//        let pagingMenuController = self.childViewControllers.first as! PagingMenuController
-//        
-//        let options = PagingMenuOptions()
-//        options.defaultPage = 0
-//        options.backgroundColor = UIColor.darkGrayColor()
-//        options.selectedBackgroundColor = UIColor.blackColor()
-//        options.textColor = UIColor.lightGrayColor()
-//        options.selectedTextColor = UIColor.whiteColor()
-//        options.menuHeight = 20
-//        //options.menuPosition = .Bottom
-//        pagingMenuController.delegate = self
-//        options.menuDisplayMode = .SegmentedControl
-//        //(widthMode: .Flexible, centerItem: true, scrollingMode: .PagingEnabled)
-//        pagingMenuController.setup(viewControllers: viewControllers, options: options)
     }
     
     override func viewWillAppear(animated: Bool) {
+        Style.loadTheme()
+        layoutTheme()
         self.profileTrayView.snp_makeConstraints { (make) -> Void in
             make.top.equalTo((profileTrayView.superview?.frame.height)! * 0.82).constraint
         }
@@ -115,14 +101,14 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         
         let options = PagingMenuOptions()
         options.defaultPage = 0
-        options.backgroundColor = UIColor(hexString: "FA4A07")
-        options.selectedBackgroundColor = UIColor(hexString: "C33500")
-        options.textColor = UIColor(hexString: "012755")
-        options.selectedTextColor = UIColor.flatWhiteColor()
+        options.backgroundColor = pagingMenuBackgroundColor!
+        options.selectedBackgroundColor = pagingMenuSelectedBackgroundColor!
+        options.textColor = pagingMenuTextColor!
+        options.selectedTextColor = pagingMenuSelectedTextColor!
         options.menuHeight = 25
         options.font = RobotoFont.regular
         options.selectedFont = RobotoFont.bold
-        options.menuItemMode = .Underline(height: 3, color: UIColor(hexString: "012755"), horizontalPadding: 0, verticalPadding: 0)
+        options.menuItemMode = .Underline(height: 3, color: pagingMenuUnderlineColor!, horizontalPadding: 0, verticalPadding: 0)
         //options.menuPosition = .Bottom
         pagingMenuController.delegate = self
         options.menuDisplayMode = .SegmentedControl
@@ -332,6 +318,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         cell.shoeImageView.image = shoeTimeline![indexPath.row].shoeImage
         cell.sizeLabel.text = shoeTimeline![indexPath.row].size!
         cell.conditionLabel.text = shoeTimeline![indexPath.row].condition
+        cell.shoeTagView.backgroundColor = shoeTagViewColor
         
         return cell
     }
@@ -381,6 +368,22 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                 print(error.description)
         })
         
+    }
+    
+    func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
+        //profile card view animation
+        UIView.transitionWithView(profileTrayView, duration: 1, options: UIViewAnimationOptions.TransitionFlipFromBottom, animations: { self.profileTrayView = self.profileTrayView}, completion: { (value: Bool) in
+            //self.profileTrayView.alpha = 1
+        })
+    }
+    
+    //initiate theme
+    func layoutTheme() {
+        self.timelineColorBackground.backgroundColor = timelineBackgroundColor
+        self.profileTrayView.backgroundColor = profileTrayViewColor
+        //trayViewButton.setBackgroundImage(UIImage(named: ""), forState: .Normal)
+        //trayViewButton.setBackgroundImage(UIImage(named: ""), forState: .Highlighted)
+        profileName.textColor = textColor
     }
     
 

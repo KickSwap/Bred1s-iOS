@@ -12,7 +12,11 @@ class KSTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        Style.loadTheme()
         self.selectedIndex = 1
+        self.tabBar.tintColor = tabBarTintColor
+        self.tabBar.barTintColor = tabBarBarTintColor
+        
         // Do any additional setup after loading the view.
     }
 

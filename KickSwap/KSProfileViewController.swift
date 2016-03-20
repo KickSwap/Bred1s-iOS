@@ -18,6 +18,7 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var profilePicImageView: UIImageView!
     
     
+    @IBOutlet var profileHeaderView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var kicksLabel: UILabel!
     
@@ -32,6 +33,9 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         profilePicImageView.clipsToBounds = true
         
         nameLabel.text = User.currentUser?.displayName
+        nameLabel.textColor = textColor
+        profileHeaderView.backgroundColor = profileHeaderColor
+        self.view.backgroundColor = timelineBackgroundColor
         profilePicImageView.setImageWithURL(NSURL(string: (User.currentUser?.profilePicUrl)!)!)
         getShoes()
         
@@ -85,6 +89,7 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             self.allShoes = tempShoeArray
             //self.filterShoes(tempShoeArray)
             self.kicksLabel.text = "\(tempShoeArray.count)"
+            self.kicksLabel.textColor = textColor
             self.collectionView.reloadData()
             
             }, withCancelBlock: { error in

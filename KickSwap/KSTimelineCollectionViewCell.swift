@@ -13,6 +13,7 @@ import Material
 class KSTimelineCollectionViewCell: UICollectionViewCell {
     
 
+    @IBOutlet var shoeTagView: UIView!
     @IBOutlet var shoeImageView: UIImageView!
     @IBOutlet var shoeNameLabel: UILabel!
     @IBOutlet var sizeLabel: UILabel!

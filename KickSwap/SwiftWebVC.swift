@@ -190,12 +190,12 @@ class SwiftWebVC: UIViewController, UIWebViewDelegate, UIScrollViewDelegate {
             if !closing {
                 toolbar.items = items as? [UIBarButtonItem]
                 if presentingViewController == nil {
-                    toolbar.barTintColor = UIColor(hexString: "FB6E39")//navigationController!.navigationBar.barTintColor
+                    toolbar.barTintColor = toolbarColor//navigationController!.navigationBar.barTintColor
                 }
                 else {
                     //toolbar.barStyle = navigationController!.navigationBar.barStyle
                 }
-                toolbar.tintColor = UIColor(hexString: "FB6E39")//navigationController!.navigationBar.tintColor
+                toolbar.tintColor = toolbarColor//navigationController!.navigationBar.tintColor
             }
             navigationItem.rightBarButtonItems = items.reverseObjectEnumerator().allObjects as? [UIBarButtonItem]
 
@@ -205,12 +205,12 @@ class SwiftWebVC: UIViewController, UIWebViewDelegate, UIScrollViewDelegate {
     
             if !closing {
                 if presentingViewController == nil {
-                    navigationController!.toolbar.barTintColor = UIColor(hexString: "FB6E39")//navigationController!.navigationBar.barTintColor
+                    navigationController!.toolbar.barTintColor = toolbarColor//navigationController!.navigationBar.barTintColor
                 }
                 else {
                     //navigationController!.toolbar.barStyle = navigationController!.navigationBar.barStyle
                 }
-                navigationController!.toolbar.tintColor = UIColor(hexString: "FB6E39")//navigationController!.navigationBar.tintColor
+                navigationController!.toolbar.tintColor = toolbarColor//navigationController!.navigationBar.tintColor
                 toolbarItems = items as? [UIBarButtonItem]
             }
         }

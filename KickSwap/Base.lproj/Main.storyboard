@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -170,7 +170,7 @@
                                 <color key="backgroundColor" white="1" alpha="0.51218606211656437" colorSpace="calibratedWhite"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7m2-FE-kxb">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <color key="backgroundColor" white="1" alpha="0.69815231978527603" colorSpace="calibratedWhite"/>
                             </view>
                             <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="eKb-Zf-R6p">
@@ -190,7 +190,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TimelineCell" id="UVa-5o-boK" customClass="KSTimelineCollectionViewCell" customModule="KickSwap" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="6.5" width="332" height="448"/>
+                                                <rect key="frame" x="20" y="7" width="332" height="448"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="332" height="448"/>
@@ -200,11 +200,10 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="332" height="448"/>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="noT-oy-qNW">
-                                                            <rect key="frame" x="0.0" y="0.0" width="332" height="74.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="332" height="75"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPl-mX-PfJ">
                                                                     <rect key="frame" x="8" y="34" width="47" height="27"/>
-
                                                                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="22"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
@@ -252,12 +251,13 @@
                                                     <outlet property="conditionLabel" destination="wtS-V7-RTt" id="tAj-9N-ZKc"/>
                                                     <outlet property="shoeImageView" destination="wrE-NR-5nY" id="u6R-8y-eb2"/>
                                                     <outlet property="shoeNameLabel" destination="z8U-pU-StR" id="gSK-rb-mao"/>
+                                                    <outlet property="shoeTagView" destination="noT-oy-qNW" id="wUo-Ki-xzx"/>
                                                     <outlet property="sizeLabel" destination="DPl-mX-PfJ" id="lo0-4v-m8v"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="773-sl-Ouj">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="773-sl-Ouj" customClass="CardView" customModule="Material">
                                         <rect key="frame" x="0.0" y="544" width="375" height="837"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eF1-di-DhW" userLabel="Pan Gesture Area">
@@ -354,7 +354,7 @@
                             <constraint firstItem="eKb-Zf-R6p" firstAttribute="trailing" secondItem="OKc-jk-YOC" secondAttribute="trailing" id="0tF-5t-cRv"/>
                             <constraint firstItem="j9m-IL-ydI" firstAttribute="top" secondItem="OKc-jk-YOC" secondAttribute="bottom" id="3g7-II-Jli"/>
                             <constraint firstAttribute="trailing" secondItem="OKc-jk-YOC" secondAttribute="trailing" id="4hS-zO-ob2"/>
-                            <constraint firstAttribute="bottom" secondItem="7m2-FE-kxb" secondAttribute="bottom" id="JhG-C2-5Zz"/>
+                            <constraint firstAttribute="bottom" secondItem="7m2-FE-kxb" secondAttribute="bottom" constant="49" id="JhG-C2-5Zz"/>
                             <constraint firstItem="eKb-Zf-R6p" firstAttribute="bottom" secondItem="j9m-IL-ydI" secondAttribute="top" constant="49" id="OwW-FL-8WY"/>
                             <constraint firstItem="7m2-FE-kxb" firstAttribute="top" secondItem="vJc-pi-K6z" secondAttribute="top" id="T0j-93-IBB"/>
                             <constraint firstItem="eKb-Zf-R6p" firstAttribute="leading" secondItem="OKc-jk-YOC" secondAttribute="leading" id="hJQ-zU-Ebj"/>
@@ -368,9 +368,11 @@
                     <navigationItem key="navigationItem" id="mKe-72-eUc"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="profileName" destination="I2U-ac-Gft" id="5Hv-r6-1bz"/>
                         <outlet property="profileTrayView" destination="773-sl-Ouj" id="99g-JE-VtB"/>
                         <outlet property="timeline" destination="Re8-1B-Ztw" id="wZ0-3s-h0g"/>
                         <outlet property="timelineBackground" destination="OKc-jk-YOC" id="gmp-v9-Am3"/>
+                        <outlet property="timelineColorBackground" destination="7m2-FE-kxb" id="BDR-bc-Zf6"/>
                         <outlet property="trayViewButton" destination="7Kg-3C-d3Y" id="b1y-qV-Mdr"/>
                         <outlet property="userProfileImage" destination="Pln-BB-Fu7" id="GFh-W7-O5x"/>
                     </connections>
@@ -678,6 +680,7 @@
                         <outlet property="collectionView" destination="K3v-bl-nao" id="9iU-cJ-qB5"/>
                         <outlet property="kicksLabel" destination="d0S-tL-Nt6" id="38W-Yi-QQS"/>
                         <outlet property="nameLabel" destination="oa3-Yh-XYE" id="75I-ZA-N7W"/>
+                        <outlet property="profileHeaderView" destination="oi0-xl-gXc" id="gIa-bK-s1C"/>
                         <outlet property="profilePicImageView" destination="aLu-bh-voR" id="9xq-Fm-6AJ"/>
                     </connections>
                 </viewController>
