@@ -16,4 +16,3 @@ target 'KickSwap' do
   pod 'DropDown'
   pod 'PagingMenuController'
 end
-
