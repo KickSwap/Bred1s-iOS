@@ -12,6 +12,7 @@ import ChameleonFramework
 import IBAnimatable
 import SnapKit
 import PagingMenuController
+import AFNetworking
 
 class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, TextDelegate, TextViewDelegate, PagingMenuControllerDelegate {
     
@@ -29,14 +30,16 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     @IBOutlet var profileName: UILabel!
     
     
-    
+    var mainCollectionViewCellIndexPath: NSIndexPath?
     
     var trayOriginalCenter: CGPoint!
     var tapCount = 0
     
     var shoeTimeline: [Shoe]?
+    var allUsers: [User]?
     let backgroundImages = [UIImage(named:"blackBox"),UIImage(named:"boxStack"),UIImage(named:"greenBox")]
     var pictureIndex:Int?
+    var visibleUser: User?
     
 
     /// A Text storage object that monitors the changes within the textView.
@@ -51,8 +54,10 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         prefersStatusBarHidden()
         timeline.dataSource = self
         timeline.delegate = self
-        userProfileImage.image = UIImage(named: "JHarden")
-        userProfileImage.clipsToBounds = true
+//        visibleUser = FirebaseClient.getUserById(shoeTimeline![0].ownerId!)
+//        userProfileImage.setImageWithURL(NSURL(string: (visibleUser?.profilePicUrl)!)!)
+//        userProfileImage.clipsToBounds = true
+//        profileName.text = visibleUser?.displayName
         prepareView()
         prepareTextView()
         addToolBar(textView)
@@ -64,7 +69,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         
         //start timer
         var timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: Selector("loadImage"), userInfo: nil, repeats: true)
-
+        
     }
     
     func loadImage(){
@@ -362,7 +367,49 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
             }
             
             self.shoeTimeline = tempShoeArray
+            print(self.shoeTimeline![0].ownerId)
+            self.getUserById(self.shoeTimeline![0].ownerId!)
+            //print(self.visibleUser)
             self.timeline.reloadData()
+            
+            }, withCancelBlock: { error in
+                print(error.description)
+        })
+        
+    }
+    
+    func getUserById(userId: String) {
+            // Get a reference to our posts
+            let userRef = FirebaseClient.getRefWith("users")
+    
+//            userRef.queryOrderedByChild("id").queryEqualToValue(userId)
+//                .observeEventType(.Value, withBlock: { snapshot in
+//                    var tempUser: User?
+//                    print(snapshot.value)
+//                    tempUser = User(dictionary: snapshot.value as! NSDictionary)
+//                    self.visibleUser = tempUser
+//                }, withCancelBlock: { error in
+//                    print(error.description)
+//            })
+        
+            //return correctUser!
+        
+        userRef.observeEventType(.Value, withBlock: { snapshot in
+            var tempUser: User?
+            let dict = snapshot.value as! NSDictionary
+            for x in dict {
+                var userToAppend = User(dictionary: x.value as! NSDictionary)
+                if "facebook:\(userToAppend.uid!)" == userId {
+                    tempUser = userToAppend
+                }
+            }
+            
+            self.visibleUser = tempUser
+            print(self.visibleUser)
+            
+            self.userProfileImage.setImageWithURL(NSURL(string: (self.visibleUser?.profilePicUrl)!)!)
+            self.userProfileImage.clipsToBounds = true
+            self.profileName.text = self.visibleUser?.displayName
             
             }, withCancelBlock: { error in
                 print(error.description)
@@ -375,6 +422,23 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         UIView.transitionWithView(profileTrayView, duration: 1, options: UIViewAnimationOptions.TransitionFlipFromBottom, animations: { self.profileTrayView = self.profileTrayView}, completion: { (value: Bool) in
             //self.profileTrayView.alpha = 1
         })
+    }
+    
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        var currentCellCenter = CGPointMake(self.timeline.center.x + self.timeline.contentOffset.x,
+            self.timeline.center.y + self.timeline.contentOffset.y)
+        
+        self.mainCollectionViewCellIndexPath = self.timeline.indexPathForItemAtPoint(currentCellCenter)
+        
+        print(mainCollectionViewCellIndexPath)
+        
+        //var cellInViewIndex = Int(mainCollectionViewCellIndexPath.row)
+        
+        getUserById(shoeTimeline![(mainCollectionViewCellIndexPath?.row)!].ownerId!)
+        userProfileImage.setImageWithURL(NSURL(string: (visibleUser?.profilePicUrl)!)!)
+        userProfileImage.clipsToBounds = true
+        profileName.text = visibleUser?.displayName
+        
     }
     
     //initiate theme
