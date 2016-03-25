@@ -33,12 +33,15 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         profilePicImageView.clipsToBounds = true
         
         nameLabel.text = User.currentUser?.displayName
-        nameLabel.textColor = textColor
-        profileHeaderView.backgroundColor = profileHeaderColor
-        self.view.backgroundColor = timelineBackgroundColor
+    
         profilePicImageView.setImageWithURL(NSURL(string: (User.currentUser?.profilePicUrl)!)!)
         getShoes()
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        layoutTheme()
+        profileHeaderView.setNeedsLayout()
     }
 
     override func didReceiveMemoryWarning() {
@@ -89,13 +92,20 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             self.allShoes = tempShoeArray
             //self.filterShoes(tempShoeArray)
             self.kicksLabel.text = "\(tempShoeArray.count)"
-            self.kicksLabel.textColor = textColor
+            
             self.collectionView.reloadData()
             
             }, withCancelBlock: { error in
                 print(error.description)
         })
         
+    }
+    
+    func layoutTheme() {
+        self.kicksLabel.textColor = textColor
+        nameLabel.textColor = textColor
+        profileHeaderView.backgroundColor = profileHeaderColor
+        self.view.backgroundColor = timelineBackgroundColor
     }
     
 

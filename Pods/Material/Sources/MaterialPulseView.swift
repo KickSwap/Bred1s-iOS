@@ -35,7 +35,7 @@ public class MaterialPulseView : MaterialView {
 	public lazy var pulseScale: Bool = true
 	
 	/// The opcaity value for the pulse animation.
-	public var pulseColorOpacity: CGFloat = 0.25
+	public var pulseColorOpacity: CGFloat = 0.5
 	
 	/// The color of the pulse effect.
 	public var pulseColor: UIColor?
@@ -99,7 +99,7 @@ public class MaterialPulseView : MaterialView {
 	*/
 	public override func prepareView() {
 		super.prepareView()
-		pulseColor = MaterialColor.white
+		//pulseColor = UIColor.whiteColor()
 	}
 	
 	/**

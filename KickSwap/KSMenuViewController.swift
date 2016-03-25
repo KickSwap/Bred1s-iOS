@@ -44,6 +44,10 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
         //To prevent unwrapping nil in setmainbtnimage()
         //menuButtonImage = "ic_buy_white"
 	}
+    
+    override func viewWillAppear(animated: Bool) {
+        
+    }
 
 	/// Loads the BlueViewController into the menuViewControllers mainViewController.
 	func handleBlueButton() {
@@ -99,6 +103,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 		var image: UIImage? = UIImage(named: "ic_buy_white")
 		let btn1: FabButton = FabButton()
         btn1.backgroundColor = menuButtonsColor
+        btn1.pulseColor = pulseColor
 		btn1.setImage(image, forState: .Normal)
 		btn1.setImage(image, forState: .Highlighted)
 		btn1.addTarget(self, action: "onTap:", forControlEvents: .TouchUpInside)

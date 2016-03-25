@@ -61,6 +61,10 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         pictureIndex = 0
         timelineBackground.image = backgroundImages[pictureIndex!]
         
+        layoutTheme()
+        self.profileTrayView.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo((profileTrayView.superview?.frame.height)! * 0.82).constraint
+        }
         
         //start timer
         var timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: Selector("loadImage"), userInfo: nil, repeats: true)
@@ -377,10 +381,12 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         })
     }
     
+    
     //initiate theme
     func layoutTheme() {
         self.timelineColorBackground.backgroundColor = timelineBackgroundColor
         self.profileTrayView.backgroundColor = profileTrayViewColor
+        self.profileTrayView.pulseColor = pulseColor
         //trayViewButton.setBackgroundImage(UIImage(named: ""), forState: .Normal)
         //trayViewButton.setBackgroundImage(UIImage(named: ""), forState: .Highlighted)
         profileName.textColor = textColor

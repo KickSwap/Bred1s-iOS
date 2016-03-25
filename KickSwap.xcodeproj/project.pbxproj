@@ -21,6 +21,8 @@
 		0256D3141C9978FD00B8CD4B /* SoleCollectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D3131C9978FD00B8CD4B /* SoleCollectorViewController.swift */; };
 		0256D3161C99790E00B8CD4B /* MJisBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D3151C99790E00B8CD4B /* MJisBackViewController.swift */; };
 		0256D3181C997C4E00B8CD4B /* SwiftWebVC.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0256D3171C997C4E00B8CD4B /* SwiftWebVC.bundle */; };
+		0262DDFB1CA4A5D500322D89 /* KSThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262DDFA1CA4A5D500322D89 /* KSThemesViewController.swift */; };
+		0262DDFD1CA4A74300322D89 /* ThemesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262DDFC1CA4A74300322D89 /* ThemesTableViewCell.swift */; };
 		02A3ACE11C9EFEBF00D429ED /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A3ACE01C9EFEBF00D429ED /* Themes.swift */; };
 		02DED1CE1C91D3460098DA39 /* KSTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DED1CD1C91D3450098DA39 /* KSTabBarController.swift */; };
 		02DED1D01C91D3740098DA39 /* KSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DED1CF1C91D3740098DA39 /* KSNavigationController.swift */; };
@@ -63,6 +65,8 @@
 		0256D3131C9978FD00B8CD4B /* SoleCollectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoleCollectorViewController.swift; sourceTree = "<group>"; };
 		0256D3151C99790E00B8CD4B /* MJisBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MJisBackViewController.swift; sourceTree = "<group>"; };
 		0256D3171C997C4E00B8CD4B /* SwiftWebVC.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SwiftWebVC.bundle; sourceTree = "<group>"; };
+		0262DDFA1CA4A5D500322D89 /* KSThemesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSThemesViewController.swift; sourceTree = "<group>"; };
+		0262DDFC1CA4A74300322D89 /* ThemesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemesTableViewCell.swift; sourceTree = "<group>"; };
 		02A3ACE01C9EFEBF00D429ED /* Themes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
 		02DED1CD1C91D3450098DA39 /* KSTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTabBarController.swift; sourceTree = "<group>"; };
 		02DED1CF1C91D3740098DA39 /* KSNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSNavigationController.swift; sourceTree = "<group>"; };
@@ -210,6 +214,7 @@
 				02DED1CF1C91D3740098DA39 /* KSNavigationController.swift */,
 				0256D2BB1C95988700B8CD4B /* ProfileViewController.swift */,
 				0256D2BD1C95989300B8CD4B /* DetailViewController.swift */,
+				0262DDFA1CA4A5D500322D89 /* KSThemesViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -222,6 +227,7 @@
 				024327021C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift */,
 				A198C0601C82136B001C69E0 /* KSProfileCollectionViewCell.swift */,
 				0256D2BF1C95A35C00B8CD4B /* TimelineDetailTableViewCell.swift */,
+				0262DDFC1CA4A74300322D89 /* ThemesTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -368,6 +374,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0256D30B1C99775800B8CD4B /* SwiftWebVCActivityChrome.swift in Sources */,
+				0262DDFD1CA4A74300322D89 /* ThemesTableViewCell.swift in Sources */,
 				47BBC0FA1C7E8B6D007DFF67 /* GreenViewController.swift in Sources */,
 				47AE58831C75730A007AB49E /* Firebase.swift in Sources */,
 				47B90F051C7F6F9B006B4BD6 /* KSCaptureViewController.swift in Sources */,
@@ -377,6 +384,7 @@
 				0256D2BE1C95989300B8CD4B /* DetailViewController.swift in Sources */,
 				47AE58801C756A42007AB49E /* User.swift in Sources */,
 				A198C0611C82136B001C69E0 /* KSProfileCollectionViewCell.swift in Sources */,
+				0262DDFB1CA4A5D500322D89 /* KSThemesViewController.swift in Sources */,
 				024327011C7CA881009893B8 /* KSTimelineCollectionViewCell.swift in Sources */,
 				0256D2BC1C95988700B8CD4B /* ProfileViewController.swift in Sources */,
 				024327031C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift in Sources */,
