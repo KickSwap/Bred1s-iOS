@@ -44,6 +44,8 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     
     /// A TextView UI Component.
     var textView: TextView!
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,11 +62,6 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         //set image initially
         pictureIndex = 0
         timelineBackground.image = backgroundImages[pictureIndex!]
-        
-        layoutTheme()
-        self.profileTrayView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo((profileTrayView.superview?.frame.height)! * 0.82).constraint
-        }
         
         //start timer
         var timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: Selector("loadImage"), userInfo: nil, repeats: true)
@@ -87,6 +84,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         Style.loadTheme()
         layoutTheme()
         self.profileTrayView.snp_makeConstraints { (make) -> Void in
@@ -121,6 +119,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     }
     
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         // set initial tray view location
         self.profileTrayView.snp_makeConstraints { (make) -> Void in
             make.top.equalTo((profileTrayView.superview?.frame.height)! * 0.82).constraint

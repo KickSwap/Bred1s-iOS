@@ -573,7 +573,7 @@
                                         <rect key="frame" x="91" y="25" width="57" height="30"/>
                                         <state key="normal" title="Settings"/>
                                         <connections>
-                                            <segue destination="hdq-b8-uJ6" kind="presentation" id="wZD-W8-2jW"/>
+                                            <segue destination="hdq-b8-uJ6" kind="show" id="AEi-rp-nbf"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -760,7 +760,7 @@
                                 <rect key="frame" x="5" y="5" width="73" height="30"/>
                                 <state key="normal" title="Customize"/>
                                 <connections>
-                                    <action selector="dissmissView:" destination="hdq-b8-uJ6" eventType="touchUpInside" id="SKd-Hx-hgF"/>
+                                    <segue destination="wZX-nN-wIk" kind="unwind" unwindAction="customizeTapped:" id="438-8m-kyf"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current Theme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRk-P5-QWa">
@@ -789,6 +789,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WOO-pb-L0f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="wZX-nN-wIk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1985.5" y="1214.5"/>
         </scene>

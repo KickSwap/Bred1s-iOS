@@ -108,6 +108,10 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         self.view.backgroundColor = timelineBackgroundColor
     }
     
+    @IBAction func customizeTapped(sender: UIStoryboardSegue) {
+        layoutTheme()
+    }
+    
 
     /*
     // MARK: - Navigation
