@@ -17,6 +17,7 @@ Time spent: X hours spent in total
 ###### Tier 2
 - [X] User can look up the newest releases and see other sneaker related news (vote for cop or not)
 - [X] User can get more information on a certain sneaker coming out soon or that has been previously released
+- [X] User can change app themes 
 - [ ] User can accept bid on sneaker then negotiate terms and meetup locations for transaction in private chat 
 
 #### The following **optional** features are implemented:
@@ -25,7 +26,7 @@ Time spent: X hours spent in total
 - [ ] User can set meetup point using Google Maps api inside private chat room
 - [ ] User can send Venmo request via chat room when transaction is about to occur
 - [ ] User will recieve push notifications for any activity with bids, chat, and news if permissions allow
-- [ ] User can change app themes 
+
 
 ## Video Walkthrough
 
