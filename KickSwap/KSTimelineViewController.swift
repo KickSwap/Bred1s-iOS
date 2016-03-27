@@ -13,6 +13,7 @@ import IBAnimatable
 import SnapKit
 import PagingMenuController
 import AFNetworking
+import Firebase
 
 class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, TextDelegate, TextViewDelegate, PagingMenuControllerDelegate {
     

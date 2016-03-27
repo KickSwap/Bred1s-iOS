@@ -9,6 +9,7 @@
 import UIKit
 import Material
 import DropDown
+import Firebase
 
 class KSConfirmViewController: UIViewController, MaterialSwitchDelegate {
     
