@@ -21,8 +21,7 @@
 		0256D3141C9978FD00B8CD4B /* SoleCollectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D3131C9978FD00B8CD4B /* SoleCollectorViewController.swift */; };
 		0256D3161C99790E00B8CD4B /* MJisBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D3151C99790E00B8CD4B /* MJisBackViewController.swift */; };
 		0256D3181C997C4E00B8CD4B /* SwiftWebVC.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0256D3171C997C4E00B8CD4B /* SwiftWebVC.bundle */; };
-		0256D2BC1C95988700B8CD4B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D2BB1C95988700B8CD4B /* ProfileViewController.swift */; };
-		0256D2BE1C95989300B8CD4B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D2BD1C95989300B8CD4B /* DetailViewController.swift */; };
+		02A3ACE11C9EFEBF00D429ED /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A3ACE01C9EFEBF00D429ED /* Themes.swift */; };
 		02DED1CE1C91D3460098DA39 /* KSTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DED1CD1C91D3450098DA39 /* KSTabBarController.swift */; };
 		02DED1D01C91D3740098DA39 /* KSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DED1CF1C91D3740098DA39 /* KSNavigationController.swift */; };
 		471282931C7E15170007855B /* LogoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471282921C7E15170007855B /* LogoButton.swift */; };
@@ -64,8 +63,7 @@
 		0256D3131C9978FD00B8CD4B /* SoleCollectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoleCollectorViewController.swift; sourceTree = "<group>"; };
 		0256D3151C99790E00B8CD4B /* MJisBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MJisBackViewController.swift; sourceTree = "<group>"; };
 		0256D3171C997C4E00B8CD4B /* SwiftWebVC.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SwiftWebVC.bundle; sourceTree = "<group>"; };
-		0256D2BB1C95988700B8CD4B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		0256D2BD1C95989300B8CD4B /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		02A3ACE01C9EFEBF00D429ED /* Themes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
 		02DED1CD1C91D3450098DA39 /* KSTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTabBarController.swift; sourceTree = "<group>"; };
 		02DED1CF1C91D3740098DA39 /* KSNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSNavigationController.swift; sourceTree = "<group>"; };
 		471282921C7E15170007855B /* LogoButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoButton.swift; sourceTree = "<group>"; };
@@ -132,6 +130,14 @@
 			name = SwiftWebVC;
 			sourceTree = "<group>";
 		};
+		02A3ACDF1C9EFEAC00D429ED /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				02A3ACE01C9EFEBF00D429ED /* Themes.swift */,
+			);
+			name = Themes;
+			sourceTree = "<group>";
+		};
 		477970D01C630306000F1196 = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +159,7 @@
 		477970DB1C630306000F1196 /* KickSwap */ = {
 			isa = PBXGroup;
 			children = (
+				02A3ACDF1C9EFEAC00D429ED /* Themes */,
 				47AE58811C7572F5007AB49E /* Clients */,
 				47BBC0FD1C7EC4EB007DFF67 /* Views */,
 				47AE587E1C756A2D007AB49E /* Models */,
@@ -377,6 +384,7 @@
 				A198C05F1C820287001C69E0 /* KSProfileViewController.swift in Sources */,
 				0256D2C01C95A35C00B8CD4B /* TimelineDetailTableViewCell.swift in Sources */,
 				47AE58881C769904007AB49E /* Shoe.swift in Sources */,
+				02A3ACE11C9EFEBF00D429ED /* Themes.swift in Sources */,
 				47BBC0FC1C7E8B6D007DFF67 /* KSMenuViewController.swift in Sources */,
 				0256D30E1C99775800B8CD4B /* SwiftWebVC.swift in Sources */,
 				0256D3141C9978FD00B8CD4B /* SoleCollectorViewController.swift in Sources */,

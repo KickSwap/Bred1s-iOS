@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Pre-load webviews
 //        let news = storyboard.instantiateViewControllerWithIdentifier("KSNewsViewController") as UIViewController
 //        news.viewDidLayoutSubviews()
+        Style.loadTheme()
         
         //Handle user logout and subscribe to event
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)

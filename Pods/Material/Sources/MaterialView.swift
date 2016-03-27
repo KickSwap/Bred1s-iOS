@@ -445,7 +445,7 @@ public class MaterialView : UIView {
 	*/
 	public func prepareView() {
 		prepareVisualLayer()
-		backgroundColor = MaterialColor.white
+		//backgroundColor = MaterialColor.white
 	}
 	
 	/// Prepares the visualLayer property.

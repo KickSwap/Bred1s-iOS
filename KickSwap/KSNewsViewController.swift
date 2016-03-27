@@ -33,14 +33,14 @@ class KSNewsViewController: UIViewController, PagingMenuControllerDelegate {
         //Customizing Paging Menu Controller
         let options = PagingMenuOptions()
         options.defaultPage = 0
-        options.backgroundColor = UIColor(hexString: "FB6E39")
-        options.selectedBackgroundColor = UIColor(hexString: "FB6E39")
-        options.textColor = UIColor.lightGrayColor()
-        options.selectedTextColor = UIColor.whiteColor()
+        options.backgroundColor = pagingMenuBackgroundColor!
+        options.selectedBackgroundColor = pagingMenuSelectedBackgroundColor!
+        options.textColor = pagingMenuTextColor!
+        options.selectedTextColor = pagingMenuSelectedTextColor!
         options.font = RobotoFont.bold
         options.selectedFont = RobotoFont.bold
         options.menuHeight = 50
-        options.menuItemMode = .Underline(height: 5, color: UIColor.whiteColor(), horizontalPadding: 0, verticalPadding: 0)
+        options.menuItemMode = .Underline(height: 5, color: pagingMenuUnderlineColor!, horizontalPadding: 0, verticalPadding: 0)
         //options.menuPosition = .Bottom
         pagingMenuController.delegate = self
         options.menuDisplayMode = .SegmentedControl

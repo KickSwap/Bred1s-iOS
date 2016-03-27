@@ -36,6 +36,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 		super.viewDidLoad()
 		prepareView()
 		prepareMenuView()
+        Style.loadTheme()
         
         //To prevent redundant segue, close menu properly
         self.currentView = "buy"
@@ -97,7 +98,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 	private func prepareMenuView() {
 		var image: UIImage? = UIImage(named: "ic_buy_white")
 		let btn1: FabButton = FabButton()
-        btn1.backgroundColor = UIColor(hexString: "FB6E39")
+        btn1.backgroundColor = menuButtonsColor
 		btn1.setImage(image, forState: .Normal)
 		btn1.setImage(image, forState: .Highlighted)
 		btn1.addTarget(self, action: "onTap:", forControlEvents: .TouchUpInside)
@@ -108,7 +109,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 
 		image = UIImage(named: "ic_sell_icon")
 		let btn2: FabButton = FabButton()
-		btn2.backgroundColor = UIColor(hexString: "FB6E39")
+		btn2.backgroundColor = menuButtonsColor
 		btn2.setImage(image, forState: .Normal)
 		btn2.setImage(image, forState: .Highlighted)
 		menuView.addSubview(btn2)
@@ -116,7 +117,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 
 		image = UIImage(named: "ic_news_white")
 		let btn3: FabButton = FabButton()
-		btn3.backgroundColor = UIColor(hexString: "FB6E39")
+		btn3.backgroundColor = menuButtonsColor
 		btn3.setImage(image, forState: .Normal)
 		btn3.setImage(image, forState: .Highlighted)
 		menuView.addSubview(btn3)
@@ -124,7 +125,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 
 		image = UIImage(named: "ic_buy_white")
 		let btn4: FabButton = FabButton()
-		btn4.backgroundColor = UIColor(hexString: "FB6E39")
+		btn4.backgroundColor = menuButtonsColor
 		btn4.setImage(image, forState: .Normal)
 		btn4.setImage(image, forState: .Highlighted)
 		menuView.addSubview(btn4)
