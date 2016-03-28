@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Material
 
-class ThemesTableViewCell: UITableViewCell {
+class ThemesTableViewCell: MaterialTableViewCell {
 
     
     @IBOutlet var cellBackgroundImage: UIImageView!

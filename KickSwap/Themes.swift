@@ -28,6 +28,11 @@ var pagingMenuTextColor: UIColor?
 var pagingMenuSelectedTextColor: UIColor?
 var toolbarColor: UIColor?
 var textColor: UIColor?
+var palletteView1Color: UIColor?
+var palletteView2Color: UIColor?
+var palletteView3Color: UIColor?
+var palletteView4Color: UIColor?
+var palletteView5Color: UIColor?
 
 
 struct Style{
@@ -47,7 +52,13 @@ struct Style{
         let aluminum = UIColor(hexString: aluminumHex)
         let fuscousGray = UIColor(hexString: fuscousGrayHex)
         let black = UIColor(hexString: blackHex)
-        // MARK: ToDo Table Section Headers
+        
+        //Themes view controller pallette setup
+        palletteView1Color = quarts
+        palletteView2Color = inchWorm
+        palletteView3Color = aluminum
+        palletteView4Color = fuscousGray
+        palletteView5Color = black
         
         //KSTimeline Colors
         timelineBackgroundColor = GradientColor(UIGradientStyle.TopToBottom, frame: UIScreen.mainScreen().bounds, colors: [black, fuscousGray, aluminum, inchWorm])
@@ -99,7 +110,14 @@ struct Style{
         let watercourse = UIColor(hexString: watercourseHex)
         let cardinGreen = UIColor(hexString: cardinGreenHex)
         let darkJungleGreen = UIColor(hexString: darkJungleGreenHex)
-        // MARK: ToDo Table Section Headers
+        
+        //Themes view controller pallette setup
+        palletteView1Color = solitude
+        palletteView2Color = genoa
+        palletteView3Color = watercourse
+        palletteView4Color = cardinGreen
+        palletteView5Color = darkJungleGreen
+        
         
         //KSTimeline Colors
         timelineBackgroundColor = GradientColor(UIGradientStyle.TopToBottom, frame: UIScreen.mainScreen().bounds, colors: [genoa, darkJungleGreen])
@@ -152,7 +170,13 @@ struct Style{
         let frenchBeige = UIColor(hexString: frenchBeigeHex)
         let tamarillo = UIColor(hexString: tamarilloHex)
         let blackPearl = UIColor(hexString: blackPearlHex)
-        // MARK: ToDo Table Section Headers
+        
+        //Themes view controller pallette setup
+        palletteView1Color = prim
+        palletteView2Color = shadyLady
+        palletteView3Color = frenchBeige
+        palletteView4Color = tamarillo
+        palletteView5Color = blackPearl
         
         //KSTimeline Colors
         timelineBackgroundColor = GradientColor(UIGradientStyle.TopToBottom, frame: UIScreen.mainScreen().bounds, colors: [frenchBeige, prim])
@@ -204,7 +228,13 @@ struct Style{
         let manatee = UIColor(hexString: manateeHex)
         let scooter = UIColor(hexString: scooterHex)
         //let blackPearl = UIColor(hexString: blackPearlHex)
-        // MARK: ToDo Table Section Headers
+        
+        //Themes view controller pallette setup
+        palletteView1Color = athensGray
+        palletteView2Color = pinkSwan
+        palletteView3Color = manatee
+        palletteView4Color = scooter
+        palletteView5Color = UIColor.clearColor()
         
         //KSTimeline Colors
         timelineBackgroundColor = GradientColor(UIGradientStyle.TopToBottom, frame: UIScreen.mainScreen().bounds, colors: [athensGray, scooter])
@@ -212,7 +242,9 @@ struct Style{
         trayViewButtonImage = UIImage(named: "")
         
         //KSTabBar Colors
-        tabBarTintColor = scooter
+        tabBarTintColor = UIColor.flatten(scooter)()
+        print(scooter)
+        print(UIColor.flatten(scooter)())
         tabBarBarTintColor = manatee
         
         //CollectionView Colors

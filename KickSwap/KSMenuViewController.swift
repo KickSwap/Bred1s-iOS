@@ -46,7 +46,8 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 	}
     
     override func viewWillAppear(animated: Bool) {
-        
+        prepareView()
+        prepareMenuView()
     }
 
 	/// Loads the BlueViewController into the menuViewControllers mainViewController.
@@ -100,7 +101,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 
 	/// Prepares the add button.
 	private func prepareMenuView() {
-		var image: UIImage? = UIImage(named: "ic_buy_white")
+		var image: UIImage? = UIImage(named: "view_carousel_white_24x24")
 		let btn1: FabButton = FabButton()
         btn1.backgroundColor = menuButtonsColor
         btn1.pulseColor = pulseColor
@@ -128,7 +129,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 		menuView.addSubview(btn3)
 		btn3.addTarget(self, action: "handleNewsBtn", forControlEvents: .TouchUpInside)
 
-		image = UIImage(named: "ic_buy_white")
+		image = UIImage(named: "view_carousel_white_24x24")
 		let btn4: FabButton = FabButton()
 		btn4.backgroundColor = menuButtonsColor
 		btn4.setImage(image, forState: .Normal)
@@ -210,7 +211,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 
     func handleBuyBtn() {
         
-        self.menuButtonImage = "ic_buy_white"
+        self.menuButtonImage = "view_carousel_white_24x24"
         self.setMainBtnImage()
 
         //check if user is already on this view

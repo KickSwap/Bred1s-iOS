@@ -314,6 +314,10 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         }
     }
     
+    func items() {
+        
+    }
+    
     func collectionView(timeline: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = timeline.dequeueReusableCellWithReuseIdentifier("TimelineCell", forIndexPath: indexPath) as! KSTimelineCollectionViewCell
         

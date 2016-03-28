@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import AFNetworking
+import WYInteractiveTransitions
+import Material
 
 class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -18,6 +20,7 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var profilePicImageView: UIImageView!
     
     
+    @IBOutlet var themesButton: FlatButton!
     @IBOutlet var profileHeaderView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var kicksLabel: UILabel!
@@ -108,8 +111,29 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         self.view.backgroundColor = timelineBackgroundColor
     }
     
-    @IBAction func customizeTapped(sender: UIStoryboardSegue) {
-        layoutTheme()
+    let transitionMgr = WYInteractiveTransitions()
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "themeSegue" {
+            let toView = segue.destinationViewController as? KSThemesViewController
+            transitionMgr.configureTransition(0.5, toViewController: toView!,
+                handGestureEnable: true, transitionType: WYTransitoinType.Zoom)
+        }
+    }
+    
+    // Unwind Segue
+    @IBAction func customizeTapped(segue: UIStoryboardSegue, sender: UIStoryboardSegue) {
+        //Figure out destination view controller, currently its timeline
+//        let toView = segue.destinationViewController as? KSProfileViewController
+//        
+//        transitionMgr.configureTransition(0.5, toViewController: self,
+//                    handGestureEnable: true, transitionType: WYTransitoinType.Zoom)
+        //layoutTheme()
+    }
+    
+    func themesButtonLayout() {
+        themesButton.titleLabel?.text = "Themes"
+        themesButton.titleLabel?.textColor = MaterialColor.grey.darken2
+        themesButton.backgroundColor = MaterialColor.grey.lighten2
     }
     
 

@@ -21,6 +21,8 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.6.0)
   - Canvas (0.1.2)
+  - ChameleonFramework (2.1.0):
+    - ChameleonFramework/Default (= 2.1.0)
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
@@ -34,10 +36,12 @@ PODS:
   - Material (1.35.3)
   - PagingMenuController (0.8.0)
   - SnapKit (0.19.1)
+  - WYInteractiveTransitions (1.0.2)
 
 DEPENDENCIES:
   - AFNetworking
   - Canvas
+  - ChameleonFramework
   - ChameleonFramework/Swift
   - DropDown
   - FBSDKCoreKit
@@ -47,6 +51,7 @@ DEPENDENCIES:
   - Material (~> 1.35.0)
   - PagingMenuController
   - SnapKit
+  - WYInteractiveTransitions (~> 1.0.2)
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
@@ -61,5 +66,6 @@ SPEC CHECKSUMS:
   Material: 2989ce92c519fbdc265525819c37df0851701c4c
   PagingMenuController: 1a9ff8ad0ab9704f215706997c1a624bc951f508
   SnapKit: eff58d6e3451bf2f482db2eccf86aecf371dc62d
+  WYInteractiveTransitions: d3d229c8d235d6a9473132a8290d56adadd0a528
 
 COCOAPODS: 0.39.0

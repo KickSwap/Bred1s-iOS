@@ -1,0 +1,6 @@
+framework module WYInteractiveTransitions {
+  umbrella header "WYInteractiveTransitions-umbrella.h"
+
+  export *
+  module * { export * }
+}
