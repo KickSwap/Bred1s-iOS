@@ -25,9 +25,6 @@ class KSThemesViewController: UIViewController, UITableViewDataSource, UITableVi
     
     //custom checkmark
     var selectedRow: NSIndexPath?
-    var checkmark: AnimatableImageView = AnimatableImageView(frame: CGRectMake(10, 10, 36, 36))
-    var noCheckmark: UIImageView = UIImageView(frame: CGRectMake(0, 0, 0, 0))
-    //var checkmarkImage = UIImage(named: "check_circle_white_96x96")
     
     var themeImageNamesArray = ["Air Max 95 Neon", "Jordan 1 Celtic", "Jordan 7 Olympic", "Nike Air Mags"]
     
@@ -47,6 +44,7 @@ class KSThemesViewController: UIViewController, UITableViewDataSource, UITableVi
         self.palletteView4.backgroundColor = palletteView4Color
         self.palletteView5.backgroundColor = palletteView5Color
         self.view.backgroundColor = UIColor.flatGrayColor()
+        currentThemeLabel.text = String(defaults.valueForKey("Theme")!)
         
     }
 
@@ -67,30 +65,26 @@ class KSThemesViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.selectionStyle = .None
         
         cell.cellBackgroundImage.image = UIImage(named: themeImageNamesArray[indexPath.row])
-        cell.themesLabel.text = themeImageNamesArray[indexPath.row]
+        cell.themesLabel.text = String(Style.availableThemes[indexPath.row])
         cell.themesLabel.textColor = UIColor.flatBlackColorDark()
         cell.themesLabel.font = RobotoFont.bold
-        self.checkmark.image = UIImage(named: "check_circle_white_96x96")
-        self.noCheckmark.image = UIImage(named: "")
-        //checkmark.alpha = 0
-        //tableView.cellForRowAtIndexPath(indexPath)?.accessoryView = self.checkmark
-        //cell.accessoryView = self.checkmark
+        var lastSelectedCell = defaults.valueForKey("lastSelected") as? Bool ?? false
+        if (lastSelectedCell) {
+            cell.checkmark.alpha = 1
+        }
+
         if indexPath == selectedRow {
             // set checkmark image
-//            UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0, initialSpringVelocity: 0, options: [], animations: { () -> Void in
-//                self.checkmark.alpha = 1
-//                }, completion: { (completed) -> Void in
-//            })
-            //cell.accessoryView = self.checkmark
-            //self.checkmark.alpha = 1
-//            self.checkmark.image = UIImage(named: "check_circle_white_96x96")
-//            cell.addSubview(checkmark)
+            UIView.animateWithDuration(2, delay: 0, usingSpringWithDamping: 0, initialSpringVelocity: 0, options: [], animations: { () -> Void in
+                cell.checkmark.alpha = 1
+                }, completion: { (completed) -> Void in
+            })
         } else {
             // set no image
-//            UIView.animateWithDuration(1, delay: 0, options: [], animations: { () -> Void in
-//                self.checkmark.alpha = 0
-//                }, completion: { (Bool) -> Void in
-//            })
+            UIView.animateWithDuration(2, delay: 0, options: [], animations: { () -> Void in
+                cell.checkmark.alpha = 0
+                }, completion: { (Bool) -> Void in
+            })
         }
     
         return cell
@@ -102,63 +96,51 @@ class KSThemesViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
-        //tableView.cellForRowAtIndexPath(indexPath)?.accessoryView = self.checkmark
-        
-//        UIView.animateWithDuration(2, delay: 0, usingSpringWithDamping: 0, initialSpringVelocity: 0, options: [], animations: { () -> Void in
-//            //tableView.cellForRowAtIndexPath(indexPath)?.accessoryView = self.checkmark
-//            //self.checkmark.alpha = 1
-//                            }, completion: { (completed) -> Void in
-//                        })
+
         defaults.setObject(Style.availableThemes[indexPath.row], forKey: "Theme")
         print(defaults.valueForKey("Theme"))
-        currentThemeLabel.text = themeImageNamesArray[indexPath.row]
+        currentThemeLabel.text = String(defaults.valueForKey("Theme")!)
         
         //Custom Checkmark
-//        let paths:[NSIndexPath]
-//        
-//        if let previous = selectedRow {
-//            paths = [indexPath, previous]
-//        } else {
-//            paths = [indexPath]
-//        }
-//        selectedRow = indexPath
-//        tableView.reloadRowsAtIndexPaths(paths, withRowAnimation: .None)
+        let paths:[NSIndexPath]
+        
+        if let previous = selectedRow {
+            paths = [indexPath, previous]
+        } else {
+            paths = [indexPath]
+        }
+        selectedRow = indexPath
+        defaults.setInteger(indexPath.row, forKey: "lastSelected")
+        tableView.reloadRowsAtIndexPaths(paths, withRowAnimation: .None)
 
         Style.loadTheme()
         
         //Pallette Animations
-//        UIView.animateWithDuration(0.2, delay: 0, options: [], animations: { () -> Void in
-//            self.palletteView1.backgroundColor = palletteView1Color
-//            }, completion: { (Bool) -> Void in
-//                UIView.animateWithDuration(0.2, delay: 0, options: [], animations: { () -> Void in
-//                    self.palletteView2.backgroundColor = palletteView2Color
-//                    }, completion: { (Bool) -> Void in
-//                        UIView.animateWithDuration(0.2, delay: 0, options: [], animations: { () -> Void in
-//                            self.palletteView3.backgroundColor = palletteView3Color
-//                            }, completion: { (Bool) -> Void in
-//                                UIView.animateWithDuration(0.2, delay: 0, options: [], animations: { () -> Void in
-//                                    self.palletteView4.backgroundColor = palletteView4Color
-//                                    }, completion: { (Bool) -> Void in
-//                                        UIView.animateWithDuration(0.2, delay: 0, options: [], animations: { () -> Void in
-//                                            self.palletteView5.backgroundColor = palletteView5Color
-//                                        }, completion: nil)
-//                        })
-//                })
-//            })
-//        })
-        print("didnt make it")
+        UIView.animateWithDuration(0.2, delay: 0, options: [], animations: { () -> Void in
+            self.palletteView1.backgroundColor = palletteView1Color
+            }, completion: { (Bool) -> Void in
+                UIView.animateWithDuration(0.2, delay: 0, options: [], animations: { () -> Void in
+                    self.palletteView2.backgroundColor = palletteView2Color
+                    }, completion: { (Bool) -> Void in
+                        UIView.animateWithDuration(0.2, delay: 0, options: [], animations: { () -> Void in
+                            self.palletteView3.backgroundColor = palletteView3Color
+                            }, completion: { (Bool) -> Void in
+                                UIView.animateWithDuration(0.2, delay: 0, options: [], animations: { () -> Void in
+                                    self.palletteView4.backgroundColor = palletteView4Color
+                                    }, completion: { (Bool) -> Void in
+                                        UIView.animateWithDuration(0.2, delay: 0, options: [], animations: { () -> Void in
+                                            self.palletteView5.backgroundColor = palletteView5Color
+                                        }, completion: nil)
+                        })
+                })
+            })
+        })
+        
         
     }
     
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        //tableView.cellForRowAtIndexPath(indexPath)?.accessoryView = self.noCheckmark
-
-        UIView.animateWithDuration(2, delay: 0, usingSpringWithDamping: 0, initialSpringVelocity: 0, options: [], animations: { () -> Void in
-            //self.checkmark.alpha = 0
-            tableView.cellForRowAtIndexPath(indexPath)?.accessoryView = self.noCheckmark
-            }, completion: { (completed) -> Void in
-        })
+    
     }
 
     /*

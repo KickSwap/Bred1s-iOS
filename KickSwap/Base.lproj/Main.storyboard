@@ -720,19 +720,41 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TWQ-Kz-yYs">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TWQ-Kz-yYs">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="174" id="JRF-b4-kRW"/>
+                                                        <constraint firstAttribute="width" constant="375" id="fHl-HO-bFy"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Air Max 95 Neon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nmO-VM-nN3">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Air Max 95 Neon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nmO-VM-nN3">
                                                     <rect key="frame" x="232" y="145" width="135" height="21"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" red="0.60000002379999995" green="0.40000000600000002" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check_circle_white_96x96" translatesAutoresizingMaskIntoConstraints="NO" id="0vX-Sz-dGo">
+                                                    <rect key="frame" x="8" y="8" width="45" height="45"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="45" id="0zT-bJ-ifx"/>
+                                                        <constraint firstAttribute="width" constant="45" id="G9X-50-BxB"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="0vX-Sz-dGo" firstAttribute="leading" secondItem="Who-QJ-G7a" secondAttribute="leading" constant="8" id="5kl-pN-w72"/>
+                                                <constraint firstAttribute="trailing" secondItem="nmO-VM-nN3" secondAttribute="trailing" constant="8" id="Dkd-HS-mRk"/>
+                                                <constraint firstAttribute="trailing" secondItem="TWQ-Kz-yYs" secondAttribute="trailing" id="Tpx-dn-BWm"/>
+                                                <constraint firstAttribute="bottom" secondItem="nmO-VM-nN3" secondAttribute="bottom" constant="8" id="eCU-n0-NCd"/>
+                                                <constraint firstItem="0vX-Sz-dGo" firstAttribute="top" secondItem="Who-QJ-G7a" secondAttribute="top" constant="8" id="f3r-4J-yRM"/>
+                                                <constraint firstItem="TWQ-Kz-yYs" firstAttribute="leading" secondItem="Who-QJ-G7a" secondAttribute="leading" id="lwx-LV-9yj"/>
+                                                <constraint firstItem="TWQ-Kz-yYs" firstAttribute="top" secondItem="Who-QJ-G7a" secondAttribute="top" id="s8A-Ke-Ku0"/>
+                                                <constraint firstAttribute="bottom" secondItem="TWQ-Kz-yYs" secondAttribute="bottom" id="sqh-0p-Mwz"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="cellBackgroundImage" destination="TWQ-Kz-yYs" id="Qui-uI-XIr"/>
+                                            <outlet property="checkmark" destination="0vX-Sz-dGo" id="Ftl-L0-0h2"/>
                                             <outlet property="themesLabel" destination="nmO-VM-nN3" id="Zbz-GI-ihZ"/>
                                         </connections>
                                     </tableViewCell>
@@ -982,6 +1004,7 @@
         <image name="JHarden" width="210" height="210"/>
         <image name="Share_icon" width="21" height="18"/>
         <image name="account_circle_white_36x36" width="36" height="36"/>
+        <image name="check_circle_white_96x96" width="96" height="96"/>
         <image name="confirm_button" width="414" height="57"/>
         <image name="main-logo" width="240" height="163"/>
         <image name="nikeSB" width="500" height="333"/>

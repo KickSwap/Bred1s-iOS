@@ -274,20 +274,19 @@ struct Style{
         textColor = UIColor.whiteColor()
     }
     
-    static let availableThemes = ["Neon", "Celtics", "Olympics", "Air Mags"]
+    static let availableThemes = ["Air Max 95 Neon", "Jordan 1 Celtic", "Jordan 7 Olympic", "Nike Air Mags"]
     static func loadTheme() {
         let defaults = NSUserDefaults.standardUserDefaults()
-        //defaults.setObject("Olympics", forKey: "Theme")
+        //defaults.setObject("Air Max 95 Neon", forKey: "Theme")
         if let name = defaults.stringForKey("Theme"){
             // Select the Theme
-            if name == "Neon"		{ Style.themeNeon() }
-            if name == "Celtics" { themeCeltics() }
-            if name == "Olympics" { themeOlympics() }
-            if name == "Air Mags" { themeAirMags() }
+            if name == "Air Max 95 Neon"		{ themeNeon() }
+            if name == "Jordan 1 Celtic" { themeCeltics() }
+            if name == "Jordan 7 Olympic" { themeOlympics() }
+            if name == "Nike Air Mags" { themeAirMags() }
         }else{
-            defaults.setObject("Neon", forKey: "Theme")
+            defaults.setObject("Air Max 95 Neon", forKey: "Theme")
             themeNeon()
-            print("yes")
         }
     }
 }

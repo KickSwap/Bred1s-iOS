@@ -8,16 +8,19 @@
 
 import UIKit
 import Material
+import IBAnimatable
 
 class ThemesTableViewCell: MaterialTableViewCell {
 
     
     @IBOutlet var cellBackgroundImage: UIImageView!
     @IBOutlet var themesLabel: UILabel!
+    @IBOutlet var checkmark: AnimatableImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        checkmark.alpha = 0
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
