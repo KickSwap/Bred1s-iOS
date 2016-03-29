@@ -105,7 +105,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         let viewControllers = [detailViewController, profileViewController]
 
         //instantiate PagingMenuController and customization
-        //let pagingMenuController = self.childViewControllers.first as! PagingMenuController
+        let pagingMenuController = self.childViewControllers.first as! PagingMenuController
 
         let options = PagingMenuOptions()
         options.defaultPage = 0
@@ -118,10 +118,10 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         options.selectedFont = RobotoFont.bold
         options.menuItemMode = .Underline(height: 3, color: pagingMenuUnderlineColor!, horizontalPadding: 0, verticalPadding: 0)
         //options.menuPosition = .Bottom
-       // pagingMenuController.delegate = self
+        pagingMenuController.delegate = self
         options.menuDisplayMode = .SegmentedControl
         //(widthMode: .Flexible, centerItem: true, scrollingMode: .PagingEnabled)
-       // pagingMenuController.setup(viewControllers: viewControllers, options: options)
+        pagingMenuController.setup(viewControllers: viewControllers, options: options)
     }
 
     override func viewDidAppear(animated: Bool) {
