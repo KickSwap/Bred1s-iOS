@@ -12,8 +12,8 @@ class KSTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        Style.loadTheme()
-        self.selectedIndex = 1
+        //Style.loadTheme()
+        //self.selectedIndex = 1
 //        self.tabBar.tintColor = tabBarTintColor
 //        self.tabBar.barTintColor = tabBarBarTintColor
         
@@ -22,6 +22,10 @@ class KSTabBarController: UITabBarController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         layoutTheme()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
     }
 
     override func didReceiveMemoryWarning() {
