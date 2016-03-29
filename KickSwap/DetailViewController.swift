@@ -34,8 +34,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell = tableView.dequeueReusableCellWithIdentifier("TimelineDetailTableViewCell", forIndexPath: indexPath) as! TimelineDetailTableViewCell
         
         cell.shoeDetailedImage.image = UIImage(named: "blackYeezy")
-        
-        
+
         return cell
     }
 

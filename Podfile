@@ -15,4 +15,6 @@ target 'KickSwap' do
   pod 'AFNetworking'
   pod 'DropDown'
   pod 'PagingMenuController'
+  pod 'WYInteractiveTransitions', '~> 1.0.2'
+  pod 'ChameleonFramework'
 end
