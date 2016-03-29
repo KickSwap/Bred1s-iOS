@@ -32,7 +32,11 @@ Time spent: X hours spent in total
 
 Here's a walkthrough of implemented user stories:
 
+Sprint 1 & 2
 ![alt tag](https://raw.githubusercontent.com/KickSwap/Bred1s-iOS/master/kickswap.gif)
+
+Sprint 3
+![alt tag](https://raw.githubusercontent.com/KickSwap/Bred1s-iOS/master/kickswap_sprint3.gif)
 
 <!--![alt tag](https://raw.githubusercontent.com/hamtech-CodePath/Twitter/master/TwitterClient.gif)-->
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
