@@ -10,11 +10,11 @@ import Foundation
 class Release:Shoe {
     
     
-    override init(data: NSDictionary) {
-        super.init(data: data)
-    }
-    
-    override func getShoe() -> [String : String] {
-        
-    }
+//    override init(data: NSDictionary) {
+//        super.init(data: data)
+//    }
+//    
+//    override func getShoe() -> [String : String] {
+//        
+//    }
 }

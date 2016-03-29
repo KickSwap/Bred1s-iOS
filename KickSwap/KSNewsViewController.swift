@@ -19,7 +19,7 @@ class KSNewsViewController: UIViewController, PagingMenuControllerDelegate {
         
         //Instantiating Paging View Controllers
         let niceKicksViewController = self.storyboard?.instantiateViewControllerWithIdentifier("NiceKicksViewController") as! NiceKicksViewController
-        let JisBackViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MJisBackViewController") as! MJisBackViewController
+        let JisBackViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ReleaseNewsController") as! KSVoteViewController
         let soleCollectorViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SoleCollectorViewController") as! SoleCollectorViewController
         niceKicksViewController.title = "Nice Kicks"
         JisBackViewController.title = "Release Dates"

@@ -35,7 +35,7 @@ public class MaterialPulseView : MaterialView {
 	public lazy var pulseScale: Bool = true
 	
 	/// The opcaity value for the pulse animation.
-	public var pulseColorOpacity: CGFloat = 0.5
+	public var pulseColorOpacity: CGFloat = 0.25
 	
 	/// The color of the pulse effect.
 	public var pulseColor: UIColor?
@@ -99,7 +99,7 @@ public class MaterialPulseView : MaterialView {
 	*/
 	public override func prepareView() {
 		super.prepareView()
-		//pulseColor = UIColor.whiteColor()
+		pulseColor = MaterialColor.white
 	}
 	
 	/**
@@ -116,7 +116,7 @@ public class MaterialPulseView : MaterialView {
 			let d: CGFloat = 2 * f
 			let s: CGFloat = 1.05
 			
-			var t: CFTimeInterval = CFTimeInterval(1.5 * width / UIScreen.mainScreen().bounds.width)
+			var t: CFTimeInterval = CFTimeInterval(1.5 * width / MaterialDevice.bounds.width)
 			if 0.55 < t || 0.25 > t {
 				t = 0.55
 			}
@@ -159,7 +159,7 @@ public class MaterialPulseView : MaterialView {
 	/// Executes the shrink animation for the pulse effect.
 	internal func shrinkAnimation() {
 		if pulseScale {
-			var t: CFTimeInterval = CFTimeInterval(1.5 * width / UIScreen.mainScreen().bounds.width)
+			var t: CFTimeInterval = CFTimeInterval(1.5 * width / MaterialDevice.bounds.width)
 			if 0.55 < t || 0.25 > t {
 				t = 0.55
 			}

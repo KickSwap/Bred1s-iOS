@@ -135,8 +135,7 @@ public class MaterialLayer : CAShapeLayer {
 	/**
 	A floating point value that defines a ratio between the pixel
 	dimensions of the visualLayer's contents property and the size
-	of the layer. By default, this value is set to the UIScreen's
-	scale value, UIScreen.mainScreen().scale.
+	of the layer. By default, this value is set to the MaterialDevice.scale.
 	*/
 	public override var contentsScale: CGFloat {
 		didSet {
@@ -154,6 +153,17 @@ public class MaterialLayer : CAShapeLayer {
 		}
 	}
 	
+	/// Enables automatic shadowPath sizing.
+	public var shadowPathAutoSizeEnabled: Bool = false {
+		didSet {
+			if shadowPathAutoSizeEnabled {
+				layoutShadowPath()
+			} else {
+				shadowPath = nil
+			}
+		}
+	}
+	
 	/**
 	A property that sets the shadowOffset, shadowOpacity, and shadowRadius
 	for the backing layer. This is the preferred method of setting depth
@@ -165,6 +175,7 @@ public class MaterialLayer : CAShapeLayer {
 			shadowOffset = value.offset
 			shadowOpacity = value.opacity
 			shadowRadius = value.radius
+			layoutShadowPath()
 		}
 	}
 	
@@ -177,9 +188,6 @@ public class MaterialLayer : CAShapeLayer {
 		didSet {
 			if let v: MaterialRadius = cornerRadiusPreset {
 				cornerRadius = MaterialRadiusToValue(v)
-				if .Circle == shape {
-					shape = .None
-				}
 			}
 		}
 	}
@@ -191,6 +199,7 @@ public class MaterialLayer : CAShapeLayer {
 	*/
 	public override var cornerRadius: CGFloat {
 		didSet {
+			layoutShadowPath()
 			if .Circle == shape {
 				shape = .None
 			}
@@ -210,6 +219,7 @@ public class MaterialLayer : CAShapeLayer {
 				} else {
 					frame.size.height = width
 				}
+				layoutShadowPath()
 			}
 		}
 	}
@@ -297,14 +307,21 @@ public class MaterialLayer : CAShapeLayer {
 	if interrupted.
 	*/
 	public override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
-		if anim is CAPropertyAnimation {
+		if let a: CAPropertyAnimation = anim as? CAPropertyAnimation {
+			if let b: CABasicAnimation = a as? CABasicAnimation {
+				if let v: AnyObject = b.toValue {
+					if let k: String = b.keyPath {
+						setValue(v, forKeyPath: k)
+						removeAnimationForKey(k)
+					}
+				}
+			}
 			(delegate as? MaterialAnimationDelegate)?.materialAnimationDidStop?(anim, finished: flag)
 		} else if let a: CAAnimationGroup = anim as? CAAnimationGroup {
 			for x in a.animations! {
 				animationDidStop(x, finished: true)
 			}
 		}
-		layoutVisualLayer()
 	}
 	
 	/// Prepares the visualLayer property.
@@ -318,14 +335,29 @@ public class MaterialLayer : CAShapeLayer {
 	/// Manages the layout for the visualLayer property.
 	internal func layoutVisualLayer() {
 		visualLayer.frame = bounds
-		visualLayer.position = CGPointMake(width / 2, height / 2)
 		visualLayer.cornerRadius = cornerRadius
 	}
 	
 	/// Manages the layout for the shape of the layer instance.
 	internal func layoutShape() {
 		if .Circle == shape {
-			cornerRadius = width / 2
+			let w: CGFloat = (width / 2)
+			if w != cornerRadius {
+				cornerRadius = w
+			}
+		}
+	}
+	
+	/// Sets the shadow path.
+	internal func layoutShadowPath() {
+		if shadowPathAutoSizeEnabled {
+			if .None == depth {
+				shadowPath = nil
+			} else if nil == shadowPath {
+				shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).CGPath
+			} else {
+				animate(MaterialAnimation.shadowPath(UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).CGPath, duration: 0))
+			}
 		}
 	}
 }
