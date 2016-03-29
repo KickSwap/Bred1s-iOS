@@ -9,6 +9,7 @@
 import UIKit
 import Material
 import DropDown
+import Firebase
 
 class KSConfirmViewController: UIViewController, MaterialSwitchDelegate {
     
@@ -37,12 +38,12 @@ class KSConfirmViewController: UIViewController, MaterialSwitchDelegate {
         previewImageView.clipsToBounds = true
         detailsScrollView.contentSize = CGSize(width: detailsScrollView.frame.size.width, height: 375)
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(KSConfirmViewController.DismissKeyboard))
         view.addGestureRecognizer(tap)
         
         let closeButton: FlatButton = FlatButton(frame: CGRectMake(12, 30, 60, 30))
         closeButton.setImage(UIImage(named: "ic_close_white"), forState: .Normal)
-        closeButton.addTarget(self, action: "closePost", forControlEvents: UIControlEvents.TouchUpInside)
+        closeButton.addTarget(self, action: #selector(KSConfirmViewController.closePost), forControlEvents: UIControlEvents.TouchUpInside)
         
         view.addSubview(closeButton)
         
@@ -113,7 +114,7 @@ class KSConfirmViewController: UIViewController, MaterialSwitchDelegate {
         conditionButton.titleLabel?.font = RobotoFont.regularWithSize(16)
         conditionButton.setTitle("DS", forState: .Normal)
         conditionButton.setBackgroundImage(UIImage(named: "dropdown_menu"), forState: .Normal)
-        conditionButton.addTarget(self, action: "showOrDismissConditions:", forControlEvents: UIControlEvents.TouchUpInside)
+        conditionButton.addTarget(self, action: #selector(KSConfirmViewController.showOrDismissConditions(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         conditionDropDown.anchorView = conditionButton
         conditionDropDown.direction = .Bottom
@@ -145,7 +146,7 @@ class KSConfirmViewController: UIViewController, MaterialSwitchDelegate {
         sizeButton.titleLabel?.font = RobotoFont.regularWithSize(16)
         sizeButton.setTitle("Size", forState: .Normal)
         sizeButton.setBackgroundImage(UIImage(named: "dropdown_menu"), forState: .Normal)
-        sizeButton.addTarget(self, action: "showOrDismissSizes:", forControlEvents: UIControlEvents.TouchUpInside)
+        sizeButton.addTarget(self, action: #selector(KSConfirmViewController.showOrDismissSizes(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         sizeDropDown.anchorView = conditionButton
         sizeDropDown.direction = .Bottom

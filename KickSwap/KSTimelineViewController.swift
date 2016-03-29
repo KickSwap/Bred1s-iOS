@@ -12,6 +12,7 @@ import ChameleonFramework
 import IBAnimatable
 import SnapKit
 import PagingMenuController
+import Firebase
 
 class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, TextDelegate, TextViewDelegate, PagingMenuControllerDelegate {
     
@@ -64,13 +65,13 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         timelineBackground.image = backgroundImages[pictureIndex!]
         
         //start timer
-        var timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: Selector("loadImage"), userInfo: nil, repeats: true)
+        var timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: #selector(KSTimelineViewController.loadImage), userInfo: nil, repeats: true)
 
     }
     
     func loadImage(){
         //setImage2
-        var newIndex = pictureIndex!++
+        var newIndex = pictureIndex! + 1
         if newIndex > 1 {
             pictureIndex = 0
             newIndex = pictureIndex!
@@ -180,8 +181,8 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         toolBar.translucent = true
         toolBar.tintColor = UIColor(hexString: "FA4A07")
         //toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "discoverPressed")
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: "cancelPressed")
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: #selector(KSTimelineViewController.discoverPressed))
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(KSTimelineViewController.cancelPressed))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         toolBar.userInteractionEnabled = true
@@ -238,7 +239,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                     make.top.equalTo((profileTrayView.superview?.frame.height)! * 0.82)
                 }
                 //profileTrayView.superview?.userInteractionEnabled = true
-                tapCount++
+                tapCount += 1
                 profileTrayView.setNeedsLayout()
                 UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options:[] , animations: { () -> Void in
                     //self.trayView.center = self.trayDown
@@ -253,7 +254,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                 //ignoreView.hidden = false
                 textView.userInteractionEnabled = false
                 textView.hidden = true
-                tapCount++
+                tapCount += 1
                 profileTrayView.setNeedsLayout()
                 UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options:[] , animations: { () -> Void in
                     //self.trayView.center = self.trayUp
@@ -268,7 +269,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     
     @IBAction func onTapTrayViewButton(sender: AnyObject) {
         
-        tapCount++
+        tapCount += 1
         //print(tapCount)
         if tapCount % 2 == 0 {
             self.profileTrayView.snp_remakeConstraints { (make) -> Void in
@@ -331,7 +332,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     }
     
     func collectionView(timeline: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        tapCount++
+        tapCount += 1
         self.profileTrayView.snp_remakeConstraints { (make) -> Void in
             make.top.equalTo((profileTrayView.superview?.snp_top)!).offset(0).constraint
         }
