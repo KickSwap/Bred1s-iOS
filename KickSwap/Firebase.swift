@@ -193,6 +193,10 @@ class FirebaseClient: NSObject {
         })
     }
     
+    func getReleaseDate(completion:CompletionBlock.AnyObjArray)  {
+        let ref = getRefWith("")
+    }
+    
     func logOut() {
         return getRef().unauth()
     }

@@ -392,6 +392,9 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                 self.userProfileImage.setImageWithURL(NSURL(string: (self.visibleUser?.profilePicUrl)!)!)
                 self.userProfileImage.clipsToBounds = true
                 self.profileName.text = self.visibleUser?.displayName
+                self.userProfileImage.setImageWithURL(NSURL(string: (self.visibleUser?.profilePicUrl)!)!)
+                self.userProfileImage.clipsToBounds = true
+                self.profileName.text = self.visibleUser?.displayName
             } else { //bad ting dat :(
                 print(error)
             }
@@ -417,9 +420,6 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         //var cellInViewIndex = Int(mainCollectionViewCellIndexPath.row)
 
         getUserById(shoeTimeline![(mainCollectionViewCellIndexPath?.row)!].ownerId!)
-        userProfileImage.setImageWithURL(NSURL(string: (visibleUser?.profilePicUrl)!)!)
-        userProfileImage.clipsToBounds = true
-        profileName.text = visibleUser?.displayName
 
     }
 
