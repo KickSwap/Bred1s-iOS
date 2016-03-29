@@ -303,9 +303,7 @@ class KSConfirmViewController: UIViewController, MaterialSwitchDelegate {
     }
     
     func confirmSaveShoe(shoe: NSDictionary) {
-        let shoeRef = FirebaseClient.getRefWith("shoes")
-        let newShoe = shoeRef.childByAutoId()
-        newShoe.setValue(shoe)
+        FirebaseClient.sharedClient.saveShoes(Shoe(data:shoe))
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

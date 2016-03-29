@@ -13,12 +13,27 @@ protocol FirebaseLoginDelegate: class {
     func loginFailure(error: NSError?) -> Void
 }
 
+protocol FirebaseUserDelegate: class {
+    func getUsersCompletion(users: [String:NSObject]) -> Void
+}
+
+class CompletionBlock {
+    typealias StringArray = ([String]?, NSError?) -> Void
+    typealias KSUser = (User?, NSError?) -> Void
+    typealias KSUserArray = ([User]?, NSError?) -> Void
+    typealias AnyObjArray = ([AnyObject]?, NSError?) -> Void
+    typealias AnyObj = (AnyObject?, NSError?) -> Void
+}
+
 class FirebaseClient: NSObject {
     
     static let sharedClient = FirebaseClient()
     static let baseURL = "https://kickswap.firebaseio.com"
-
+    
     weak var loginDelegate: FirebaseLoginDelegate?
+    weak var userDelegate: FirebaseUserDelegate?
+    var array:[AnyObject]?
+    
     
     private class myURIs{
         //auth related calls
@@ -26,53 +41,80 @@ class FirebaseClient: NSObject {
         static let shoes = "shoes"
     }
     
-    static func getRef() -> AnyObject {
-        return Firebase(url: baseURL)
+    private func getRef() -> AnyObject {
+        return Firebase(url: FirebaseClient.baseURL)
     }
     
-    static func getUserRef() -> AnyObject {
-        return Firebase(url: "\(baseURL)/\(myURIs.users)")
+    private func getUserRef() -> AnyObject {
+        return Firebase(url: "\(FirebaseClient.baseURL)/\(myURIs.users)")
     }
     
-    static func getRefWith(child:String) -> AnyObject {
-        return Firebase(url: "\(baseURL)/\(child)")
+    private func getRefWith(child:String) -> AnyObject {
+        return Firebase(url: "\(FirebaseClient.baseURL)/\(child)")
     }
     
     /* Login w/ Facebook
-        - Register user into Firebase DB with FacebookID
-    */
+     - Register user into Firebase DB with FacebookID
+     */
     
     func loginWithFacebook(fbAccessToken:String) {
         //Authenticate with facebookID
-        FirebaseClient.getRef().authWithOAuthProvider("facebook", token: fbAccessToken,
-            withCompletionBlock: { error, authData in
-                if error != nil {
-                    print("Login failed. \(error)")
-                    self.loginDelegate?.loginFailure(error)
-                } else {
-                    //set global currentUser
-                    let newUser = User(data: authData)
-                    User.currentUser = newUser
-                    
-                    //set value back into Firebase
-                    FirebaseClient.saveUser(User.currentUser!)
-                    self.loginDelegate?.loginCompletion()
-            }
+        FirebaseClient.sharedClient.getRef().authWithOAuthProvider("facebook", token: fbAccessToken,
+                                                                   withCompletionBlock: { error, authData in
+                                                                    if error != nil {
+                                                                        print("Login failed. \(error)")
+                                                                        self.loginDelegate?.loginFailure(error)
+                                                                    } else {
+                                                                        //set global currentUser
+                                                                        let newUser = User(data: authData)
+                                                                        User.currentUser = newUser
+                                                                        
+                                                                        //set value back into Firebase
+                                                                        // FirebaseClient.saveUser(User.currentUser!)
+                                                                        self.loginDelegate?.loginCompletion()
+                                                                    }
         })
     }
     
-    static func saveUser(user: User){
+    func saveUser(user: User){
         //set User information into firebase
         getUserRef().childByAppendingPath(user.uid).setValue(user.providerData)
     }
     
-    static func checkIfUserExist(userToCheck:User) -> Bool {
+    func getUsers(completion:CompletionBlock.StringArray) {
+        let ref = getUserRef()
+        // Get the data on a post that has changed
+        ref.observeEventType(.Value, withBlock: { snapshot in
+            
+            //TODO: write actual NSError for empty snapshot
+            if (snapshot == nil) {
+                completion(nil, nil)
+                return
+            }
+            
+            let users = snapshot.value as! [String:NSObject] //get all Users
+            
+            var usernames = [String]()
+            
+            for key in users.keys {// Parse based upon Keys
+                if let profileInfo = users[key] as? [String:NSObject] {
+                    let profileName = profileInfo["displayName"] as! String
+                    usernames.append(profileName)
+                }
+            }
+            
+            completion(usernames, nil)
+            
+        })
+    }
+    
+    func checkIfUserExist(userToCheck:User) -> Bool {
         //return getUserRef().childSnapshotForPath("/\(userToCheck.uid)").exists()
         return true
     }
     
     //MARK: - KickSwap Methods
-    static func saveShoes(shoeToSave: Shoe){
+    func saveShoes(shoeToSave: Shoe){
         let shoeRef = getRefWith("shoes").childByAutoId()
         shoeRef.setValue(shoeToSave.getShoe())
         
@@ -80,12 +122,33 @@ class FirebaseClient: NSObject {
         //var shoeId = shoeRef.key
     }
     
-    static func getShoes() -> [Shoe] {
+    func getTimelineShoes(completion:CompletionBlock.AnyObjArray){
+        let ref = FirebaseClient.sharedClient.getRefWith("shoes")
+        // Attach a closure to read the data at our posts reference
+        ref.observeEventType(.Value, withBlock: { snapshot in
+            var tempShoeArray = [Shoe]()
+            let dict = snapshot.value as! NSDictionary
+            for x in dict {
+                let shoeToAppend = Shoe(data: x.value as! NSDictionary)
+                if(shoeToAppend.imageString != nil) {
+                    let decodedImageString = NSData(base64EncodedString: shoeToAppend.imageString as! String, options: NSDataBase64DecodingOptions(arrayLiteral: NSDataBase64DecodingOptions.IgnoreUnknownCharacters))
+                    let decodedImage = UIImage(data: decodedImageString!)
+                    shoeToAppend.shoeImage = decodedImage
+                    tempShoeArray.append(shoeToAppend)
+                }
+            }
+            
+            completion(tempShoeArray,nil) //send data back to controller
+            
+            }, withCancelBlock: { error in
+                print(error.description)
+                completion(nil,nil) //send data back to controller
+        })
+    }
+    
+    func getOwnersShoes(completion:CompletionBlock.AnyObjArray){
         // Get a reference to our posts
-        let shoeRef = FirebaseClient.getRefWith("shoes")
-        
-        var shoeArray = [Shoe]()
-        
+        let shoeRef = FirebaseClient.sharedClient.getRefWith("shoes")
         //let shoeRef = Firebase.init(url: "https://kickswap.firebaseio.com/shoes")
         
         // Attach a closure to read the data at our posts reference
@@ -93,61 +156,45 @@ class FirebaseClient: NSObject {
             var tempShoeArray = [Shoe]()
             let dict = snapshot.value as! NSDictionary
             for x in dict {
-                var shoeToAppend = Shoe(data: x.value as! NSDictionary)
-                if shoeToAppend.imageString != nil {
-                    var decodedImageString = NSData(base64EncodedString: shoeToAppend.imageString as! String, options: NSDataBase64DecodingOptions(arrayLiteral: NSDataBase64DecodingOptions.IgnoreUnknownCharacters))
-                    var decodedImage = UIImage(data: decodedImageString!)
+                let shoeToAppend = Shoe(data: x.value as! NSDictionary)
+                if shoeToAppend.ownerId == User.currentUser?.uid && shoeToAppend.imageString != nil {
+                    let decodedImageString = NSData(base64EncodedString: shoeToAppend.imageString as! String, options: NSDataBase64DecodingOptions(arrayLiteral: NSDataBase64DecodingOptions.IgnoreUnknownCharacters))
+                    let decodedImage = UIImage(data: decodedImageString!)
                     shoeToAppend.shoeImage = decodedImage
                     tempShoeArray.append(shoeToAppend)
                 }
             }
             
-            shoeArray = tempShoeArray
+            completion(tempShoeArray,nil) //send data back to controller
             
             }, withCancelBlock: { error in
                 print(error.description)
+                completion(nil,nil) //send data back to controller
         })
-     
-        return shoeArray
-    }
-//    
-//    static func getUserById(userId: String) -> User {
-//        // Get a reference to our posts
-//        let userRef = FirebaseClient.getRefWith("users")
-//        var correctUser: User?
-//        
-//        userRef.queryOrderedByChild("id").queryEqualToValue(userId)
-//            .observeEventType(.Value, withBlock: { snapshot in
-//                var tempUser: User?
-//                print(snapshot.key)
-//                correctUser = User(dictionary: snapshot.value as! NSDictionary)
-//                //correctUser = tempUser
-//            }, withCancelBlock: { error in
-//                print(error.description)
-//        })
-//    
-//        return correctUser!
-//    
-//    }
-    
-    
-    static func getUserById(userId: String) {
-        // Get a reference to our posts
-        let userRef = FirebaseClient.getRefWith("users")
-        var correctUser: User?
-        
-        userRef.queryOrderedByChild("id").queryEqualToValue(userId)
-            .observeEventType(.Value, withBlock: { snapshot in
-                var tempUser: User?
-                print(snapshot.key)
-                correctUser = User(dictionary: snapshot.value as! NSDictionary)
-                //correctUser = tempUser
-                }, withCancelBlock: { error in
-                    print(error.description)
-            })
-    
         
     }
-
-
+    
+    func getUserById(userId: String, completion:CompletionBlock.KSUser){
+        let userRef = getRefWith("users")
+        userRef.observeEventType(.Value, withBlock: { snapshot in
+            var tempUser: User?
+            let dict = snapshot.value as! NSDictionary
+            for x in dict {
+                var userToAppend = User(dictionary: x.value as! NSDictionary)
+                if "facebook:\(userToAppend.uid!)" == userId {
+                    tempUser = userToAppend
+                    completion(tempUser,nil)
+                }
+            }
+            
+            }, withCancelBlock: { error in
+                print(error.description)
+                completion(nil,error)
+        })
+    }
+    
+    func logOut() {
+        return getRef().unauth()
+    }
+    
 }

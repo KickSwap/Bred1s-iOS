@@ -352,76 +352,50 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 
     //MARK: - Firebase Get Methods
     func getShoesFromFirebase() {
-        //Correct way
-//        self.shoeTimeline = FirebaseClient.getShoes()
-
         // Get a reference to our posts
-        let shoeRef = FirebaseClient.getRefWith("shoes")
-
-        //let shoeRef = Firebase.init(url: "https://kickswap.firebaseio.com/shoes")
-
-        // Attach a closure to read the data at our posts reference
-        shoeRef.observeEventType(.Value, withBlock: { snapshot in
-            var tempShoeArray = [Shoe]()
-            let dict = snapshot.value as! NSDictionary
-            for x in dict {
-                var shoeToAppend = Shoe(data: x.value as! NSDictionary)
-                if shoeToAppend.imageString != nil {
-                    var decodedImageString = NSData(base64EncodedString: shoeToAppend.imageString as! String, options: NSDataBase64DecodingOptions(arrayLiteral: NSDataBase64DecodingOptions.IgnoreUnknownCharacters))
-                    var decodedImage = UIImage(data: decodedImageString!)
-                    shoeToAppend.shoeImage = decodedImage
-                    tempShoeArray.append(shoeToAppend)
-                }
+        FirebaseClient.sharedClient.getTimelineShoes({ (shoes, error) in
+            if error == nil {
+                self.shoeTimeline = shoes as! [Shoe]
+                self.timeline.reloadData()
+            } else {
+                print("Error: KSTimelineViewController.getShoes")
             }
-
-            self.shoeTimeline = tempShoeArray
-            print(self.shoeTimeline![0].ownerId)
-            self.getUserById(self.shoeTimeline![0].ownerId!)
-            //print(self.visibleUser)
-            self.timeline.reloadData()
-
-            }, withCancelBlock: { error in
-                print(error.description)
         })
-
     }
 
     func getUserById(userId: String) {
             // Get a reference to our posts
-            let userRef = FirebaseClient.getRefWith("users")
-
-//            userRef.queryOrderedByChild("id").queryEqualToValue(userId)
-//                .observeEventType(.Value, withBlock: { snapshot in
-//                    var tempUser: User?
-//                    print(snapshot.value)
-//                    tempUser = User(dictionary: snapshot.value as! NSDictionary)
-//                    self.visibleUser = tempUser
-//                }, withCancelBlock: { error in
-//                    print(error.description)
-//            })
-
-            //return correctUser!
-
-        userRef.observeEventType(.Value, withBlock: { snapshot in
-            var tempUser: User?
-            let dict = snapshot.value as! NSDictionary
-            for x in dict {
-                var userToAppend = User(dictionary: x.value as! NSDictionary)
-                if "facebook:\(userToAppend.uid!)" == userId {
-                    tempUser = userToAppend
-                }
+//            let userRef = FirebaseClient.getRefWith("users")
+//
+//        userRef.observeEventType(.Value, withBlock: { snapshot in
+//            var tempUser: User?
+//            let dict = snapshot.value as! NSDictionary
+//            for x in dict {
+//                var userToAppend = User(dictionary: x.value as! NSDictionary)
+//                if "facebook:\(userToAppend.uid!)" == userId {
+//                    tempUser = userToAppend
+//                }
+//            }
+//
+//            self.visibleUser = tempUser
+//            self.userProfileImage.setImageWithURL(NSURL(string: (self.visibleUser?.profilePicUrl)!)!)
+//            self.userProfileImage.clipsToBounds = true
+//            self.profileName.text = self.visibleUser?.displayName
+//
+//            }, withCancelBlock: { error in
+//                print(error.description)
+//        })
+        
+        FirebaseClient.sharedClient.getUserById(userId) { (user, error) in
+            if(error == nil){ //good tings..
+                self.visibleUser = user
+                self.userProfileImage.setImageWithURL(NSURL(string: (self.visibleUser?.profilePicUrl)!)!)
+                self.userProfileImage.clipsToBounds = true
+                self.profileName.text = self.visibleUser?.displayName
+            } else { //bad ting dat :(
+                print(error)
             }
-
-            self.visibleUser = tempUser
-            print(self.visibleUser)
-
-            self.userProfileImage.setImageWithURL(NSURL(string: (self.visibleUser?.profilePicUrl)!)!)
-            self.userProfileImage.clipsToBounds = true
-            self.profileName.text = self.visibleUser?.displayName
-
-            }, withCancelBlock: { error in
-                print(error.description)
-        })
+        }
 
     }
 

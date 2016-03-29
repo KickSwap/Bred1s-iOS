@@ -73,36 +73,16 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func getShoes() {
         // Get a reference to our posts
-        let shoeRef = FirebaseClient.getRefWith("shoes")
-        //let shoeRef = Firebase.init(url: "https://kickswap.firebaseio.com/shoes")
         
-        // Attach a closure to read the data at our posts reference
-        shoeRef.observeEventType(.Value, withBlock: { snapshot in
-            var tempShoeArray = [Shoe]()
-            let dict = snapshot.value as! NSDictionary
-            for x in dict {
-                var shoeToAppend = Shoe(data: x.value as! NSDictionary)
-                if shoeToAppend.ownerId == User.currentUser?.uid && shoeToAppend.imageString != nil {
-                    var decodedImageString = NSData(base64EncodedString: shoeToAppend.imageString as! String, options: NSDataBase64DecodingOptions(arrayLiteral: NSDataBase64DecodingOptions.IgnoreUnknownCharacters))
-                    var decodedImage = UIImage(data: decodedImageString!)
-                    shoeToAppend.shoeImage = decodedImage
-                    print(shoeToAppend.shoeImage)
-                    print(decodedImage)
-                    tempShoeArray.append(shoeToAppend)
-                }
+        FirebaseClient.sharedClient.getOwnersShoes({ (shoes, error) in
+            if(error == nil) { //good to go
+                self.allShoes = shoes as? [Shoe]
+                self.kicksLabel.text = "\(self.allShoes!.count)"
+                self.collectionView.reloadData()
+            } else { //bad ting that..
+                print("Error: In KSProfileViewController.GetShoes")
             }
-            
-            //print(tempShoeArray)
-            self.allShoes = tempShoeArray
-            //self.filterShoes(tempShoeArray)
-            self.kicksLabel.text = "\(tempShoeArray.count)"
-            
-            self.collectionView.reloadData()
-            
-            }, withCancelBlock: { error in
-                print(error.description)
         })
-        
     }
     
     func layoutTheme() {
