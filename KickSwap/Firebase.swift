@@ -17,7 +17,7 @@ class FirebaseClient: NSObject {
     
     static let sharedClient = FirebaseClient()
     static let baseURL = "https://kickswap.firebaseio.com"
-    
+
     weak var loginDelegate: FirebaseLoginDelegate?
     
     private class myURIs{
@@ -80,4 +80,74 @@ class FirebaseClient: NSObject {
         //var shoeId = shoeRef.key
     }
     
+    static func getShoes() -> [Shoe] {
+        // Get a reference to our posts
+        let shoeRef = FirebaseClient.getRefWith("shoes")
+        
+        var shoeArray = [Shoe]()
+        
+        //let shoeRef = Firebase.init(url: "https://kickswap.firebaseio.com/shoes")
+        
+        // Attach a closure to read the data at our posts reference
+        shoeRef.observeEventType(.Value, withBlock: { snapshot in
+            var tempShoeArray = [Shoe]()
+            let dict = snapshot.value as! NSDictionary
+            for x in dict {
+                var shoeToAppend = Shoe(data: x.value as! NSDictionary)
+                if shoeToAppend.imageString != nil {
+                    var decodedImageString = NSData(base64EncodedString: shoeToAppend.imageString as! String, options: NSDataBase64DecodingOptions(arrayLiteral: NSDataBase64DecodingOptions.IgnoreUnknownCharacters))
+                    var decodedImage = UIImage(data: decodedImageString!)
+                    shoeToAppend.shoeImage = decodedImage
+                    tempShoeArray.append(shoeToAppend)
+                }
+            }
+            
+            shoeArray = tempShoeArray
+            
+            }, withCancelBlock: { error in
+                print(error.description)
+        })
+     
+        return shoeArray
+    }
+//    
+//    static func getUserById(userId: String) -> User {
+//        // Get a reference to our posts
+//        let userRef = FirebaseClient.getRefWith("users")
+//        var correctUser: User?
+//        
+//        userRef.queryOrderedByChild("id").queryEqualToValue(userId)
+//            .observeEventType(.Value, withBlock: { snapshot in
+//                var tempUser: User?
+//                print(snapshot.key)
+//                correctUser = User(dictionary: snapshot.value as! NSDictionary)
+//                //correctUser = tempUser
+//            }, withCancelBlock: { error in
+//                print(error.description)
+//        })
+//    
+//        return correctUser!
+//    
+//    }
+    
+    
+    static func getUserById(userId: String) {
+        // Get a reference to our posts
+        let userRef = FirebaseClient.getRefWith("users")
+        var correctUser: User?
+        
+        userRef.queryOrderedByChild("id").queryEqualToValue(userId)
+            .observeEventType(.Value, withBlock: { snapshot in
+                var tempUser: User?
+                print(snapshot.key)
+                correctUser = User(dictionary: snapshot.value as! NSDictionary)
+                //correctUser = tempUser
+                }, withCancelBlock: { error in
+                    print(error.description)
+            })
+    
+        
+    }
+
+
 }

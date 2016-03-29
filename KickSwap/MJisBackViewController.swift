@@ -10,15 +10,17 @@ import UIKit
 
 class MJisBackViewController: UIViewController {
 
-    let webVC = SwiftModalWebVC(urlString: "http://www.23isback.com/", theme: "Dark")
+    let webVC = SwiftModalWebVC(urlString: "http://www.23isback.com/release-dates/", theme: "Dark")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Adding & Sizing WebVC
         addChildViewController(webVC)
         webVC.didMoveToParentViewController(self)
         self.webVC.view.frame = view.frame
         
+        //Pre-loading the webviews
         view.addSubview(webVC.view!)
         view.bringSubviewToFront(webVC.view!)
         // Do any additional setup after loading the view.

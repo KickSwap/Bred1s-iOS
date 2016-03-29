@@ -9,6 +9,7 @@
 import UIKit
 import Material
 import DropDown
+import Firebase
 
 class KSConfirmViewController: UIViewController, MaterialSwitchDelegate {
     
@@ -34,14 +35,15 @@ class KSConfirmViewController: UIViewController, MaterialSwitchDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        previewImageView.clipsToBounds = true
         detailsScrollView.contentSize = CGSize(width: detailsScrollView.frame.size.width, height: 375)
         
-        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(KSConfirmViewController.DismissKeyboard))
         view.addGestureRecognizer(tap)
         
         let closeButton: FlatButton = FlatButton(frame: CGRectMake(12, 30, 60, 30))
         closeButton.setImage(UIImage(named: "ic_close_white"), forState: .Normal)
-        closeButton.addTarget(self, action: "closePost", forControlEvents: UIControlEvents.TouchUpInside)
+        closeButton.addTarget(self, action: #selector(KSConfirmViewController.closePost), forControlEvents: UIControlEvents.TouchUpInside)
         
         view.addSubview(closeButton)
         
@@ -112,7 +114,7 @@ class KSConfirmViewController: UIViewController, MaterialSwitchDelegate {
         conditionButton.titleLabel?.font = RobotoFont.regularWithSize(16)
         conditionButton.setTitle("DS", forState: .Normal)
         conditionButton.setBackgroundImage(UIImage(named: "dropdown_menu"), forState: .Normal)
-        conditionButton.addTarget(self, action: "showOrDismissConditions:", forControlEvents: UIControlEvents.TouchUpInside)
+        conditionButton.addTarget(self, action: #selector(KSConfirmViewController.showOrDismissConditions(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         conditionDropDown.anchorView = conditionButton
         conditionDropDown.direction = .Bottom
@@ -144,7 +146,7 @@ class KSConfirmViewController: UIViewController, MaterialSwitchDelegate {
         sizeButton.titleLabel?.font = RobotoFont.regularWithSize(16)
         sizeButton.setTitle("Size", forState: .Normal)
         sizeButton.setBackgroundImage(UIImage(named: "dropdown_menu"), forState: .Normal)
-        sizeButton.addTarget(self, action: "showOrDismissSizes:", forControlEvents: UIControlEvents.TouchUpInside)
+        sizeButton.addTarget(self, action: #selector(KSConfirmViewController.showOrDismissSizes(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         sizeDropDown.anchorView = conditionButton
         sizeDropDown.direction = .Bottom
@@ -233,40 +235,77 @@ class KSConfirmViewController: UIViewController, MaterialSwitchDelegate {
     }
     
     @IBAction func confirmPost(sender: AnyObject) {
-        
-        shoeToPost?.name = nameField.text
-        shoeToPost?.price = Double(bidField.text!)
-        shoeToPost?.condition = conditionButton.titleLabel!.text
-        shoeToPost?.size = Double(sizeButton.titleLabel!.text!)
-        shoeToPost?.ownerId = User.currentUser!.uid
+        var postBox: Bool?
+        var postReceipt: Bool?
         
         if boxSwitch.on == true {
-            shoeToPost?.originalBox = true
+            postBox = true
         } else {
-            shoeToPost?.originalBox = false
+            postBox = false
         }
         
         if receiptSwitch.on == true {
-            shoeToPost?.reciept = true
+            postReceipt = true
         } else {
-            shoeToPost?.reciept = false
+            postReceipt = false
         }
         
-        print(shoeToPost?.size)
-        print(shoeToPost?.condition)
+        let imageData: NSData = UIImageJPEGRepresentation(imageToPost!, 0.9)!
+        let imageString: NSString = imageData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
         
+        
+//        let if bidField.text != nil {
+//            
+//        }
+        
+        //1 - Create Dictionary 
+        let dataToPost: NSDictionary = [
+            "name": nameField.text!,
+            "price": bidField.text!,
+            "condition": conditionButton.titleLabel!.text!,
+            "size": sizeButton.titleLabel!.text!,
+            "ownerId": User.currentUser!.uid!,
+            "originalBox": "\(postBox!)",
+            "receipt": "\(postReceipt!)",
+            "imageString": "\(imageString)"
+        ]
+        
+        /*
+        
+        Using Client >> what we should be aiming for
+        
+        let myShoe = Shoe(data: dataToPost)
+        FirebaseClient.saveShoes(myShoe)
+                shoeToPost?.name = nameField.text
+                shoeToPost?.price = Double(bidField.text!)
+                shoeToPost?.condition = conditionButton.titleLabel!.text
+                shoeToPost?.size = Double(sizeButton.titleLabel!.text!)
+                shoeToPost?.ownerId = User.currentUser!.uid
+        
+                if boxSwitch.on == true {
+                    shoeToPost?.originalBox = true
+                } else {
+                    shoeToPost?.originalBox = false
+                }
+        
+                if receiptSwitch.on == true {
+                    shoeToPost?.receipt = true
+                } else {
+                    shoeToPost?.receipt = false
+                }
+        */
+        
+        //Excellent Pivot for Now
+        print(dataToPost)
+        confirmSaveShoe(dataToPost)
         self.dismissViewControllerAnimated(true, completion: nil)
-        
-        //saveShoe(shoeToPost!)
+
     }
     
-    func saveShoe(shoe: Shoe) {
+    func confirmSaveShoe(shoe: NSDictionary) {
         let shoeRef = FirebaseClient.getRefWith("shoes")
-        
-        //shoeRef.childByAppendingPath
         let newShoe = shoeRef.childByAutoId()
         newShoe.setValue(shoe)
-        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

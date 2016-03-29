@@ -15,12 +15,10 @@ Time spent: X hours spent in total
 - [X] User can post the sneakers on the timeline for others to bid on
 
 ###### Tier 2
-- [ ] User can look up the newest releases and see other sneaker related news (vote for cop or not)
+- [X] User can look up the newest releases and see other sneaker related news (vote for cop or not)
+- [X] User can get more information on a certain sneaker coming out soon or that has been previously released
+- [X] User can change app themes 
 - [ ] User can accept bid on sneaker then negotiate terms and meetup locations for transaction in private chat 
-
-###### Tier 3
-- [ ] User can filter for shoes on the timeline
-- [ ] User can get more information on a certain sneaker coming out soon or that has been previously released
 
 #### The following **optional** features are implemented:
 - [ ] User can post multiple pictures for one shoe post
@@ -28,11 +26,13 @@ Time spent: X hours spent in total
 - [ ] User can set meetup point using Google Maps api inside private chat room
 - [ ] User can send Venmo request via chat room when transaction is about to occur
 - [ ] User will recieve push notifications for any activity with bids, chat, and news if permissions allow
-- [ ] User can change themes 
+
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
+
+![alt tag](https://raw.githubusercontent.com/KickSwap/Bred1s-iOS/master/kickswap.gif)
 
 <!--![alt tag](https://raw.githubusercontent.com/hamtech-CodePath/Twitter/master/TwitterClient.gif)-->
 GIF created with [LiceCap](http://www.cockos.com/licecap/).

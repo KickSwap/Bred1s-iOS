@@ -10,9 +10,10 @@ import UIKit
 import ChameleonFramework
 import Material
 
-class KSTimelineCollectionViewCell: UICollectionViewCell {
+class KSTimelineCollectionViewCell: MaterialCollectionViewCell {
     
 
+    @IBOutlet var shoeTagView: UIView!
     @IBOutlet var shoeImageView: UIImageView!
     @IBOutlet var shoeNameLabel: UILabel!
     @IBOutlet var sizeLabel: UILabel!

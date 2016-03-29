@@ -25,19 +25,35 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 
     // CurrentViewController
     private var currentView:String?
-    
+
     //NSUserDefaults
     let defaults = NSUserDefaults.standardUserDefaults()
+
+    //Menu button dynamic image
+    var menuButtonImage: UIImage?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		prepareView()
-		prepareMenuView()  
-        //add long guesture tap
-        //let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: "onPress:")
-        //FabButton().addGestureRecognizer(longPressGestureRecognizer)
-        //btn1.addGestureRecognizer(long)
+		prepareMenuView()
+        Style.loadTheme()
+        
+        //To prevent redundant segue, close menu properly
+        self.currentView = "buy"
+        
+        //To prevent unwrapping nil in setmainbtnimage()
+        //menuButtonImage = "ic_buy_white"
 	}
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        prepareView()
+        prepareMenuView()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
 
 	/// Loads the BlueViewController into the menuViewControllers mainViewController.
 	func handleBlueButton() {
@@ -72,17 +88,6 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 		}
 	}
 
-	/// Loads the YellowViewController into the menuViewControllers mainViewController.
-	func handleYellowButton() {
-		if (mainViewController as? NavigationBarViewController)?.mainViewController is YellowViewController {
-			return
-		}
-
-		closeMenu { [weak self] in
-			self?.transitionFromMainViewController(YellowViewController(), options: [.TransitionCrossDissolve])
-		}
-	}
-
 	/// Handle the menuView touch event.
 	func handleMenu() {
 		if menuView.menu.opened {
@@ -101,58 +106,67 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 
 	/// Prepares the add button.
 	private func prepareMenuView() {
-		var image: UIImage? = UIImage(named: "")
+		var image: UIImage? = UIImage(named: "view_carousel_white_24x24")
 		let btn1: FabButton = FabButton()
-        btn1.backgroundColor = UIColor(hexString: "FB6E39")
-		btn1.setImage(image, forState: .Normal)
-		btn1.setImage(image, forState: .Highlighted)
-		btn1.addTarget(self, action: "onTap:", forControlEvents: .TouchUpInside)
-        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: "onPress:")
+        btn1.backgroundColor = menuButtonsColor
+        btn1.pulseColor = pulseColor
+		btn1.setImage(buyButtonImage, forState: .Normal)
+		btn1.setImage(buyButtonImage, forState: .Highlighted)
+		btn1.addTarget(self, action: #selector(KSMenuViewController.onTap(_:)), forControlEvents: .TouchUpInside)
+        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(KSMenuViewController.onPress(_:)))
         longPressGestureRecognizer.minimumPressDuration = 0.3
         btn1.addGestureRecognizer(longPressGestureRecognizer)
 		menuView.addSubview(btn1)
 
 		image = UIImage(named: "ic_sell_icon")
 		let btn2: FabButton = FabButton()
-		btn2.backgroundColor = UIColor(hexString: "FB6E39")
-		btn2.setImage(image, forState: .Normal)
-		btn2.setImage(image, forState: .Highlighted)
+		btn2.backgroundColor = menuButtonsColor
+		btn2.setImage(sellButtonImage, forState: .Normal)
+		btn2.setImage(sellButtonImage, forState: .Highlighted)
 		menuView.addSubview(btn2)
-		btn2.addTarget(self, action: "handleSellBtn", forControlEvents: .TouchUpInside)
+		btn2.addTarget(self, action: #selector(KSMenuViewController.handleSellBtn), forControlEvents: .TouchUpInside)
 
 		image = UIImage(named: "ic_news_white")
 		let btn3: FabButton = FabButton()
-		btn3.backgroundColor = UIColor(hexString: "FB6E39")
-		btn3.setImage(image, forState: .Normal)
-		btn3.setImage(image, forState: .Highlighted)
+		btn3.backgroundColor = menuButtonsColor
+		btn3.setImage(newsButtonImage, forState: .Normal)
+		btn3.setImage(newsButtonImage, forState: .Highlighted)
 		menuView.addSubview(btn3)
-		btn3.addTarget(self, action: "handleNewsBtn", forControlEvents: .TouchUpInside)
+		btn3.addTarget(self, action: #selector(KSMenuViewController.handleNewsBtn), forControlEvents: .TouchUpInside)
 
-		image = UIImage(named: "ic_buy_white")
+		image = UIImage(named: "view_carousel_white_24x24")
 		let btn4: FabButton = FabButton()
-		btn4.backgroundColor = UIColor(hexString: "FB6E39")
-		btn4.setImage(image, forState: .Normal)
-		btn4.setImage(image, forState: .Highlighted)
+		btn4.backgroundColor = menuButtonsColor
+		btn4.setImage(buyButtonImage, forState: .Normal)
+		btn4.setImage(buyButtonImage, forState: .Highlighted)
 		menuView.addSubview(btn4)
-		btn4.addTarget(self, action: "handleBuyBtn", forControlEvents: .TouchUpInside)
+		btn4.addTarget(self, action: #selector(KSMenuViewController.handleBuyBtn), forControlEvents: .TouchUpInside)
 
 		// Initialize the menu and setup the configuration options.
 		menuView.menu.baseViewSize = baseViewSize
 		menuView.menu.views = [btn1, btn2, btn3, btn4]
 
 		view.addSubview(menuView)
-        
+
 		menuView.translatesAutoresizingMaskIntoConstraints = false
 		MaterialLayout.size(view, child: menuView, width: baseViewSize.width, height: baseViewSize.height)
 		MaterialLayout.alignFromBottomLeft(view, child: menuView, bottom: 0, left: (view.bounds.size.width - baseViewSize.width)/2)
 	}
-    
+
+    func setMainBtnImage() {
+        //get starter btn
+        let mainBtn = self.menuView.menu.views![0] as! FabButton
+        //set btn image
+        mainBtn.setImage(menuButtonImage, forState: .Normal)
+        mainBtn.setImage(menuButtonImage, forState: .Highlighted)
+    }
+
     func onPress(sender: UILongPressGestureRecognizer? = nil) {
         //handleMenu()
         menuViewController?.mainViewController.view.alpha = 0.5
         openMenu()
     }
-    
+
     func onTap(sender: UITapGestureRecognizer? = nil) {
         let tabBarController = self.mainViewController as! UITabBarController
         if menuView.menu.opened {
@@ -164,7 +178,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
             return  tabBarController.selectedIndex = 1
         }
     }
-    
+
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
@@ -172,6 +186,9 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
     //MARK: - TimelineView Controls
     func handleSellBtn() {
         
+        self.menuButtonImage = sellButtonImage
+        self.setMainBtnImage()
+
         //check if user is already on this view
         if currentView == "sell" {
             closeOurMenu() //close menu on our Tabbar
@@ -191,11 +208,16 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
             //remove opacity
             self!.menuViewController?.mainViewController.view.alpha = 1
 
+
             //self?.transitionFromMainViewController(BlueViewController(), options: [.TransitionCrossDissolve])
         }
+
     }
 
     func handleBuyBtn() {
+        
+        self.menuButtonImage = buyButtonImage
+        self.setMainBtnImage()
 
         //check if user is already on this view
         if currentView == "buy" {
@@ -222,6 +244,9 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 
 
     func handleNewsBtn() {
+        
+        self.menuButtonImage = newsButtonImage
+        setMainBtnImage()
 
         //check if user is already on this view
         if currentView == "news" {
@@ -242,7 +267,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 
             //remove opacity
             self!.menuViewController?.mainViewController.view.alpha = 1
-
+            
             //self?.transitionFromMainViewController(BlueViewController(), options: [.TransitionCrossDissolve])
         }
     }

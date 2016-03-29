@@ -35,7 +35,7 @@ public class CardView : MaterialPulseView {
 	:name:	dividerLayer
 	*/
 	internal var dividerLayer: CAShapeLayer?
-	
+
 	/**
 	:name:	dividerColor
 	*/
@@ -44,7 +44,7 @@ public class CardView : MaterialPulseView {
 			dividerLayer?.backgroundColor = dividerColor?.CGColor
 		}
 	}
-	
+
 	/**
 	:name:	divider
 	*/
@@ -53,7 +53,7 @@ public class CardView : MaterialPulseView {
 			reloadView()
 		}
 	}
-	
+
 	/**
 	:name:	dividerInsets
 	*/
@@ -62,7 +62,7 @@ public class CardView : MaterialPulseView {
 			dividerInset = MaterialEdgeInsetToValue(dividerInsetPreset)
 		}
 	}
-	
+
 	/**
 	:name:	dividerInset
 	*/
@@ -71,7 +71,7 @@ public class CardView : MaterialPulseView {
 			reloadView()
 		}
 	}
-	
+
 	/**
 	:name:	contentInsets
 	*/
@@ -80,7 +80,7 @@ public class CardView : MaterialPulseView {
 			contentInset = MaterialEdgeInsetToValue(contentInsetPreset)
 		}
 	}
-	
+
 	/**
 	:name:	contentInset
 	*/
@@ -89,7 +89,7 @@ public class CardView : MaterialPulseView {
 			reloadView()
 		}
 	}
-	
+
 	/**
 	:name:	titleLabelInsets
 	*/
@@ -98,7 +98,7 @@ public class CardView : MaterialPulseView {
 			titleLabelInset = MaterialEdgeInsetToValue(titleLabelInsetPreset)
 		}
 	}
-	
+
 	/**
 	:name:	titleLabelInset
 	*/
@@ -107,7 +107,7 @@ public class CardView : MaterialPulseView {
 			reloadView()
 		}
 	}
-	
+
 	/**
 	:name:	titleLabel
 	*/
@@ -117,7 +117,7 @@ public class CardView : MaterialPulseView {
 			reloadView()
 		}
 	}
-	
+
 	/**
 	:name:	detailViewInsets
 	*/
@@ -126,7 +126,7 @@ public class CardView : MaterialPulseView {
 			detailViewInset = MaterialEdgeInsetToValue(detailViewInsetPreset)
 		}
 	}
-	
+
 	/**
 	:name:	detailViewInset
 	*/
@@ -135,7 +135,7 @@ public class CardView : MaterialPulseView {
 			reloadView()
 		}
 	}
-	
+
 	/**
 	:name:	detailView
 	*/
@@ -145,7 +145,7 @@ public class CardView : MaterialPulseView {
 			reloadView()
 		}
 	}
-	
+
 	/**
 	:name:	leftButtonsInsets
 	*/
@@ -154,7 +154,7 @@ public class CardView : MaterialPulseView {
 			leftButtonsInset = MaterialEdgeInsetToValue(leftButtonsInsetPreset)
 		}
 	}
-	
+
 	/**
 	:name:	leftButtonsInset
 	*/
@@ -163,7 +163,7 @@ public class CardView : MaterialPulseView {
 			reloadView()
 		}
 	}
-	
+
 	/**
 	:name:	leftButtons
 	*/
@@ -177,7 +177,7 @@ public class CardView : MaterialPulseView {
 			reloadView()
 		}
 	}
-	
+
 	/**
 	:name:	rightButtonsInsets
 	*/
@@ -186,7 +186,7 @@ public class CardView : MaterialPulseView {
 			rightButtonsInset = MaterialEdgeInsetToValue(rightButtonsInsetPreset)
 		}
 	}
-	
+
 	/**
 	:name:	rightButtonsInset
 	*/
@@ -195,7 +195,7 @@ public class CardView : MaterialPulseView {
 			reloadView()
 		}
 	}
-	
+
 	/**
 	:name:	rightButtons
 	*/
@@ -209,28 +209,28 @@ public class CardView : MaterialPulseView {
 			reloadView()
 		}
 	}
-	
+
 	/**
 	:name:	init
 	*/
 	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
-	
+
 	/**
 	:name:	init
 	*/
 	public override init(frame: CGRect) {
 		super.init(frame: frame)
 	}
-	
+
 	/**
 	:name:	init
 	*/
 	public convenience init() {
 		self.init(frame: CGRectNull)
 	}
-	
+
 	/**
 	:name:	init
 	*/
@@ -238,7 +238,7 @@ public class CardView : MaterialPulseView {
 		self.init(frame: CGRectNull)
 		prepareProperties(image, titleLabel: titleLabel, detailView: detailView, leftButtons: leftButtons, rightButtons: rightButtons)
 	}
-	
+
 	/**
 	:name:	layoutSublayersOfLayer
 	*/
@@ -261,7 +261,7 @@ public class CardView : MaterialPulseView {
 			}
 		}
 	}
-	
+
 	/**
 	:name:	reloadView
 	*/
@@ -271,11 +271,11 @@ public class CardView : MaterialPulseView {
 		for v in subviews {
 			v.removeFromSuperview()
 		}
-		
+
 		var verticalFormat: String = "V:|"
 		var views: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
 		var metrics: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
-		
+
 		if nil != titleLabel {
 			verticalFormat += "-(insetTop)"
 			metrics["insetTop"] = contentInset.top + titleLabelInset.top
@@ -283,34 +283,34 @@ public class CardView : MaterialPulseView {
 			verticalFormat += "-(insetTop)"
 			metrics["insetTop"] = contentInset.top + detailViewInset.top
 		}
-		
+
 		// title
 		if let v: UILabel = titleLabel {
 			addSubview(v)
-			
+
 			verticalFormat += "-[titleLabel]"
 			views["titleLabel"] = v
-			
+
 			MaterialLayout.alignToParentHorizontally(self, child: v, left: contentInset.left + titleLabelInset.left, right: contentInset.right + titleLabelInset.right)
 		}
-		
+
 		// detail
 		if let v: UIView = detailView {
 			addSubview(v)
-			
+
 			if nil == titleLabel {
 				metrics["insetTop"] = (metrics["insetTop"] as! CGFloat) + detailViewInset.top
 			} else {
 				verticalFormat += "-(insetB)"
 				metrics["insetB"] = titleLabelInset.bottom + detailViewInset.top
 			}
-			
+
 			verticalFormat += "-[detailView]"
 			views["detailView"] = v
-			
+
 			MaterialLayout.alignToParentHorizontally(self, child: v, left: contentInset.left + detailViewInset.left, right: contentInset.right + detailViewInset.right)
 		}
-		
+
 		// leftButtons
 		if let v: Array<UIButton> = leftButtons {
 			if 0 < v.count {
@@ -319,53 +319,53 @@ public class CardView : MaterialPulseView {
 				var i: Int = 0
 				for b in v {
 					let k: String = "b\(i)"
-					
+
 					d[k] = b
-					
+
 					if 0 == i++ {
 						h += "-(left)-"
 					} else {
 						h += "-(left_right)-"
 					}
-					
+
 					h += "[\(k)]"
-					
+
 					addSubview(b)
 					MaterialLayout.alignFromBottom(self, child: b, bottom: contentInset.bottom + leftButtonsInset.bottom)
 				}
-				
+
 				addConstraints(MaterialLayout.constraint(h, options: [], metrics: ["left" : contentInset.left + leftButtonsInset.left, "left_right" : leftButtonsInset.left + leftButtonsInset.right], views: d))
 			}
 		}
-		
+
 		// rightButtons
 		if let v: Array<UIButton> = rightButtons {
 			if 0 < v.count {
 				var h: String = "H:"
 				var d: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
 				var i: Int = v.count - 1
-				
+
 				for b in v {
 					let k: String = "b\(i)"
-					
+
 					d[k] = b
-					
+
 					h += "[\(k)]"
-					
+
 					if 0 == i-- {
 						h += "-(right)-"
 					} else {
 						h += "-(right_left)-"
 					}
-					
+
 					addSubview(b)
 					MaterialLayout.alignFromBottom(self, child: b, bottom: contentInset.bottom + rightButtonsInset.bottom)
 				}
-				
+
 				addConstraints(MaterialLayout.constraint(h + "|", options: [], metrics: ["right" : contentInset.right + rightButtonsInset.right, "right_left" : rightButtonsInset.right + rightButtonsInset.left], views: d))
 			}
 		}
-		
+
 		if 0 < leftButtons?.count {
 			verticalFormat += "-(insetC)-[button]"
 			views["button"] = leftButtons![0]
@@ -377,7 +377,7 @@ public class CardView : MaterialPulseView {
 			metrics["insetC"] = rightButtonsInset.top
 			metrics["insetBottom"] = contentInset.bottom + rightButtonsInset.bottom
 		}
-		
+
 		if nil != detailView {
 			if nil == metrics["insetC"] {
 				metrics["insetBottom"] = contentInset.bottom + detailViewInset.bottom + (divider ? dividerInset.top + dividerInset.bottom : 0)
@@ -393,23 +393,24 @@ public class CardView : MaterialPulseView {
 		} else if nil != metrics["insetC"] {
 			metrics["insetC"] = (metrics["insetC"] as! CGFloat) + contentInset.top + (divider ? dividerInset.top + dividerInset.bottom : 0)
 		}
-		
+
 		if 0 < views.count {
 			verticalFormat += "-(insetBottom)-|"
 			addConstraints(MaterialLayout.constraint(verticalFormat, options: [], metrics: metrics, views: views))
 		}
 	}
-	
+
 	/**
 	:name:	prepareView
 	*/
 	public override func prepareView() {
 		super.prepareView()
-		pulseColor = MaterialColor.blueGrey.lighten4
-		depth = .Depth1
-		dividerColor = MaterialColor.blueGrey.lighten5
+		pulseColor = pulseColor
+		//depth = .Depth1
+		dividerColor = MaterialColor.grey.lighten3
+		cornerRadiusPreset = .Radius2
 	}
-	
+
 	/**
 	:name:	prepareDivider
 	*/
@@ -422,7 +423,7 @@ public class CardView : MaterialPulseView {
 		dividerLayer?.backgroundColor = dividerColor?.CGColor
 		dividerLayer?.frame = CGRectMake(dividerInset.left, y, width - dividerInset.left - dividerInset.right, 1)
 	}
-	
+
 	/**
 	:name:	prepareProperties
 	*/

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SwiftWebVC: UIViewController, UIWebViewDelegate {
+class SwiftWebVC: UIViewController, UIWebViewDelegate, UIScrollViewDelegate {
  
     weak var delegate: UIWebViewDelegate? = nil
     var storedStatusColor: UIBarStyle?
@@ -103,11 +103,15 @@ class SwiftWebVC: UIViewController, UIWebViewDelegate {
     
     override func loadView() {
         view = webView
+        webView.scrollView.delegate = self
         loadRequest(request)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //set toolbar to top to avoid bad UI: self.navigationController?.toolbar.barPosition UIBarPosition.Top
+        self.navigationController?.toolbar.barTintColor = UIColor(hexString: "D53427")
+        self.navigationController?.toolbarHidden = false
         updateToolbarItems()
     }
     
@@ -116,13 +120,6 @@ class SwiftWebVC: UIViewController, UIWebViewDelegate {
         
         navBarTitle = UILabel()
         navBarTitle.backgroundColor = UIColor.clearColor()
-//        if presentingViewController == nil {
-//            let titleAttributes = navigationController!.navigationBar.titleTextAttributes! as NSDictionary
-//            navBarTitle.textColor = titleAttributes.objectForKey("NSColor")! as! UIColor
-//        }
-//        else {
-//            navBarTitle.textColor = self.titleColor
-//        }
         navBarTitle.shadowOffset = CGSizeMake(0, 1);
         navBarTitle.font = UIFont(name: "HelveticaNeue-Medium", size: 17.0)
         
@@ -150,6 +147,24 @@ class SwiftWebVC: UIViewController, UIWebViewDelegate {
         super.viewDidDisappear(true)
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
     }
+    
+    ////////////////////////////////////////////////
+    // Toolbar Animation
+    // variable to save the last position visited, initially setted to zero
+    
+    private var lastOffsetY: CGFloat = 0
+    
+    //Delegate Methods
+    func scrollViewWillBeginDragging(scrollView: UIScrollView){
+        lastOffsetY = scrollView.contentOffset.y
+    }
+    
+    func scrollViewWillBeginDecelerating(scrollView: UIScrollView){
+        
+        let hide = scrollView.contentOffset.y > self.lastOffsetY
+        self.navigationController?.setToolbarHidden(hide, animated: true)
+        self.navigationController?.toolbarHidden = hide
+    }
 
     ////////////////////////////////////////////////
     // Toolbar
@@ -175,12 +190,12 @@ class SwiftWebVC: UIViewController, UIWebViewDelegate {
             if !closing {
                 toolbar.items = items as? [UIBarButtonItem]
                 if presentingViewController == nil {
-                    toolbar.barTintColor = navigationController!.navigationBar.barTintColor
+                    toolbar.barTintColor = toolbarColor//navigationController!.navigationBar.barTintColor
                 }
                 else {
-                    toolbar.barStyle = navigationController!.navigationBar.barStyle
+                    //toolbar.barStyle = navigationController!.navigationBar.barStyle
                 }
-                toolbar.tintColor = navigationController!.navigationBar.tintColor
+                toolbar.tintColor = toolbarColor//navigationController!.navigationBar.tintColor
             }
             navigationItem.rightBarButtonItems = items.reverseObjectEnumerator().allObjects as? [UIBarButtonItem]
 
@@ -190,12 +205,12 @@ class SwiftWebVC: UIViewController, UIWebViewDelegate {
     
             if !closing {
                 if presentingViewController == nil {
-                    navigationController!.toolbar.barTintColor = navigationController!.navigationBar.barTintColor
+                    navigationController!.toolbar.barTintColor = toolbarColor//navigationController!.navigationBar.barTintColor
                 }
                 else {
-                    navigationController!.toolbar.barStyle = navigationController!.navigationBar.barStyle
+                    //navigationController!.toolbar.barStyle = navigationController!.navigationBar.barStyle
                 }
-                navigationController!.toolbar.tintColor = navigationController!.navigationBar.tintColor
+                navigationController!.toolbar.tintColor = toolbarColor//navigationController!.navigationBar.tintColor
                 toolbarItems = items as? [UIBarButtonItem]
             }
         }

@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import AFNetworking
+import WYInteractiveTransitions
+import Material
 
 class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -18,6 +20,8 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var profilePicImageView: UIImageView!
     
     
+    @IBOutlet var themesButton: RaisedButton!
+    @IBOutlet var profileHeaderView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var kicksLabel: UILabel!
     
@@ -32,9 +36,16 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         profilePicImageView.clipsToBounds = true
         
         nameLabel.text = User.currentUser?.displayName
+    
         profilePicImageView.setImageWithURL(NSURL(string: (User.currentUser?.profilePicUrl)!)!)
         getShoes()
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        layoutTheme()
+        themesButtonLayout()
+        profileHeaderView.setNeedsLayout()
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,7 +64,8 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     func collectionView(timeline: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = timeline.dequeueReusableCellWithReuseIdentifier("ProfileCell", forIndexPath: indexPath) as! KSProfileCollectionViewCell
         
-        cell.shoeImageView.setImageWithURL(NSURL(string: allShoes![indexPath.row].imageURL!)!)
+        cell.shoeImageView.clipsToBounds = true
+        cell.shoeImageView.image = allShoes![indexPath.row].shoeImage
         cell.shoeNameLabel.text = allShoes![indexPath.row].name
         
         return cell
@@ -70,7 +82,12 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             let dict = snapshot.value as! NSDictionary
             for x in dict {
                 var shoeToAppend = Shoe(data: x.value as! NSDictionary)
-                if shoeToAppend.ownerId == User.currentUser?.uid {
+                if shoeToAppend.ownerId == User.currentUser?.uid && shoeToAppend.imageString != nil {
+                    var decodedImageString = NSData(base64EncodedString: shoeToAppend.imageString as! String, options: NSDataBase64DecodingOptions(arrayLiteral: NSDataBase64DecodingOptions.IgnoreUnknownCharacters))
+                    var decodedImage = UIImage(data: decodedImageString!)
+                    shoeToAppend.shoeImage = decodedImage
+                    print(shoeToAppend.shoeImage)
+                    print(decodedImage)
                     tempShoeArray.append(shoeToAppend)
                 }
             }
@@ -79,12 +96,46 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             self.allShoes = tempShoeArray
             //self.filterShoes(tempShoeArray)
             self.kicksLabel.text = "\(tempShoeArray.count)"
+            
             self.collectionView.reloadData()
             
             }, withCancelBlock: { error in
                 print(error.description)
         })
         
+    }
+    
+    func layoutTheme() {
+        self.kicksLabel.textColor = textColor
+        nameLabel.textColor = textColor
+        profileHeaderView.backgroundColor = profileHeaderColor
+        self.view.backgroundColor = timelineBackgroundColor
+    }
+    
+    let transitionMgr = WYInteractiveTransitions()
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "themeSegue" {
+            let toView = segue.destinationViewController as? KSThemesViewController
+            transitionMgr.configureTransition(0.5, toViewController: toView!,
+                handGestureEnable: true, transitionType: WYTransitoinType.Zoom)
+        }
+    }
+    
+    // Unwind Segue
+    @IBAction func customizeTapped(segue: UIStoryboardSegue, sender: UIStoryboardSegue) {
+        //Figure out destination view controller, currently its timeline
+//        let toView = segue.destinationViewController as? KSProfileViewController
+//        
+//        transitionMgr.configureTransition(0.5, toViewController: self,
+//                    handGestureEnable: true, transitionType: WYTransitoinType.Zoom)
+        //layoutTheme()
+    }
+    
+    func themesButtonLayout() {
+        themesButton.backgroundColor = MaterialColor.grey.lighten2
+        themesButton.setTitle("Themes", forState: .Normal)
+        themesButton.setTitleColor(MaterialColor.grey.darken2, forState: .Normal)
+        themesButton.titleLabel?.font = RobotoFont.thinWithSize(12)
     }
     
 

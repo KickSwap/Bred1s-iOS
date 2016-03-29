@@ -47,31 +47,31 @@ public struct MaterialDevice {
 			return .iPhone
 		case .TV:
 			return .TV
-        default:
+    default:
 			return .Unspecified
 		}
 	}
-	
+
 	/// A Boolean indicating if the device is in Landscape mode.
 	public static var landscape: Bool {
 		return UIApplication.sharedApplication().statusBarOrientation.isLandscape
 	}
-	
+
 	/// Retrieves the device bounds.
 	public static var bounds: CGRect {
 		return UIScreen.mainScreen().bounds
 	}
-	
+
 	/// Retrieves the device width.
 	public static var width: CGFloat {
 		return bounds.width
 	}
-	
+
 	/// Retrieves the device height.
 	public static var height: CGFloat {
 		return bounds.height
 	}
-	
+
 	/// Retrieves the device scale.
 	public static var scale: CGFloat {
 		return UIScreen.mainScreen().scale

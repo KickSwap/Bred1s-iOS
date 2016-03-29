@@ -21,32 +21,37 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.6.0)
   - Canvas (0.1.2)
+  - ChameleonFramework (2.1.0):
+    - ChameleonFramework/Default (= 2.1.0)
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
   - DropDown (0.1.4)
-  - FBSDKCoreKit (4.10.0):
+  - FBSDKCoreKit (4.10.1):
     - Bolts (~> 1.5)
-  - FBSDKLoginKit (4.10.0):
+  - FBSDKLoginKit (4.10.1):
     - FBSDKCoreKit
   - Firebase (2.5.1)
   - IBAnimatable (1.2)
   - Material (1.34.5)
   - PagingMenuController (0.8.0)
   - SnapKit (0.19.1)
+  - WYInteractiveTransitions (1.0.2)
 
 DEPENDENCIES:
   - AFNetworking
   - Canvas
+  - ChameleonFramework
   - ChameleonFramework/Swift
   - DropDown
   - FBSDKCoreKit
   - FBSDKLoginKit
   - Firebase
   - IBAnimatable
-  - Material
+  - Material (~> 1.35.0)
   - PagingMenuController
   - SnapKit
+  - WYInteractiveTransitions (~> 1.0.2)
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
@@ -54,14 +59,15 @@ SPEC CHECKSUMS:
   Canvas: eb861e3b555d032648146c8ffda1a5dea40059ca
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   DropDown: 09ab078ba0f11d426689526b45d4d5179420e321
-  FBSDKCoreKit: 13bec8373fb3af94d44daf2aa1e0958687897fbd
-  FBSDKLoginKit: d3d4a2e9d31954deb00bfea964167a05ca1ea976
+  FBSDKCoreKit: d2aaed5e9ab7d8d6301c533376a1fbff1cf3deb5
+  FBSDKLoginKit: 699ff169080e3072de4b9b0faca90bf23dc36deb
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
   IBAnimatable: bcebfaf34b041949da5ed668ac5ab2e28a4b2357
   Material: 245e030f23cbf645490e74c621ddc7104398b34c
   PagingMenuController: 1a9ff8ad0ab9704f215706997c1a624bc951f508
   SnapKit: eff58d6e3451bf2f482db2eccf86aecf371dc62d
+  WYInteractiveTransitions: d3d229c8d235d6a9473132a8290d56adadd0a528
 
-PODFILE CHECKSUM: 099e548dd01291fb854f7bf9f008207fd8ae60f8
+PODFILE CHECKSUM: 01fbeec33a251acc8d305baeeaa9cd9cef355e8c
 
 COCOAPODS: 1.0.0.beta.2

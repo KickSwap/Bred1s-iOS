@@ -7,7 +7,7 @@ target 'KickSwap' do
   pod 'Firebase'
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
-  pod 'Material'
+  pod 'Material', '~> 1.35.0'
   pod 'ChameleonFramework/Swift'
   pod 'Canvas'
   pod 'IBAnimatable'
@@ -15,5 +15,6 @@ target 'KickSwap' do
   pod 'AFNetworking'
   pod 'DropDown'
   pod 'PagingMenuController'
+  pod 'WYInteractiveTransitions', '~> 1.0.2'
+  pod 'ChameleonFramework'
 end
-

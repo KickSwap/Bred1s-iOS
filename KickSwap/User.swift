@@ -51,10 +51,19 @@ class User: NSObject {
         //self.authData = dictionary["authData"] as? FAuthData
         self.authDataAsDictionary = dictionary
         
-        self.displayName = dictionary["providerData"]!["displayName"] as? String
-        self.profilePicUrl = dictionary["providerData"]!["profileImageURL"] as? String
+        if dictionary["providerData"] == nil {
+            self.displayName = dictionary["displayName"] as? String
+        } else {
+            self.displayName = dictionary["providerData"]!["displayName"] as? String
+        }
         
-        self.uid = dictionary["uid"] as? String
+        if dictionary["providerData"] == nil {
+            self.profilePicUrl = dictionary["profileImageURL"] as? String
+        } else {
+            self.profilePicUrl = dictionary["providerData"]!["profileImageURL"] as? String
+        }
+        
+        self.uid = dictionary["id"] as? String
         self.provider = dictionary["provider"] as? String
         self.token = dictionary["token"] as? String
         self.auth = dictionary["auth"] as? NSDictionary
