@@ -163,6 +163,10 @@ class KSThemesViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
     
     }
+    
+    @IBAction func customizeTapped(sender: AnyObject) {
+        performSegueWithIdentifier("CustomizeTapped", sender: self)
+    }
 
     /*
     // MARK: - Navigation

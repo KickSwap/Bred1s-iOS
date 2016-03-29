@@ -190,7 +190,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TimelineCell" id="UVa-5o-boK" customClass="KSTimelineCollectionViewCell" customModule="KickSwap" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="6.5" width="332" height="448"/>
+                                                <rect key="frame" x="20" y="7" width="332" height="448"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="332" height="448"/>
@@ -809,7 +809,7 @@
                                 </constraints>
                                 <state key="normal" title="Customize"/>
                                 <connections>
-                                    <segue destination="wZX-nN-wIk" kind="unwind" unwindAction="customizeTapped:sender:" id="a74-D4-q6Y"/>
+                                    <segue destination="wZX-nN-wIk" kind="unwind" unwindAction="customizeTapped:sender:" id="Khs-wj-0V1"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Pallette" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l48-4e-F6y">
@@ -908,10 +908,10 @@
             </objects>
             <point key="canvasLocation" x="146.5" y="1214.5"/>
         </scene>
-        <!-- -->
+        <!--Navigation Controller-->
         <scene sceneID="FtW-lc-HAa">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="ZtA-48-qxi" customClass="KSNavigationController" customModule="KickSwap" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController title="Navigation Controller" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="ZtA-48-qxi" customClass="KSNavigationController" customModule="KickSwap" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title=" " id="Bll-Vc-ISs"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Drz-8R-Kb8">
@@ -986,7 +986,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="641"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QiV-K0-Mb3" id="89d-t8-Oxf">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="640.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="640"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vAH-KI-BjX">

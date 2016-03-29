@@ -55,6 +55,7 @@ class KSNewsViewController: UIViewController, PagingMenuControllerDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         //Adding view controllers and customizztion to paging menu controller
         let pagingMenuController = self.childViewControllers.first as! PagingMenuController
     }

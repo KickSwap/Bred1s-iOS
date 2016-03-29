@@ -39,7 +39,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
         Style.loadTheme()
         
         //To prevent redundant segue, close menu properly
-        self.currentView = "buy"
+        //self.currentView = "buy"
         
         //To prevent unwrapping nil in setmainbtnimage()
         //menuButtonImage = "ic_buy_white"
@@ -47,6 +47,8 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        //Style.loadTheme()
+        setMainBtnImage()
         prepareView()
         prepareMenuView()
     }
@@ -110,8 +112,14 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 		let btn1: FabButton = FabButton()
         btn1.backgroundColor = menuButtonsColor
         btn1.pulseColor = pulseColor
+        //To prevent wrong image for main menu button
+        if menuButtonImage == nil {
 		btn1.setImage(buyButtonImage, forState: .Normal)
 		btn1.setImage(buyButtonImage, forState: .Highlighted)
+        } else {
+        btn1.setImage(menuButtonImage, forState: .Normal)
+        btn1.setImage(menuButtonImage, forState: .Highlighted)
+        }
 		btn1.addTarget(self, action: #selector(KSMenuViewController.onTap(_:)), forControlEvents: .TouchUpInside)
         let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(KSMenuViewController.onPress(_:)))
         longPressGestureRecognizer.minimumPressDuration = 0.3
@@ -244,7 +252,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 
 
     func handleNewsBtn() {
-        
+        print(self.currentView)
         self.menuButtonImage = newsButtonImage
         setMainBtnImage()
 

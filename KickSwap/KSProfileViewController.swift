@@ -124,8 +124,8 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     // Unwind Segue
     @IBAction func customizeTapped(segue: UIStoryboardSegue, sender: UIStoryboardSegue) {
         //Figure out destination view controller, currently its timeline
-//        let toView = segue.destinationViewController as? KSProfileViewController
-//        
+//        let toView = segue.destinationViewController as? KSTabBarController
+        
 //        transitionMgr.configureTransition(0.5, toViewController: self,
 //                    handGestureEnable: true, transitionType: WYTransitoinType.Zoom)
         //layoutTheme()
