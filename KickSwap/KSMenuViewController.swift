@@ -30,7 +30,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
     let defaults = NSUserDefaults.standardUserDefaults()
 
     //Menu button dynamic image
-    var menuButtonImage: String?
+    var menuButtonImage: UIImage?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -105,8 +105,8 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 		let btn1: FabButton = FabButton()
         btn1.backgroundColor = menuButtonsColor
         btn1.pulseColor = pulseColor
-		btn1.setImage(image, forState: .Normal)
-		btn1.setImage(image, forState: .Highlighted)
+		btn1.setImage(buyButtonImage, forState: .Normal)
+		btn1.setImage(buyButtonImage, forState: .Highlighted)
 		btn1.addTarget(self, action: "onTap:", forControlEvents: .TouchUpInside)
         let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: "onPress:")
         longPressGestureRecognizer.minimumPressDuration = 0.3
@@ -116,24 +116,24 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 		image = UIImage(named: "ic_sell_icon")
 		let btn2: FabButton = FabButton()
 		btn2.backgroundColor = menuButtonsColor
-		btn2.setImage(image, forState: .Normal)
-		btn2.setImage(image, forState: .Highlighted)
+		btn2.setImage(sellButtonImage, forState: .Normal)
+		btn2.setImage(sellButtonImage, forState: .Highlighted)
 		menuView.addSubview(btn2)
 		btn2.addTarget(self, action: "handleSellBtn", forControlEvents: .TouchUpInside)
 
 		image = UIImage(named: "ic_news_white")
 		let btn3: FabButton = FabButton()
 		btn3.backgroundColor = menuButtonsColor
-		btn3.setImage(image, forState: .Normal)
-		btn3.setImage(image, forState: .Highlighted)
+		btn3.setImage(newsButtonImage, forState: .Normal)
+		btn3.setImage(newsButtonImage, forState: .Highlighted)
 		menuView.addSubview(btn3)
 		btn3.addTarget(self, action: "handleNewsBtn", forControlEvents: .TouchUpInside)
 
 		image = UIImage(named: "view_carousel_white_24x24")
 		let btn4: FabButton = FabButton()
 		btn4.backgroundColor = menuButtonsColor
-		btn4.setImage(image, forState: .Normal)
-		btn4.setImage(image, forState: .Highlighted)
+		btn4.setImage(buyButtonImage, forState: .Normal)
+		btn4.setImage(buyButtonImage, forState: .Highlighted)
 		menuView.addSubview(btn4)
 		btn4.addTarget(self, action: "handleBuyBtn", forControlEvents: .TouchUpInside)
 
@@ -152,8 +152,8 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
         //get starter btn
         let mainBtn = self.menuView.menu.views![0] as! FabButton
         //set btn image
-        mainBtn.setImage(UIImage(named: (self.menuButtonImage)!), forState: .Normal)
-        mainBtn.setImage(UIImage(named: (self.menuButtonImage)!), forState: .Highlighted)
+        mainBtn.setImage(menuButtonImage, forState: .Normal)
+        mainBtn.setImage(menuButtonImage, forState: .Highlighted)
     }
 
     func onPress(sender: UILongPressGestureRecognizer? = nil) {
@@ -181,7 +181,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
     //MARK: - TimelineView Controls
     func handleSellBtn() {
         
-        self.menuButtonImage = "ic_sell_icon"
+        self.menuButtonImage = sellButtonImage
         self.setMainBtnImage()
 
         //check if user is already on this view
@@ -211,7 +211,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 
     func handleBuyBtn() {
         
-        self.menuButtonImage = "view_carousel_white_24x24"
+        self.menuButtonImage = buyButtonImage
         self.setMainBtnImage()
 
         //check if user is already on this view
@@ -240,7 +240,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 
     func handleNewsBtn() {
         
-        self.menuButtonImage = "ic_news_white"
+        self.menuButtonImage = newsButtonImage
         setMainBtnImage()
 
         //check if user is already on this view

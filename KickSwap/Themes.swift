@@ -73,9 +73,9 @@ struct Style{
         shoeTagViewColor = fuscousGray
         
         //Menu Button Images
-        buyButtonImage = UIImage(named: "buyBlack")
-        sellButtonImage = UIImage(named: "sellBlack")
-        newsButtonImage = UIImage(named: "newsBlack")
+        buyButtonImage = UIImage(named: "view_carousel_black_24x24")
+        sellButtonImage = UIImage(named: "camera_black_24x24")
+        newsButtonImage = UIImage(named: "new_releases_black_24x24")
         
         //Menu Button Colors
         menuButtonsColor = inchWorm
@@ -132,9 +132,9 @@ struct Style{
         shoeTagViewColor = darkJungleGreen
         
         //Menu Button Images
-        buyButtonImage = UIImage(named: "buyBlack")
-        sellButtonImage = UIImage(named: "sellBlack")
-        newsButtonImage = UIImage(named: "newsBlack")
+        buyButtonImage = UIImage(named: "view_carousel_white_24x24")
+        sellButtonImage = UIImage(named: "camera_white_24x24")
+        newsButtonImage = UIImage(named: "new_releases_white_24x24")
         
         //Menu Button Colors
         menuButtonsColor = darkJungleGreen
@@ -191,9 +191,9 @@ struct Style{
         shoeTagViewColor = blackPearl
         
         //Menu Button Images
-        buyButtonImage = UIImage(named: "buyBlack")
-        sellButtonImage = UIImage(named: "sellBlack")
-        newsButtonImage = UIImage(named: "newsBlack")
+        buyButtonImage = UIImage(named: "view_carousel_white_24x24")
+        sellButtonImage = UIImage(named: "camera_white_24x24")
+        newsButtonImage = UIImage(named: "new_releases_white_24x24")
         
         //Menu Button Colors
         menuButtonsColor = blackPearl
@@ -251,9 +251,9 @@ struct Style{
         shoeTagViewColor = scooter
         
         //Menu Button Images
-        buyButtonImage = UIImage(named: "buyBlack")
-        sellButtonImage = UIImage(named: "sellBlack")
-        newsButtonImage = UIImage(named: "newsBlack")
+        buyButtonImage = UIImage(named: "view_carousel_white_24x24")
+        sellButtonImage = UIImage(named: "camera_white_24x24")
+        newsButtonImage = UIImage(named: "new_releases_white_24x24")
         
         //Menu Button Colors
         menuButtonsColor = scooter

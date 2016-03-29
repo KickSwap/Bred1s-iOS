@@ -20,7 +20,7 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var profilePicImageView: UIImageView!
     
     
-    @IBOutlet var themesButton: FlatButton!
+    @IBOutlet var themesButton: RaisedButton!
     @IBOutlet var profileHeaderView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var kicksLabel: UILabel!
@@ -44,6 +44,7 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     override func viewWillAppear(animated: Bool) {
         layoutTheme()
+        themesButtonLayout()
         profileHeaderView.setNeedsLayout()
     }
 
@@ -131,9 +132,10 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func themesButtonLayout() {
-        themesButton.titleLabel?.text = "Themes"
-        themesButton.titleLabel?.textColor = MaterialColor.grey.darken2
         themesButton.backgroundColor = MaterialColor.grey.lighten2
+        themesButton.setTitle("Themes", forState: .Normal)
+        themesButton.setTitleColor(MaterialColor.grey.darken2, forState: .Normal)
+        themesButton.titleLabel?.font = RobotoFont.thinWithSize(12)
     }
     
 

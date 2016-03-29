@@ -18,7 +18,9 @@ class KSThemesViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet var palletteView3: UIView!
     @IBOutlet var palletteView4: UIView!
     @IBOutlet var palletteView5: UIView!
+    @IBOutlet var customizeButton: RaisedButton!
     
+    @IBOutlet var currentPalletteLabel: UILabel!
     @IBOutlet var currentThemeLabel: UILabel!
     @IBOutlet var tableView: UITableView!
     var defaults = NSUserDefaults.standardUserDefaults()
@@ -43,9 +45,21 @@ class KSThemesViewController: UIViewController, UITableViewDataSource, UITableVi
         self.palletteView3.backgroundColor = palletteView3Color
         self.palletteView4.backgroundColor = palletteView4Color
         self.palletteView5.backgroundColor = palletteView5Color
-        self.view.backgroundColor = UIColor.flatGrayColor()
+        self.view.backgroundColor = MaterialColor.grey.darken1
         currentThemeLabel.text = String(defaults.valueForKey("Theme")!)
         
+        customizeButton.backgroundColor = MaterialColor.grey.darken3
+        customizeButton.setTitle("Customize", forState: .Normal)
+        customizeButton.setTitleColor(MaterialColor.amber.accent2, forState: .Normal)
+        customizeButton.setTitleShadowColor(MaterialColor.black, forState: .Normal)
+        customizeButton.titleLabel?.font = RobotoFont.bold
+        
+        currentThemeLabel.font = RobotoFont.bold
+        currentThemeLabel.textAlignment = .Left
+        currentThemeLabel.textColor = UIColor.flatWhiteColorDark()
+        
+        currentPalletteLabel.font = RobotoFont.bold
+        currentPalletteLabel.textColor = MaterialColor.amber.accent2
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,10 +82,16 @@ class KSThemesViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.themesLabel.text = String(Style.availableThemes[indexPath.row])
         cell.themesLabel.textColor = UIColor.flatBlackColorDark()
         cell.themesLabel.font = RobotoFont.bold
-        var lastSelectedCell = defaults.valueForKey("lastSelected") as? Bool ?? false
-        if (lastSelectedCell) {
-            cell.checkmark.alpha = 1
-        }
+        cell.checkmark.alpha = 0
+//        var lastSelected = defaults.valueForKey("lastSelected") as! NSIndexPath?
+//        var lastSelectedCell = tableView.cellForRowAtIndexPath(lastSelected!)
+//        if let lastSelectedRow = lastSelected?.row {
+//            
+//        }
+//        let taskStatus = task.valueForKey("completed") as! Bool
+//        if (taskStatus) {
+//            cell.checkmark.alpha = 1
+//        }
 
         if indexPath == selectedRow {
             // set checkmark image
@@ -103,6 +123,7 @@ class KSThemesViewController: UIViewController, UITableViewDataSource, UITableVi
         
         //Custom Checkmark
         let paths:[NSIndexPath]
+        //let lastSelected: [NSIndexPath]
         
         if let previous = selectedRow {
             paths = [indexPath, previous]
@@ -110,9 +131,9 @@ class KSThemesViewController: UIViewController, UITableViewDataSource, UITableVi
             paths = [indexPath]
         }
         selectedRow = indexPath
-        defaults.setInteger(indexPath.row, forKey: "lastSelected")
+        //defaults.setValue(indexPath, forKey: "lastSelected")
         tableView.reloadRowsAtIndexPaths(paths, withRowAnimation: .None)
-
+        
         Style.loadTheme()
         
         //Pallette Animations
