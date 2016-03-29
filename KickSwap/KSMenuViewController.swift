@@ -46,8 +46,13 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 	}
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         prepareView()
         prepareMenuView()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
     }
 
 	/// Loads the BlueViewController into the menuViewControllers mainViewController.
@@ -107,8 +112,8 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
         btn1.pulseColor = pulseColor
 		btn1.setImage(buyButtonImage, forState: .Normal)
 		btn1.setImage(buyButtonImage, forState: .Highlighted)
-		btn1.addTarget(self, action: "onTap:", forControlEvents: .TouchUpInside)
-        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: "onPress:")
+		btn1.addTarget(self, action: #selector(KSMenuViewController.onTap(_:)), forControlEvents: .TouchUpInside)
+        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(KSMenuViewController.onPress(_:)))
         longPressGestureRecognizer.minimumPressDuration = 0.3
         btn1.addGestureRecognizer(longPressGestureRecognizer)
 		menuView.addSubview(btn1)
@@ -119,7 +124,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 		btn2.setImage(sellButtonImage, forState: .Normal)
 		btn2.setImage(sellButtonImage, forState: .Highlighted)
 		menuView.addSubview(btn2)
-		btn2.addTarget(self, action: "handleSellBtn", forControlEvents: .TouchUpInside)
+		btn2.addTarget(self, action: #selector(KSMenuViewController.handleSellBtn), forControlEvents: .TouchUpInside)
 
 		image = UIImage(named: "ic_news_white")
 		let btn3: FabButton = FabButton()
@@ -127,7 +132,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 		btn3.setImage(newsButtonImage, forState: .Normal)
 		btn3.setImage(newsButtonImage, forState: .Highlighted)
 		menuView.addSubview(btn3)
-		btn3.addTarget(self, action: "handleNewsBtn", forControlEvents: .TouchUpInside)
+		btn3.addTarget(self, action: #selector(KSMenuViewController.handleNewsBtn), forControlEvents: .TouchUpInside)
 
 		image = UIImage(named: "view_carousel_white_24x24")
 		let btn4: FabButton = FabButton()
@@ -135,7 +140,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 		btn4.setImage(buyButtonImage, forState: .Normal)
 		btn4.setImage(buyButtonImage, forState: .Highlighted)
 		menuView.addSubview(btn4)
-		btn4.addTarget(self, action: "handleBuyBtn", forControlEvents: .TouchUpInside)
+		btn4.addTarget(self, action: #selector(KSMenuViewController.handleBuyBtn), forControlEvents: .TouchUpInside)
 
 		// Initialize the menu and setup the configuration options.
 		menuView.menu.baseViewSize = baseViewSize
