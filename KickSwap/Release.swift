@@ -7,13 +7,24 @@
 //
 
 import Foundation
-class Release:Shoe {
+class Release:NSObject {
     
+    var sneakerName:String?
+    var price:String?
+    var detailURL:NSURL?
+    var releaseDateAsString:String?
+    var releaseDate: NSURL?
+    var voteCount:Int?
     
-//    override init(data: NSDictionary) {
-//        super.init(data: data)
-//    }
-//    
+    init(name:String, data: NSDictionary) {
+        sneakerName = name
+        price = data["Price"] as! String
+        detailURL = NSURL(string: data["detailURL"] as! String)
+        releaseDateAsString = data["releaseDate"] as! String
+        let temp = data["voteCount"] as! String
+        voteCount = Int(temp)
+    }
+    
 //    override func getShoe() -> [String : String] {
 //        
 //    }

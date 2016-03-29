@@ -39,6 +39,7 @@ class FirebaseClient: NSObject {
         //auth related calls
         static let users = "users"
         static let shoes = "shoes"
+        static let catalog = "catalog"
     }
     
     private func getRef() -> AnyObject {
@@ -194,7 +195,22 @@ class FirebaseClient: NSObject {
     }
     
     func getReleaseDate(completion:CompletionBlock.AnyObjArray)  {
-        let ref = getRefWith("")
+        let ref = getRefWith(myURIs.catalog)
+        ref.observeEventType(.Value, withBlock: { snapshot in
+            if snapshot != nil {
+                let response = snapshot.value as! NSDictionary
+                let releases = response["releases"] as! NSDictionary
+                var items = [Release]()
+                for shoe in releases {
+                    items.append(Release(name: shoe.key as! String, data: shoe.value as! NSDictionary))
+                }
+                
+                completion(items,nil)
+                
+            } else {
+                completion(nil,nil)
+            }
+        })
     }
     
     func logOut() {

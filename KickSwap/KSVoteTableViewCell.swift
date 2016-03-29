@@ -16,6 +16,14 @@ class KSVoteTableViewCell: UITableViewCell {
     @IBOutlet weak var shoeReleaseDateLabel: UILabel!
     @IBOutlet weak var voteCountLabel: UILabel!
     
+    var shoe:Release! {
+        didSet{
+            shoeNameLabel.text = shoe.sneakerName
+            shoePriceLabel.text = shoe.price
+            
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -11,11 +11,22 @@ import UIKit
 class KSVoteViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var voteResultsTableView: UITableView!
+    var releaseDates:[Release]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.voteResultsTableView.delegate = self
         self.voteResultsTableView.dataSource = self
+        
+        FirebaseClient.sharedClient.getReleaseDate({ (shoes, error) in
+            if error == nil { //YASSSS
+                self.releaseDates = shoes as? [Release]
+                self.voteResultsTableView.reloadData()
+            } else {// What the..
+                print(error)
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,7 +36,11 @@ class KSVoteViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     //MARK: - UITableView DataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return 20
+        if releaseDates != nil{
+            return (releaseDates?.count)!
+        } else {
+            return 0
+        }
     }
     
     // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
@@ -33,6 +48,7 @@ class KSVoteViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("VoteCell") as? KSVoteTableViewCell
+        cell?.shoe = self.releaseDates![indexPath.row]
         return cell!
     }
     

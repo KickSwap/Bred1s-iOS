@@ -29,6 +29,9 @@ class Shoe: NSObject {
     
     //var willingToTradeFor: [Shoe]?
     //var bids:[Bids]
+    override init() {
+
+    }
     
     init(data:NSDictionary) {
         self.name = data["name"] as? String
