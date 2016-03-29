@@ -110,6 +110,44 @@ class FirebaseClient: NSObject {
      
         return shoeArray
     }
-
+//    
+//    static func getUserById(userId: String) -> User {
+//        // Get a reference to our posts
+//        let userRef = FirebaseClient.getRefWith("users")
+//        var correctUser: User?
+//        
+//        userRef.queryOrderedByChild("id").queryEqualToValue(userId)
+//            .observeEventType(.Value, withBlock: { snapshot in
+//                var tempUser: User?
+//                print(snapshot.key)
+//                correctUser = User(dictionary: snapshot.value as! NSDictionary)
+//                //correctUser = tempUser
+//            }, withCancelBlock: { error in
+//                print(error.description)
+//        })
+//    
+//        return correctUser!
+//    
+//    }
     
+    
+    static func getUserById(userId: String) {
+        // Get a reference to our posts
+        let userRef = FirebaseClient.getRefWith("users")
+        var correctUser: User?
+        
+        userRef.queryOrderedByChild("id").queryEqualToValue(userId)
+            .observeEventType(.Value, withBlock: { snapshot in
+                var tempUser: User?
+                print(snapshot.key)
+                correctUser = User(dictionary: snapshot.value as! NSDictionary)
+                //correctUser = tempUser
+                }, withCancelBlock: { error in
+                    print(error.description)
+            })
+    
+        
+    }
+
+
 }
