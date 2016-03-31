@@ -72,7 +72,7 @@ class User: NSObject {
 
     func logout() {
         User.currentUser = nil
-        FirebaseClient.getRef().unauth() // for firbase
+        FirebaseClient.sharedClient.logOut()
         FBSDKLoginManager().logOut() // for Facebook
         NSUserDefaults.standardUserDefaults().removeObjectForKey(User.persistedKeyName) // removeKey in CoreData
         NSNotificationCenter.defaultCenter().postNotificationName(userDidLogoutNotification, object: nil)

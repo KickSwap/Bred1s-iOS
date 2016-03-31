@@ -69,10 +69,6 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         prefersStatusBarHidden()
         timeline.dataSource = self
         timeline.delegate = self
-//        visibleUser = FirebaseClient.getUserById(shoeTimeline![0].ownerId!)
-//        userProfileImage.setImageWithURL(NSURL(string: (visibleUser?.profilePicUrl)!)!)
-//        userProfileImage.clipsToBounds = true
-//        profileName.text = visibleUser?.displayName
         prepareView()
         prepareTextView()
         addToolBar(textView)
@@ -420,87 +416,42 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 
     //MARK: - Firebase Get Methods
     func getShoesFromFirebase() {
-        //Correct way
-//        self.shoeTimeline = FirebaseClient.getShoes()
-
         // Get a reference to our posts
-        let shoeRef = FirebaseClient.getRefWith("shoes")
-
-        //let shoeRef = Firebase.init(url: "https://kickswap.firebaseio.com/shoes")
-
-        // Attach a closure to read the data at our posts reference
-        shoeRef.observeEventType(.Value, withBlock: { snapshot in
-            var tempShoeArray = [Shoe]()
-            let dict = snapshot.value as! NSDictionary
-            for x in dict {
-                var shoeToAppend = Shoe(data: x.value as! NSDictionary)
-                if shoeToAppend.imageString != nil {
-                    var decodedImageString = NSData(base64EncodedString: shoeToAppend.imageString as! String, options: NSDataBase64DecodingOptions(arrayLiteral: NSDataBase64DecodingOptions.IgnoreUnknownCharacters))
-                    var decodedImage = UIImage(data: decodedImageString!)
-                    shoeToAppend.shoeImage = decodedImage
-                    tempShoeArray.append(shoeToAppend)
-                }
+        FirebaseClient.sharedClient.getTimelineShoes({ (shoes, error) in
+            if error == nil {
+                self.doneLoading = true
+                self.checkLoader()
+                self.shoeTimeline = shoes as! [Shoe]
+                print(self.shoeTimeline![0].ownerId)
+                self.getUserById(self.shoeTimeline![0].ownerId!)
+                self.timeline.reloadData()
+            } else {
+                print("Error: KSTimelineViewController.getShoes")
             }
-            self.doneLoading = true
-            self.checkLoader()
-            self.shoeTimeline = tempShoeArray
-            print(self.shoeTimeline![0].ownerId)
-            self.getUserById(self.shoeTimeline![0].ownerId!)
-            self.timeline.reloadData()
-            
-            //print(self.visibleUser)
-            UIView.animateWithDuration(1, delay: 1, options: [], animations: { 
+        })
+        
+        UIView.animateWithDuration(1, delay: 1, options: [], animations: {
                
-                }, completion: { (Bool) in
+            }, completion: { (Bool) in
                 
-            })
-            
-
-            }, withCancelBlock: { error in
-                print(error.description)
-                self.liquidLoader()
         })
     }
 
     func getUserById(userId: String) {
-            // Get a reference to our posts
-            let userRef = FirebaseClient.getRefWith("users")
-
-//            userRef.queryOrderedByChild("id").queryEqualToValue(userId)
-//                .observeEventType(.Value, withBlock: { snapshot in
-//                    var tempUser: User?
-//                    print(snapshot.value)
-//                    tempUser = User(dictionary: snapshot.value as! NSDictionary)
-//                    self.visibleUser = tempUser
-//                }, withCancelBlock: { error in
-//                    print(error.description)
-//            })
-
-            //return correctUser!
-
-        userRef.observeEventType(.Value, withBlock: { snapshot in
-            var tempUser: User?
-            let dict = snapshot.value as! NSDictionary
-            for x in dict {
-                var userToAppend = User(dictionary: x.value as! NSDictionary)
-                if "facebook:\(userToAppend.uid!)" == userId {
-                    tempUser = userToAppend
-                }
+        FirebaseClient.sharedClient.getUserById(userId) { (user, error) in
+            if(error == nil){ //good tings..
+                self.visibleUser = user
+                self.userProfileImage.setImageWithURL(NSURL(string: (self.visibleUser?.profilePicUrl)!)!)
+                self.userProfileImage.clipsToBounds = true
+                self.profileName.text = self.visibleUser?.displayName
+                self.userProfileImage.setImageWithURL(NSURL(string: (self.visibleUser?.profilePicUrl)!)!)
+                self.userProfileImage.clipsToBounds = true
+                self.profileName.text = self.visibleUser?.displayName
+                self.instantiateMenuController()
+            } else { //bad ting dat :(
+                self.loader.show()
             }
-
-            self.visibleUser = tempUser
-            print(self.visibleUser)
-            
-            self.instantiateMenuController()
-
-            self.userProfileImage.setImageWithURL(NSURL(string: (self.visibleUser?.profilePicUrl)!)!)
-            self.userProfileImage.clipsToBounds = true
-            self.profileName.text = self.visibleUser?.displayName
-
-            }, withCancelBlock: { error in
-                print(error.description)
-                self.liquidLoader()
-        })
+        }
 
     }
 
@@ -527,9 +478,6 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         //var cellInViewIndex = Int(mainCollectionViewCellIndexPath.row)
 
         getUserById(shoeTimeline![(mainCollectionViewCellIndexPath?.row)!].ownerId!)
-        userProfileImage.setImageWithURL(NSURL(string: (visibleUser?.profilePicUrl)!)!)
-        userProfileImage.clipsToBounds = true
-        profileName.text = visibleUser?.displayName
 
     }
 

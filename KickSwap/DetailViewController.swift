@@ -124,7 +124,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
 
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
     }
-    
+
     func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
         if (scrollView.contentOffset.y + scrollView.frame.size.height) >= self.view.frame.height / 2{
             print(animateChart)
