@@ -96,6 +96,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-KickSwap/Material.framework"
   install_framework "Pods-KickSwap/PagingMenuController.framework"
   install_framework "Pods-KickSwap/SnapKit.framework"
+  install_framework "Pods-KickSwap/SwiftCharts.framework"
   install_framework "Pods-KickSwap/WYInteractiveTransitions.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -111,5 +112,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-KickSwap/Material.framework"
   install_framework "Pods-KickSwap/PagingMenuController.framework"
   install_framework "Pods-KickSwap/SnapKit.framework"
+  install_framework "Pods-KickSwap/SwiftCharts.framework"
   install_framework "Pods-KickSwap/WYInteractiveTransitions.framework"
 fi

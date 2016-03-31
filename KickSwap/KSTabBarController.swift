@@ -39,9 +39,13 @@ class KSTabBarController: UITabBarController {
         self.tabBar.barTintColor = tabBarBarTintColor
     }
     
-//    @IBAction func customizeTapped(segue: UIStoryboardSegue, sender: UIStoryboardSegue) {
-//        
-//    }
+    @IBAction func customizeTapped(segue: UIStoryboardSegue, sender: UIStoryboardSegue) {
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+    }
 
     /*
     // MARK: - Navigation

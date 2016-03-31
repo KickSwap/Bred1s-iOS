@@ -51,6 +51,10 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
         setMainBtnImage()
         prepareView()
         prepareMenuView()
+        print(NSUserDefaults.standardUserDefaults().valueForKey("Theme"))
+        //prepareMenuView(color:white)
+        //prepareMenView(color:black)
+        print(menuButtonImage)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -108,17 +112,21 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 
 	/// Prepares the add button.
 	private func prepareMenuView() {
+        
 		var image: UIImage? = UIImage(named: "view_carousel_white_24x24")
 		let btn1: FabButton = FabButton()
         btn1.backgroundColor = menuButtonsColor
         btn1.pulseColor = pulseColor
         //To prevent wrong image for main menu button
+        print(menuButtonImage)
+        print(NSUserDefaults.standardUserDefaults().valueForKey("Theme"))
         if menuButtonImage == nil {
 		btn1.setImage(buyButtonImage, forState: .Normal)
 		btn1.setImage(buyButtonImage, forState: .Highlighted)
         } else {
         btn1.setImage(menuButtonImage, forState: .Normal)
         btn1.setImage(menuButtonImage, forState: .Highlighted)
+            setMainBtnImage()
         }
 		btn1.addTarget(self, action: #selector(KSMenuViewController.onTap(_:)), forControlEvents: .TouchUpInside)
         let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(KSMenuViewController.onPress(_:)))
