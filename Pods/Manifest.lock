@@ -27,12 +27,15 @@ PODS:
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
   - DropDown (0.1.5)
+  - DZNEmptyDataSet (1.7.3)
   - FBSDKCoreKit (4.10.1):
     - Bolts (~> 1.5)
   - FBSDKLoginKit (4.10.1):
     - FBSDKCoreKit
   - Firebase (2.5.1)
   - IBAnimatable (2.1)
+  - LiquidLoader (0.1.1)
+  - LTMorphingLabel (0.2.0)
   - Material (1.35.3)
   - PagingMenuController (0.8.0)
   - SnapKit (0.20.0)
@@ -45,10 +48,13 @@ DEPENDENCIES:
   - ChameleonFramework
   - ChameleonFramework/Swift
   - DropDown
+  - DZNEmptyDataSet
   - FBSDKCoreKit
   - FBSDKLoginKit
   - Firebase
   - IBAnimatable
+  - LiquidLoader
+  - LTMorphingLabel
   - Material (~> 1.35.0)
   - PagingMenuController
   - SnapKit
@@ -61,10 +67,13 @@ SPEC CHECKSUMS:
   Canvas: eb861e3b555d032648146c8ffda1a5dea40059ca
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   DropDown: addffd49f2a014e079ed854adcb3c5473c1ebdf2
+  DZNEmptyDataSet: dd7cca17c1d07dfa78956859b1e70a52505678ef
   FBSDKCoreKit: d2aaed5e9ab7d8d6301c533376a1fbff1cf3deb5
   FBSDKLoginKit: 699ff169080e3072de4b9b0faca90bf23dc36deb
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
   IBAnimatable: da4ff5a4abba2f2356d9f8a3a23ca6aaf81e80dc
+  LiquidLoader: cf49954a6643f610c06a7db45da2da81a68a154b
+  LTMorphingLabel: 490aa8e079f9247c7f3130f7d4b1be1d66677377
   Material: 2989ce92c519fbdc265525819c37df0851701c4c
   PagingMenuController: 1a9ff8ad0ab9704f215706997c1a624bc951f508
   SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650

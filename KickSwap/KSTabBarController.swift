@@ -14,8 +14,10 @@ class KSTabBarController: UITabBarController {
         super.viewDidLoad()
         Style.loadTheme()
         self.selectedIndex = 1
-//        self.tabBar.tintColor = tabBarTintColor
-//        self.tabBar.barTintColor = tabBarBarTintColor
+        
+        //set current User
+        let profile = self.viewControllers![2] as! KSProfileViewController
+        profile.profileUser = User.currentUser
         
         // Do any additional setup after loading the view.
     }

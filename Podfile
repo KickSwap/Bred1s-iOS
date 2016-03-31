@@ -20,4 +20,5 @@ target 'KickSwap' do
   pod 'SwiftCharts', '~> 0.3'
   pod 'DZNEmptyDataSet'
   pod 'LiquidLoader'
+  pod 'LTMorphingLabel'
 end

@@ -11,15 +11,16 @@ import Firebase
 import AFNetworking
 import WYInteractiveTransitions
 import Material
+import DZNEmptyDataSet
 
-class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     var allShoes: [Shoe]?
     var currentUserShoesArray: [Shoe]?
+    var profileUser:User?
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profilePicImageView: UIImageView!
-    
-    
     @IBOutlet var themesButton: RaisedButton!
     @IBOutlet var profileHeaderView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -32,14 +33,29 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        collectionView.emptyDataSetSource = self
+        collectionView.emptyDataSetDelegate = self
+        
         profilePicImageView.layer.cornerRadius = 3
         profilePicImageView.clipsToBounds = true
         
-        nameLabel.text = User.currentUser?.displayName
+        nameLabel.text = profileUser?.displayName
     
-        profilePicImageView.setImageWithURL(NSURL(string: (User.currentUser?.profilePicUrl)!)!)
+        profilePicImageView.setImageWithURL(NSURL(string: (profileUser?.profilePicUrl)!)!)
+        
         getShoes()
         
+    }
+    
+    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "Question-Rage-Face")
+    }
+    
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let title = "Where yo kicks at?"
+        let myAttributes1 = [ NSForegroundColorAttributeName: UIColor.lightGrayColor() ]
+        let attrString3 = NSAttributedString(string: "Where yo kicks at?", attributes: myAttributes1)
+        return attrString3
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -82,7 +98,7 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             let dict = snapshot.value as! NSDictionary
             for x in dict {
                 var shoeToAppend = Shoe(data: x.value as! NSDictionary)
-                if shoeToAppend.ownerId == User.currentUser?.uid && shoeToAppend.imageString != nil {
+                if shoeToAppend.ownerId == self.profileUser?.uid && shoeToAppend.imageString != nil {
                     var decodedImageString = NSData(base64EncodedString: shoeToAppend.imageString as! String, options: NSDataBase64DecodingOptions(arrayLiteral: NSDataBase64DecodingOptions.IgnoreUnknownCharacters))
                     var decodedImage = UIImage(data: decodedImageString!)
                     shoeToAppend.shoeImage = decodedImage

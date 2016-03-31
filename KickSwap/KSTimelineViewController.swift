@@ -14,6 +14,7 @@ import SnapKit
 import PagingMenuController
 import AFNetworking
 import Firebase
+import LiquidLoader
 
 class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, TextDelegate, TextViewDelegate, PagingMenuControllerDelegate {
 
@@ -45,6 +46,8 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     var detailViewController2: UIViewController?
     let detailViewController3 = DetailViewController()
     var animateChart: Bool?
+    var doneLoading: Bool = false
+    var loader: LiquidLoader!
 
 
     /// A Text storage object that monitors the changes within the textView.
@@ -57,6 +60,10 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        liquidLoader()
+        self.timeline.alpha = 0
+        self.profileName.alpha = 0
+        self.userProfileImage.alpha = 0
         animateChart = true
         getShoesFromFirebase()
         prefersStatusBarHidden()
@@ -93,6 +100,50 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
             animations: { self.timelineBackground.image = self.backgroundImages[newIndex]},
             completion: nil)
     }
+    
+    func liquidLoader() {
+        let circleFrame = CGRectMake(self.view.bounds.width * 0.30, self.view.bounds.height * 0.32, 150, 150)
+        //let loaderView: UIView()
+        print(self.view.bounds.height / 2)
+        print(self.view.bounds.width / 2)
+        let circleColor = UIColor(red: 77 / 255.0, green: 182 / 255.0, blue: 255 / 255.0, alpha: 1.0)
+        loader = LiquidLoader(frame: circleFrame, effect: .GrowCircle(menuButtonsColor!))
+//        if doneLoading == true {
+//            loader!.hide()
+//        } else {
+//            loader!.show()
+//        }
+        if loader != nil {
+        self.loader.snp_makeConstraints { (make) in
+//            make.top.equalTo(self.view.bounds.height / 2)
+//            make.leading.equalTo(self.view.bounds.width / 2)
+//            make.centerX.equalTo(self.view.bounds.midX)
+//            make.centerY.equalTo(self.view.bounds.midY)
+            }
+        }
+        view.addSubview(loader)
+        loader!.show()
+    }
+    
+    func checkLoader() {
+        if doneLoading == true {
+            UIView.animateWithDuration(0.5, delay: 0, options: [], animations: {
+                self.loader.alpha = 0
+                }, completion: { (Bool) in
+                    self.loader!.hide()
+                    UIView.animateWithDuration(0.5, delay: 0, options: [], animations: {
+                        self.timeline.alpha = 1
+                        self.profileName.alpha = 1
+                        self.userProfileImage.alpha = 1
+                    }, completion: { (Bool) in
+                })
+            })
+            
+        } else {
+            loader!.show()
+        }
+
+    }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -101,13 +152,13 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         self.profileTrayView.snp_makeConstraints { (make) -> Void in
             make.top.equalTo((profileTrayView.superview?.frame.height)! * 0.82).constraint
         }
-
-        instantiateMenuController()
     }
     
     func instantiateMenuController() {
         //Instantiate pages for container view
         let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("KSProfileViewController") as! KSProfileViewController
+        profileViewController.profileUser = visibleUser
+        
         let detailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
         let detailViewController2 = detailViewController as DetailViewController
         //        if let detailViewController2 = detailViewController as? DetailViewController {
@@ -390,17 +441,25 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                     tempShoeArray.append(shoeToAppend)
                 }
             }
-
+            self.doneLoading = true
+            self.checkLoader()
             self.shoeTimeline = tempShoeArray
             print(self.shoeTimeline![0].ownerId)
             self.getUserById(self.shoeTimeline![0].ownerId!)
-            //print(self.visibleUser)
             self.timeline.reloadData()
+            
+            //print(self.visibleUser)
+            UIView.animateWithDuration(1, delay: 1, options: [], animations: { 
+               
+                }, completion: { (Bool) in
+                
+            })
+            
 
             }, withCancelBlock: { error in
                 print(error.description)
+                self.liquidLoader()
         })
-
     }
 
     func getUserById(userId: String) {
@@ -431,6 +490,8 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 
             self.visibleUser = tempUser
             print(self.visibleUser)
+            
+            self.instantiateMenuController()
 
             self.userProfileImage.setImageWithURL(NSURL(string: (self.visibleUser?.profilePicUrl)!)!)
             self.userProfileImage.clipsToBounds = true
@@ -438,6 +499,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 
             }, withCancelBlock: { error in
                 print(error.description)
+                self.liquidLoader()
         })
 
     }
