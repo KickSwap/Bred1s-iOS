@@ -131,6 +131,8 @@ class FirebaseClient: NSObject {
             let dict = snapshot.value as! NSDictionary
             for x in dict {
                 let shoeToAppend = Shoe(data: x.value as! NSDictionary)
+                //print(x.value)
+                shoeToAppend.printShoe()
                 if(shoeToAppend.imageString != nil) {
                     let decodedImageString = NSData(base64EncodedString: shoeToAppend.imageString as! String, options: NSDataBase64DecodingOptions(arrayLiteral: NSDataBase64DecodingOptions.IgnoreUnknownCharacters))
                     let decodedImage = UIImage(data: decodedImageString!)

@@ -14,6 +14,7 @@ import SnapKit
 import PagingMenuController
 import AFNetworking
 import Firebase
+import ASValueTrackingSlider
 
 class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, TextDelegate, TextViewDelegate, PagingMenuControllerDelegate {
 
@@ -41,6 +42,9 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     let backgroundImages = [UIImage(named:"blackBox"),UIImage(named:"boxStack"),UIImage(named:"greenBox")]
     var pictureIndex:Int?
     var visibleUser: User?
+    var bidValue: Float?
+    
+    let cardView: CardView = CardView()
 
 
     /// A Text storage object that monitors the changes within the textView.
@@ -306,6 +310,53 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         }
 
     }
+    
+    func addBidView() {
+        
+        // Title label.
+        let titleLabel: UILabel = UILabel()
+        titleLabel.text = "How Much?"
+        titleLabel.textColor = MaterialColor.blue.darken1
+        titleLabel.font = RobotoFont.mediumWithSize(20)
+        cardView.titleLabel = titleLabel
+        
+        // Detail label.
+        let shoeValueSlider: ASValueTrackingSlider = ASValueTrackingSlider()
+        var formatter = NSNumberFormatter()
+        formatter.numberStyle = .CurrencyStyle
+        shoeValueSlider.numberFormatter = formatter
+        //print(self.shoeTimeline![mainCollectionViewCellIndexPath!.row].price)
+        shoeValueSlider.minimumValue = Float(self.shoeTimeline![(mainCollectionViewCellIndexPath?.row)!].price!)! - 10
+        shoeValueSlider.maximumValue = Float(self.shoeTimeline![(mainCollectionViewCellIndexPath?.row)!].price!)! + 100
+        shoeValueSlider.addTarget(self, action: "bidSliderDidChange:", forControlEvents:UIControlEvents.ValueChanged)
+        cardView.detailView = shoeValueSlider
+        
+        
+        // Yes button.
+        let btn1: FlatButton = FlatButton()
+        btn1.pulseColor = MaterialColor.blue.lighten1
+        btn1.pulseScale = false
+        btn1.setTitle("Submit", forState: .Normal)
+        btn1.setTitleColor(MaterialColor.blue.darken1, forState: .Normal)
+        btn1.addTarget(self, action: "submitBid:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        // No button.
+        let btn2: FlatButton = FlatButton()
+        btn2.pulseColor = MaterialColor.blue.lighten1
+        btn2.pulseScale = false
+        btn2.setTitle("Cancel", forState: .Normal)
+        btn2.setTitleColor(MaterialColor.blue.darken1, forState: .Normal)
+        btn2.addTarget(self, action: "cancelBid:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        // Add buttons to left side.
+        cardView.rightButtons = [btn1, btn2]
+        
+        // To support orientation changes, use MaterialLayout.
+        view.addSubview(cardView)
+        cardView.translatesAutoresizingMaskIntoConstraints = false
+        MaterialLayout.alignFromTop(view, child: cardView, top: self.view.center.y - (cardView.height/2))
+        MaterialLayout.alignToParentHorizontally(view, child: cardView, left: 20, right: 20)
+    }
 
 
     @IBAction func logOutPressed(sender: AnyObject) {
@@ -415,7 +466,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 
         self.mainCollectionViewCellIndexPath = self.timeline.indexPathForItemAtPoint(currentCellCenter)
 
-        print(mainCollectionViewCellIndexPath)
+        print(self.shoeTimeline![mainCollectionViewCellIndexPath!.row].price)
 
         //var cellInViewIndex = Int(mainCollectionViewCellIndexPath.row)
 
@@ -431,6 +482,31 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         //trayViewButton.setBackgroundImage(UIImage(named: ""), forState: .Normal)
         //trayViewButton.setBackgroundImage(UIImage(named: ""), forState: .Highlighted)
         profileName.textColor = textColor
+    }
+    
+    
+    @IBAction func bidButtonPressed(sender: AnyObject) {
+        print("bid")
+        addBidView()
+    }
+    
+    func cancelBid(sender:UIButton!) {
+        cardView.removeFromSuperview()
+    }
+    
+    func submitBid(sender:UIButton!) {
+        print(bidValue)
+        var tempBidArray = shoeTimeline![mainCollectionViewCellIndexPath!.row].bids
+        tempBidArray?.append("\(bidValue)")
+        shoeTimeline![mainCollectionViewCellIndexPath!.row].bids = tempBidArray
+        print(shoeTimeline![mainCollectionViewCellIndexPath!.row].bids)
+        cardView.removeFromSuperview()
+    }
+    
+    func bidSliderDidChange(sender: UISlider) {
+//        sender.setValue(ceil(((sender.value + 2.5) / 5) * 5), animated: false)
+        sender.value = ceil(sender.value)
+        bidValue = ceil(sender.value)
     }
 
 
