@@ -427,8 +427,8 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         // Get a reference to our posts
         FirebaseClient.sharedClient.getTimelineShoes({ (shoes, error) in
             if error == nil {
-                self.doneLoading = true
-                self.checkLoader()
+                self.doneLoading = true // start animation
+                self.checkLoader() // start animation
                 self.shoeTimeline = shoes as! [Shoe]
                 print(self.shoeTimeline![0].ownerId)
                 self.getUserById(self.shoeTimeline![0].ownerId!)
@@ -438,11 +438,6 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
             }
         })
         
-        UIView.animateWithDuration(1, delay: 1, options: [], animations: {
-               
-            }, completion: { (Bool) in
-                
-        })
     }
 
     func getUserById(userId: String) {
@@ -466,13 +461,10 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
         //profile card view animation
         UIView.transitionWithView(profileTrayView, duration: 1, options: UIViewAnimationOptions.TransitionFlipFromBottom, animations: { self.profileTrayView = self.profileTrayView}, completion: { (value: Bool) in
-            //self.profileTrayView.alpha = 1
         })
-        //Variables.animateChart = true
+        
+        // Restart trayview chart animation and scroll view position
         instantiateMenuController()
-//        print(detailViewController3.animateChart)
-//        detailViewController3.animateChart = true
-//        print(detailViewController3.animateChart)
     }
 
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
