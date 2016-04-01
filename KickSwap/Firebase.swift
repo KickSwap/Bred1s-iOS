@@ -1,4 +1,4 @@
-//
+  //
 //  Firebase.swift
 //  KickSwap
 //
@@ -174,6 +174,37 @@ class FirebaseClient: NSObject {
         })
         
     }
+    
+    func getOwnersShoes(owner:User,completion:CompletionBlock.AnyObjArray){
+        // Get a reference to our posts
+        let shoeRef = FirebaseClient.sharedClient.getRefWith("shoes")
+        //let shoeRef = Firebase.init(url: "https://kickswap.firebaseio.com/shoes")
+        
+        // Attach a closure to read the data at our posts reference
+        shoeRef.observeEventType(.Value, withBlock: { snapshot in
+            var tempShoeArray = [Shoe]()
+            let dict = snapshot.value as! NSDictionary
+            for x in dict {
+                let shoeToAppend = Shoe(data: x.value as! NSDictionary)
+                if shoeToAppend.ownerId == owner.uid && shoeToAppend.imageString != nil {
+                    let decodedImageString = NSData(base64EncodedString: shoeToAppend.imageString as! String, options: NSDataBase64DecodingOptions(arrayLiteral: NSDataBase64DecodingOptions.IgnoreUnknownCharacters))
+                    let decodedImage = UIImage(data: decodedImageString!)
+                    shoeToAppend.shoeImage = decodedImage
+                    tempShoeArray.append(shoeToAppend)
+                }
+            }
+            
+            print(tempShoeArray)
+            
+            completion(tempShoeArray,nil) //send data back to controller
+            
+            }, withCancelBlock: { error in
+                print(error.description)
+                completion(nil,nil) //send data back to controller
+        })
+        
+    }
+    
     
     func getUserById(userId: String, completion:CompletionBlock.KSUser){
         let userRef = getRefWith("users")

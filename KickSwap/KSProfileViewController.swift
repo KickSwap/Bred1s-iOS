@@ -62,6 +62,7 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         layoutTheme()
         themesButtonLayout()
         profileHeaderView.setNeedsLayout()
+        getShoes()
     }
 
     override func didReceiveMemoryWarning() {
@@ -89,8 +90,7 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func getShoes() {
         // Get a reference to our posts
-        
-        FirebaseClient.sharedClient.getOwnersShoes({ (shoes, error) in
+        FirebaseClient.sharedClient.getOwnersShoes(profileUser!,completion: { (shoes, error) in
             if(error == nil) { //good to go
                 self.allShoes = shoes as? [Shoe]
                 self.kicksLabel.text = "\(self.allShoes!.count)"

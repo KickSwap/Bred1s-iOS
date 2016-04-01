@@ -98,25 +98,9 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     }
     
     func liquidLoader() {
-        let circleFrame = CGRectMake(self.view.bounds.width * 0.30, self.view.bounds.height * 0.32, 150, 150)
-        //let loaderView: UIView()
-        print(self.view.bounds.height / 2)
-        print(self.view.bounds.width / 2)
-        let circleColor = UIColor(red: 77 / 255.0, green: 182 / 255.0, blue: 255 / 255.0, alpha: 1.0)
+        let circleFrame = CGRectMake(0, 0, 150, 150)
         loader = LiquidLoader(frame: circleFrame, effect: .GrowCircle(menuButtonsColor!))
-//        if doneLoading == true {
-//            loader!.hide()
-//        } else {
-//            loader!.show()
-//        }
-        if loader != nil {
-        self.loader.snp_makeConstraints { (make) in
-//            make.top.equalTo(self.view.bounds.height / 2)
-//            make.leading.equalTo(self.view.bounds.width / 2)
-//            make.centerX.equalTo(self.view.bounds.midX)
-//            make.centerY.equalTo(self.view.bounds.midY)
-            }
-        }
+        loader.center = self.view.center
         view.addSubview(loader)
         loader!.show()
     }
@@ -154,6 +138,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         //Instantiate pages for container view
         let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("KSProfileViewController") as! KSProfileViewController
         profileViewController.profileUser = visibleUser
+        profileViewController.getShoes()
         
         let detailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
         let detailViewController2 = detailViewController as DetailViewController
