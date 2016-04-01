@@ -26,8 +26,11 @@ PODS:
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
+  - Crashlytics (3.7.0):
+    - Fabric (~> 1.6.3)
   - DropDown (0.1.5)
   - DZNEmptyDataSet (1.7.3)
+  - Fabric (1.6.7)
   - FBSDKCoreKit (4.10.1):
     - Bolts (~> 1.5)
   - FBSDKLoginKit (4.10.1):
@@ -47,8 +50,10 @@ DEPENDENCIES:
   - Canvas
   - ChameleonFramework
   - ChameleonFramework/Swift
+  - Crashlytics
   - DropDown
   - DZNEmptyDataSet
+  - Fabric
   - FBSDKCoreKit
   - FBSDKLoginKit
   - Firebase
@@ -66,8 +71,10 @@ SPEC CHECKSUMS:
   Bolts: f52a250053bb517ca874523c3913776359ab3def
   Canvas: eb861e3b555d032648146c8ffda1a5dea40059ca
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   DropDown: addffd49f2a014e079ed854adcb3c5473c1ebdf2
   DZNEmptyDataSet: dd7cca17c1d07dfa78956859b1e70a52505678ef
+  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   FBSDKCoreKit: d2aaed5e9ab7d8d6301c533376a1fbff1cf3deb5
   FBSDKLoginKit: 699ff169080e3072de4b9b0faca90bf23dc36deb
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085

@@ -21,4 +21,6 @@ target 'KickSwap' do
   pod 'DZNEmptyDataSet'
   pod 'LiquidLoader'
   pod 'LTMorphingLabel'
+  pod 'Fabric'
+  pod 'Crashlytics'
 end

@@ -12,6 +12,8 @@ import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
 import ChameleonFramework
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        
+        Fabric.with([Crashlytics.self])
         //Pre-load webviews
 //        let news = storyboard.instantiateViewControllerWithIdentifier("KSNewsViewController") as UIViewController
 //        news.viewDidLayoutSubviews()

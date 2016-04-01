@@ -212,7 +212,6 @@
 			children = (
 				02B2A8401CAC18270099A244 /* Env.swift */,
 				02B2A83E1CAC17950099A244 /* ExamplesDefaults.swift */,
-				0256D3041C99774700B8CD4B /* webviews */,
 				0256D3041C99774700B8CD4B /* WebViews */,
 				47BBC0F51C7E8B6D007DFF67 /* BlueViewcontroller.swift */,
 				47BBC0F61C7E8B6D007DFF67 /* GreenViewController.swift */,
@@ -278,6 +277,7 @@
 				477970D71C630306000F1196 /* Resources */,
 				D0F8A8DA9F396C021F15BC2A /* Embed Pods Frameworks */,
 				8E2F3128EDDB7B78DCC871B8 /* Copy Pods Resources */,
+				022C808E1CAE2EB0004F357E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -337,6 +337,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		022C808E1CAE2EB0004F357E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 11b3282689ef58bf5cef1f194abfc515099f6511 20f4ee7bffc7dceaad047c9a18b4098acfd0e9c6dca618aa92eaa8887ca6f1b0";
+		};
 		65B324B01C02198504F26DEC /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -474,7 +487,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

@@ -15,6 +15,7 @@ import PagingMenuController
 import AFNetworking
 import Firebase
 import LiquidLoader
+import Crashlytics
 
 class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, TextDelegate, TextViewDelegate, PagingMenuControllerDelegate {
 
@@ -62,6 +63,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         super.viewDidLoad()
         liquidLoader()
         alpha0()
+        hideTrayView()
         animateChart = true
         getShoesFromFirebase()
         prefersStatusBarHidden()
@@ -121,7 +123,8 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         }
 
     }
-    
+
+//Set Alphas for Animation
     func alpha0() {
         self.timeline.alpha = 0
         self.profileName.alpha = 0
@@ -140,15 +143,36 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         super.viewWillAppear(animated)
         Style.loadTheme()
         layoutTheme()
-//        self.profileTrayView.snp_makeConstraints { (make) -> Void in
-//            make.top.equalTo((profileTrayView.superview?.frame.height)! * 0.82).constraint
-//        }
+
+        hideTrayView()
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        // set initial tray view location
+        //animateTrayView()
+    }
+    
+//Tray View Animations
+    
+    func hideTrayView() {
         self.profileTrayView.snp_makeConstraints { (make) -> Void in
-            //make.topMargin.equalTo((profileTrayView.superview?.bottomAnchor)!).constraint
-            //make.top.equalTo((profileTrayView.superview?.bottomAnchor)!).constraint
             make.top.equalTo(profileTrayView.superview!).offset((profileTrayView.superview?.frame.height)!)
         }
     }
+    
+    func animateTrayView() {
+        self.profileTrayView.snp_remakeConstraints { (make) -> Void in
+            make.top.equalTo((profileTrayView.superview?.frame.height)! * 0.82).constraint
+        }
+        profileTrayView.setNeedsLayout()
+        UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: [], animations: {
+            self.profileTrayView.layoutIfNeeded()
+        }) { (Bool) in
+        }
+    }
+    
+//Instantiate Menu Controller
     
     func instantiateMenuController() {
         //Instantiate pages for container view
@@ -179,31 +203,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         options.menuDisplayMode = .SegmentedControl
         //(widthMode: .Flexible, centerItem: true, scrollingMode: .PagingEnabled)
         pagingMenuController.setup(viewControllers: viewControllers, options: options)
-
-    }
-
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        // set initial tray view location
-//        self.profileTrayView.snp_remakeConstraints { (make) -> Void in
-//            make.top.equalTo((profileTrayView.superview?.frame.height)! * 0.82).constraint
-//        }
-//        profileTrayView.setNeedsLayout()
-//        UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.8, options: [], animations: {
-//            self.profileTrayView.layoutIfNeeded()
-//        }) { (Bool) in
-//        }
-    }
-    
-    func animateTrayView() {
-        self.profileTrayView.snp_remakeConstraints { (make) -> Void in
-            make.top.equalTo((profileTrayView.superview?.frame.height)! * 0.82).constraint
-        }
-        profileTrayView.setNeedsLayout()
-        UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: [], animations: {
-            self.profileTrayView.layoutIfNeeded()
-        }) { (Bool) in
-        }
+        
     }
 
     /// General preparation statements.
@@ -395,7 +395,10 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     func items() {
 
     }
-
+    
+    
+//CollectionView Delegate Functions
+    
     func collectionView(timeline: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = timeline.dequeueReusableCellWithReuseIdentifier("TimelineCell", forIndexPath: indexPath) as! KSTimelineCollectionViewCell
 
@@ -422,7 +425,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         })
     }
 
-    //MARK: - Firebase Get Methods
+//MARK: - Firebase Get Methods
     func getShoesFromFirebase() {
         // Get a reference to our posts
         FirebaseClient.sharedClient.getTimelineShoes({ (shoes, error) in
@@ -435,6 +438,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                 self.timeline.reloadData()
             } else {
                 print("Error: KSTimelineViewController.getShoes")
+                self.loader.show()
             }
         })
         
@@ -452,16 +456,44 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                 self.profileName.text = self.visibleUser?.displayName
                 self.instantiateMenuController()
             } else { //bad ting dat :(
-                self.loader.show()
+    
             }
         }
 
     }
+    
+// ProfileTrayView Animations
+    
+    func flipDown() {
+        let transitionOptions: UIViewAnimationOptions = [.TransitionFlipFromBottom, .CurveEaseIn, .ShowHideTransitionViews]
+        
+        UIView.transitionWithView(profileTrayView, duration: 1, options: transitionOptions, animations: {
+            //self.profileTrayView = self.profileTrayView
+            self.profileTrayView.hidden = true
+        }) { (Bool) in
+        }
+    }
+    
+    func flipUp() {
+        let transitionOptions: UIViewAnimationOptions = [.TransitionFlipFromTop, .ShowHideTransitionViews]
+        
+        UIView.transitionWithView(profileTrayView, duration: 1, options: transitionOptions, animations: {
+            self.profileTrayView.hidden = false
+        }) { (Bool) in
+        }
+    }
+    
+// ScrollView Delegate Functions
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+    }
+    
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        //animate profileTrayView
+        flipDown()
+    }
 
     func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
-        //profile card view animation
-        UIView.transitionWithView(profileTrayView, duration: 1, options: UIViewAnimationOptions.TransitionFlipFromBottom, animations: { self.profileTrayView = self.profileTrayView}, completion: { (value: Bool) in
-        })
         
         // Restart trayview chart animation and scroll view position
         instantiateMenuController()
@@ -478,10 +510,13 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         //var cellInViewIndex = Int(mainCollectionViewCellIndexPath.row)
 
         getUserById(shoeTimeline![(mainCollectionViewCellIndexPath?.row)!].ownerId!)
+        
+        flipUp()
 
     }
 
-    //initiate theme
+//initiate theme
+    
     func layoutTheme() {
         self.timelineColorBackground.backgroundColor = timelineBackgroundColor
         self.profileTrayView.backgroundColor = profileTrayViewColor

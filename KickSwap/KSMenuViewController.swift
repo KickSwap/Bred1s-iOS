@@ -202,8 +202,8 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
     //MARK: - TimelineView Controls
     func handleSellBtn() {
         
-        self.menuButtonImage = sellButtonImage
-        self.setMainBtnImage()
+        //self.menuButtonImage = sellButtonImage
+        //self.setMainBtnImage()
 
         //check if user is already on this view
         if currentView == "sell" {
