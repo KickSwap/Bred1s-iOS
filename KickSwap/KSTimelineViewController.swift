@@ -41,6 +41,10 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     let backgroundImages = [UIImage(named:"blackBox"),UIImage(named:"boxStack"),UIImage(named:"greenBox")]
     var pictureIndex:Int?
     var visibleUser: User?
+    
+    var detailViewController2: UIViewController?
+    let detailViewController3 = DetailViewController()
+    var animateChart: Bool?
 
 
     /// A Text storage object that monitors the changes within the textView.
@@ -53,6 +57,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        animateChart = true
         getShoesFromFirebase()
         prefersStatusBarHidden()
         timeline.dataSource = self
@@ -97,16 +102,27 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
             make.top.equalTo((profileTrayView.superview?.frame.height)! * 0.82).constraint
         }
 
+        instantiateMenuController()
+    }
+    
+    func instantiateMenuController() {
         //Instantiate pages for container view
         let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("KSProfileViewController") as! KSProfileViewController
         let detailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
+        let detailViewController2 = detailViewController as DetailViewController
+        //        if let detailViewController2 = detailViewController as? DetailViewController {
+        //            detailViewController2.animateChart = true
+        //        }
+        //self.addChildViewController(detailViewController)
+        //detailViewController.animateChart = animateChart!
         profileViewController.title = "Profile"
         detailViewController.title = "Details"
+        
         let viewControllers = [detailViewController, profileViewController]
-
+        
         //instantiate PagingMenuController and customization
         let pagingMenuController = self.childViewControllers.first as! PagingMenuController
-
+        
         let options = PagingMenuOptions()
         options.defaultPage = 0
         options.backgroundColor = pagingMenuBackgroundColor!
@@ -122,6 +138,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         options.menuDisplayMode = .SegmentedControl
         //(widthMode: .Flexible, centerItem: true, scrollingMode: .PagingEnabled)
         pagingMenuController.setup(viewControllers: viewControllers, options: options)
+
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -407,6 +424,11 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         UIView.transitionWithView(profileTrayView, duration: 1, options: UIViewAnimationOptions.TransitionFlipFromBottom, animations: { self.profileTrayView = self.profileTrayView}, completion: { (value: Bool) in
             //self.profileTrayView.alpha = 1
         })
+        //Variables.animateChart = true
+        instantiateMenuController()
+//        print(detailViewController3.animateChart)
+//        detailViewController3.animateChart = true
+//        print(detailViewController3.animateChart)
     }
 
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {

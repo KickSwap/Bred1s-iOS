@@ -12,8 +12,8 @@ class KSTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Style.loadTheme()
-        //self.selectedIndex = 1
+        Style.loadTheme()
+        self.selectedIndex = 1
 //        self.tabBar.tintColor = tabBarTintColor
 //        self.tabBar.barTintColor = tabBarBarTintColor
         
@@ -22,6 +22,7 @@ class KSTabBarController: UITabBarController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         layoutTheme()
+        self.selectedIndex = 1
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -38,6 +39,13 @@ class KSTabBarController: UITabBarController {
         self.tabBar.barTintColor = tabBarBarTintColor
     }
     
+    @IBAction func customizeTapped(segue: UIStoryboardSegue, sender: UIStoryboardSegue) {
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+    }
 
     /*
     // MARK: - Navigation

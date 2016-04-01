@@ -7,18 +7,96 @@
 //
 
 import UIKit
+import SwiftCharts
+import IBAnimatable
 
-class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+struct Variables {
+    static var animateChart = true
+}
 
-    @IBOutlet var tableView: UITableView!
+class DetailViewController: UIViewController, UIScrollViewDelegate {
+
     //@IBOutlet var shoeDetailImage: UIImageView!
+    private var chart: Chart? // arc
+    @IBOutlet var chartView: AnimatableView!
+    @IBOutlet var scrollView: UIScrollView!
+    var animateChart: Bool = true
+    var chartSubview: UIView? = nil
+    @IBOutlet var shoeNameLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       tableView.delegate = self
-       tableView.dataSource = self
-
         // Do any additional setup after loading the view.
+        scrollView.delegate = self
+        shoeNameLabel.layer.cornerRadius = 4
+        shoeNameLabel.layer.shadowOffset = CGSize(width: 3, height: 10)
+        shoeNameLabel.layer.shadowColor = UIColor.flatBlackColor().CGColor
+        shoeNameLabel.layer.shadowOpacity = 1
+
+        instantiateChart()
+        //animateChart = true
+
+
+    //chartView.setTranslatesAutoresizingMaskIntoConstraints(false)
+//        chartSubview.addConstraint(NSLayoutConstraint(item: chartView, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 0.0))
+//        chartSubview.addConstraint(NSLayoutConstraint(item: chartView, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0.0))
+//        chartSubview.addConstraint(NSLayoutConstraint(item: self, attribute: .Bottom, relatedBy: .Equal, toItem: chartView, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
+//        chartSubview.addConstraint(NSLayoutConstraint(item: chartView, attribute: .Trailing, relatedBy: .Equal, toItem: chartView, attribute: .Trailing, multiplier: 1.0, constant: 0.0))
+        //self.chartView.addSubview(chartSubview)
+
+        //self.chartView.alpha = 0
+//        if animateChart == true {
+//            animateChartView()
+//        }
+
+    }
+
+    func instantiateChart() {
+        let labelSettings = ChartLabelSettings(font: ExamplesDefaults.labelFont)
+
+        let chartPoints: [ChartPoint] = [(1, 3), (2, 5), (3, 7.5), (4, 10), (5, 6), (6, 12)].map{ChartPoint(x: ChartAxisValueDouble($0.0, labelSettings: labelSettings), y: ChartAxisValueDouble($0.1))}
+
+        let xValues = chartPoints.map{$0.x}
+        let yValues = ChartAxisValuesGenerator.generateYAxisValuesWithChartPoints(chartPoints, minSegmentCount: 10, maxSegmentCount: 20, multiple: 2, axisValueGenerator: {ChartAxisValueDouble($0, labelSettings: labelSettings)}, addPaddingSegmentIfEdge: false)
+
+        let lineModel = ChartLineModel(chartPoints: chartPoints, lineColor: palletteView2Color!, animDuration: 1, animDelay: 0)
+
+        let trendLineModel = ChartLineModel(chartPoints: TrendlineGenerator.trendline(chartPoints), lineColor: palletteView4Color!, animDuration: 0.5, animDelay: 1)
+
+        let xModel = ChartAxisModel(axisValues: xValues, axisTitleLabel: ChartAxisLabel(text: "Axis title", settings: labelSettings))
+        let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "Axis title", settings: labelSettings.defaultVertical()))
+        let chartFrame = ExamplesDefaults.chartFrame(self.chartView.bounds)
+        let coordsSpace = ChartCoordsSpaceLeftBottomSingleAxis(chartSettings: ExamplesDefaults.chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
+        let (xAxis, yAxis, innerFrame) = (coordsSpace.xAxis, coordsSpace.yAxis, coordsSpace.chartInnerFrame)
+
+        let chartPointsLineLayer = ChartPointsLineLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, lineModels: [lineModel])
+
+        let trendLineLayer = ChartPointsLineLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, lineModels: [trendLineModel])
+
+        let settings = ChartGuideLinesDottedLayerSettings(linesColor: UIColor.blackColor(), linesWidth: ExamplesDefaults.guidelinesWidth)
+        let guidelinesLayer = ChartGuideLinesDottedLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, settings: settings)
+
+        let chart = Chart(
+            frame: chartFrame,
+            layers: [
+                xAxis,
+                yAxis,
+                guidelinesLayer,
+                chartPointsLineLayer,
+                trendLineLayer
+            ]
+        )
+
+        self.chart = chart
+        self.chartSubview = chart.view
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        //let pagingMenu = self.parentViewController
+//        if let timeline = pagingMenu!.parentViewController as? KSTimelineViewController {
+//            //animateChart = timeline.animateChart!
+//            //Variables.animateChart
+//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,16 +104,55 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Dispose of any resources that can be recreated.
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+//    let chartConfig = ChartConfigXY(
+//        xAxisConfig: ChartAxisConfig(from: 2, to: 14, by: 2),
+//        yAxisConfig: ChartAxisConfig(from: 0, to: 14, by: 2)
+//    )
+//
+//    let chart = LineChart(
+//        frame: CGRectMake(0, 70, 300, 500),
+//        chartConfig: chartConfig,
+//        xTitle: "X axis",
+//        yTitle: "Y axis",
+//        lines: [
+//            (chartPoints: [(2.0, 10.6), (4.2, 5.1), (7.3, 3.0), (8.1, 5.5), (14.0, 8.0)], color: UIColor.redColor()),
+//            (chartPoints: [(2.0, 2.6), (4.2, 4.1), (7.3, 1.0), (8.1, 11.5), (14.0, 3.0)], color: UIColor.blueColor())
+//        ]
+//    )
+//
+//    self.view.addSubview(chart.view)
+
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    }
+    
+    func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
+        if (scrollView.contentOffset.y + scrollView.frame.size.height) >= self.view.frame.height / 2{
+            print(animateChart)
+            if animateChart == true {
+                animateChartView()
+                animateChart = false
+            }
+        }
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TimelineDetailTableViewCell", forIndexPath: indexPath) as! TimelineDetailTableViewCell
-        
-        cell.shoeDetailedImage.image = UIImage(named: "blackYeezy")
+    func scrollViewDidScrollToTop(scrollView: UIScrollView) {
+        print("yes")
+    }
 
-        return cell
+    func animateChartView() {
+//        UIView.animateWithDuration(2, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [], animations: { () -> Void in
+//            self.chartView.alpha = 1
+//            }, completion: { (completed) -> Void in
+//        })
+        // Setup the animation
+        //chartView.animationType = "SqueezeInLeft"
+        chartView.delay = 0.5
+        chartView.damping = 0.5
+        chartView.velocity = 2
+        chartView.force = 1
+
+        self.chartView.addSubview(chartSubview!)
+        chartView.squeezeInRight()
     }
 
     /*
