@@ -18,7 +18,7 @@ class Release:NSObject {
     
     init(name:String, data: NSDictionary) {
         sneakerName = name
-        price = data["Price"] as! String
+        //price = data["Price"] as! String
         detailURL = NSURL(string: data["detailURL"] as! String)
         releaseDateAsString = data["releaseDate"] as! String
         let temp = data["voteCount"] as! String

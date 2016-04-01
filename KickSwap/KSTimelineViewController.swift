@@ -61,9 +61,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         liquidLoader()
-        self.timeline.alpha = 0
-        self.profileName.alpha = 0
-        self.userProfileImage.alpha = 0
+        alpha0()
         animateChart = true
         getShoesFromFirebase()
         prefersStatusBarHidden()
@@ -112,9 +110,8 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                 }, completion: { (Bool) in
                     self.loader!.hide()
                     UIView.animateWithDuration(0.5, delay: 0, options: [], animations: {
-                        self.timeline.alpha = 1
-                        self.profileName.alpha = 1
-                        self.userProfileImage.alpha = 1
+                        self.alpha1()
+                        self.animateTrayView()
                     }, completion: { (Bool) in
                 })
             })
@@ -124,13 +121,32 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         }
 
     }
+    
+    func alpha0() {
+        self.timeline.alpha = 0
+        self.profileName.alpha = 0
+        self.userProfileImage.alpha = 0
+        self.profileTrayView.alpha = 1
+    }
+    
+    func alpha1() {
+        self.timeline.alpha = 1
+        self.profileName.alpha = 1
+        self.userProfileImage.alpha = 1
+        self.profileTrayView.alpha = 1
+    }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         Style.loadTheme()
         layoutTheme()
+//        self.profileTrayView.snp_makeConstraints { (make) -> Void in
+//            make.top.equalTo((profileTrayView.superview?.frame.height)! * 0.82).constraint
+//        }
         self.profileTrayView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo((profileTrayView.superview?.frame.height)! * 0.82).constraint
+            //make.topMargin.equalTo((profileTrayView.superview?.bottomAnchor)!).constraint
+            //make.top.equalTo((profileTrayView.superview?.bottomAnchor)!).constraint
+            make.top.equalTo(profileTrayView.superview!).offset((profileTrayView.superview?.frame.height)!)
         }
     }
     
@@ -139,14 +155,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("KSProfileViewController") as! KSProfileViewController
         profileViewController.profileUser = visibleUser
         profileViewController.getShoes()
-        
         let detailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
-        let detailViewController2 = detailViewController as DetailViewController
-        //        if let detailViewController2 = detailViewController as? DetailViewController {
-        //            detailViewController2.animateChart = true
-        //        }
-        //self.addChildViewController(detailViewController)
-        //detailViewController.animateChart = animateChart!
         profileViewController.title = "Profile"
         detailViewController.title = "Details"
         
@@ -176,10 +185,25 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         // set initial tray view location
-        self.profileTrayView.snp_makeConstraints { (make) -> Void in
+//        self.profileTrayView.snp_remakeConstraints { (make) -> Void in
+//            make.top.equalTo((profileTrayView.superview?.frame.height)! * 0.82).constraint
+//        }
+//        profileTrayView.setNeedsLayout()
+//        UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.8, options: [], animations: {
+//            self.profileTrayView.layoutIfNeeded()
+//        }) { (Bool) in
+//        }
+    }
+    
+    func animateTrayView() {
+        self.profileTrayView.snp_remakeConstraints { (make) -> Void in
             make.top.equalTo((profileTrayView.superview?.frame.height)! * 0.82).constraint
         }
-
+        profileTrayView.setNeedsLayout()
+        UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: [], animations: {
+            self.profileTrayView.layoutIfNeeded()
+        }) { (Bool) in
+        }
     }
 
     /// General preparation statements.
@@ -279,7 +303,6 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         let translation = sender.translationInView(view)
 
         if sender.state == UIGestureRecognizerState.Began {
-            print("Gesture began at: \(point)")
             trayOriginalCenter = profileTrayView.center
         } else if sender.state == UIGestureRecognizerState.Changed {
             print("Gesture changed at: \(point)")
