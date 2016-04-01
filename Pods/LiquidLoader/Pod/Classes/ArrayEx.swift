@@ -46,7 +46,7 @@ extension Array {
 
     func indexOf <U: Equatable> (item: U) -> Int? {
         if item is Element {
-            return Swift.find(unsafeBitCast(self, [U].self), item)
+            return nil //Swift.find(unsafeBitCast(self, [U].self), item)
         }
         
         return nil

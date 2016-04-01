@@ -11,43 +11,60 @@ import Firebase
 import AFNetworking
 import WYInteractiveTransitions
 import Material
+import DZNEmptyDataSet
 
-class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     var allShoes: [Shoe]?
     var currentUserShoesArray: [Shoe]?
+    var profileUser:User?
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profilePicImageView: UIImageView!
-    
-    
     @IBOutlet var themesButton: RaisedButton!
     @IBOutlet var profileHeaderView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var kicksLabel: UILabel!
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        collectionView.emptyDataSetSource = self
+        collectionView.emptyDataSetDelegate = self
+        
         profilePicImageView.layer.cornerRadius = 3
         profilePicImageView.clipsToBounds = true
         
-        nameLabel.text = User.currentUser?.displayName
-    
-        profilePicImageView.setImageWithURL(NSURL(string: (User.currentUser?.profilePicUrl)!)!)
+        nameLabel.text = profileUser?.displayName
+        
+        profilePicImageView.setImageWithURL(NSURL(string: (profileUser?.profilePicUrl)!)!)
+        
         getShoes()
         
+    }
+    
+    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "Question-Rage-Face")
+    }
+    
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let title = "Where yo kicks at?"
+        let myAttributes1 = [ NSForegroundColorAttributeName: UIColor.lightGrayColor() ]
+        let attrString3 = NSAttributedString(string: "Where yo kicks at?", attributes: myAttributes1)
+        return attrString3
     }
     
     override func viewWillAppear(animated: Bool) {
         layoutTheme()
         themesButtonLayout()
         profileHeaderView.setNeedsLayout()
+        getShoes()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -73,7 +90,6 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func getShoes() {
         // Get a reference to our posts
-        
         FirebaseClient.sharedClient.getOwnersShoes({ (shoes, error) in
             if(error == nil) { //good to go
                 self.allShoes = shoes as? [Shoe]
@@ -97,17 +113,17 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         if segue.identifier == "themeSegue" {
             let toView = segue.destinationViewController as? KSThemesViewController
             transitionMgr.configureTransition(0.5, toViewController: toView!,
-                handGestureEnable: true, transitionType: WYTransitoinType.Zoom)
+                                              handGestureEnable: true, transitionType: WYTransitoinType.Zoom)
         }
     }
     
     // Unwind Segue
     @IBAction func customizeTapped(segue: UIStoryboardSegue, sender: UIStoryboardSegue) {
         //Figure out destination view controller, currently its timeline
-//        let toView = segue.destinationViewController as? KSTabBarController
+        //        let toView = segue.destinationViewController as? KSTabBarController
         
-//        transitionMgr.configureTransition(0.5, toViewController: self,
-//                    handGestureEnable: true, transitionType: WYTransitoinType.Zoom)
+        //        transitionMgr.configureTransition(0.5, toViewController: self,
+        //                    handGestureEnable: true, transitionType: WYTransitoinType.Zoom)
         //layoutTheme()
     }
     
@@ -118,15 +134,15 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         themesButton.titleLabel?.font = RobotoFont.thinWithSize(12)
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
