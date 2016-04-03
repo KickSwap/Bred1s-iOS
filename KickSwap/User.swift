@@ -22,6 +22,7 @@ class User: NSObject {
     var displayName: String?
     var profilePicUrl: String?
     var uid: String?
+    var id: String?
     var provider: String?
     var token: String?
     var auth: NSDictionary?
@@ -48,7 +49,7 @@ class User: NSObject {
     }
 
     init(dictionary:NSDictionary){
-        //self.authData = dictionary["authData"] as? FAuthData
+        self.authData = dictionary["authData"] as? FAuthData
         self.authDataAsDictionary = dictionary
         
         if dictionary["providerData"] == nil {
@@ -63,7 +64,8 @@ class User: NSObject {
             self.profilePicUrl = dictionary["providerData"]!["profileImageURL"] as? String
         }
         
-        self.uid = dictionary["id"] as? String
+        self.id = dictionary["id"] as? String
+        self.uid = dictionary["uid"] as? String
         self.provider = dictionary["provider"] as? String
         self.token = dictionary["token"] as? String
         self.auth = dictionary["auth"] as? NSDictionary

@@ -17,4 +17,5 @@ target 'KickSwap' do
   pod 'PagingMenuController'
   pod 'WYInteractiveTransitions', '~> 1.0.2'
   pod 'ChameleonFramework'
+  pod 'ASValueTrackingSlider'
 end
