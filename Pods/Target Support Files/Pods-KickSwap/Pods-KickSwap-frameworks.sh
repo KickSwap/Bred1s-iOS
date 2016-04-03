@@ -85,6 +85,7 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-KickSwap/AFNetworking.framework"
+  install_framework "Pods-KickSwap/ASValueTrackingSlider.framework"
   install_framework "Pods-KickSwap/Bolts.framework"
   install_framework "Pods-KickSwap/Canvas.framework"
   install_framework "Pods-KickSwap/ChameleonFramework.framework"
@@ -100,6 +101,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-KickSwap/AFNetworking.framework"
+  install_framework "Pods-KickSwap/ASValueTrackingSlider.framework"
   install_framework "Pods-KickSwap/Bolts.framework"
   install_framework "Pods-KickSwap/Canvas.framework"
   install_framework "Pods-KickSwap/ChameleonFramework.framework"

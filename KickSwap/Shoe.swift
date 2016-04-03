@@ -19,20 +19,21 @@ class Shoe: NSObject {
     
     var condition: String?
     var size: String?
-    var originalBox: Bool?
-    var receipt: Bool?
+    var originalBox: String?
+    var receipt: String?
     var owner: User?
     var ownerId: String?
-    var price: Double?
+    var price: String?
     var createdAt: NSDate?
     var createdAtString: String?
     
     //var willingToTradeFor: [Shoe]?
-    //var bids:[Bids]
+    var bids:[String]?
     override init() {
 
     }
     
+    // changed everything to string **Priority to figure out how to handle data**
     init(data:NSDictionary) {
         self.name = data["name"] as? String
         self.brand = data["brand"] as? String
@@ -42,24 +43,28 @@ class Shoe: NSObject {
         self.ownerId = data["ownerId"] as? String
         self.condition = data["condition"] as? String
         self.size = data["size"] as? String
-        self.originalBox = data["originalBox"] as? Bool
-        self.receipt = data["receipt"] as? Bool
+        self.price = data["price"] as? String
+        self.originalBox = data["originalBox"] as? String
+        self.receipt = data["receipt"] as? String
         self.imageString = data["imageString"] as? NSString
+        self.bids = data["bids"] as? [String]
         self.shoeImage = UIImage()
         //self.owner?.uid = data["ownerId"] as? String
         // make call w/ ownerId
         //self.owner = d
     }
     
-    func getShoe() -> [String:String]{
+    func getShoe() -> [String:AnyObject]{
         return ["name": name!,
                 "color": "",
                 "brand": "",
+                "price": price!,
                 "ownerId": ownerId!,
                 "condition": condition!,
                 "size": size!,
-                "originalBox": "",
-                "receipt": "",
+                "originalBox": originalBox!,
+                "receipt": receipt!,
+                "bids": bids!,
                 "imageString": imageString! as String
         ]
     }
