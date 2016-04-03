@@ -17,12 +17,17 @@ class KSVoteCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var voteCountLabel: UILabel!
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var dayLabel: UILabel!
+    @IBOutlet weak var colorLabel: UILabel!
     
     var shoe:Release! {
         didSet{
             //shoeNameLabel.text = shoe.sneakerName
             //shoePriceLabel.text = shoe.price
             shoeImageView.setImageWithURL(shoe.imageURL!)
+            shoeNameLabel.text = shoe.sneakerName
+            shoePriceLabel.text = shoe.price
+            colorLabel.text = shoe.color
+            
         }
     }
     

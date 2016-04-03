@@ -16,6 +16,7 @@ class Release:NSObject {
     var releaseDateAsString:String?
     var releaseDate: NSDate?
     var voteCount:Int?
+    var color:String?
     
     init(name:String, data: NSDictionary) {
         
@@ -31,6 +32,7 @@ class Release:NSObject {
         
         if data["releaseDate"] != nil {
             releaseDateAsString = data["releaseDate"] as? String
+            //Make releaseDate into NSDate
         }
         
         if data["voteCount"] != nil {
@@ -40,6 +42,10 @@ class Release:NSObject {
         
         if data["imageURL"] != nil {
             imageURL = NSURL(string: data["imageURL"] as! String)
+        }
+        
+        if data["color"] != nil {
+            color = data["color"] as! String
         }
         
     }
