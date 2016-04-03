@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PagingMenuController
 
 class SwiftWebVC: UIViewController, UIWebViewDelegate, UIScrollViewDelegate {
  
@@ -111,7 +112,9 @@ class SwiftWebVC: UIViewController, UIWebViewDelegate, UIScrollViewDelegate {
         super.viewDidLoad()
         //set toolbar to top to avoid bad UI: self.navigationController?.toolbar.barPosition UIBarPosition.Top
         self.navigationController?.toolbar.barTintColor = UIColor(hexString: "D53427")
-        self.navigationController?.toolbarHidden = false
+        //self.navigationController?.toolbarHidden = true
+        //self.navigationController?.toolbar.alpha = 0
+        animationIndex = 0
         updateToolbarItems()
     }
     
@@ -122,6 +125,7 @@ class SwiftWebVC: UIViewController, UIWebViewDelegate, UIScrollViewDelegate {
         navBarTitle.backgroundColor = UIColor.clearColor()
         navBarTitle.shadowOffset = CGSizeMake(0, 1);
         navBarTitle.font = UIFont(name: "HelveticaNeue-Medium", size: 17.0)
+        //self.navigationController?.toolbar.alpha = 0
         
         navigationItem.titleView = navBarTitle;
         
@@ -135,9 +139,14 @@ class SwiftWebVC: UIViewController, UIWebViewDelegate, UIScrollViewDelegate {
         }
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+//        self.navigationController?.toolbar.alpha = 1
+    }
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(true)
-        
+        //self.navigationController?.toolbar.alpha = 0
         if (UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
             self.navigationController?.setToolbarHidden(true, animated: true)
         }
@@ -153,6 +162,7 @@ class SwiftWebVC: UIViewController, UIWebViewDelegate, UIScrollViewDelegate {
     // variable to save the last position visited, initially setted to zero
     
     private var lastOffsetY: CGFloat = 0
+    private var animationIndex = 0
     
     //Delegate Methods
     func scrollViewWillBeginDragging(scrollView: UIScrollView){
@@ -162,8 +172,33 @@ class SwiftWebVC: UIViewController, UIWebViewDelegate, UIScrollViewDelegate {
     func scrollViewWillBeginDecelerating(scrollView: UIScrollView){
         
         let hide = scrollView.contentOffset.y > self.lastOffsetY
+        let show = scrollView.contentOffset.y < self.lastOffsetY
+        
         self.navigationController?.setToolbarHidden(hide, animated: true)
         self.navigationController?.toolbarHidden = hide
+        
+        //Accessing KSNewsView
+        if self.parentViewController != nil {
+            print(self.parentViewController)
+        } else { print("damn daniel :(")   }
+        let swiftModalVC = self.parentViewController
+        //print(swiftModalVC?.parentViewController)
+        let pagingViewControllers = swiftModalVC?.parentViewController
+        //print(pagingViewControllers!.parentViewController)
+        let pagingMenuController = pagingViewControllers!.parentViewController as! PagingMenuController
+        //print(pagingMenuController.parentViewController)
+        let newsViewController = pagingMenuController.parentViewController as! KSNewsViewController
+        
+        //Animating menu view: determining scroll direction
+        if hide && (animationIndex == 0) {
+            //self.navigationController?.toolbar.alpha = 0
+            newsViewController.hideMenuBar()
+            animationIndex = 1
+        } else if show  && (animationIndex == 1) {
+//            self.navigationController?.toolbar.alpha = 1
+            newsViewController.showMenuBar()
+            animationIndex = 0
+        }
     }
 
     ////////////////////////////////////////////////

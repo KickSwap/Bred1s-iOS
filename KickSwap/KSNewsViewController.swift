@@ -10,13 +10,25 @@ import UIKit
 import PagingMenuController
 import Material
 
-class KSNewsViewController: UIViewController, PagingMenuControllerDelegate {
+struct Variables {
+    static var animatePagingMenu = false
+}
 
-    
+class KSNewsViewController: UIViewController, PagingMenuControllerDelegate, UIScrollViewDelegate {
+
+    let options = PagingMenuOptions()
+    let PMenuController: PagingMenuController! = nil
+    var viewControllers: [UIViewController] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        instantiateMenuController()
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    func instantiateMenuController() {
         //Instantiating Paging View Controllers
         let niceKicksViewController = self.storyboard?.instantiateViewControllerWithIdentifier("NiceKicksViewController") as! NiceKicksViewController
         let JisBackViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ReleaseNewsController") as! KSVoteViewController
@@ -24,14 +36,15 @@ class KSNewsViewController: UIViewController, PagingMenuControllerDelegate {
         niceKicksViewController.title = "Nice Kicks"
         JisBackViewController.title = "Release Dates"
         soleCollectorViewController.title = "Sole Collector"
-        let viewControllers = [niceKicksViewController, JisBackViewController, soleCollectorViewController]
+        self.viewControllers = [niceKicksViewController, JisBackViewController, soleCollectorViewController]
         
         //Instantiating paging menu controller
         let pagingMenuController = self.childViewControllers.first as! PagingMenuController
+        //pagingMenuController.menuView.hidden = true
         //pagingMenuController.view.translatesAutoresizingMaskIntoConstraints = false
         
         //Customizing Paging Menu Controller
-        let options = PagingMenuOptions()
+        //let options = PagingMenuOptions()
         options.defaultPage = 0
         options.backgroundColor = pagingMenuBackgroundColor!
         options.selectedBackgroundColor = pagingMenuSelectedBackgroundColor!
@@ -44,14 +57,12 @@ class KSNewsViewController: UIViewController, PagingMenuControllerDelegate {
         //options.menuPosition = .Bottom
         pagingMenuController.delegate = self
         options.menuDisplayMode = .SegmentedControl
-        //(widthMode: .Flexible, centerItem: true, scrollingMode: .PagingEnabled)
+        //.Standard(widthMode: .Flexible, centerItem: true, scrollingMode: .PagingEnabled)
         //.Infinite(widthMode: .Flexible)
         //
         
         //Adding view controllers and customizztion to paging menu controller
         pagingMenuController.setup(viewControllers: viewControllers, options: options)
-        
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -59,11 +70,66 @@ class KSNewsViewController: UIViewController, PagingMenuControllerDelegate {
         //Adding view controllers and customizztion to paging menu controller
         let pagingMenuController = self.childViewControllers.first as! PagingMenuController
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+
+//Animate MenuView
+    func hideMenuBar() {
+        let pagingMenuController = self.childViewControllers.first as! PagingMenuController
+        pagingMenuController.animateMenuView()
+        //self.tabBarController?.tabBar.hidden = true
+        UIView.animateWithDuration(0.5) {
+            self.menuViewController?.menuView.alpha = 0
+        }
+         setTabBarVisible(!tabBarIsVisible(), animated: true)
+    }
+    
+    func showMenuBar(animated animated: Bool = true) {
+        let pagingMenuController = self.childViewControllers.first as! PagingMenuController
+        pagingMenuController.showMenuView()
+        print(self.parentViewController)
+        //self.tabBarController?.tabBar.hidden = false
+        UIView.animateWithDuration(0.7) {
+            self.menuViewController?.menuView.alpha = 1
+        }
+         setTabBarVisible(!tabBarIsVisible(), animated: true)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func setTabBarVisible(visible:Bool, animated:Bool) {
+        
+        //* This cannot be called before viewDidLayoutSubviews(), because the frame is not set before this time
+        
+        // bail if the current state matches the desired state
+        if (tabBarIsVisible() == visible) { return }
+        
+        // get a frame calculation ready
+        let frame = self.tabBarController?.tabBar.frame
+        let height = frame?.size.height
+        let offsetY = (visible ? -height! : height)
+        
+        // zero duration means no animation
+        let duration:NSTimeInterval = (animated ? 0.4 : 10)
+        
+        //  animate the tabBar
+        if frame != nil {
+            UIView.animateWithDuration(duration) {
+                self.tabBarController?.tabBar.frame = CGRectOffset(frame!, 0, offsetY!)
+                return
+            }
+        }
+    }
+    
+    func tabBarIsVisible() ->Bool {
+        return self.tabBarController?.tabBar.frame.origin.y < CGRectGetMaxY(self.view.frame)
+    }
+    
     
 
     /*

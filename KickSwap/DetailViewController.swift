@@ -10,10 +10,6 @@ import UIKit
 import SwiftCharts
 import IBAnimatable
 
-struct Variables {
-    static var animateChart = true
-}
-
 class DetailViewController: UIViewController, UIScrollViewDelegate {
 
     //@IBOutlet var shoeDetailImage: UIImageView!
