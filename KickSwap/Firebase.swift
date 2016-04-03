@@ -159,12 +159,17 @@ class FirebaseClient: NSObject {
             var tempShoeArray = [Shoe]()
             let dict = snapshot.value as! NSDictionary
             for x in dict {
-                let shoeToAppend = Shoe(data: x.value as! NSDictionary)
-                if shoeToAppend.ownerId == User.currentUser?.uid && shoeToAppend.imageString != nil {
-                    let decodedImageString = NSData(base64EncodedString: shoeToAppend.imageString as! String, options: NSDataBase64DecodingOptions(arrayLiteral: NSDataBase64DecodingOptions.IgnoreUnknownCharacters))
-                    let decodedImage = UIImage(data: decodedImageString!)
-                    shoeToAppend.shoeImage = decodedImage
-                    tempShoeArray.append(shoeToAppend)
+                var shoeToAppend = Shoe(data: x.value as! NSDictionary)
+                print(shoeToAppend.ownerId)
+                print(User.currentUser?.uid)
+                if shoeToAppend.ownerId == User.currentUser?.uid {
+//                    tempShoeArray.append(shoeToAppend)
+                    if(shoeToAppend.imageString != nil) {
+                        let decodedImageString = NSData(base64EncodedString: shoeToAppend.imageString as! String, options: NSDataBase64DecodingOptions(arrayLiteral: NSDataBase64DecodingOptions.IgnoreUnknownCharacters))
+                        let decodedImage = UIImage(data: decodedImageString!)
+                        shoeToAppend.shoeImage = decodedImage
+                        tempShoeArray.append(shoeToAppend)
+                    }
                 }
             }
             
@@ -184,7 +189,7 @@ class FirebaseClient: NSObject {
             let dict = snapshot.value as! NSDictionary
             for x in dict {
                 var userToAppend = User(dictionary: x.value as! NSDictionary)
-                if "facebook:\(userToAppend.uid!)" == userId {
+                if "facebook:\(userToAppend.id!)" == userId {
                     tempUser = userToAppend
                     completion(tempUser,nil)
                 }
