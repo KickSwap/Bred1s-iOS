@@ -19,6 +19,7 @@ class Release:NSObject {
     var color:String?
     
     init(name:String, data: NSDictionary) {
+        super.init()
         
         sneakerName = name
     
@@ -33,6 +34,7 @@ class Release:NSObject {
         if data["releaseDate"] != nil {
             releaseDateAsString = data["releaseDate"] as? String
             //Make releaseDate into NSDate
+            releaseDate = stringToNSDate(releaseDateAsString!)
         }
         
         if data["voteCount"] != nil {
@@ -50,7 +52,11 @@ class Release:NSObject {
         
     }
     
-//    override func getShoe() -> [String : String] {
-//        
-//    }
+    func stringToNSDate(date:String) -> NSDate {
+        let strDate = date // "2015-10-06T15:42:34Z"
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        return dateFormatter.dateFromString(strDate)!
+    }
+    
 }
