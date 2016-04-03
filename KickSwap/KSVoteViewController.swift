@@ -8,21 +8,22 @@
 
 import UIKit
 
-class KSVoteViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class KSVoteViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
 
-    @IBOutlet weak var voteResultsTableView: UITableView!
+    @IBOutlet weak var releaseCollectionView: UICollectionView!
+    
     var releaseDates:[Release]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.voteResultsTableView.delegate = self
-        self.voteResultsTableView.dataSource = self
+        self.releaseCollectionView.delegate = self
+        self.releaseCollectionView.dataSource = self
         
         FirebaseClient.sharedClient.getReleaseDate({ (shoes, error) in
             if error == nil { //YASSSS
                 self.releaseDates = shoes as? [Release]
-                self.voteResultsTableView.reloadData()
+                self.releaseCollectionView.reloadData()
             } else {// What the..
                 print(error)
             }
@@ -35,7 +36,7 @@ class KSVoteViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     //MARK: - UITableView DataSource
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if releaseDates != nil{
             return (releaseDates?.count)!
         } else {
@@ -46,12 +47,12 @@ class KSVoteViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
     // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("VoteCell") as? KSVoteTableViewCell
-        cell?.shoe = self.releaseDates![indexPath.row]
-        return cell!
-    }
     
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("VoteCell", forIndexPath: indexPath) as! KSVoteCollectionViewCell
+        cell.shoe = self.releaseDates![indexPath.row]
+        return cell
+    }
     
 
     /*
