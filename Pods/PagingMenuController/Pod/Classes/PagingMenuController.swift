@@ -293,7 +293,7 @@ public class PagingMenuController: UIViewController, UIScrollViewDelegate {
         self.menuView.layoutIfNeeded()
         self.hideMenuView()
         self.layoutContentView()
-        UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.3, options: [], animations: {
+        UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.AllowUserInteraction, animations: {
             self.contentView.layoutIfNeeded()
             self.menuView.layoutIfNeeded()
             }) { (Bool) in
@@ -306,7 +306,7 @@ public class PagingMenuController: UIViewController, UIScrollViewDelegate {
         self.menuView.updateConstraintsIfNeeded()
         self.menuView.layoutIfNeeded()
         self.revealMenuView()
-        UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: [], animations: {
+        UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: UIViewAnimationOptions.AllowUserInteraction, animations: {
             self.menuView.layoutIfNeeded()
         }) { (Bool) in
         }

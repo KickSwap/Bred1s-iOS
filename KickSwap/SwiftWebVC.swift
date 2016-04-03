@@ -127,12 +127,26 @@ class SwiftWebVC: UIViewController, UIWebViewDelegate, UIScrollViewDelegate {
         navBarTitle.font = UIFont(name: "HelveticaNeue-Medium", size: 17.0)
         //self.navigationController?.toolbar.alpha = 0
         
+        //Accessing KSNewsView
+//        if self.parentViewController != nil {
+//            print(self.parentViewController)
+//        } else { print("damn daniel :(")   }
+//        let swiftModalVC = self.parentViewController
+//        print(swiftModalVC!.parentViewController)
+//        let pagingViewControllers = swiftModalVC!.parentViewController
+//        print(pagingViewControllers!.parentViewController)
+//        let pagingMenuController = pagingViewControllers?.parentViewController
+//        print(pagingMenuController!.parentViewController)
+//        let newsViewController = pagingMenuController?.parentViewController as! KSNewsViewController
+//        newsViewController.showMenuBar()
+        animationIndex = 0
+        
         navigationItem.titleView = navBarTitle;
         
         super.viewWillAppear(true)
         
         if (UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
-            self.navigationController?.setToolbarHidden(false, animated: false)
+            self.navigationController?.setToolbarHidden(true, animated: false)
         }
         else if (UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad) {
             self.navigationController?.setToolbarHidden(true, animated: true)
@@ -179,7 +193,7 @@ class SwiftWebVC: UIViewController, UIWebViewDelegate, UIScrollViewDelegate {
         
         //Accessing KSNewsView
         if self.parentViewController != nil {
-            print(self.parentViewController)
+            //print(self.parentViewController)
         } else { print("damn daniel :(")   }
         let swiftModalVC = self.parentViewController
         //print(swiftModalVC?.parentViewController)

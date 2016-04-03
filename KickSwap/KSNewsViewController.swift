@@ -69,6 +69,7 @@ class KSNewsViewController: UIViewController, PagingMenuControllerDelegate, UISc
         super.viewWillAppear(animated)
         //Adding view controllers and customizztion to paging menu controller
         let pagingMenuController = self.childViewControllers.first as! PagingMenuController
+        showTabBar()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -79,11 +80,11 @@ class KSNewsViewController: UIViewController, PagingMenuControllerDelegate, UISc
     func hideMenuBar() {
         let pagingMenuController = self.childViewControllers.first as! PagingMenuController
         pagingMenuController.animateMenuView()
-        //self.tabBarController?.tabBar.hidden = true
-        UIView.animateWithDuration(0.5) {
+        UIView.animateWithDuration(0.7, delay: 0, usingSpringWithDamping: 0, initialSpringVelocity: 0, options: UIViewAnimationOptions.AllowUserInteraction, animations: {
             self.menuViewController?.menuView.alpha = 0
-        }
-         setTabBarVisible(!tabBarIsVisible(), animated: true)
+            }, completion: { (Bool) in
+        })
+        hideTabBar()
     }
     
     func showMenuBar(animated animated: Bool = true) {
@@ -91,10 +92,11 @@ class KSNewsViewController: UIViewController, PagingMenuControllerDelegate, UISc
         pagingMenuController.showMenuView()
         print(self.parentViewController)
         //self.tabBarController?.tabBar.hidden = false
-        UIView.animateWithDuration(0.7) {
+        UIView.animateWithDuration(0.7, delay: 0, usingSpringWithDamping: 0, initialSpringVelocity: 0, options: UIViewAnimationOptions.AllowUserInteraction, animations: { 
             self.menuViewController?.menuView.alpha = 1
-        }
-         setTabBarVisible(!tabBarIsVisible(), animated: true)
+        }, completion: { (Bool) in
+        })
+        showTabBar()
     }
 
     override func didReceiveMemoryWarning() {
@@ -102,33 +104,94 @@ class KSNewsViewController: UIViewController, PagingMenuControllerDelegate, UISc
         // Dispose of any resources that can be recreated.
     }
     
-    func setTabBarVisible(visible:Bool, animated:Bool) {
+//Animate TabBar    
+    func showTabBar() {
+        // get a frame calculation ready
+        let frame = self.tabBarController?.tabBar.frame
+        let height = frame?.size.height
+        let offsetY = CGRectGetMaxY(self.view.frame) - CGRectGetMaxY((self.tabBarController?.tabBar.frame)!)
+//        print(offsetY)
+//        print(CGRectGetMaxY(self.view.frame))
+//        print(CGRectGetMaxY((self.tabBarController?.tabBar.frame)!))
         
-        //* This cannot be called before viewDidLayoutSubviews(), because the frame is not set before this time
+        // zero duration means no animation
+        let duration:NSTimeInterval = (0.4)
         
-        // bail if the current state matches the desired state
-        if (tabBarIsVisible() == visible) { return }
+        //  animate the tabBar
+        if frame != nil {
+            UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.6, options: UIViewAnimationOptions.AllowUserInteraction, animations: {
+                self.tabBarController?.tabBar.frame = CGRectOffset(frame!, 0, offsetY)
+                return
+                }, completion: { (Bool) in
+            })
+            
+        }
+
+    }
+    
+    func hideTabBar() {
         
         // get a frame calculation ready
         let frame = self.tabBarController?.tabBar.frame
         let height = frame?.size.height
-        let offsetY = (visible ? -height! : height)
+        let offsetY = (height!)
+//        print(offsetY)
+//        print(CGRectGetMaxY(self.view.frame))
+//        print(CGRectGetMaxY((self.tabBarController?.tabBar.frame)!))
         
         // zero duration means no animation
-        let duration:NSTimeInterval = (animated ? 0.4 : 10)
+        let duration:NSTimeInterval = (0.4)
         
         //  animate the tabBar
         if frame != nil {
-            UIView.animateWithDuration(duration) {
-                self.tabBarController?.tabBar.frame = CGRectOffset(frame!, 0, offsetY!)
+            UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.6, options: UIViewAnimationOptions.AllowUserInteraction, animations: {
+                //self.tabBarController?.tabBar.frame = CGRectOffset(frame!, 0, offsetY!)
+                self.tabBarController?.tabBar.frame = CGRectOffset(frame!, 0, offsetY)
                 return
-            }
+                }, completion: { (Bool) in
+            })
+            
         }
+        
+
     }
     
-    func tabBarIsVisible() ->Bool {
-        return self.tabBarController?.tabBar.frame.origin.y < CGRectGetMaxY(self.view.frame)
-    }
+//    func setTabBarVisible(visible:Bool, animated:Bool) {
+//        
+//        //* This cannot be called before viewDidLayoutSubviews(), because the frame is not set before this time
+//        
+//        // bail if the current state matches the desired state
+//        if (tabBarIsVisible() == visible) {
+//            print(tabBarIsVisible().boolValue)
+//            self.menuViewController?.menuView.alpha = 1
+//            return
+//        }
+//        
+//        // get a frame calculation ready
+//        let frame = self.tabBarController?.tabBar.frame
+//        let height = frame?.size.height
+//        let offsetY = (visible ? -height! : height)
+//        
+//        // zero duration means no animation
+//        let duration:NSTimeInterval = (animated ? 0.4 : 10)
+//        
+//        //  animate the tabBar
+//        if frame != nil {
+//            UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.6, options: UIViewAnimationOptions.AllowUserInteraction, animations: {
+//                self.tabBarController?.tabBar.frame = CGRectOffset(frame!, 0, offsetY!)
+//                //self.tabBarController?.tabBar.frame = CGRectOffset(frame!, 0, 0)
+//                return
+//                }, completion: { (Bool) in
+//            })
+//            
+//        }
+//        
+//    }
+//    
+//    func tabBarIsVisible() ->Bool {
+//        return self.tabBarController?.tabBar.frame.origin.y < CGRectGetMaxY(self.view.frame)
+//    }
+
     
     
 

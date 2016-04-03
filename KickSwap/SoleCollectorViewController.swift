@@ -25,6 +25,11 @@ class SoleCollectorViewController: UIViewController {
         view.bringSubviewToFront(webVC.view!)
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        print(self.parentViewController)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

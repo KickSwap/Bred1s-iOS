@@ -29,6 +29,10 @@ class NiceKicksViewController: UIViewController, UIScrollViewDelegate, UIGesture
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        let swiftmodalVC = self.parentViewController
+        let ksnews = swiftmodalVC?.parentViewController as! KSNewsViewController
+        print(ksnews)
+        ksnews.showMenuBar()
     }
 
     override func didReceiveMemoryWarning() {
