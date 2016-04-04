@@ -182,11 +182,20 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
         menuViewController?.mainViewController.view.alpha = 0.5
         openMenu()
     }
+    
+    func KSTimeline() -> KSTimelineViewController {
+        let tabBarController = self.mainViewController as! UITabBarController
+//        print(tabBarController.childViewControllers)
+        let navigationController = tabBarController.childViewControllers[1]
+//        print(navigationController.childViewControllers)
+        return navigationController.childViewControllers[0] as! KSTimelineViewController
+    }
 
     func onTap(sender: UITapGestureRecognizer? = nil) {
         let tabBarController = self.mainViewController as! UITabBarController
-        print(tabBarController.childViewControllers)
-        //let timlineController = tabBarController.childViewControllers[1]
+        //animate profile tray view if opened
+        let timelineController = KSTimeline()
+        timelineController.animateTrayView()
         if menuView.menu.opened {
             menuViewController?.mainViewController.view.alpha = 1
             closeMenu()
