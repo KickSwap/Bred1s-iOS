@@ -185,6 +185,8 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 
     func onTap(sender: UITapGestureRecognizer? = nil) {
         let tabBarController = self.mainViewController as! UITabBarController
+        print(tabBarController.childViewControllers)
+        //let timlineController = tabBarController.childViewControllers[1]
         if menuView.menu.opened {
             menuViewController?.mainViewController.view.alpha = 1
             closeMenu()

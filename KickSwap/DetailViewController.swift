@@ -19,6 +19,11 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     var animateChart: Bool = true
     var chartSubview: UIView? = nil
     @IBOutlet var shoeNameLabel: UILabel!
+    @IBOutlet var shoeImage: UIImageView!
+    @IBOutlet var shoeSizeLabel: UILabel!
+    @IBOutlet var shoeConditionLabel: UILabel!
+    
+    var visibleUser: User?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +36,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         
         instantiateChart()
         //animateChart = true
-        
+      
         
     //chartView.setTranslatesAutoresizingMaskIntoConstraints(false)
 //        chartSubview.addConstraint(NSLayoutConstraint(item: chartView, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 0.0))
@@ -88,11 +93,18 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
-        //let pagingMenu = self.parentViewController
-//        if let timeline = pagingMenu!.parentViewController as? KSTimelineViewController {
-//            //animateChart = timeline.animateChart!
-//            //Variables.animateChart
-//        }
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    func KSTimeline() -> KSTimelineViewController {
+        let pagingmenucontroller = self.parentViewController
+        //print(pagingmenucontroller?.parentViewController)
+        let kstimeline = pagingmenucontroller?.parentViewController as! KSTimelineViewController
+        return kstimeline
     }
 
     override func didReceiveMemoryWarning() {
@@ -129,6 +141,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
                 animateChart = false
             }
         }
+        print(shoeNameLabel.text)
     }
     
     func scrollViewDidScrollToTop(scrollView: UIScrollView) {
@@ -150,6 +163,22 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         self.chartView.addSubview(chartSubview!)
         chartView.squeezeInRight()
     }
+    
+    func loadPage() {
+        if let indexPath = KSTimeline().mainCollectionViewCellIndexPath?.row {
+        shoeNameLabel.text = KSTimeline().shoeTimeline![indexPath].name
+        shoeImage.image = KSTimeline().shoeTimeline![indexPath].shoeImage
+        shoeSizeLabel.text = KSTimeline().shoeTimeline![indexPath].size
+        shoeConditionLabel.text = KSTimeline().shoeTimeline![indexPath].condition
+        } else {
+            shoeNameLabel.text = KSTimeline().shoeTimeline![0].name
+            shoeImage.image = KSTimeline().shoeTimeline![0].shoeImage
+            shoeSizeLabel.text = KSTimeline().shoeTimeline![0].size
+            shoeConditionLabel.text = KSTimeline().shoeTimeline![0].condition
+        }
+    }
+
+
 
     /*
     // MARK: - Navigation

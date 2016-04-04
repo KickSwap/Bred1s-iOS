@@ -31,6 +31,12 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     @IBOutlet var profileTrayView: CardView!
     @IBOutlet var trayViewButton: UIButton!
     @IBOutlet var profileName: UILabel!
+    
+//    //Variables to pass to DetailViewController
+//    var shoeImage: UIImage!
+//    var shoeName: UILabel = UILabel(frame: CGRectMake(0, 0, 200, 21))
+//    var shoeCondition: UILabel!
+//    var shoeSize: UILabel!
 
 
     var mainCollectionViewCellIndexPath: NSIndexPath?
@@ -72,6 +78,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         prepareView()
         prepareTextView()
         addToolBar(textView)
+        //instantiateMenuController()
 
         //set image initially
         pictureIndex = 0
@@ -186,7 +193,10 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         let viewControllers = [detailViewController, profileViewController]
         
         //instantiate PagingMenuController and customization
+        //self.addChildViewController(detailViewController)
         let pagingMenuController = self.childViewControllers.first as! PagingMenuController
+        
+        
         
         let options = PagingMenuOptions()
         options.defaultPage = 0
@@ -203,7 +213,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         options.menuDisplayMode = .SegmentedControl
         //(widthMode: .Flexible, centerItem: true, scrollingMode: .PagingEnabled)
         pagingMenuController.setup(viewControllers: viewControllers, options: options)
-        
+        print(pagingMenuController.childViewControllers)
     }
 
     /// General preparation statements.
@@ -396,6 +406,14 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 
     }
     
+    func detailViewController() -> DetailViewController {
+        //print(self.childViewControllers)
+        let pagingmenucontroller = self.childViewControllers[0] as! PagingMenuController
+        //print(pagingmenucontroller.childViewControllers)
+        //print(pagingmenucontroller.childViewControllers[0])
+        return pagingmenucontroller.childViewControllers[0] as! DetailViewController
+    }
+    
     
 //CollectionView Delegate Functions
     
@@ -407,7 +425,35 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         cell.sizeLabel.text = shoeTimeline![indexPath.row].size!
         cell.conditionLabel.text = shoeTimeline![indexPath.row].condition
         cell.shoeTagView.backgroundColor = shoeTagViewColor
-
+        
+//        if [indexPath].ref(indexPath.row - 1) != nil {
+//        self.shoeImage = shoeTimeline![indexPath.row - 1].shoeImage
+//        self.shoeName.text = shoeTimeline![indexPath.row - 1].name
+//        self.shoeSize?.text = shoeTimeline![indexPath.row - 1].size!
+//        self.shoeCondition?.text = shoeTimeline![indexPath.row - 1].condition
+////        detailViewController().loadPage()
+//        print(cell.shoeNameLabel?.text)
+//        print(self.shoeName.text)
+//        print(self.shoeSize?.text)
+//        print(self.shoeCondition?.text)
+//        }
+//        else {
+//            print(indexPath.row - 1)
+//        }
+        
+//        let pagingmenucontroller = self.childViewControllers[0]
+//        //print(pagingmenucontroller.childViewControllers[0])
+//        if pagingmenucontroller.childViewControllers.ref(1) != nil {
+//            detailViewController().shoeImage.image = shoeTimeline![indexPath.row].shoeImage
+//            detailViewController().shoeNameLabel.text = shoeTimeline![indexPath.row].name
+//            print(detailViewController().shoeNameLabel.text)
+//            //print(shoeTimeline![indexPath.row].name)
+//            detailViewController().shoeSizeLabel.text = shoeTimeline![indexPath.row].size!
+//            detailViewController().shoeConditionLabel.text = shoeTimeline![indexPath.row].condition
+//            detailViewController().reloadInputViews()
+//        }
+        
+        
         return cell
     }
 
@@ -455,6 +501,8 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                 self.userProfileImage.clipsToBounds = true
                 self.profileName.text = self.visibleUser?.displayName
                 self.instantiateMenuController()
+                self.detailViewController()
+                self.detailViewController().loadPage()
             } else { //bad ting dat :(
     
             }
@@ -505,7 +553,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 
         self.mainCollectionViewCellIndexPath = self.timeline.indexPathForItemAtPoint(currentCellCenter)
 
-        print(mainCollectionViewCellIndexPath)
+        //print(mainCollectionViewCellIndexPath)
 
         //var cellInViewIndex = Int(mainCollectionViewCellIndexPath.row)
 
@@ -537,4 +585,10 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     }
     */
 
+}
+
+extension Array {
+    func ref (i:Int) -> Element? {
+        return 0 <= i && i < count ? self[i] : nil
+    }
 }

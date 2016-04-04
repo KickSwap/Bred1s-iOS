@@ -314,7 +314,7 @@ public class PagingMenuController: UIViewController, UIScrollViewDelegate {
     
     private func layoutMenuView() {
         let viewsDictionary = ["menuView": menuView]
-        let metrics = ["height": 50]
+        let metrics = ["height": options.menuHeight]
         self.horizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[menuView]|", options: [], metrics: nil, views: viewsDictionary)
         //self.verticalConstraints: [NSLayoutConstraint]
         switch options.menuPosition {
