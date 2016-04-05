@@ -150,19 +150,6 @@ public final class DropDown: UIView {
 		didSet { reloadAllComponents() }
 	}
 	
-	/**
-	The localization keys for the data source for the drop down.
-	
-	Changing this value automatically reloads the drop down.
-	This has uses for setting accibility identifiers on the drop down cells (same ones as the localization keys).
-	*/
-	public var localizationKeysDataSource = [String]() {
-		didSet {
-			dataSource = localizationKeysDataSource
-		}
-	}
-	
-	/// The index of the row after its seleciton.
 	private var selectedRowIndex: Index?
 	
 	/**
@@ -178,9 +165,6 @@ public final class DropDown: UIView {
 	/// The action to execute when the user selects a cell.
 	public var selectionAction: SelectionClosure?
 	
-	/// The action to execute when the drop down will show.
-	public var willShowAction: Closure?
-	
 	/// The action to execute when the user cancels/hides the drop down.
 	public var cancelAction: Closure?
 	
@@ -188,7 +172,7 @@ public final class DropDown: UIView {
 	public var dismissMode = DismissMode.OnTap {
 		willSet {
 			if newValue == .OnTap {
-				let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissableViewTapped))
+				let gestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissableViewTapped")
 				dismissableView.addGestureRecognizer(gestureRecognizer)
 			} else if let gestureRecognizer = dismissableView.gestureRecognizers?.first {
 				dismissableView.removeGestureRecognizer(gestureRecognizer)
@@ -271,8 +255,6 @@ private extension DropDown {
 		tableView.registerNib(DropDownCell.Nib, forCellReuseIdentifier: DPDConstant.ReusableIdentifier.DropDownCell)
 		
 		startListeningToKeyboard()
-		
-		accessibilityIdentifier = "drop_down"
 	}
 	
 	func setupUI() {
@@ -285,14 +267,20 @@ private extension DropDown {
 		tableViewContainer.layer.shadowOpacity = DPDConstant.UI.Shadow.Opacity
 		tableViewContainer.layer.shadowRadius = DPDConstant.UI.Shadow.Radius
 		
-		backgroundColor = DPDConstant.UI.BackgroundColor
-		tableView.rowHeight = DPDConstant.UI.RowHeight
-		tableView.separatorColor = DPDConstant.UI.SeparatorColor
-		tableView.layer.cornerRadius = DPDConstant.UI.CornerRadius
-		tableView.layer.masksToBounds = true
+		setupTableViewUI()
 		
 		setHiddentState()
 		hidden = true
+	}
+	
+	func setupTableViewUI() {
+		backgroundColor = DPDConstant.UI.BackgroundColor
+		tableView.rowHeight = DPDConstant.UI.RowHeight
+		tableView.separatorColor = DPDConstant.UI.SeparatorColor
+		tableView.separatorStyle = DPDConstant.UI.SeparatorStyle
+		tableView.separatorInset = DPDConstant.UI.SeparatorInsets
+		tableView.layer.cornerRadius = DPDConstant.UI.CornerRadius
+		tableView.layer.masksToBounds = true
 	}
 	
 }
@@ -503,8 +491,6 @@ extension DropDown {
 			visibleDropDown.cancel()
 		}
 		
-		willShowAction?()
-		
 		DropDown.VisibleDropDown = self
 		
 		setNeedsUpdateConstraints()
@@ -596,6 +582,10 @@ extension DropDown {
 	and `cellConfiguration` implicitly calls `reloadAllComponents()`.
 	*/
 	public func reloadAllComponents() {
+		if #available(iOS 9, *) {
+			setupTableViewUI()
+		}
+		
 		tableView.reloadData()
 		setNeedsUpdateConstraints()
 	}
@@ -653,20 +643,16 @@ extension DropDown: UITableViewDataSource, UITableViewDelegate {
 	
 	public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier(DPDConstant.ReusableIdentifier.DropDownCell, forIndexPath: indexPath) as! DropDownCell
-		let index = indexPath.row
 		
-		if index >= 0 && index < localizationKeysDataSource.count {
-			cell.accessibilityIdentifier = localizationKeysDataSource[index]
-		}
-	
 		cell.optionLabel.textColor = textColor
 		cell.optionLabel.font = textFont
 		cell.selectedBackgroundColor = selectionBackgroundColor
 		
 		if let cellConfiguration = cellConfiguration {
+			let index = indexPath.row
 			cell.optionLabel.text = cellConfiguration(index, dataSource[index])
 		} else {
-			cell.optionLabel.text = dataSource[index]
+			cell.optionLabel.text = dataSource[indexPath.row]
 		}
 		
 		return cell
@@ -723,13 +709,13 @@ extension DropDown {
 		
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
-			selector: #selector(keyboardUpdate),
-			name: UIKeyboardWillShowNotification,
+			selector: "keyboardUpdate",
+			name: UIKeyboardDidShowNotification,
 			object: nil)
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
-			selector: #selector(keyboardUpdate),
-			name: UIKeyboardWillHideNotification,
+			selector: "keyboardUpdate",
+			name: UIKeyboardDidHideNotification,
 			object: nil)
 	}
 	

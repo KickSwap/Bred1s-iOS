@@ -24,4 +24,5 @@ target 'KickSwap' do
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'Charts/Realm'
+  pod 'ASValueTrackingSlider'
 end

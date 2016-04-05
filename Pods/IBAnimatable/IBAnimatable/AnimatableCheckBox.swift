@@ -155,7 +155,6 @@ import UIKit
   }
   
   private func configAfterLayoutSubviews() {
-    configMask()
     configBorder()
   }
 }

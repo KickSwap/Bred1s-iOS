@@ -84,11 +84,10 @@ import UIKit
   private func configInspectableProperties() {
     configAnimatableProperties()
     configOpacity()
-    
+    configGradient()
   }
   
   private func configAfterLayoutSubviews() {
     configBorder()
-    configGradient()
   }
 }

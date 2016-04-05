@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.0.4)
   - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
+  - ASValueTrackingSlider (0.11.2)
   - Bolts (1.6.0):
     - Bolts/AppLinks (= 1.6.0)
     - Bolts/Tasks (= 1.6.0)
@@ -56,6 +57,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - ASValueTrackingSlider
   - Canvas
   - ChameleonFramework
   - ChameleonFramework/Swift
@@ -78,6 +80,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
+  ASValueTrackingSlider: 45c9f78252da60de01d8f2afe869aaf90dd978d9
   Bolts: f52a250053bb517ca874523c3913776359ab3def
   Canvas: eb861e3b555d032648146c8ffda1a5dea40059ca
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
