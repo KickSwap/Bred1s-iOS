@@ -58,13 +58,13 @@ class FirebaseClient: NSObject {
      - Register user into Firebase DB with FacebookID
      */
 
-    func loginWithFacebook(fbAccessToken:String) {
+    func loginWithFacebook(fbAccessToken:String, completion:CompletionBlock.KSUser) {
         //Authenticate with facebookID
         FirebaseClient.sharedClient.getRef().authWithOAuthProvider("facebook", token: fbAccessToken,
                                                                    withCompletionBlock: { error, authData in
                                                                     if error != nil {
                                                                         print("Login failed. \(error)")
-                                                                        self.loginDelegate?.loginFailure(error)
+                                                                        completion(nil,nil)
                                                                     } else {
                                                                         //set global currentUser
                                                                         let newUser = User(data: authData)
@@ -72,7 +72,7 @@ class FirebaseClient: NSObject {
 
                                                                         //set value back into Firebase
                                                                         // FirebaseClient.saveUser(User.currentUser!)
-                                                                        self.loginDelegate?.loginCompletion()
+                                                                        completion(newUser,nil)
                                                                     }
         })
     }
