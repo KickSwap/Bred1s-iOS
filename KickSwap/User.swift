@@ -79,6 +79,10 @@ class User: NSObject {
         NSUserDefaults.standardUserDefaults().removeObjectForKey(User.persistedKeyName) // removeKey in CoreData
         NSNotificationCenter.defaultCenter().postNotificationName(userDidLogoutNotification, object: nil)
     }
+    
+    func printUser(){
+        print(displayName)
+    }
 
     // MARK: - Current User
     private static var _currentUser : User? = nil

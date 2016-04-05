@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SwiftModalWebVC: UINavigationController {
+class SwiftModalWebVC: UINavigationController, UIScrollViewDelegate {
     
     weak var webViewDelegate: UIWebViewDelegate? = nil
     var webViewController: SwiftWebVC!

@@ -11,15 +11,16 @@ import Firebase
 import AFNetworking
 import WYInteractiveTransitions
 import Material
+import DZNEmptyDataSet
 
-class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     var allShoes: [Shoe]?
     var currentUserShoesArray: [Shoe]?
+    var profileUser:User?
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profilePicImageView: UIImageView!
-    
-    
     @IBOutlet var themesButton: RaisedButton!
     @IBOutlet var profileHeaderView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -32,20 +33,36 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        collectionView.emptyDataSetSource = self
+        collectionView.emptyDataSetDelegate = self
+        
         profilePicImageView.layer.cornerRadius = 3
         profilePicImageView.clipsToBounds = true
         
-        nameLabel.text = User.currentUser?.displayName
+        nameLabel.text = profileUser?.displayName
     
-        profilePicImageView.setImageWithURL(NSURL(string: (User.currentUser?.profilePicUrl)!)!)
+        profilePicImageView.setImageWithURL(NSURL(string: (profileUser?.profilePicUrl)!)!)
+        
         getShoes()
         
+    }
+    
+    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "Question-Rage-Face")
+    }
+    
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let title = "Where yo kicks at?"
+        let myAttributes1 = [ NSForegroundColorAttributeName: UIColor.lightGrayColor() ]
+        let attrString3 = NSAttributedString(string: "Where yo kicks at?", attributes: myAttributes1)
+        return attrString3
     }
     
     override func viewWillAppear(animated: Bool) {
         layoutTheme()
         themesButtonLayout()
         profileHeaderView.setNeedsLayout()
+        getShoes()
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,8 +90,7 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func getShoes() {
         // Get a reference to our posts
-        
-        FirebaseClient.sharedClient.getOwnersShoes({ (shoes, error) in
+        FirebaseClient.sharedClient.getOwnersShoes(profileUser!,completion: { (shoes, error) in
             if(error == nil) { //good to go
                 self.allShoes = shoes as? [Shoe]
                 self.kicksLabel.text = "\(self.allShoes!.count)"
@@ -104,8 +120,8 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     // Unwind Segue
     @IBAction func customizeTapped(segue: UIStoryboardSegue, sender: UIStoryboardSegue) {
         //Figure out destination view controller, currently its timeline
-//        let toView = segue.destinationViewController as? KSProfileViewController
-//        
+//        let toView = segue.destinationViewController as? KSTabBarController
+        
 //        transitionMgr.configureTransition(0.5, toViewController: self,
 //                    handGestureEnable: true, transitionType: WYTransitoinType.Zoom)
         //layoutTheme()

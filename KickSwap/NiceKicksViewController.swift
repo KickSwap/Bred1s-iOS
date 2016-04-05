@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NiceKicksViewController: UIViewController {
+class NiceKicksViewController: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate, UIWebViewDelegate {
 
     let webVC = SwiftModalWebVC(urlString: "http://www.nicekicks.com/", theme: "Dark")
     
@@ -19,22 +19,20 @@ class NiceKicksViewController: UIViewController {
         addChildViewController(webVC)
         webVC.didMoveToParentViewController(self)
         self.webVC.view.frame = view.frame
-    
-        //Trying to adjust zoom so content wont hug the margins
-//        let contentSize:CGSize = webVC.view.bounds.size
-//        let viewSize:CGSize = self.view.bounds.size
-//        
-//        let rw: CGFloat = viewSize.width / contentSize.width
-//        
-//        webVC.scrollView.minimumZoomScale = rw
-//        webVC.scrollView.maximumZoomScale = rw
-//        webVC.scrollView.zoomScale = rw
-        
+            
         //Pre-loading the webviews
-        view.addSubview(webVC.view!)
-        view.bringSubviewToFront(webVC.view!)
+        view.addSubview(webVC.view)
+        view.bringSubviewToFront(webVC.view)
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        let swiftmodalVC = self.parentViewController
+        let ksnews = swiftmodalVC?.parentViewController as! KSNewsViewController
+        print(ksnews)
+        ksnews.showMenuBar()
     }
 
     override func didReceiveMemoryWarning() {

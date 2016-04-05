@@ -12,16 +12,19 @@ class KSTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Style.loadTheme()
-        //self.selectedIndex = 1
-//        self.tabBar.tintColor = tabBarTintColor
-//        self.tabBar.barTintColor = tabBarBarTintColor
+        Style.loadTheme()
+        self.selectedIndex = 1
+        
+        //set current User
+        let profile = self.viewControllers![2] as! KSProfileViewController
+        profile.profileUser = User.currentUser
         
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         layoutTheme()
+        self.selectedIndex = 1
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -38,6 +41,13 @@ class KSTabBarController: UITabBarController {
         self.tabBar.barTintColor = tabBarBarTintColor
     }
     
+    @IBAction func customizeTapped(segue: UIStoryboardSegue, sender: UIStoryboardSegue) {
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+    }
 
     /*
     // MARK: - Navigation

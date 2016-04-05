@@ -17,5 +17,11 @@ target 'KickSwap' do
   pod 'PagingMenuController'
   pod 'WYInteractiveTransitions', '~> 1.0.2'
   pod 'ChameleonFramework'
+  pod 'SwiftCharts', '~> 0.3'
+  pod 'DZNEmptyDataSet'
+  pod 'LiquidLoader'
+  pod 'LTMorphingLabel'
+  pod 'Fabric'
+  pod 'Crashlytics'
   pod 'ASValueTrackingSlider'
 end

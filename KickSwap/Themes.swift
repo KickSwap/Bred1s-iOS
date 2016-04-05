@@ -33,6 +33,7 @@ var palletteView2Color: UIColor?
 var palletteView3Color: UIColor?
 var palletteView4Color: UIColor?
 var palletteView5Color: UIColor?
+var detailBackgroundColor: UIColor?
 
 
 struct Style{
@@ -64,6 +65,8 @@ struct Style{
         timelineBackgroundColor = GradientColor(UIGradientStyle.TopToBottom, frame: UIScreen.mainScreen().bounds, colors: [black, fuscousGray, aluminum, inchWorm])
         profileTrayViewColor = inchWorm
         trayViewButtonImage = UIImage(named: "")
+        
+        detailBackgroundColor = GradientColor(UIGradientStyle.TopToBottom, frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, 1000), colors: [black, fuscousGray, aluminum, inchWorm])
         
         //KSTabBar Colors
         tabBarTintColor = quarts
@@ -124,6 +127,8 @@ struct Style{
         profileTrayViewColor = genoa
         trayViewButtonImage = UIImage(named: "")
         
+        detailBackgroundColor = GradientColor(UIGradientStyle.TopToBottom, frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, 1000), colors: [genoa, darkJungleGreen])
+        
         //KSTabBar Colors
         tabBarTintColor = solitude
         tabBarBarTintColor = watercourse
@@ -182,6 +187,8 @@ struct Style{
         timelineBackgroundColor = GradientColor(UIGradientStyle.TopToBottom, frame: UIScreen.mainScreen().bounds, colors: [frenchBeige, prim])
         profileTrayViewColor = frenchBeige
         trayViewButtonImage = UIImage(named: "")
+        
+        detailBackgroundColor = GradientColor(UIGradientStyle.TopToBottom, frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, 1000), colors: [frenchBeige, prim])
         
         //KSTabBar Colors
         tabBarTintColor = prim

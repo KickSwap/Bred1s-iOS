@@ -5,9 +5,6 @@
 
 import UIKit
 
-public typealias AnimatableCompletion = () -> Void
-public typealias AnimatableExecution = () -> Void
-
 public protocol Animatable: class {
   
   /**
@@ -208,89 +205,89 @@ public extension Animatable where Self: UIView {
   // MARK: - Animation methods
   
   public func slideInLeft(completion: AnimatableCompletion? = nil) {
-    let x = -screenSize().width * force
+    let x = -screenSize.width * force
     animateInWithX(x, completion: completion)
   }
 
   public func slideInRight(completion: AnimatableCompletion? = nil) {
-    let x = screenSize().width * force
+    let x = screenSize.width * force
     animateInWithX(x, completion: completion)
   }
 
   public func slideInDown(completion: AnimatableCompletion? = nil) {
-    let y = -screenSize().height * force
+    let y = -screenSize.height * force
     animateInWithY(y, completion: completion)
   }
 
   public func slideInUp(completion: AnimatableCompletion? = nil) {
-    let y = screenSize().height * force
+    let y = screenSize.height * force
     animateInWithY(y, completion: completion)
   }
   
   public func slideOutLeft(completion: AnimatableCompletion? = nil) {
-    let x = -screenSize().width * force
+    let x = -screenSize.width * force
     animateOutWithX(x, alpha: 1, completion: completion)
   }
 
   public func slideOutRight(completion: AnimatableCompletion? = nil) {
-    let x = screenSize().width * force
+    let x = screenSize.width * force
     animateOutWithX(x, alpha: 1, completion: completion)
   }
   
   public func slideOutDown(completion: AnimatableCompletion? = nil) {
-    let y = screenSize().height * force
+    let y = screenSize.height * force
     animateOutWithY(y, alpha: 1, completion: completion)
   }
   
   public func slideOutUp(completion: AnimatableCompletion? = nil) {
-    let y = -screenSize().height * force
+    let y = -screenSize.height * force
     animateOutWithY(y, alpha: 1, completion: completion)
   }
   
   public func squeezeInLeft(completion: AnimatableCompletion? = nil) {
-    let x = -screenSize().width * force
+    let x = -screenSize.width * force
     let scaleX = 3 * force
     animateInWithX(x, scaleX: scaleX, completion: completion)
   }
   
   public func squeezeInRight(completion: AnimatableCompletion? = nil) {
-    let x = screenSize().width * force
+    let x = screenSize.width * force
     let scaleX = 3 * force
     animateInWithX(x, scaleX: scaleX, completion: completion)
   }
   
   public func squeezeInDown(completion: AnimatableCompletion? = nil) {
-    let y = -screenSize().height * force
+    let y = -screenSize.height * force
     let scaleY = 3 * force
     animateInWithY(y, scaleY: scaleY, completion: completion)
   }
   
   public func squeezeInUp(completion: AnimatableCompletion? = nil) {
-    let y = screenSize().height * force
+    let y = screenSize.height * force
     let scaleY = 3 * force
     animateInWithY(y, scaleY: scaleY, completion: completion)
   }
   
   public func squeezeOutLeft(completion: AnimatableCompletion? = nil) {
-    let x = -screenSize().width * force
+    let x = -screenSize.width * force
     let scaleX = 3 * force
     animateOutWithX(x, scaleX: scaleX, alpha: 1, completion: completion)
   }
   
   public func squeezeOutRight(completion: AnimatableCompletion? = nil) {
-    let x = screenSize().width * force
+    let x = screenSize.width * force
     let scaleX = 3 * force
     animateOutWithX(x, scaleX: scaleX, alpha: 1, completion: completion)
   }
   
   public func squeezeOutDown(completion: AnimatableCompletion? = nil) {
-    let y = screenSize().height * force
+    let y = screenSize.height * force
     let scaleY = 3 * force
     animateOutWithY(y, scaleY: scaleY, alpha: 1, completion: completion)
   }
   
   public func squeezeOutUp(completion: AnimatableCompletion? = nil) {
-    let y = -screenSize().height * force
+    let y = -screenSize.height * force
     let scaleY = 3 * force
     animateOutWithY(y, scaleY: scaleY, alpha: 1, completion: completion)
   }
@@ -316,22 +313,22 @@ public extension Animatable where Self: UIView {
   }
   
   public func fadeOutLeft(completion: AnimatableCompletion? = nil) {
-    let x = -screenSize().width * force
+    let x = -screenSize.width * force
     animateOutWithX(x, alpha: 0, completion: completion)
   }
   
   public func fadeOutRight(completion: AnimatableCompletion? = nil) {
-    let x = screenSize().width * force
+    let x = screenSize.width * force
     animateOutWithX(x, alpha: 0, completion: completion)
   }
   
   public func fadeOutDown(completion: AnimatableCompletion? = nil) {
-    let y = screenSize().height * force
+    let y = screenSize.height * force
     animateOutWithY(y, alpha: 0, completion: completion)
   }
   
   public func fadeOutUp(completion: AnimatableCompletion? = nil) {
-    let y = -screenSize().height * force
+    let y = -screenSize.height * force
     animateOutWithY(y, alpha: 0, completion: completion)
   }
 
@@ -356,25 +353,25 @@ public extension Animatable where Self: UIView {
   }
 
   public func squeezeFadeOutLeft(completion: AnimatableCompletion? = nil) {
-    let x = -screenSize().width * force
+    let x = -screenSize.width * force
     let scaleX = 3 * force
     animateOutWithX(x, scaleX: scaleX, alpha: 0, completion: completion)
   }
 
   public func squeezeFadeOutRight(completion: AnimatableCompletion? = nil) {
-    let x = screenSize().width * force
+    let x = screenSize.width * force
     let scaleX = 3 * force
     animateOutWithX(x, scaleX: scaleX, alpha: 0, completion: completion)
   }
   
   public func squeezeFadeOutDown(completion: AnimatableCompletion? = nil) {
-    let y = screenSize().height * force
+    let y = screenSize.height * force
     let scaleY = 3 * force
     animateOutWithY(y, scaleY: scaleY, alpha: 0, completion: completion)
   }
   
   public func squeezeFadeOutUp(completion: AnimatableCompletion? = nil) {
-    let y = -screenSize().height * force
+    let y = -screenSize.height * force
     let scaleY = 3 * force
     animateOutWithY(y, scaleY: scaleY, alpha: 0, completion: completion)
   }
@@ -390,7 +387,7 @@ public extension Animatable where Self: UIView {
   }
   
   public func fadeOutIn(completion: AnimatableCompletion? = nil) {
-    animateLayer({
+    CALayer.animate({
       let animation = CABasicAnimation(keyPath: "opacity")
       animation.fromValue = 1
       animation.toValue = 0
@@ -399,11 +396,11 @@ public extension Animatable where Self: UIView {
       animation.beginTime = CACurrentMediaTime() + CFTimeInterval(self.delay)
       animation.autoreverses = true
       self.layer.addAnimation(animation, forKey: "fade")
-      }, completion: completion)
+    }, completion: completion)
   }
   
   public func fadeInOut(completion: AnimatableCompletion? = nil) {
-    animateLayer({
+    CALayer.animate({
       let animation = CABasicAnimation(keyPath: "opacity")
       animation.fromValue = 0
       animation.toValue = 1
@@ -413,7 +410,8 @@ public extension Animatable where Self: UIView {
       animation.autoreverses = true
       animation.removedOnCompletion = false
       self.layer.addAnimation(animation, forKey: "fade")
-      }, completion: {
+    },
+    completion: {
       self.alpha = 0
       completion?()
     })
@@ -436,7 +434,7 @@ public extension Animatable where Self: UIView {
   }
   
   public func shake(completion: AnimatableCompletion? = nil) {
-    animateLayer({
+    CALayer.animate({
       let animation = CAKeyframeAnimation(keyPath: "position.x")
       animation.values = [0, 30 * self.force, -30 * self.force, 30 * self.force, 0]
       animation.keyTimes = [0, 0.2, 0.4, 0.6, 0.8, 1]
@@ -446,11 +444,11 @@ public extension Animatable where Self: UIView {
       animation.repeatCount = self.repeatCount
       animation.beginTime = CACurrentMediaTime() + CFTimeInterval(self.delay)
       self.layer.addAnimation(animation, forKey: "shake")
-      }, completion: completion)
+    }, completion: completion)
   }
   
   public func pop(completion: AnimatableCompletion? = nil) {
-    animateLayer({
+    CALayer.animate({
       let animation = CAKeyframeAnimation(keyPath: "transform.scale")
       animation.values = [0, 0.2 * self.force, -0.2 * self.force, 0.2 * self.force, 0]
       animation.keyTimes = [0, 0.2, 0.4, 0.6, 0.8, 1]
@@ -460,11 +458,11 @@ public extension Animatable where Self: UIView {
       animation.repeatCount = self.repeatCount
       animation.beginTime = CACurrentMediaTime() + CFTimeInterval(self.delay)
       self.layer.addAnimation(animation, forKey: "pop")
-      }, completion: completion)
+    }, completion: completion)
   }
   
   public func morph(completion: AnimatableCompletion? = nil) {
-    animateLayer({
+    CALayer.animate({
       let morphX = CAKeyframeAnimation(keyPath: "transform.scale.x")
       morphX.values = [1, 1.3 * self.force, 0.7, 1.3 * self.force, 1]
       morphX.keyTimes = [0, 0.2, 0.4, 0.6, 0.8, 1]
@@ -481,11 +479,11 @@ public extension Animatable where Self: UIView {
       animationGroup.repeatCount = self.repeatCount
       animationGroup.beginTime = CACurrentMediaTime() + CFTimeInterval(self.delay)
       self.layer.addAnimation(animationGroup, forKey: "morph")
-      }, completion: completion)
+    }, completion: completion)
   }
 
   public func squeeze(completion: AnimatableCompletion? = nil) {
-    animateLayer({
+    CALayer.animate({
       let squeezeX = CAKeyframeAnimation(keyPath: "transform.scale.x")
       squeezeX.values = [1, 1.5 * self.force, 0.5, 1.5 * self.force, 1]
       squeezeX.keyTimes = [0, 0.2, 0.4, 0.6, 0.8, 1]
@@ -502,7 +500,7 @@ public extension Animatable where Self: UIView {
       animationGroup.repeatCount = self.repeatCount
       animationGroup.beginTime = CACurrentMediaTime() + CFTimeInterval(self.delay)
       self.layer.addAnimation(animationGroup, forKey: "squeeze")
-      }, completion: completion)
+    }, completion: completion)
   }
   
   public func flipX(completion: AnimatableCompletion? = nil) {
@@ -518,7 +516,7 @@ public extension Animatable where Self: UIView {
   }
   
   public func flash(completion: AnimatableCompletion? = nil) {
-    animateLayer({
+    CALayer.animate({
       let animation = CABasicAnimation(keyPath: "opacity")
       animation.fromValue = 1
       animation.toValue = 0
@@ -527,11 +525,11 @@ public extension Animatable where Self: UIView {
       animation.autoreverses = true
       animation.beginTime = CACurrentMediaTime() + CFTimeInterval(self.delay)
       self.layer.addAnimation(animation, forKey: "flash")
-      }, completion: completion)
+    }, completion: completion)
   }
   
   public func wobble(completion: AnimatableCompletion? = nil) {
-    animateLayer({
+    CALayer.animate({
       let rotation = CAKeyframeAnimation(keyPath: "transform.rotation")
       rotation.values = [0, 0.3 * self.force, -0.3 * self.force, 0.3 * self.force, 0]
       rotation.keyTimes = [0, 0.2, 0.4, 0.6, 0.8, 1]
@@ -549,11 +547,11 @@ public extension Animatable where Self: UIView {
       animationGroup.beginTime = CACurrentMediaTime() + CFTimeInterval(self.delay)
       animationGroup.repeatCount = self.repeatCount
       self.layer.addAnimation(animationGroup, forKey: "wobble")
-      }, completion: completion)
+    }, completion: completion)
   }
   
   public func swing(completion: AnimatableCompletion? = nil) {
-    animateLayer({
+    CALayer.animate({
       let animation = CAKeyframeAnimation(keyPath: "transform.rotation")
       animation.values = [0, 0.3 * self.force, -0.3 * self.force, 0.3 * self.force, 0]
       animation.keyTimes = [0, 0.2, 0.4, 0.6, 0.8, 1]
@@ -562,11 +560,11 @@ public extension Animatable where Self: UIView {
       animation.repeatCount = self.repeatCount
       animation.beginTime = CACurrentMediaTime() + CFTimeInterval(self.delay)
       self.layer.addAnimation(animation, forKey: "swing")
-      }, completion: completion)
+    }, completion: completion)
   }
 
   public func rotate(clockwise clockwise: Bool = true, completion: AnimatableCompletion? = nil) {
-    animateLayer({
+    CALayer.animate({
       let animation = CABasicAnimation(keyPath: "transform.rotation")
       animation.fromValue = clockwise ? 0 : ((360 * M_PI) / 180)
       animation.toValue = clockwise ? ((360 * M_PI) / 180) : 0
@@ -575,7 +573,7 @@ public extension Animatable where Self: UIView {
       animation.autoreverses = false
       animation.beginTime = CACurrentMediaTime() + CFTimeInterval(self.delay)
       self.layer.addAnimation(animation, forKey: "rotate")
-      }, completion: completion)
+    }, completion: completion)
   }
   
   public func moveTo(completion: AnimatableCompletion? = nil) {
@@ -613,15 +611,6 @@ public extension Animatable where Self: UIView {
   }
   
   // MARK: - Private
-  private func animateLayer(animation: AnimatableExecution, completion: AnimatableCompletion? = nil) {
-    CATransaction.begin()
-    if let completion = completion {
-      CATransaction.setCompletionBlock { completion() }
-    }
-    animation()
-    CATransaction.commit()
-  }
-  
   private func animateInWithX(x: CGFloat, completion: AnimatableCompletion? = nil) {
     animateIn(x, 0, 1, 1, 1, completion)
   }
@@ -663,11 +652,16 @@ public extension Animatable where Self: UIView {
   }
   
   private func animateWithAlpha(alpha: CGFloat, completion: AnimatableCompletion? = nil) {
-    UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: [], animations: { () -> Void in
-      self.alpha = alpha
-      }, completion: { (completed) -> Void in
-        completion?()
-    })
+    UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: [],
+      animations: {
+        self.alpha = alpha
+      },
+      completion: { completed in
+        if completed {
+          completion?()
+        }
+      }
+    )
   }
 
   private func animateToWithX(x: CGFloat, y: CGFloat, completion: AnimatableCompletion? = nil) {
@@ -676,11 +670,16 @@ public extension Animatable where Self: UIView {
 
   private func animateTo(x: CGFloat, _ y: CGFloat, _ completion: AnimatableCompletion? = nil) {
     let translate = CGAffineTransformMakeTranslation(x, y)
-    UIView.animateWithDuration(duration, delay:delay, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: [], animations: { () -> Void in
-      self.transform = translate
-      }, completion: { (completed) -> Void in
-        completion?()
-    })
+    UIView.animateWithDuration(duration, delay:delay, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: [],
+      animations: {
+        self.transform = translate
+      },
+      completion: { completed in
+        if completed {
+          completion?()
+        }
+      }
+    )
   }
 
   private func animateIn(x: CGFloat, _ y: CGFloat, _ scaleX: CGFloat, _ scaleY: CGFloat, _ alpha: CGFloat, _ completion: AnimatableCompletion? = nil) {
@@ -689,12 +688,17 @@ public extension Animatable where Self: UIView {
     let translateAndScale = CGAffineTransformConcat(translate, scale)
     transform = translateAndScale
 
-    UIView.animateWithDuration(duration, delay:delay, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: [], animations: { () -> Void in
-      self.transform = CGAffineTransformIdentity
-      self.alpha = alpha
-      }, completion: { (completed) -> Void in
-        completion?()
-    })
+    UIView.animateWithDuration(duration, delay:delay, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: [],
+      animations: {
+        self.transform = CGAffineTransformIdentity
+        self.alpha = alpha
+      },
+      completion: { completed in
+        if completed {
+          completion?()
+        }
+      }
+    )
   }
 
   private func animateOut(x: CGFloat, _ y: CGFloat, _ scaleX: CGFloat, _ scaleY: CGFloat, _ alpha: CGFloat, _ completion: AnimatableCompletion? = nil) {
@@ -702,18 +706,22 @@ public extension Animatable where Self: UIView {
     let scale = CGAffineTransformMakeScale(scaleX, scaleY)
     let translateAndScale = CGAffineTransformConcat(translate, scale)
 
-    UIView.animateWithDuration(duration, delay:delay, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: [], animations: { () -> Void in
-      self.transform = translateAndScale
-      self.alpha = alpha
-      }, completion: { (completed) -> Void in
-        completion?()
-      })
+    UIView.animateWithDuration(duration, delay:delay, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: [],
+      animations: {
+        self.transform = translateAndScale
+        self.alpha = alpha
+      },
+      completion: { completed in
+        if completed {
+          completion?()
+        }
+      }
+    )
   }
   
   // MARK: Private helper
-  
-  private func screenSize() -> CGSize {
-    return UIScreen.mainScreen().bounds.size
+  private var screenSize: CGSize {
+    return self.window?.screen.bounds.size ?? CGSize.zero
   }
 }
 

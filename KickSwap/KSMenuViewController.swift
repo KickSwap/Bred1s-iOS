@@ -39,7 +39,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
         Style.loadTheme()
         
         //To prevent redundant segue, close menu properly
-        self.currentView = "buy"
+        //self.currentView = "buy"
         
         //To prevent unwrapping nil in setmainbtnimage()
         //menuButtonImage = "ic_buy_white"
@@ -47,8 +47,14 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        //Style.loadTheme()
+        setMainBtnImage()
         prepareView()
         prepareMenuView()
+        print(NSUserDefaults.standardUserDefaults().valueForKey("Theme"))
+        //prepareMenuView(color:white)
+        //prepareMenView(color:black)
+        print(menuButtonImage)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -106,12 +112,22 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 
 	/// Prepares the add button.
 	private func prepareMenuView() {
+        
 		var image: UIImage? = UIImage(named: "view_carousel_white_24x24")
 		let btn1: FabButton = FabButton()
         btn1.backgroundColor = menuButtonsColor
         btn1.pulseColor = pulseColor
+        //To prevent wrong image for main menu button
+        print(menuButtonImage)
+        print(NSUserDefaults.standardUserDefaults().valueForKey("Theme"))
+        if menuButtonImage == nil {
 		btn1.setImage(buyButtonImage, forState: .Normal)
 		btn1.setImage(buyButtonImage, forState: .Highlighted)
+        } else {
+        btn1.setImage(menuButtonImage, forState: .Normal)
+        btn1.setImage(menuButtonImage, forState: .Highlighted)
+            setMainBtnImage()
+        }
 		btn1.addTarget(self, action: #selector(KSMenuViewController.onTap(_:)), forControlEvents: .TouchUpInside)
         let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(KSMenuViewController.onPress(_:)))
         longPressGestureRecognizer.minimumPressDuration = 0.3
@@ -166,9 +182,20 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
         menuViewController?.mainViewController.view.alpha = 0.5
         openMenu()
     }
+    
+    func KSTimeline() -> KSTimelineViewController {
+        let tabBarController = self.mainViewController as! UITabBarController
+//        print(tabBarController.childViewControllers)
+        let navigationController = tabBarController.childViewControllers[1]
+//        print(navigationController.childViewControllers)
+        return navigationController.childViewControllers[0] as! KSTimelineViewController
+    }
 
     func onTap(sender: UITapGestureRecognizer? = nil) {
         let tabBarController = self.mainViewController as! UITabBarController
+        //animate profile tray view if opened
+        let timelineController = KSTimeline()
+        timelineController.animateTrayView()
         if menuView.menu.opened {
             menuViewController?.mainViewController.view.alpha = 1
             closeMenu()
@@ -186,8 +213,8 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
     //MARK: - TimelineView Controls
     func handleSellBtn() {
         
-        self.menuButtonImage = sellButtonImage
-        self.setMainBtnImage()
+        //self.menuButtonImage = sellButtonImage
+        //self.setMainBtnImage()
 
         //check if user is already on this view
         if currentView == "sell" {
@@ -244,7 +271,7 @@ class KSMenuViewController: MenuViewController, UIGestureRecognizerDelegate {
 
 
     func handleNewsBtn() {
-        
+        print(self.currentView)
         self.menuButtonImage = newsButtonImage
         setMainBtnImage()
 
