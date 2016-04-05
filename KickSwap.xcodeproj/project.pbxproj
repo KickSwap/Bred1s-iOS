@@ -26,6 +26,9 @@
 		02A3ACE11C9EFEBF00D429ED /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A3ACE01C9EFEBF00D429ED /* Themes.swift */; };
 		02DED1CE1C91D3460098DA39 /* KSTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DED1CD1C91D3450098DA39 /* KSTabBarController.swift */; };
 		02DED1D01C91D3740098DA39 /* KSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DED1CF1C91D3740098DA39 /* KSNavigationController.swift */; };
+		472614811CB481AA0070CECA /* KSActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472614801CB481AA0070CECA /* KSActivityViewController.swift */; };
+		472614831CB482190070CECA /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472614821CB482190070CECA /* Notification.swift */; };
+		472614871CB482BA0070CECA /* KSNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472614861CB482BA0070CECA /* KSNotificationTableViewCell.swift */; };
 		476D6B7C1C999860000842AF /* Release.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476D6B7B1C999860000842AF /* Release.swift */; };
 		477970DD1C630306000F1196 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477970DC1C630306000F1196 /* AppDelegate.swift */; };
 		477970DF1C630306000F1196 /* KSLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477970DE1C630306000F1196 /* KSLoginViewController.swift */; };
@@ -72,6 +75,9 @@
 		02A3ACE01C9EFEBF00D429ED /* Themes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
 		02DED1CD1C91D3450098DA39 /* KSTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTabBarController.swift; sourceTree = "<group>"; };
 		02DED1CF1C91D3740098DA39 /* KSNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSNavigationController.swift; sourceTree = "<group>"; };
+		472614801CB481AA0070CECA /* KSActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSActivityViewController.swift; sourceTree = "<group>"; };
+		472614821CB482190070CECA /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Notification.swift; path = ../Notification.swift; sourceTree = "<group>"; };
+		472614861CB482BA0070CECA /* KSNotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSNotificationTableViewCell.swift; sourceTree = "<group>"; };
 		476D6B7B1C999860000842AF /* Release.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Release.swift; sourceTree = "<group>"; };
 		477970D91C630306000F1196 /* KickSwap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KickSwap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		477970DC1C630306000F1196 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -185,6 +191,7 @@
 		47AE587E1C756A2D007AB49E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				472614821CB482190070CECA /* Notification.swift */,
 				47AE587F1C756A42007AB49E /* User.swift */,
 				47AE58871C769904007AB49E /* Shoe.swift */,
 				476D6B7B1C999860000842AF /* Release.swift */,
@@ -208,6 +215,7 @@
 				47BBC0F51C7E8B6D007DFF67 /* BlueViewcontroller.swift */,
 				47BBC0F61C7E8B6D007DFF67 /* GreenViewController.swift */,
 				47BBC0F71C7E8B6D007DFF67 /* YellowViewController.swift */,
+				472614801CB481AA0070CECA /* KSActivityViewController.swift */,
 				47BBC0F81C7E8B6D007DFF67 /* KSMenuViewController.swift */,
 				4789AC1C1C998076002907CA /* KSVoteViewController.swift */,
 				477970DE1C630306000F1196 /* KSLoginViewController.swift */,
@@ -228,6 +236,7 @@
 		47BBC0FD1C7EC4EB007DFF67 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				472614861CB482BA0070CECA /* KSNotificationTableViewCell.swift */,
 				024327001C7CA881009893B8 /* KSTimelineCollectionViewCell.swift */,
 				024327021C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift */,
 				A198C0601C82136B001C69E0 /* KSProfileCollectionViewCell.swift */,
@@ -393,6 +402,7 @@
 				0262DDFB1CA4A5D500322D89 /* KSThemesViewController.swift in Sources */,
 				024327011C7CA881009893B8 /* KSTimelineCollectionViewCell.swift in Sources */,
 				0256D2BC1C95988700B8CD4B /* ProfileViewController.swift in Sources */,
+				472614871CB482BA0070CECA /* KSNotificationTableViewCell.swift in Sources */,
 				024327031C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift in Sources */,
 				47BBC0FB1C7E8B6D007DFF67 /* YellowViewController.swift in Sources */,
 				A198C05F1C820287001C69E0 /* KSProfileViewController.swift in Sources */,
@@ -402,6 +412,7 @@
 				47BBC0FC1C7E8B6D007DFF67 /* KSMenuViewController.swift in Sources */,
 				0256D30E1C99775800B8CD4B /* SwiftWebVC.swift in Sources */,
 				476D6B7C1C999860000842AF /* Release.swift in Sources */,
+				472614811CB481AA0070CECA /* KSActivityViewController.swift in Sources */,
 				0256D3141C9978FD00B8CD4B /* SoleCollectorViewController.swift in Sources */,
 				47AE588A1C769C2F007AB49E /* Bid.swift in Sources */,
 				0256D30C1C99775800B8CD4B /* SwiftWebVCActivity.swift in Sources */,
@@ -414,6 +425,7 @@
 				477970E51C630306000F1196 /* KickSwap.xcdatamodeld in Sources */,
 				47AE58861C75F5D8007AB49E /* KSTimelineViewController.swift in Sources */,
 				4789AC1D1C998076002907CA /* KSVoteViewController.swift in Sources */,
+				472614831CB482190070CECA /* Notification.swift in Sources */,
 				47BBC0F91C7E8B6D007DFF67 /* BlueViewcontroller.swift in Sources */,
 				02DED1CE1C91D3460098DA39 /* KSTabBarController.swift in Sources */,
 				47B90F071C7F6FA9006B4BD6 /* KSNewsViewController.swift in Sources */,
