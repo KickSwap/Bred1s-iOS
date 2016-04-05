@@ -50,15 +50,15 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     let backgroundImages = [UIImage(named:"blackBox"),UIImage(named:"boxStack"),UIImage(named:"greenBox")]
     var pictureIndex:Int?
     var visibleUser: User?
+    var bidValue: Float?
+
+    let cardView: CardView = CardView()
 
     var detailViewController2: UIViewController?
     let detailViewController3 = DetailViewController()
     var animateChart: Bool?
     var doneLoading: Bool = false
     var loader: LiquidLoader!
-    var bidValue: Float?
-
-    let cardView: CardView = CardView()
 
 
     /// A Text storage object that monitors the changes within the textView.
@@ -440,6 +440,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         MaterialLayout.alignToParentHorizontally(view, child: cardView, left: 20, right: 20)
     }
 
+    
 
     @IBAction func logOutPressed(sender: AnyObject) {
         User.currentUser?.logout()
@@ -622,7 +623,6 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         sender.value = ceil(sender.value)
         bidValue = ceil(sender.value)
     }
-
 
     /*
     // MARK: - Navigation
