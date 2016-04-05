@@ -23,5 +23,5 @@ target 'KickSwap' do
   pod 'LTMorphingLabel'
   pod 'Fabric'
   pod 'Crashlytics'
-  pod 'Charts/Realm'
+  pod 'ASValueTrackingSlider'
 end

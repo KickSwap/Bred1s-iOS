@@ -26,6 +26,9 @@ Time spent: X hours spent in total
 - [ ] User can set meetup point using Google Maps api inside private chat room
 - [ ] User can send Venmo request via chat room when transaction is about to occur
 - [ ] User will recieve push notifications for any activity with bids, chat, and news if permissions allow
+- [X] Loading indicator upon launch
+- [X] Loading indicator fades out of view while data fades into view
+- [X] Implemented placeholder image for empty states in collection views
 
 
 ## Video Walkthrough
@@ -37,6 +40,9 @@ Here's a walkthrough of implemented user stories:
 
 #### Sprint 3
 ![alt tag](https://raw.githubusercontent.com/KickSwap/Bred1s-iOS/master/kickswap_sprint3.gif)
+
+#### Optionals
+<img src='http://i.imgur.com/gAV1xXI.gif?1' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 <!--![alt tag](https://raw.githubusercontent.com/hamtech-CodePath/Twitter/master/TwitterClient.gif)-->
 GIF created with [LiceCap](http://www.cockos.com/licecap/).

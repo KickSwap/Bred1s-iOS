@@ -9,7 +9,7 @@
 import UIKit
 import SwiftCharts
 import IBAnimatable
-import Charts
+//import Charts
 import Material
 
 class DetailViewController: UIViewController, UIScrollViewDelegate {
@@ -99,43 +99,43 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func instantiateChart() {
-        let labelSettings = ChartLabelSettings(font: ExamplesDefaults.labelFont)
+        //let labelSettings = ChartLabelSettings(font: ExamplesDefaults.labelFont)
         
-        let chartPoints: [ChartPoint] = [(5, 105), (2, 110), (3, 95), (4, 90), (1, 80)].map{ChartPoint(x: ChartAxisValueDouble($0.0, labelSettings: labelSettings), y: ChartAxisValueDouble($0.1))}
+        //let chartPoints: [ChartPoint] = [(5, 105), (2, 110), (3, 95), (4, 90), (1, 80)].map{ChartPoint(x: ChartAxisValueDouble($0.0, labelSettings: labelSettings), y: ChartAxisValueDouble($0.1))}
         
-        let xValues = chartPoints.map{$0.x}
-        let yValues = ChartAxisValuesGenerator.generateYAxisValuesWithChartPoints(chartPoints, minSegmentCount: 10, maxSegmentCount: 20, multiple: 10, axisValueGenerator: {ChartAxisValueDouble($0, labelSettings: labelSettings)}, addPaddingSegmentIfEdge: false)
+        //let xValues = chartPoints.map{$0.x}
+        //let yValues = ChartAxisValuesGenerator.generateYAxisValuesWithChartPoints(chartPoints, minSegmentCount: 10, maxSegmentCount: 20, multiple: 10, axisValueGenerator: {ChartAxisValueDouble($0, labelSettings: labelSettings)}, addPaddingSegmentIfEdge: false)
         
-        let lineModel = ChartLineModel(chartPoints: chartPoints, lineColor: palletteView2Color!, animDuration: 1, animDelay: 0)
+        //let lineModel = ChartLineModel(chartPoints: chartPoints, lineColor: palletteView2Color!, animDuration: 1, animDelay: 0)
         
-        let trendLineModel = ChartLineModel(chartPoints: TrendlineGenerator.trendline(chartPoints), lineColor: palletteView4Color!, animDuration: 0.5, animDelay: 1)
+        //let trendLineModel = ChartLineModel(chartPoints: TrendlineGenerator.trendline(chartPoints), lineColor: palletteView4Color!, animDuration: 0.5, animDelay: 1)
         
-        let xModel = ChartAxisModel(axisValues: xValues, axisTitleLabel: ChartAxisLabel(text: "Last 5 Values", settings: labelSettings))
-        let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "Value", settings: labelSettings.defaultVertical()))
-        let chartFrame = ExamplesDefaults.chartFrame(self.chartView.bounds)
-        let coordsSpace = ChartCoordsSpaceLeftBottomSingleAxis(chartSettings: ExamplesDefaults.chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
-        let (xAxis, yAxis, innerFrame) = (coordsSpace.xAxis, coordsSpace.yAxis, coordsSpace.chartInnerFrame)
+        //let xModel = ChartAxisModel(axisValues: xValues, axisTitleLabel: ChartAxisLabel(text: "Last 5 Values", settings: labelSettings))
+        //let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "Value", settings: labelSettings.defaultVertical()))
+        //let chartFrame = ExamplesDefaults.chartFrame(self.chartView.bounds)
+        //let coordsSpace = ChartCoordsSpaceLeftBottomSingleAxis(chartSettings: ExamplesDefaults.chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
+        //let (xAxis, yAxis, innerFrame) = (coordsSpace.xAxis, coordsSpace.yAxis, coordsSpace.chartInnerFrame)
         
-        let chartPointsLineLayer = ChartPointsLineLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, lineModels: [lineModel])
+        //let chartPointsLineLayer = ChartPointsLineLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, lineModels: [lineModel])
         
-        let trendLineLayer = ChartPointsLineLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, lineModels: [trendLineModel])
+        //let trendLineLayer = ChartPointsLineLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, lineModels: [trendLineModel])
         
-        let settings = ChartGuideLinesDottedLayerSettings(linesColor: UIColor.blackColor(), linesWidth: ExamplesDefaults.guidelinesWidth)
-        let guidelinesLayer = ChartGuideLinesDottedLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, settings: settings)
+        //let settings = ChartGuideLinesDottedLayerSettings(linesColor: UIColor.blackColor(), linesWidth: ExamplesDefaults.guidelinesWidth)
+        //let guidelinesLayer = ChartGuideLinesDottedLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, settings: settings)
         
-        let chart = Chart(
-            frame: chartFrame,
-            layers: [
-                xAxis,
-                yAxis,
-                guidelinesLayer,
-                chartPointsLineLayer,
-                trendLineLayer
-            ]
-        )
+//        let chart = Chart(
+//            frame: chartFrame,
+//            layers: [
+//                xAxis,
+//                yAxis,
+//                guidelinesLayer,
+//                chartPointsLineLayer,
+//                trendLineLayer
+//            ]
+//        )
         
-        self.chart = chart
-        self.chartSubview = chart.view
+        //self.chart = chart
+        //self.chartSubview = chart.view
     }
     
     override func viewWillAppear(animated: Bool) {

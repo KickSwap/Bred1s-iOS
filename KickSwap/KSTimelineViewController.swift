@@ -16,6 +16,7 @@ import AFNetworking
 import Firebase
 import LiquidLoader
 import Crashlytics
+import ASValueTrackingSlider
 
 class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, TextDelegate, TextViewDelegate, PagingMenuControllerDelegate {
 
@@ -31,7 +32,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     @IBOutlet var profileTrayView: CardView!
     @IBOutlet var trayViewButton: UIButton!
     @IBOutlet var profileName: UILabel!
-    
+
 //    //Variables to pass to DetailViewController
 //    var shoeImage: UIImage!
 //    var shoeName: UILabel = UILabel(frame: CGRectMake(0, 0, 200, 21))
@@ -49,12 +50,15 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     let backgroundImages = [UIImage(named:"blackBox"),UIImage(named:"boxStack"),UIImage(named:"greenBox")]
     var pictureIndex:Int?
     var visibleUser: User?
-    
+
     var detailViewController2: UIViewController?
     let detailViewController3 = DetailViewController()
     var animateChart: Bool?
     var doneLoading: Bool = false
     var loader: LiquidLoader!
+    var bidValue: Float?
+
+    let cardView: CardView = CardView()
 
 
     /// A Text storage object that monitors the changes within the textView.
@@ -103,7 +107,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
             animations: { self.timelineBackground.image = self.backgroundImages[newIndex]},
             completion: nil)
     }
-    
+
     func liquidLoader() {
         let circleFrame = CGRectMake(0, 0, 150, 150)
         loader = LiquidLoader(frame: circleFrame, effect: .GrowCircle(menuButtonsColor!))
@@ -111,7 +115,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         view.addSubview(loader)
         loader!.show()
     }
-    
+
     func checkLoader() {
         if doneLoading == true {
             UIView.animateWithDuration(0.5, delay: 0, options: [], animations: {
@@ -124,7 +128,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                     }, completion: { (Bool) in
                 })
             })
-            
+
         } else {
             loader!.show()
         }
@@ -138,7 +142,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         self.userProfileImage.alpha = 0
         self.profileTrayView.alpha = 1
     }
-    
+
     func alpha1() {
         self.timeline.alpha = 1
         self.profileName.alpha = 1
@@ -159,15 +163,15 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         // set initial tray view location
         //animateTrayView()
     }
-    
+
 //Tray View Animations
-    
+
     func hideTrayView() {
         self.profileTrayView.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(profileTrayView.superview!).offset((profileTrayView.superview?.frame.height)!)
         }
     }
-    
+
     func animateTrayView() {
         self.profileTrayView.snp_remakeConstraints { (make) -> Void in
             make.top.equalTo((profileTrayView.superview?.frame.height)! * 0.82).constraint
@@ -178,9 +182,9 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         }) { (Bool) in
         }
     }
-    
+
 //Instantiate Menu Controller
-    
+
     func instantiateMenuController() {
         //Instantiate pages for container view
         let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("KSProfileViewController") as! KSProfileViewController
@@ -189,15 +193,15 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         let detailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
         profileViewController.title = "Profile"
         detailViewController.title = "Details"
-        
+
         let viewControllers = [detailViewController, profileViewController]
-        
+
         //instantiate PagingMenuController and customization
         //self.addChildViewController(detailViewController)
         let pagingMenuController = self.childViewControllers.first as! PagingMenuController
-        
-        
-        
+
+
+
         let options = PagingMenuOptions()
         options.defaultPage = 0
         options.backgroundColor = pagingMenuBackgroundColor!
@@ -389,6 +393,53 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 
     }
 
+    func addBidView() {
+
+        // Title label.
+        let titleLabel: UILabel = UILabel()
+        titleLabel.text = "How Much?"
+        titleLabel.textColor = MaterialColor.blue.darken1
+        titleLabel.font = RobotoFont.mediumWithSize(20)
+        cardView.titleLabel = titleLabel
+
+        // Detail label.
+        let shoeValueSlider: ASValueTrackingSlider = ASValueTrackingSlider()
+        var formatter = NSNumberFormatter()
+        formatter.numberStyle = .CurrencyStyle
+        shoeValueSlider.numberFormatter = formatter
+        //print(self.shoeTimeline![mainCollectionViewCellIndexPath!.row].price)
+        shoeValueSlider.minimumValue = Float(self.shoeTimeline![(mainCollectionViewCellIndexPath?.row)!].price!)! - 10
+        shoeValueSlider.maximumValue = Float(self.shoeTimeline![(mainCollectionViewCellIndexPath?.row)!].price!)! + 100
+        shoeValueSlider.addTarget(self, action: "bidSliderDidChange:", forControlEvents:UIControlEvents.ValueChanged)
+        cardView.detailView = shoeValueSlider
+
+
+        // Yes button.
+        let btn1: FlatButton = FlatButton()
+        btn1.pulseColor = MaterialColor.blue.lighten1
+        btn1.pulseScale = false
+        btn1.setTitle("Submit", forState: .Normal)
+        btn1.setTitleColor(MaterialColor.blue.darken1, forState: .Normal)
+        btn1.addTarget(self, action: "submitBid:", forControlEvents: UIControlEvents.TouchUpInside)
+
+        // No button.
+        let btn2: FlatButton = FlatButton()
+        btn2.pulseColor = MaterialColor.blue.lighten1
+        btn2.pulseScale = false
+        btn2.setTitle("Cancel", forState: .Normal)
+        btn2.setTitleColor(MaterialColor.blue.darken1, forState: .Normal)
+        btn2.addTarget(self, action: "cancelBid:", forControlEvents: UIControlEvents.TouchUpInside)
+
+        // Add buttons to left side.
+        cardView.rightButtons = [btn1, btn2]
+
+        // To support orientation changes, use MaterialLayout.
+        view.addSubview(cardView)
+        cardView.translatesAutoresizingMaskIntoConstraints = false
+        MaterialLayout.alignFromTop(view, child: cardView, top: self.view.center.y - (cardView.height/2))
+        MaterialLayout.alignToParentHorizontally(view, child: cardView, left: 20, right: 20)
+    }
+
 
     @IBAction func logOutPressed(sender: AnyObject) {
         User.currentUser?.logout()
@@ -405,7 +456,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     func items() {
 
     }
-    
+
     // Instantiate DetailViewController
     func detailViewController() -> DetailViewController {
         //print(self.childViewControllers)
@@ -414,10 +465,10 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         //print(pagingmenucontroller.childViewControllers[0])
         return pagingmenucontroller.childViewControllers[0] as! DetailViewController
     }
-    
-    
+
+
 //CollectionView Delegate Functions
-    
+
     func collectionView(timeline: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = timeline.dequeueReusableCellWithReuseIdentifier("TimelineCell", forIndexPath: indexPath) as! KSTimelineCollectionViewCell
 
@@ -460,7 +511,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                 self.loader.show()
             }
         })
-        
+
     }
 
     func getUserById(userId: String) {
@@ -477,45 +528,45 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                 self.detailViewController() // must be called after instantiateMenuController so view can load
                 self.detailViewController().loadPage()
             } else { //bad ting dat :(
-    
+
             }
         }
 
     }
-    
+
 // ProfileTrayView Animations
-    
+
     func flipDown() {
         let transitionOptions: UIViewAnimationOptions = [.TransitionFlipFromBottom, .CurveEaseIn, .ShowHideTransitionViews]
-        
+
         UIView.transitionWithView(profileTrayView, duration: 1, options: transitionOptions, animations: {
             //self.profileTrayView = self.profileTrayView
             self.profileTrayView.hidden = true
         }) { (Bool) in
         }
     }
-    
+
     func flipUp() {
         let transitionOptions: UIViewAnimationOptions = [.TransitionFlipFromTop, .ShowHideTransitionViews]
-        
+
         UIView.transitionWithView(profileTrayView, duration: 1, options: transitionOptions, animations: {
             self.profileTrayView.hidden = false
         }) { (Bool) in
         }
     }
-    
+
 // ScrollView Delegate Functions
-    
+
     func scrollViewDidScroll(scrollView: UIScrollView) {
     }
-    
+
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         //animate profileTrayView
         flipDown()
     }
 
     func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
-        
+
         // Restart trayview chart animation and scroll view position
         instantiateMenuController()
     }
@@ -526,18 +577,18 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 
         self.mainCollectionViewCellIndexPath = self.timeline.indexPathForItemAtPoint(currentCellCenter)
 
-        //print(mainCollectionViewCellIndexPath)
+        print(self.shoeTimeline![mainCollectionViewCellIndexPath!.row].price)
 
         //var cellInViewIndex = Int(mainCollectionViewCellIndexPath.row)
 
         getUserById(shoeTimeline![(mainCollectionViewCellIndexPath?.row)!].ownerId!)
-        
+
         flipUp()
 
     }
 
 //initiate theme
-    
+
     func layoutTheme() {
         self.timelineColorBackground.backgroundColor = timelineBackgroundColor
         self.profileTrayView.backgroundColor = profileTrayViewColor
@@ -545,6 +596,31 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         //trayViewButton.setBackgroundImage(UIImage(named: ""), forState: .Normal)
         //trayViewButton.setBackgroundImage(UIImage(named: ""), forState: .Highlighted)
         profileName.textColor = textColor
+    }
+
+
+    @IBAction func bidButtonPressed(sender: AnyObject) {
+        print("bid")
+        addBidView()
+    }
+
+    func cancelBid(sender:UIButton!) {
+        cardView.removeFromSuperview()
+    }
+
+    func submitBid(sender:UIButton!) {
+        print(bidValue)
+        var tempBidArray = shoeTimeline![mainCollectionViewCellIndexPath!.row].bids
+        tempBidArray?.append("\(bidValue)")
+        shoeTimeline![mainCollectionViewCellIndexPath!.row].bids = tempBidArray
+        print(shoeTimeline![mainCollectionViewCellIndexPath!.row].bids)
+        cardView.removeFromSuperview()
+    }
+
+    func bidSliderDidChange(sender: UISlider) {
+//        sender.setValue(ceil(((sender.value + 2.5) / 5) * 5), animated: false)
+        sender.value = ceil(sender.value)
+        bidValue = ceil(sender.value)
     }
 
 

@@ -28,19 +28,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let news = storyboard.instantiateViewControllerWithIdentifier("KSNewsViewController") as UIViewController
 //        news.viewDidLayoutSubviews()
         Style.loadTheme()
-        
+
         //Handle user logout and subscribe to event
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
-        
+
         // skip login if user is remembered
         if User.currentUser != nil {
             let vc = storyboard.instantiateViewControllerWithIdentifier("tabBar") as UIViewController
             window?.rootViewController = KSMenuViewController(mainViewController: vc)
         }
-        
+
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions) //Facebook LaunchOptions
     }
-    
+
     func userDidLogout() {
         //reset entire program goto start view in storyboard
         let vc = storyboard.instantiateInitialViewController()
@@ -65,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         FBSDKAppEvents.activateApp()
     }
-    
+
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
             return FBSDKApplicationDelegate.sharedInstance()
                 .application(application, openURL: url,
@@ -113,7 +113,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSLog("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
             abort()
         }
-        
+
         return coordinator
     }()
 
@@ -142,4 +142,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
-
