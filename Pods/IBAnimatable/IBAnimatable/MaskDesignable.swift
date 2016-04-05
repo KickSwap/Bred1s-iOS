@@ -29,90 +29,47 @@ public extension MaskDesignable where Self: UIView {
         maskWave()
       }
     } else {
-      // Star with parameter
       if unwrappedMaskType.hasPrefix(MaskType.Star.rawValue) {
         maskStarFromString(unwrappedMaskType)
       } else if unwrappedMaskType.hasPrefix(MaskType.Wave.rawValue) {
-        // Wave with parameters
         maskWaveFromString(unwrappedMaskType)
+      } else if unwrappedMaskType.hasPrefix(MaskType.Polygon.rawValue) {
+        maskPolygonFromString(unwrappedMaskType)
       }
     }
   }
   
-  // MARK: - Mask
+  // MARK: - Circle
   
-  public func maskCircle() {
+  private func maskCircle() {
     layer.cornerRadius = ceil(min(bounds.width, bounds.height))/2
-  }
-  
-  public func maskPolygon() {
-    let polygonPath = maskPolygonBezierPath(Int(arc4random_uniform(10) + 3))
-    drawPath(polygonPath)
-  }
-  
-  // See https://www.weheartswift.com/bezier-paths-gesture-recognizers/
-  public func maskStar(points: Int = 5) {
-    // FIXME: Do not mask the shadow.
-    
-    // Stars must has at least 3 points.
-    var starPoints = points
-    if points <= 2 {
-      starPoints = 5
-    }
-    
-    let path = starPath(starPoints)
-    drawPath(path)
-  }
-  
-  public func maskTriangle() {
-    let trianglePath = maskTriangleBezierPath()
-    drawPath(trianglePath)
-  }
-    
-  public func maskWave(waveUp: Bool = true, waveWidth: CGFloat = 40.0, waveOffset: CGFloat = 0.0) {
-    let wavePath = maskWaveBezierPath(waveUp, waveWidth: waveWidth, waveOffset: waveOffset)
-    drawPath(wavePath)
-  }
-  
-  // MARK: - Private helper
-  
-  private func drawPath(path: UIBezierPath) {
-    layer.mask?.removeFromSuperlayer()
-    
-    let maskLayer = CAShapeLayer()
-    maskLayer.frame = CGRect(origin: CGPoint.zero, size: bounds.size)
-    maskLayer.path = path.CGPath
-    layer.mask = maskLayer
-  }
-    
-  private func degree2radian(degree: CGFloat) -> CGFloat {
-    let radian = CGFloat(M_PI) * degree / 180
-    return radian
-  }
-  
-  private func pointFrom(angle: CGFloat, radius: CGFloat, offset: CGPoint) -> CGPoint {
-    return CGPoint(x: radius * cos(angle) + offset.x, y: radius * sin(angle) + offset.y)
-  }
-  
-  private func retrieveMaskParameters(mask: String, maskName: String) -> String {
-    var params = mask.stringByReplacingOccurrencesOfString(" ", withString: "")
-    params = params.stringByReplacingOccurrencesOfString(maskName, withString: "")
-    params = params.stringByReplacingOccurrencesOfString("(", withString: "")
-    params = params.stringByReplacingOccurrencesOfString(")", withString: "")
-    return params
   }
   
   // MARK: - Polygon
   
-  private func maskPolygonBezierPath(degree: Int) -> UIBezierPath {
+  private func maskPolygonFromString(mask: String) {
+    let sides = Int(retrieveMaskParameters(mask, maskName: MaskType.Polygon.rawValue))
+    if let unwrappedSides = sides {
+      maskPolygon(unwrappedSides)
+    } else {
+      maskPolygon()
+    }
+  }
+  
+  private func maskPolygon(sides: Int = 6) {
+    let polygonPath = maskPolygonBezierPath(sides)
+    drawPath(polygonPath)
+  }
+
+  private func maskPolygonBezierPath(sides: Int) -> UIBezierPath {
     let path = UIBezierPath()
     let center = CGPoint(x: bounds.width / 2.0, y: bounds.height / 2.0)
     var angle: CGFloat = -CGFloat(M_PI / 2.0)
-    let angleIncrement = CGFloat(M_PI * 2.0 / Double(degree))
+    let angleIncrement = CGFloat(M_PI * 2.0 / Double(sides))
     let radius = bounds.width / 2.0
     
     path.moveToPoint(pointFrom(angle, radius: radius, offset: center))
-    for _ in 1...degree - 1 {
+    for _ in 1...sides - 1 {
       angle += angleIncrement
       path.addLineToPoint(pointFrom(angle, radius: radius, offset: center))
     }
@@ -129,6 +86,20 @@ public extension MaskDesignable where Self: UIView {
     } else {
       maskStar()
     }
+  }
+  
+  // See https://www.weheartswift.com/bezier-paths-gesture-recognizers/
+  private func maskStar(points: Int = 5) {
+    // FIXME: Do not mask the shadow.
+    
+    // Stars must has at least 3 points.
+    var starPoints = points
+    if points <= 2 {
+      starPoints = 5
+    }
+    
+    let path = starPath(starPoints)
+    drawPath(path)
   }
   
   private func starPath(points: Int, borderWidth: CGFloat = 0) -> UIBezierPath {
@@ -160,6 +131,11 @@ public extension MaskDesignable where Self: UIView {
   
   // MARK: - Triangle
 
+  private func maskTriangle() {
+    let trianglePath = maskTriangleBezierPath()
+    drawPath(trianglePath)
+  }
+  
   private func maskTriangleBezierPath() -> UIBezierPath {
     let path = UIBezierPath()
     path.moveToPoint(CGPoint(x: bounds.width / 2.0, y: bounds.origin.y))
@@ -179,6 +155,11 @@ public extension MaskDesignable where Self: UIView {
     } else {
       maskWave()
     }
+  }
+  
+  private func maskWave(waveUp: Bool = true, waveWidth: CGFloat = 40.0, waveOffset: CGFloat = 0.0) {
+    let wavePath = maskWaveBezierPath(waveUp, waveWidth: waveWidth, waveOffset: waveOffset)
+    drawPath(wavePath)
   }
   
   private func maskWaveBezierPath(waveUp: Bool, waveWidth: CGFloat, waveOffset: CGFloat) -> UIBezierPath {
@@ -209,6 +190,35 @@ public extension MaskDesignable where Self: UIView {
     
     path.addLineToPoint(CGPoint(x: path.currentPoint.x, y: originY))    
     return path
+  }
+
+  
+  // MARK: - Private helper
+  
+  private func drawPath(path: UIBezierPath) {
+    layer.mask?.removeFromSuperlayer()
+    
+    let maskLayer = CAShapeLayer()
+    maskLayer.frame = CGRect(origin: CGPoint.zero, size: bounds.size)
+    maskLayer.path = path.CGPath
+    layer.mask = maskLayer
+  }
+  
+  private func degree2radian(degree: CGFloat) -> CGFloat {
+    let radian = CGFloat(M_PI) * degree / 180
+    return radian
+  }
+  
+  private func pointFrom(angle: CGFloat, radius: CGFloat, offset: CGPoint) -> CGPoint {
+    return CGPoint(x: radius * cos(angle) + offset.x, y: radius * sin(angle) + offset.y)
+  }
+  
+  private func retrieveMaskParameters(mask: String, maskName: String) -> String {
+    var params = mask.stringByReplacingOccurrencesOfString(" ", withString: "")
+    params = params.stringByReplacingOccurrencesOfString(maskName, withString: "")
+    params = params.stringByReplacingOccurrencesOfString("(", withString: "")
+    params = params.stringByReplacingOccurrencesOfString(")", withString: "")
+    return params
   }
   
 }

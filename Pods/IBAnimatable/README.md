@@ -1,17 +1,18 @@
-# IBAnimatable
+![IBAnimatable](https://raw.githubusercontent.com/JakeLin/IBAnimatable-Misc/master/IBAnimatable/Hero.png)
+
 Design and prototype UI, interaction, navigation, transition and animation for App Store ready Apps in Interface Builder with IBAnimatable.
 
 ![](https://d13yacurqjgara.cloudfront.net/users/332358/screenshots/2453933/ibanimatable.gif)
 
-[![Travis](https://img.shields.io/travis/JakeLin/IBAnimatable.svg)](https://travis-ci.org/JakeLin/IBAnimatable)
-![Language](https://img.shields.io/badge/language-Swift%202-orange.svg)
+[![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=56abf6d42c882e010057b182&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/56abf6d42c882e010057b182/build/latest)
+![Language](https://img.shields.io/badge/language-Swift%202.2-orange.svg)
 [![CocoaPods](https://img.shields.io/cocoapods/v/IBAnimatable.svg?style=flat)](http://cocoadocs.org/docsets/IBAnimatable/)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 ![License](https://img.shields.io/github/license/JakeLin/IBAnimatable.svg?style=flat)
 
 **The app was made in Interface Builder with `IBAnimatable` without a single line of code**. Due to the size of [the GIF file on Dribbble](https://dribbble.com/shots/2453933-IBAnimatable-Design-App-Store-ready-Apps-in-Interface-Builder), it only demonstrates a subset of features. We can also find the full HD version on [YouTube](https://www.youtube.com/watch?v=dvD8X6J1YLM) or [MP4 on Github](https://github.com/JakeLin/IBAnimatable-Misc/blob/master/Videos/IBAnimatable.mp4?raw=true)
 
-![](https://raw.githubusercontent.com/JakeLin/IBAnimatable-Misc/master/IBAnimatable/Storyboard.png)
+![StoryboardPreview](https://raw.githubusercontent.com/JakeLin/IBAnimatable-Misc/master/IBAnimatable/Storyboard.jpg)
 
 Here is the design in Interface Builder (Storyboard).
 
@@ -116,22 +117,24 @@ view.squeezeInDown{ view.pop { view.shake{ view.squeeze{ view.wobble{ view.flipX
 
 ## How to install
 ### Manually install
+
 Copy and paste `IBAnimatable` folder in your Xcode project.
 
-### Git submodule
-TBD, more details on [Issue #22 - Swift package manager support](https://github.com/JakeLin/IBAnimatable/issues/22)
-
-### Swift package manager
+### [Swift package manager](https://swift.org/package-manager)
 
 Add `.Package(url: "https://github.com/JakeLin/IBanimatable.git", majorVersion: 1)` to your `Package.swift`
 
 ### [CocoaPods](https://cocoapods.org)
 
-Add `pod 'IBAnimatable', '~> 1.2'` to your Podfile.
+Add `pod 'IBAnimatable'` to your Podfile.
 
 ### [Carthage](https://github.com/Carthage/Carthage)
 
-Add `github "JakeLin/IBAnimatable" ~> 1.2` to your Cartfile.
+Add `github "JakeLin/IBAnimatable" ~> 2.1` to your Cartfile.
+
+### Git submodule
+
+Add this repo as a submodule, and add the project file to your workspace. You can then link against `IBAnimatable.framework` for your application target. 
 
 ## APIs
 
@@ -152,7 +155,8 @@ The easiest way to use `IBAnimatable` is to drag and drop UIKit elements and con
 | UITextField | AnimatableTextField | |
 | UITextView | AnimatableTextView | |
 | UINavigationBar | DesignableNavigationBar | |
-| UIViewController | DesignableViewController | |
+| UIViewController | AnimatableViewController | |
+| UINavigationController | AnimatableNavigationController | |
 
 ### Designable protocols
 `IBAnimatable` provides a set of Designable protocols as below. Because of the power of protocol oriented programming in Swift, we don't even have to use Animatable default UI elements e.g.. `AnimatableView` to unlocked the power of `IBAnimatable`. We can conform to `IBAnimatable` protocols to use the default implementation in protocol extension to create other custom UI elements.
@@ -166,7 +170,7 @@ The easiest way to use `IBAnimatable` is to drag and drop UIKit elements and con
 #### `BlurDesignable`
 | Property name | Data type | Remark |
 | ------------- |:-------------:| ----- |
-| blurEffectStyle | Optional&lt;String> | Support three different blur effects: `ExtraLight`, `Light` and `Dark`, also can be found in emum [`BlurEffectStyle `](https://github.com/JakeLin/IBAnimatable/blob/master/IBAnimatable/BlurEffectStyle). The look of blur effect in Interface Builder is different from Simulator or device. |
+| blurEffectStyle | Optional&lt;String> | Support three different blur effects: `ExtraLight`, `Light` and `Dark`, also can be found in emum [`BlurEffectStyle `](https://github.com/JakeLin/IBAnimatable/blob/master/IBAnimatable/BlurEffectStyle.swift). The look of blur effect in Interface Builder is different from Simulator or device. |
 | blurOpacity | CGFloat | Opacity of the blur effect specified above. Default value is `CGFloat.NaN`, the value is from 0.0 to 1.0. |
 
 
@@ -219,10 +223,10 @@ The easiest way to use `IBAnimatable` is to drag and drop UIKit elements and con
 **Supported MaskType:**
 
 * `Circle`
-* `Polygon`
+* `Polygon`: Can also specify the number of sides of the polygon, e.g. use `Polygon(6)` to have a polygon with 6 sides. If not specified, default is 6 sides. 
 * `Triangle`
-* `Star`: Can alse specify the points of the Star, e.g. use `Star(6)` to have a star with 6 points. If not specified, default is 5 points. 
-* `Wave`: Can use pramaters to cumstomize the `Wave` shape like `maskWave(waveUp: Bool, waveWidth: CGFloat, waveOffset: CGFloat)`. `Wave(down, 20, 5)` means the Wave faces down, width is 20 and offset is 5. If not specified, default value is `Wave(up, 40, 0)`. 
+* `Star`: Can also specify the points of the Star, e.g. use `Star(6)` to have a star with 6 points. If not specified, default is 5 points. 
+* `Wave`: Can use parameters to customize the `Wave`. `Wave(down, 20, 5)` means the Wave faces down, width is 20 and offset is 5. If not specified, default value is `Wave(up, 40, 0)`. 
  
 
 #### `PaddingDesignable`
@@ -313,14 +317,39 @@ Easily add color layer on top of the UI element especially `AnimatableImageView`
 | x | CGFloat | Used to specify the absolute x to move in `MoveTo` animation and x offset in `MoveBy`. When used in `MoveBy`, negative means moving left and positive means moving right. Default values is `CGFloat.NaN` |
 | y | CGFloat | Used to specify the absolute y to move in `MoveTo` animation and y offset in `MoveBy`. When used in `MoveBy`, negative means moving up and positive means moving down. Default values is `CGFloat.NaN`|
 
+### TransitionAnimatable protocol
+| Property name | Data type | Remark |
+| ------------- |:-------------:| ----- |
+| transitionAnimationType | Optional&lt;String> | Supported transition animations. Tap on "Forgot Password" button to see all predefined transition animations, e.g. `Fade`, `SystemCube(Left)` and `SystemPageCurl(Bottom)`. The transition type starts with `System` can only use in Push/Pop transitions, not Present/Dismiss transitions |
+| transitionDuration | Double | transition duration. Default value is defined in [`Constants`](https://github.com/JakeLin/IBAnimatable/blob/master/IBAnimatable/Constants.swift) (0.5 seconds) |
+| interactiveGestureType | Optional&lt;String> | interactive gesture type. used to specify the gesture to dismiss/pop current scence. All supported interactive gesture types are in [`InteractiveGestureType`](https://github.com/JakeLin/IBAnimatable/blob/master/IBAnimatable/InteractiveGestureType.swift) |
+
+
 ### Extension
 #### UIViewController
-With these methods, we can navigate back or dismiss current ViewController with any code in Interface Builder.
+With these methods, we can navigate back or dismiss current ViewController without any code in Interface Builder.
 
 | Method name | Remark |
 | ------------- | ----- |
 | func unwindToViewController(sender: UIStoryboardSegue) | Used in Interface Builder to unwind from Navigation Controller |
 | func dismissCurrentViewController(sender: UIStoryboardSegue) | Used in Interface Builder to dismiss current ViewController |
+
+#### CALayer
+| Method name | Remark |
+| ------------- | ----- |
+| class func animate(animation: AnimatableExecution, completion: AnimatableCompletion? = nil) | Simplify CALayer animations with completion closure |
+
+### Segue
+| Segue name | Remark |
+| ------------- | ----- |
+| DismissSegue | Used to dismiss current ViewController, use `unwindToViewController` or `dismissCurrentViewController` methods in `UIViewController` extension if possible first |
+| PresentFadeSegue | Used to present ViewController with Fade transition animation |
+| PresentFadeInSegue | Used to present ViewController with FadeIn transition animation |
+| PresentFadeOutSegue | Used to present ViewController with FadeOut transition animation |
+| PresentFadeWithDismissInteractionSegue | Used to present ViewController with Fade transition animation and dismiss interaction |
+| PresentFadeInWithDismissInteractionSegue | Used to present ViewController with FadeIn transition animation and dismiss interaction |
+| PresentFadeOutWithDismissInteractionSegue | Used to present ViewController with FadeOut transition animation and dismiss interaction |
+
 
 
 ## How to contribute
