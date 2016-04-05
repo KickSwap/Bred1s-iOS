@@ -47,7 +47,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
 //        shoeNameLabel.layer.shadowColor = UIColor.flatBlackColor().CGColor
 //        shoeNameLabel.layer.shadowOpacity = 1
         //layoutView()
-        instantiateChart()
+        //instantiateChart()
         
         
         //animateChart = true
@@ -202,13 +202,13 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
 //        })
         // Setup the animation
         //chartView.animationType = "SqueezeInLeft"
-        chartView.delay = 0.5
-        chartView.damping = 0.5
-        chartView.velocity = 2
-        chartView.force = 1
-        
-        self.chartView.addSubview(chartSubview!)
-        chartView.squeezeInRight()
+//        chartView.delay = 0.5
+//        chartView.damping = 0.5
+//        chartView.velocity = 2
+//        chartView.force = 1
+//        
+//        self.chartView.addSubview(chartSubview!)
+//        chartView.squeezeInRight()
     }
     
     func loadPage() {
