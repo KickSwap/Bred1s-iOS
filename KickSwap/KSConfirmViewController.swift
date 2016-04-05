@@ -304,6 +304,7 @@ class KSConfirmViewController: UIViewController, MaterialSwitchDelegate {
     
     func confirmSaveShoe(shoe: NSDictionary) {
         FirebaseClient.sharedClient.saveShoes(Shoe(data:shoe))
+        //FirebaseClient.sharedClient.saveShoes()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
