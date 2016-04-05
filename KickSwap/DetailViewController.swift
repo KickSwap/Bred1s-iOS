@@ -9,6 +9,8 @@
 import UIKit
 import SwiftCharts
 import IBAnimatable
+import Charts
+import Material
 
 class DetailViewController: UIViewController, UIScrollViewDelegate {
 
@@ -22,6 +24,17 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var shoeImage: UIImageView!
     @IBOutlet var shoeSizeLabel: UILabel!
     @IBOutlet var shoeConditionLabel: UILabel!
+    @IBOutlet var conditionPlaceholderLabel: UILabel!
+    @IBOutlet var sizePlaceholderLabel: UILabel!
+    @IBOutlet var averagePlaceholderLabel: UILabel!
+    @IBOutlet var last5ValuesLabel: UILabel!
+    @IBOutlet var averagePriceLabel: UILabel!
+    @IBOutlet var thanksLabel: UILabel!
+    @IBOutlet var lineView: UIView!
+    @IBOutlet var lineView2: UIView!
+    @IBOutlet var lineView3: UIView!
+    @IBOutlet var backgroundView: AnimatableView!
+    
     
     var visibleUser: User?
 
@@ -29,12 +42,14 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         scrollView.delegate = self
-        shoeNameLabel.layer.cornerRadius = 4
-        shoeNameLabel.layer.shadowOffset = CGSize(width: 3, height: 10)
-        shoeNameLabel.layer.shadowColor = UIColor.flatBlackColor().CGColor
-        shoeNameLabel.layer.shadowOpacity = 1
-        
+//        shoeNameLabel.layer.cornerRadius = 4
+//        shoeNameLabel.layer.shadowOffset = CGSize(width: 3, height: 10)
+//        shoeNameLabel.layer.shadowColor = UIColor.flatBlackColor().CGColor
+//        shoeNameLabel.layer.shadowOpacity = 1
+        //layoutView()
         instantiateChart()
+        
+        
         //animateChart = true
       
         
@@ -52,20 +67,51 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         
     }
     
+    func layoutView() {
+        
+        let text = UIColor.flatWhiteColorDark()
+        
+        self.backgroundView.backgroundColor = detailBackgroundColor
+        self.shoeNameLabel.textColor = textColor
+        self.shoeNameLabel.font = RobotoFont.medium
+        shoeImage.clipsToBounds = true
+        shoeImage.sizeToFit()
+        shoeImage.layer.borderWidth = 5
+        shoeImage.layer.cornerRadius = 4
+        shoeImage.layer.borderColor = UIColor.flatBlackColorDark().CGColor
+        shoeSizeLabel.textColor = textColor
+        shoeSizeLabel.font = RobotoFont.medium
+        shoeConditionLabel.textColor = textColor
+        shoeConditionLabel.font = RobotoFont.medium
+        conditionPlaceholderLabel.textColor = textColor
+        conditionPlaceholderLabel.font = RobotoFont.medium
+        sizePlaceholderLabel.textColor = textColor
+        sizePlaceholderLabel.font = RobotoFont.medium
+        averagePriceLabel.textColor = textColor
+        averagePriceLabel.font = RobotoFont.medium
+        last5ValuesLabel.textColor = textColor
+        last5ValuesLabel.font = RobotoFont.medium
+        thanksLabel.textColor = textColor
+        thanksLabel.font = RobotoFont.medium
+        lineView.backgroundColor = palletteView1Color
+        lineView2.backgroundColor = palletteView1Color
+        lineView3.backgroundColor = palletteView1Color
+    }
+    
     func instantiateChart() {
         let labelSettings = ChartLabelSettings(font: ExamplesDefaults.labelFont)
         
-        let chartPoints: [ChartPoint] = [(1, 3), (2, 5), (3, 7.5), (4, 10), (5, 6), (6, 12)].map{ChartPoint(x: ChartAxisValueDouble($0.0, labelSettings: labelSettings), y: ChartAxisValueDouble($0.1))}
+        let chartPoints: [ChartPoint] = [(5, 105), (2, 110), (3, 95), (4, 90), (1, 80)].map{ChartPoint(x: ChartAxisValueDouble($0.0, labelSettings: labelSettings), y: ChartAxisValueDouble($0.1))}
         
         let xValues = chartPoints.map{$0.x}
-        let yValues = ChartAxisValuesGenerator.generateYAxisValuesWithChartPoints(chartPoints, minSegmentCount: 10, maxSegmentCount: 20, multiple: 2, axisValueGenerator: {ChartAxisValueDouble($0, labelSettings: labelSettings)}, addPaddingSegmentIfEdge: false)
+        let yValues = ChartAxisValuesGenerator.generateYAxisValuesWithChartPoints(chartPoints, minSegmentCount: 10, maxSegmentCount: 20, multiple: 10, axisValueGenerator: {ChartAxisValueDouble($0, labelSettings: labelSettings)}, addPaddingSegmentIfEdge: false)
         
         let lineModel = ChartLineModel(chartPoints: chartPoints, lineColor: palletteView2Color!, animDuration: 1, animDelay: 0)
         
         let trendLineModel = ChartLineModel(chartPoints: TrendlineGenerator.trendline(chartPoints), lineColor: palletteView4Color!, animDuration: 0.5, animDelay: 1)
         
-        let xModel = ChartAxisModel(axisValues: xValues, axisTitleLabel: ChartAxisLabel(text: "Axis title", settings: labelSettings))
-        let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "Axis title", settings: labelSettings.defaultVertical()))
+        let xModel = ChartAxisModel(axisValues: xValues, axisTitleLabel: ChartAxisLabel(text: "Last 5 Values", settings: labelSettings))
+        let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "Value", settings: labelSettings.defaultVertical()))
         let chartFrame = ExamplesDefaults.chartFrame(self.chartView.bounds)
         let coordsSpace = ChartCoordsSpaceLeftBottomSingleAxis(chartSettings: ExamplesDefaults.chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
         let (xAxis, yAxis, innerFrame) = (coordsSpace.xAxis, coordsSpace.yAxis, coordsSpace.chartInnerFrame)
@@ -94,6 +140,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        layoutView()
     }
     
     override func viewDidAppear(animated: Bool) {

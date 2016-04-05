@@ -406,6 +406,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 
     }
     
+    // Instantiate DetailViewController
     func detailViewController() -> DetailViewController {
         //print(self.childViewControllers)
         let pagingmenucontroller = self.childViewControllers[0] as! PagingMenuController
@@ -425,35 +426,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         cell.sizeLabel.text = shoeTimeline![indexPath.row].size!
         cell.conditionLabel.text = shoeTimeline![indexPath.row].condition
         cell.shoeTagView.backgroundColor = shoeTagViewColor
-        
-//        if [indexPath].ref(indexPath.row - 1) != nil {
-//        self.shoeImage = shoeTimeline![indexPath.row - 1].shoeImage
-//        self.shoeName.text = shoeTimeline![indexPath.row - 1].name
-//        self.shoeSize?.text = shoeTimeline![indexPath.row - 1].size!
-//        self.shoeCondition?.text = shoeTimeline![indexPath.row - 1].condition
-////        detailViewController().loadPage()
-//        print(cell.shoeNameLabel?.text)
-//        print(self.shoeName.text)
-//        print(self.shoeSize?.text)
-//        print(self.shoeCondition?.text)
-//        }
-//        else {
-//            print(indexPath.row - 1)
-//        }
-        
-//        let pagingmenucontroller = self.childViewControllers[0]
-//        //print(pagingmenucontroller.childViewControllers[0])
-//        if pagingmenucontroller.childViewControllers.ref(1) != nil {
-//            detailViewController().shoeImage.image = shoeTimeline![indexPath.row].shoeImage
-//            detailViewController().shoeNameLabel.text = shoeTimeline![indexPath.row].name
-//            print(detailViewController().shoeNameLabel.text)
-//            //print(shoeTimeline![indexPath.row].name)
-//            detailViewController().shoeSizeLabel.text = shoeTimeline![indexPath.row].size!
-//            detailViewController().shoeConditionLabel.text = shoeTimeline![indexPath.row].condition
-//            detailViewController().reloadInputViews()
-//        }
-        
-        
+
         return cell
     }
 
@@ -501,7 +474,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                 self.userProfileImage.clipsToBounds = true
                 self.profileName.text = self.visibleUser?.displayName
                 self.instantiateMenuController()
-                self.detailViewController()
+                self.detailViewController() // must be called after instantiateMenuController so view can load
                 self.detailViewController().loadPage()
             } else { //bad ting dat :(
     
