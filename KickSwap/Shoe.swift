@@ -64,7 +64,7 @@ class Shoe: NSObject {
                 "size": size!,
                 "originalBox": originalBox!,
                 "receipt": receipt!,
-                "bids": bids!,
+                //"bids": bids!, //Causing error in current build once we arrange Bids comment back Issues
                 "imageString": imageString! as String
         ]
     }
