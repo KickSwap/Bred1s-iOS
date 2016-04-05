@@ -580,16 +580,32 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 
         print(self.shoeTimeline![mainCollectionViewCellIndexPath!.row].price)
 
-        //var cellInViewIndex = Int(mainCollectionViewCellIndexPath.row)
-
-        getUserById(shoeTimeline![(mainCollectionViewCellIndexPath?.row)!].ownerId!)
-
-        flipUp()
-
+        if(self.mainCollectionViewCellIndexPath != nil){
+            getUserById(shoeTimeline![(mainCollectionViewCellIndexPath?.row)!].ownerId!)
+            flipUp()
+        }
+        
+    }
+    
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        var currentCellCenter = CGPointMake(self.timeline.center.x + self.timeline.contentOffset.x,
+                                            self.timeline.center.y + self.timeline.contentOffset.y)
+        self.mainCollectionViewCellIndexPath = self.timeline.indexPathForItemAtPoint(currentCellCenter)
+        
+        
+        if(self.mainCollectionViewCellIndexPath != nil){ //save from middle not being referenced
+            if(decelerate) {//user scrolling fast
+                //getUserById(shoeTimeline![(mainCollectionViewCellIndexPath?.row)!].ownerId!)
+                
+            } else { //user just dragging
+                flipUp()
+            }
+            
+        }
     }
 
-//initiate theme
-
+    //MARK: Themes Class - Init
     func layoutTheme() {
         self.timelineColorBackground.backgroundColor = timelineBackgroundColor
         self.profileTrayView.backgroundColor = profileTrayViewColor
