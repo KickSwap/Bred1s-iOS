@@ -45,6 +45,10 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         
         getShoes()
         
+        print(parentViewController)
+        if(parentViewController == nil){ //DetailViewController in timeline
+            themesButton.hidden = true
+        }
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
