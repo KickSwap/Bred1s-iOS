@@ -204,7 +204,7 @@ class FirebaseClient: NSObject {
             var tempUser: User?
             let dict = snapshot.value as! NSDictionary
             for x in dict {
-                var userToAppend = User(dictionary: x.value as! NSDictionary)
+                let userToAppend = User(dictionary: x.value as! NSDictionary)
                 if "facebook:\(userToAppend.id!)" == userId {
                     tempUser = userToAppend
                     completion(tempUser,nil)
@@ -249,13 +249,14 @@ class FirebaseClient: NSObject {
         }
     }
     
-    func getBids(forShoe:Shoe){
+    func getBids(forShoe:Shoe, completion:CompletionBlock.AnyObj){
         if let ref = getRefWith(myURIs.bids).childByAppendingPath(forShoe.uid){
-            ref.observeEventType(.ChildAdded, withBlock: { snapshot in
+            ref.observeEventType(.Value, withBlock: { snapshot in
                 if snapshot != nil {
                     print(snapshot.value)
+                    completion(snapshot.value, nil)
                 } else {
-                    
+                    completion(nil,nil)
                 }
             })
         }

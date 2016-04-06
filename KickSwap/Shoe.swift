@@ -29,7 +29,8 @@ class Shoe: NSObject {
     var createdAtString: String?
     
     //var willingToTradeFor: [Shoe]?
-    var bids:[String]?
+    var bids:[Float]?
+    
     override init() {
 
     }
@@ -48,11 +49,8 @@ class Shoe: NSObject {
         self.originalBox = data["originalBox"] as? String
         self.receipt = data["receipt"] as? String
         self.imageString = data["imageString"] as? NSString
-        self.bids = data["bids"] as? [String]
+        self.bids = [Float]()
         self.shoeImage = UIImage()
-        //self.owner?.uid = data["ownerId"] as? String
-        // make call w/ ownerId
-        //self.owner = d
     }
     
     func getShoe() -> [String:AnyObject]{
@@ -68,6 +66,19 @@ class Shoe: NSObject {
                 //"bids": bids!, //Causing error in current build once we arrange Bids comment back Issues
                 "imageString": imageString! as String
         ]
+    }
+    
+    func getBids() {
+        FirebaseClient.sharedClient.getBids(self, completion: { (f_bids, error) in
+            if error == nil {
+                let myBids = f_bids as! NSDictionary
+                for price in myBids {
+                    self.bids?.append(price.value as! Float)
+                }
+            } else {
+                print("Error: Shoe.getBids")
+            }
+        })
     }
     
     func printShoe(){

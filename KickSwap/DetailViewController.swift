@@ -35,9 +35,9 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var lineView3: UIView!
     @IBOutlet var backgroundView: AnimatableView!
     
-    
+    var visibleShoe: Shoe?
     var visibleUser: User?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -188,11 +188,11 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
                 animateChart = false
             }
         }
-        print(shoeNameLabel.text)
+        print(visibleShoe?.bids)
     }
     
     func scrollViewDidScrollToTop(scrollView: UIScrollView) {
-        print("yes")
+        
     }
     
     func animateChartView() {
@@ -212,17 +212,22 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func loadPage() {
+       
         if let indexPath = KSTimeline().mainCollectionViewCellIndexPath?.row {
-        shoeNameLabel.text = KSTimeline().shoeTimeline![indexPath].name
+        visibleShoe = KSTimeline().shoeTimeline![indexPath]
+        shoeNameLabel.text = visibleShoe!.name
         shoeImage.image = KSTimeline().shoeTimeline![indexPath].shoeImage
         shoeSizeLabel.text = KSTimeline().shoeTimeline![indexPath].size
         shoeConditionLabel.text = KSTimeline().shoeTimeline![indexPath].condition
         } else {
-            shoeNameLabel.text = KSTimeline().shoeTimeline![0].name
+            visibleShoe = KSTimeline().shoeTimeline![0]
+            shoeNameLabel.text = visibleShoe!.name
             shoeImage.image = KSTimeline().shoeTimeline![0].shoeImage
             shoeSizeLabel.text = KSTimeline().shoeTimeline![0].size
             shoeConditionLabel.text = KSTimeline().shoeTimeline![0].condition
         }
+        
+        visibleShoe?.getBids() //set user bid object for graphs
     }
 
 
