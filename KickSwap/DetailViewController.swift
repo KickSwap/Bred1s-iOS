@@ -16,6 +16,9 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
 
     //@IBOutlet var shoeDetailImage: UIImageView!
     private var chart: Chart? // arc
+    
+    @IBOutlet var shoeImageCardView: CardView!
+    @IBOutlet var shoeDetailsCardView: CardView!
     @IBOutlet var chartView: AnimatableView!
     @IBOutlet var scrollView: UIScrollView!
     var animateChart: Bool = true
@@ -75,7 +78,6 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         self.shoeNameLabel.textColor = textColor
         self.shoeNameLabel.font = RobotoFont.medium
         shoeImage.clipsToBounds = true
-        shoeImage.sizeToFit()
         shoeImage.layer.borderWidth = 5
         shoeImage.layer.cornerRadius = 4
         shoeImage.layer.borderColor = UIColor.flatBlackColorDark().CGColor
