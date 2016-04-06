@@ -36,6 +36,7 @@ class KSCaptureViewController: UIViewController, CaptureViewDelegate, CaptureSes
     }
     
     func captureViewDidPressCloseButton(captureView: CaptureView, button: UIButton) {
+        self.unwindToViewController(UIStoryboardSegue(identifier: "toSell", source: parentViewController!, destination: self))
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
