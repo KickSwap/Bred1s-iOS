@@ -21,13 +21,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="main-logo" translatesAutoresizingMaskIntoConstraints="NO" id="dgc-ma-YAd">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="main-logo" translatesAutoresizingMaskIntoConstraints="NO" id="dgc-ma-YAd">
                                 <rect key="frame" x="67" y="135" width="240" height="163"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dgc-ma-YAd" secondAttribute="height" multiplier="253:172" id="31w-rF-5vM"/>
                                 </constraints>
                             </imageView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Pqw-BB-ggh">
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Pqw-BB-ggh">
                                 <rect key="frame" x="67" y="318" width="240" height="2"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="NA2-5I-WTX"/>
@@ -873,7 +873,6 @@
         <!--Activity View Controller-->
         <scene sceneID="Oo4-6r-Sza">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Id7-I8-4v1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="LJg-ib-Zwr" customClass="KSActivityViewController" customModule="KickSwap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5eM-8j-7dE"/>
@@ -931,7 +930,7 @@
                             <constraint firstItem="2ZU-Xx-eEk" firstAttribute="leading" secondItem="VW2-Ml-iNX" secondAttribute="leading" id="w7Q-zZ-1FQ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" image="4F1F0C4C-E29D-4F92-B993-21C3864032FE" id="gyX-Wv-TL3">
+                    <tabBarItem key="tabBarItem" image="87E82557-6B88-4DF5-8AB2-F0632C1F2485" id="gyX-Wv-TL3">
                         <inset key="imageInsets" minX="23" minY="6" maxX="-23" maxY="-6"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
@@ -940,6 +939,7 @@
                         <outlet property="notificationTableView" destination="2ZU-Xx-eEk" id="gSp-o9-3Yc"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Id7-I8-4v1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="348.5" y="1264.5"/>
         </scene>
@@ -1350,7 +1350,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="4F1F0C4C-E29D-4F92-B993-21C3864032FE" width="36" height="36">
+        <image name="87E82557-6B88-4DF5-8AB2-F0632C1F2485" width="36" height="36">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

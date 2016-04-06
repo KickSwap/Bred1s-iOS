@@ -28,6 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let news = storyboard.instantiateViewControllerWithIdentifier("KSNewsViewController") as UIViewController
 //        news.viewDidLayoutSubviews()
         Style.loadTheme()
+        
+       // FirebaseClient.sharedClient.addBid(Shoe(), bid:Bid())
+       // FirebaseClient.sharedClient.getBids(Shoe())
 
         //Handle user logout and subscribe to event
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)

@@ -16,6 +16,7 @@ class Shoe: NSObject {
     var imageURL: String?
     var imageString: NSString?
     var shoeImage: UIImage?
+    var uid:String?
     
     var condition: String?
     var size: String?
@@ -39,7 +40,7 @@ class Shoe: NSObject {
         self.brand = data["brand"] as? String
         self.color = data["color"] as? String
         self.imageURL = data["imageURL"] as? String
-        
+        self.uid = data["uid"] as? String
         self.ownerId = data["ownerId"] as? String
         self.condition = data["condition"] as? String
         self.size = data["size"] as? String

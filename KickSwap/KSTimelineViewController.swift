@@ -504,7 +504,6 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                 self.doneLoading = true // start animation
                 self.checkLoader() // start animation
                 self.shoeTimeline = shoes as! [Shoe]
-                print(self.shoeTimeline![0].ownerId)
                 self.getUserById(self.shoeTimeline![0].ownerId!)
                 self.timeline.reloadData()
             } else {
@@ -627,10 +626,14 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 
     func submitBid(sender:UIButton!) {
         print(bidValue)
-        var tempBidArray = shoeTimeline![mainCollectionViewCellIndexPath!.row].bids
-        tempBidArray?.append("\(bidValue)")
-        shoeTimeline![mainCollectionViewCellIndexPath!.row].bids = tempBidArray
-        print(shoeTimeline![mainCollectionViewCellIndexPath!.row].bids)
+        let currentBid = Bid(user: User.currentUser!, price: bidValue!) //form bid object
+        let shoeToBidOn = shoeTimeline![mainCollectionViewCellIndexPath!.row] //get shoe we are bidding on
+//        var tempBidArray = shoeTimeline![mainCollectionViewCellIndexPath!.row].bids
+//        tempBidArray?.append("\(bidValue)")
+//        shoeTimeline![mainCollectionViewCellIndexPath!.row].bids = tempBidArray
+//        print(shoeTimeline![mainCollectionViewCellIndexPath!.row].bids)
+        FirebaseClient.sharedClient.addBid(shoeToBidOn, bid: currentBid)
+        
         cardView.removeFromSuperview()
     }
 

@@ -11,6 +11,22 @@ import UIKit
 class Bid: NSObject {
     
     var bidder:User?
-    var offerPrice:Double?
+    var bidderId: String?
+    var bidPrice:Float?
     var offerShoes: [Shoe]?
+    
+    private(set) var dict: [String:NSObject]
+    
+    init(user:User, price:Float) {
+            bidder = user
+            bidderId = bidder?.uid
+            bidPrice = price
+            dict = [String:NSObject]()
+            dict[bidderId!] = price
+    }
+    
+    func setBid(uid:String, price:String) {
+        dict[bidderId!] = price;
+    }
+    
 }
