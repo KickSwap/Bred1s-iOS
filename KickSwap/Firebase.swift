@@ -237,11 +237,6 @@ class FirebaseClient: NSObject {
     }
     
     func addBid(toShoe:Shoe, bid: Bid){
-        //let ref = getRefWith(myURIs.bids).childByAppendingPath("-KEfQU77wsUzYkaUihMM")
-        print(toShoe)
-        _ = getRefWith(myURIs.bids).childByAppendingPath(toShoe.uid!)
-        print(bid.dict)
-        
         if let ref = getRefWith(myURIs.bids).childByAppendingPath(toShoe.uid!) {
             ref.updateChildValues(bid.dict, withCompletionBlock: { (error, firebase) in
                 if error == nil {
