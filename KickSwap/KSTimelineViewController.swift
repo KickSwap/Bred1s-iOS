@@ -642,9 +642,21 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 //        tempBidArray?.append("\(bidValue)")
 //        shoeTimeline![mainCollectionViewCellIndexPath!.row].bids = tempBidArray
 //        print(shoeTimeline![mainCollectionViewCellIndexPath!.row].bids)
-        FirebaseClient.sharedClient.addBid(shoeToBidOn, bid: currentBid)
+        //FirebaseClient.sharedClient.addBid(shoeToBidOn, bid: currentBid)
+        
+        FirebaseClient.sharedClient.addBid(shoeToBidOn, bid: currentBid) { (check, error) in
+            if error == nil {
+                //display message good ting...
+                self.displayAlert("Value Submission Successful!", message: "You have successfully submitted a value.")
+            } else {
+                //error....
+                self.displayAlert("Error", message: "Something went wrong, please try again.")
+            }
+        }
         
         cardView.removeFromSuperview()
+        
+        
     }
 
     func bidSliderDidChange(sender: UISlider) {
@@ -652,6 +664,18 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         sender.value = ceil(sender.value)
         bidValue = ceil(sender.value)
     }
+    
+    func displayAlert(title: String, message: String) {
+        
+        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction((UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        })))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+
 
     /*
     // MARK: - Navigation

@@ -236,12 +236,14 @@ class FirebaseClient: NSObject {
         })
     }
     
-    func addBid(toShoe:Shoe, bid: Bid){
+    func addBid(toShoe:Shoe, bid: Bid, completion:CompletionBlock.AnyObj){
         if let ref = getRefWith(myURIs.bids).childByAppendingPath(toShoe.uid!) {
             ref.updateChildValues(bid.dict, withCompletionBlock: { (error, firebase) in
                 if error == nil {
                     print("we sent it")
+                    completion(firebase,nil)
                 } else {
+                    completion(nil,nil)
                     print("Error: Add bid")
                 }
                 

@@ -37,7 +37,6 @@ PODS:
   - FBSDKLoginKit (4.10.1):
     - FBSDKCoreKit
   - Firebase (2.5.1)
-  - IBAnimatable (2.2)
   - LiquidLoader (0.1.1)
   - LTMorphingLabel (0.2.0)
   - Material (1.35.3)
@@ -59,7 +58,6 @@ DEPENDENCIES:
   - FBSDKCoreKit
   - FBSDKLoginKit
   - Firebase
-  - IBAnimatable
   - LiquidLoader
   - LTMorphingLabel
   - Material (~> 1.35.0)
@@ -81,7 +79,6 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: d2aaed5e9ab7d8d6301c533376a1fbff1cf3deb5
   FBSDKLoginKit: 699ff169080e3072de4b9b0faca90bf23dc36deb
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
-  IBAnimatable: 41ddf0b307ebec241d5dd510f472c51fb7fe519b
   LiquidLoader: cf49954a6643f610c06a7db45da2da81a68a154b
   LTMorphingLabel: 490aa8e079f9247c7f3130f7d4b1be1d66677377
   Material: 2989ce92c519fbdc265525819c37df0851701c4c
@@ -90,6 +87,4 @@ SPEC CHECKSUMS:
   SwiftCharts: c66a449d58f9c811c467f865a47b1b6136b49499
   WYInteractiveTransitions: d3d229c8d235d6a9473132a8290d56adadd0a528
 
-PODFILE CHECKSUM: 81d707860b05d072903c8e479d52846de5e7558a
-
-COCOAPODS: 1.0.0.beta.2
+COCOAPODS: 0.39.0

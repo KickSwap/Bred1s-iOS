@@ -10,7 +10,6 @@ target 'KickSwap' do
   pod 'Material', '~> 1.35.0'
   pod 'ChameleonFramework/Swift'
   pod 'Canvas'
-  pod 'IBAnimatable'
   pod 'SnapKit'
   pod 'AFNetworking'
   pod 'DropDown'
