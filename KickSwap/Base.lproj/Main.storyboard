@@ -21,13 +21,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="main-logo" translatesAutoresizingMaskIntoConstraints="NO" id="dgc-ma-YAd">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="main-logo" translatesAutoresizingMaskIntoConstraints="NO" id="dgc-ma-YAd">
                                 <rect key="frame" x="67" y="135" width="240" height="163"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dgc-ma-YAd" secondAttribute="height" multiplier="253:172" id="31w-rF-5vM"/>
                                 </constraints>
                             </imageView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Pqw-BB-ggh">
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Pqw-BB-ggh">
                                 <rect key="frame" x="67" y="318" width="240" height="2"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="NA2-5I-WTX"/>
@@ -930,7 +930,11 @@
                             <constraint firstItem="2ZU-Xx-eEk" firstAttribute="leading" secondItem="VW2-Ml-iNX" secondAttribute="leading" id="w7Q-zZ-1FQ"/>
                         </constraints>
                     </view>
+<<<<<<< HEAD
                     <tabBarItem key="tabBarItem" image="7EAAD7B3-E7B3-4B6E-9992-034256DEA56F" id="gyX-Wv-TL3">
+=======
+                    <tabBarItem key="tabBarItem" image="87E82557-6B88-4DF5-8AB2-F0632C1F2485" id="gyX-Wv-TL3">
+>>>>>>> master
                         <inset key="imageInsets" minX="23" minY="6" maxX="-23" maxY="-6"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
@@ -1400,7 +1404,11 @@
         </scene>
     </scenes>
     <resources>
+<<<<<<< HEAD
         <image name="7EAAD7B3-E7B3-4B6E-9992-034256DEA56F" width="36" height="36">
+=======
+        <image name="87E82557-6B88-4DF5-8AB2-F0632C1F2485" width="36" height="36">
+>>>>>>> master
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

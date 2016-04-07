@@ -83,7 +83,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         prepareTextView()
         addToolBar(textView)
         //instantiateMenuController()
-
+    
         //set image initially
         pictureIndex = 0
         timelineBackground.image = backgroundImages[pictureIndex!]
@@ -408,10 +408,20 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         formatter.numberStyle = .CurrencyStyle
         shoeValueSlider.numberFormatter = formatter
         //print(self.shoeTimeline![mainCollectionViewCellIndexPath!.row].price)
-        shoeValueSlider.minimumValue = Float(self.shoeTimeline![(mainCollectionViewCellIndexPath?.row)!].price!)! - 10
-        shoeValueSlider.maximumValue = Float(self.shoeTimeline![(mainCollectionViewCellIndexPath?.row)!].price!)! + 100
-        shoeValueSlider.addTarget(self, action: "bidSliderDidChange:", forControlEvents:UIControlEvents.ValueChanged)
-        cardView.detailView = shoeValueSlider
+        if let indexPath = mainCollectionViewCellIndexPath?.row  {
+            shoeValueSlider.minimumValue = Float(self.shoeTimeline![indexPath].price!)! - 10
+            shoeValueSlider.maximumValue = Float(self.shoeTimeline![indexPath].price!)! + 100
+            shoeValueSlider.addTarget(self, action: "bidSliderDidChange:", forControlEvents:UIControlEvents.ValueChanged)
+            cardView.detailView = shoeValueSlider
+        } else {
+                shoeValueSlider.minimumValue = Float(self.shoeTimeline![0].price!)! - 10
+                shoeValueSlider.maximumValue = Float(self.shoeTimeline![0].price!)! + 100
+                shoeValueSlider.addTarget(self, action: "bidSliderDidChange:", forControlEvents:UIControlEvents.ValueChanged)
+                cardView.detailView = shoeValueSlider
+                self.mainCollectionViewCellIndexPath = NSIndexPath(forRow: 0, inSection: 0)
+        }
+        
+        
 
 
         // Yes button.
@@ -504,7 +514,6 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                 self.doneLoading = true // start animation
                 self.checkLoader() // start animation
                 self.shoeTimeline = shoes as! [Shoe]
-                print(self.shoeTimeline![0].ownerId)
                 self.getUserById(self.shoeTimeline![0].ownerId!)
                 self.timeline.reloadData()
             } else {
@@ -627,10 +636,21 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 
     func submitBid(sender:UIButton!) {
         print(bidValue)
+<<<<<<< HEAD
         var tempBidArray = shoeTimeline![mainCollectionViewCellIndexPath!.row].bids
         tempBidArray?.append(bidValue!)
         shoeTimeline![mainCollectionViewCellIndexPath!.row].bids = tempBidArray
         print(shoeTimeline![mainCollectionViewCellIndexPath!.row].bids)
+=======
+        let currentBid = Bid(user: User.currentUser!, price: bidValue!) //form bid object
+        let shoeToBidOn = shoeTimeline![mainCollectionViewCellIndexPath!.row] //get shoe we are bidding on
+//        var tempBidArray = shoeTimeline![mainCollectionViewCellIndexPath!.row].bids
+//        tempBidArray?.append("\(bidValue)")
+//        shoeTimeline![mainCollectionViewCellIndexPath!.row].bids = tempBidArray
+//        print(shoeTimeline![mainCollectionViewCellIndexPath!.row].bids)
+        FirebaseClient.sharedClient.addBid(shoeToBidOn, bid: currentBid)
+        
+>>>>>>> master
         cardView.removeFromSuperview()
     }
 
