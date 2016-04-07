@@ -9,7 +9,7 @@
 import UIKit
 import SwiftCharts
 import IBAnimatable
-//import Charts
+import Charts
 import Material
 
 class DetailViewController: UIViewController, UIScrollViewDelegate {
@@ -19,7 +19,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet var shoeImageCardView: CardView!
     @IBOutlet var shoeDetailsCardView: CardView!
-    @IBOutlet var chartView: AnimatableView!
+    @IBOutlet var chartView: LineChartView!
     @IBOutlet var scrollView: UIScrollView!
     var animateChart: Bool = true
     var chartSubview: UIView? = nil

@@ -28,7 +28,7 @@ class Shoe: NSObject {
     var createdAtString: String?
     
     //var willingToTradeFor: [Shoe]?
-    var bids:[String]?
+    var bids:[Float]?
     override init() {
 
     }
@@ -47,7 +47,7 @@ class Shoe: NSObject {
         self.originalBox = data["originalBox"] as? String
         self.receipt = data["receipt"] as? String
         self.imageString = data["imageString"] as? NSString
-        self.bids = data["bids"] as? [String]
+        self.bids = data["bids"] as? [Float]
         self.shoeImage = UIImage()
         //self.owner?.uid = data["ownerId"] as? String
         // make call w/ ownerId
@@ -64,9 +64,13 @@ class Shoe: NSObject {
                 "size": size!,
                 "originalBox": originalBox!,
                 "receipt": receipt!,
-                //"bids": bids!, //Causing error in current build once we arrange Bids comment back Issues
+                "bids": bids!, //Causing error in current build once we arrange Bids comment back Issues
                 "imageString": imageString! as String
         ]
+    }
+    
+    func getShoeValues() -> [String:AnyObject]{
+        return ["bids": bids!]
     }
     
     func printShoe(){

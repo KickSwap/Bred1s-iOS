@@ -873,7 +873,6 @@
         <!--Activity View Controller-->
         <scene sceneID="Oo4-6r-Sza">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Id7-I8-4v1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="LJg-ib-Zwr" customClass="KSActivityViewController" customModule="KickSwap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5eM-8j-7dE"/>
@@ -891,7 +890,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yCp-AB-y4R" id="9QU-no-bhH">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="78.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="78"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@hugh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czq-Ei-H99">
@@ -931,7 +930,7 @@
                             <constraint firstItem="2ZU-Xx-eEk" firstAttribute="leading" secondItem="VW2-Ml-iNX" secondAttribute="leading" id="w7Q-zZ-1FQ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" image="4F1F0C4C-E29D-4F92-B993-21C3864032FE" id="gyX-Wv-TL3">
+                    <tabBarItem key="tabBarItem" image="7EAAD7B3-E7B3-4B6E-9992-034256DEA56F" id="gyX-Wv-TL3">
                         <inset key="imageInsets" minX="23" minY="6" maxX="-23" maxY="-6"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
@@ -940,6 +939,7 @@
                         <outlet property="notificationTableView" destination="2ZU-Xx-eEk" id="gSp-o9-3Yc"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Id7-I8-4v1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="348.5" y="1264.5"/>
         </scene>
@@ -1180,8 +1180,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mTW-fs-Jhi">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VDF-pP-nbs" customClass="AnimatableView" customModule="IBAnimatable">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VDF-pP-nbs" customClass="AnimatableView" customModule="IBAnimatable">
+                                        <rect key="frame" x="0.0" y="-254" width="375" height="1000"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4lx-kz-2cT" customClass="CardView" customModule="Material">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="373"/>
@@ -1249,7 +1249,7 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oky-w5-DNj" customClass="AnimatableView" customModule="IBAnimatable">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oky-w5-DNj" customClass="LineChartView" customModule="Charts">
                                                 <rect key="frame" x="8" y="539" width="359" height="311"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -1271,16 +1271,6 @@
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last 5 Values" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9d1-uj-7mE">
                                                 <rect key="frame" x="137" y="488" width="102" height="18"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanks for the Value!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OyU-yA-qrn">
-                                                <rect key="frame" x="107" y="829" width="162" height="21"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="21" id="4r1-uB-5Eu"/>
-                                                    <constraint firstAttribute="width" constant="162" id="peQ-Ra-kM6"/>
-                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1307,6 +1297,16 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanks for the Value!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OyU-yA-qrn">
+                                                <rect key="frame" x="107" y="858" width="162" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="4r1-uB-5Eu"/>
+                                                    <constraint firstAttribute="width" constant="162" id="peQ-Ra-kM6"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -1323,7 +1323,7 @@
                                             <constraint firstItem="3GP-9l-X0E" firstAttribute="leading" secondItem="VDF-pP-nbs" secondAttribute="leading" constant="8" id="IZg-ls-UIJ"/>
                                             <constraint firstItem="Xhz-SF-pZl" firstAttribute="leading" secondItem="rri-K1-9vu" secondAttribute="trailing" constant="-45" id="KOv-SA-0tf"/>
                                             <constraint firstAttribute="bottom" secondItem="Oky-w5-DNj" secondAttribute="bottom" constant="150" id="P7e-tG-Rw0"/>
-                                            <constraint firstAttribute="bottom" secondItem="OyU-yA-qrn" secondAttribute="bottom" constant="150" id="PBO-0E-i0g"/>
+                                            <constraint firstAttribute="bottom" secondItem="OyU-yA-qrn" secondAttribute="bottom" constant="121" id="PBO-0E-i0g"/>
                                             <constraint firstItem="haC-Q6-cBa" firstAttribute="top" secondItem="pMy-fZ-sJS" secondAttribute="bottom" constant="8" id="QhL-kF-bwb"/>
                                             <constraint firstItem="Oky-w5-DNj" firstAttribute="top" secondItem="Xfs-ya-eh1" secondAttribute="bottom" constant="4" id="TfX-03-jWD"/>
                                             <constraint firstItem="pMy-fZ-sJS" firstAttribute="top" secondItem="4lx-kz-2cT" secondAttribute="bottom" constant="6" id="VIk-hK-iVb"/>
@@ -1336,7 +1336,7 @@
                                             <constraint firstItem="OyU-yA-qrn" firstAttribute="leading" secondItem="VDF-pP-nbs" secondAttribute="leading" constant="107" id="krS-1z-5g4"/>
                                             <constraint firstItem="Xhz-SF-pZl" firstAttribute="top" secondItem="pMy-fZ-sJS" secondAttribute="bottom" constant="-27" id="ldn-fZ-6Ho"/>
                                             <constraint firstItem="3GP-9l-X0E" firstAttribute="centerY" secondItem="haC-Q6-cBa" secondAttribute="centerY" id="m3x-Fb-XB2"/>
-                                            <constraint firstItem="OyU-yA-qrn" firstAttribute="top" secondItem="Oky-w5-DNj" secondAttribute="bottom" constant="-21" id="q9p-Wq-pn5"/>
+                                            <constraint firstItem="OyU-yA-qrn" firstAttribute="top" secondItem="Oky-w5-DNj" secondAttribute="bottom" constant="8" id="q9p-Wq-pn5"/>
                                             <constraint firstItem="Xfs-ya-eh1" firstAttribute="leading" secondItem="VDF-pP-nbs" secondAttribute="leading" constant="44" id="wj1-ou-ezL"/>
                                             <constraint firstItem="3GP-9l-X0E" firstAttribute="top" secondItem="pMy-fZ-sJS" secondAttribute="bottom" constant="8" id="x9l-jA-pfS"/>
                                             <constraint firstItem="4lx-kz-2cT" firstAttribute="centerX" secondItem="VDF-pP-nbs" secondAttribute="centerX" id="xEC-2T-TxF"/>
@@ -1400,7 +1400,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="4F1F0C4C-E29D-4F92-B993-21C3864032FE" width="36" height="36">
+        <image name="7EAAD7B3-E7B3-4B6E-9992-034256DEA56F" width="36" height="36">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

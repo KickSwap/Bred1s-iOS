@@ -628,7 +628,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     func submitBid(sender:UIButton!) {
         print(bidValue)
         var tempBidArray = shoeTimeline![mainCollectionViewCellIndexPath!.row].bids
-        tempBidArray?.append("\(bidValue)")
+        tempBidArray?.append(bidValue!)
         shoeTimeline![mainCollectionViewCellIndexPath!.row].bids = tempBidArray
         print(shoeTimeline![mainCollectionViewCellIndexPath!.row].bids)
         cardView.removeFromSuperview()
