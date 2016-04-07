@@ -14,6 +14,7 @@ import FBSDKLoginKit
 import ChameleonFramework
 import Fabric
 import Crashlytics
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,6 +32,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
        // FirebaseClient.sharedClient.addBid(Shoe(), bid:Bid())
        // FirebaseClient.sharedClient.getBids(Shoe())
+        
+        // Set up parse
+        Parse.setApplicationId("dTJ68fMmNWlBTi5wI9ETdbKG2OK7zt2Wu1yvGcMQ",
+                               clientKey: "jUsbH0WkF3fpK1RjJGQR0RpmpcC6wFoKVh3Sh2vl")
+        
+        var gameScore = PFObject(className:"GameScore")
+        gameScore["score"] = 1337
+        gameScore["playerName"] = "Sean Plott"
+        gameScore["cheatMode"] = false
+        gameScore.saveInBackgroundWithBlock {
+            (success: Bool, error: NSError?) -> Void in
+            if (success) {
+                // The object has been saved.
+            } else {
+                // There was a problem, check error.description
+            }
+        }
 
         //Handle user logout and subscribe to event
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)

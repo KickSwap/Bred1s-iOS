@@ -41,6 +41,8 @@ PODS:
   - LTMorphingLabel (0.2.0)
   - Material (1.35.3)
   - PagingMenuController (0.8.0)
+  - Parse (1.13.0):
+    - Bolts/Tasks (~> 1.6)
   - SnapKit (0.20.0)
   - SwiftCharts (0.3)
   - WYInteractiveTransitions (1.0.2)
@@ -62,6 +64,7 @@ DEPENDENCIES:
   - LTMorphingLabel
   - Material (~> 1.35.0)
   - PagingMenuController
+  - Parse
   - SnapKit
   - SwiftCharts (~> 0.3)
   - WYInteractiveTransitions (~> 1.0.2)
@@ -83,6 +86,7 @@ SPEC CHECKSUMS:
   LTMorphingLabel: 490aa8e079f9247c7f3130f7d4b1be1d66677377
   Material: 2989ce92c519fbdc265525819c37df0851701c4c
   PagingMenuController: 1a9ff8ad0ab9704f215706997c1a624bc951f508
+  Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc
   SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650
   SwiftCharts: c66a449d58f9c811c467f865a47b1b6136b49499
   WYInteractiveTransitions: d3d229c8d235d6a9473132a8290d56adadd0a528
