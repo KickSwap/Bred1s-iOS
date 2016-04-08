@@ -29,11 +29,8 @@ class Shoe: NSObject {
     var createdAtString: String?
     
     //var willingToTradeFor: [Shoe]?
-    var bids:[Float]?
-<<<<<<< HEAD
-=======
+    var bids:[Double]?
     
->>>>>>> master
     override init() {
 
     }
@@ -52,11 +49,7 @@ class Shoe: NSObject {
         self.originalBox = data["originalBox"] as? String
         self.receipt = data["receipt"] as? String
         self.imageString = data["imageString"] as? NSString
-<<<<<<< HEAD
-        self.bids = data["bids"] as? [Float]
-=======
-        self.bids = [Float]()
->>>>>>> master
+        self.bids = [Double]()
         self.shoeImage = UIImage()
     }
     
@@ -75,22 +68,17 @@ class Shoe: NSObject {
         ]
     }
     
-<<<<<<< HEAD
-    func getShoeValues() -> [String:AnyObject]{
-        return ["bids": bids!]
-=======
     func getBids() {
         FirebaseClient.sharedClient.getBids(self, completion: { (f_bids, error) in
             if error == nil {
                 let myBids = f_bids as! NSDictionary
                 for price in myBids {
-                    self.bids?.append(price.value as! Float)
+                    self.bids?.append(price.value as! Double)
                 }
             } else {
                 print("Error: Shoe.getBids")
             }
         })
->>>>>>> master
     }
     
     func printShoe(){

@@ -38,8 +38,11 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var lineView3: UIView!
     @IBOutlet var backgroundView: AnimatableView!
     
+    @IBOutlet var noDataLabel: UILabel!
     var visibleShoe: Shoe?
     var visibleUser: User?
+    var shoeBids = [Double]()
+    let shoeValues = ["5", "4", "3", "2", "1"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,6 +102,8 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         lineView2.backgroundColor = palletteView1Color
         lineView3.backgroundColor = palletteView1Color
     }
+    
+    
     
     func instantiateChart() {
         //let labelSettings = ChartLabelSettings(font: ExamplesDefaults.labelFont)
@@ -184,13 +189,30 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
 
     func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
         if (scrollView.contentOffset.y + scrollView.frame.size.height) >= self.view.frame.height / 2{
-            print(animateChart)
-            if animateChart == true {
-                animateChartView()
-                animateChart = false
-            }
+            
+//            let newArray = (visibleShoe?.bids)! as [Double]
+//            
+//            if animateChart == true {
+//                setChart(Array(shoeValues.suffix(newArray.count)), values: newArray)
+//                animateChartView()
+//                animateChart = false
+//            }
         }
-        print(visibleShoe?.bids)
+        
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        // needed to add to shoebids
+        let newArray = (visibleShoe?.bids)! as [Double]
+        shoeBids += newArray
+        
+        print(newArray)
+        if animateChart == true {
+            setChart(Array(shoeValues.suffix(shoeBids.count)), values: newArray)
+            animateChartView()
+            animateChart = false
+        }
     }
     
     func scrollViewDidScrollToTop(scrollView: UIScrollView) {
@@ -230,7 +252,60 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         }
         
         visibleShoe?.getBids() //set user bid object for graphs
+
     }
+    
+    func setChart(dataPoints: [String], values: [Double]) {
+        
+        var dataEntries: [ChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+            let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
+            dataEntries.append(dataEntry)
+        }
+        
+        let chartDataSet = LineChartDataSet(yVals: dataEntries, label: "Values")
+        let chartData = LineChartData(xVals: shoeValues, dataSet: chartDataSet)
+        chartView.data = chartData
+        
+        //Placeholder text if data is nil
+        if chartView.data == nil {
+            chartView.noDataText = ""
+            noDataLabel.text = "No one's gotten around to valuing these kicks. Be a nice guy and value them."
+            noDataLabel.textAlignment = .Center
+            noDataLabel.textColor = UIColor.orangeColor()
+        } else {
+            noDataLabel.text = ""
+            noDataLabel.backgroundColor = UIColor.clearColor()
+        }
+        
+        //Description of chart
+        chartView.descriptionText = "Shoe Value"
+        
+        chartDataSet.colors = [UIColor(red: 230/255, green: 126/255, blue: 34/255, alpha: 1)]
+        
+        chartDataSet.colors = ChartColorTemplates.colorful()
+        
+        chartView.xAxis.labelPosition = .Bottom
+        
+        chartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
+        
+        chartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
+        
+        chartDataSet.circleRadius = 10
+        
+        chartDataSet.valueFont = chartDataSet.valueFont.fontWithSize(15)
+        
+        chartDataSet.valueFormatter?.currencySymbol
+        chartDataSet.valueFormatter?.numberStyle = .CurrencyStyle
+        chartView.drawGridBackgroundEnabled = false
+        chartView.xAxis.labelFont.fontWithSize(15)
+        chartView.chartYMax.advancedBy(100)
+        chartView.leftAxis.calcMinMax(min: shoeBids.minElement()! - 20, max: shoeBids.maxElement()! + 50)
+        
+        //chartDataSet.drawVerticalHighlightIndicatorEnabled = false
+    }
+
 
 
 

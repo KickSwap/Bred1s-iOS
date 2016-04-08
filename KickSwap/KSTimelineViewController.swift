@@ -636,12 +636,6 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 
     func submitBid(sender:UIButton!) {
         print(bidValue)
-<<<<<<< HEAD
-        var tempBidArray = shoeTimeline![mainCollectionViewCellIndexPath!.row].bids
-        tempBidArray?.append(bidValue!)
-        shoeTimeline![mainCollectionViewCellIndexPath!.row].bids = tempBidArray
-        print(shoeTimeline![mainCollectionViewCellIndexPath!.row].bids)
-=======
         let currentBid = Bid(user: User.currentUser!, price: bidValue!) //form bid object
         let shoeToBidOn = shoeTimeline![mainCollectionViewCellIndexPath!.row] //get shoe we are bidding on
 //        var tempBidArray = shoeTimeline![mainCollectionViewCellIndexPath!.row].bids
@@ -649,8 +643,6 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 //        shoeTimeline![mainCollectionViewCellIndexPath!.row].bids = tempBidArray
 //        print(shoeTimeline![mainCollectionViewCellIndexPath!.row].bids)
         FirebaseClient.sharedClient.addBid(shoeToBidOn, bid: currentBid)
-        
->>>>>>> master
         cardView.removeFromSuperview()
     }
 
