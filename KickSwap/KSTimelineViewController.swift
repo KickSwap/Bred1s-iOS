@@ -643,7 +643,6 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 //        shoeTimeline![mainCollectionViewCellIndexPath!.row].bids = tempBidArray
 //        print(shoeTimeline![mainCollectionViewCellIndexPath!.row].bids)
         FirebaseClient.sharedClient.addBid(shoeToBidOn, bid: currentBid)
-        
         cardView.removeFromSuperview()
     }
 

@@ -251,7 +251,7 @@ class FirebaseClient: NSObject {
     
     func getBids(forShoe:Shoe, completion:CompletionBlock.AnyObj){
         if let ref = getRefWith(myURIs.bids).childByAppendingPath(forShoe.uid){
-            ref.observeEventType(.Value, withBlock: { snapshot in
+            ref.queryLimitedToLast(5).observeEventType(.Value, withBlock: { snapshot in
                 if snapshot != nil {
                     print(snapshot.value)
                     completion(snapshot.value, nil)
