@@ -67,10 +67,12 @@ class Shoe: NSObject {
                 "imageString": imageString! as String
         ]
     }
-    
+    //f_Bids.exists()
     func getBids() {
         FirebaseClient.sharedClient.getBids(self, completion: { (f_bids, error) in
-            if error == nil {
+            if f_bids != nil {
+                print(error)
+                print(f_bids)
                 let myBids = f_bids as! NSDictionary
                 for price in myBids {
                     self.bids?.append(price.value as! Float)

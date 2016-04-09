@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		023BE99E1CB876700058AE57 /* TabBarAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023BE99D1CB876700058AE57 /* TabBarAnimatedTransitioning.swift */; };
 		024327011C7CA881009893B8 /* KSTimelineCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024327001C7CA881009893B8 /* KSTimelineCollectionViewCell.swift */; };
 		024327031C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024327021C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift */; };
 		0256D2BC1C95988700B8CD4B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D2BB1C95988700B8CD4B /* ProfileViewController.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		023BE99D1CB876700058AE57 /* TabBarAnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarAnimatedTransitioning.swift; sourceTree = "<group>"; };
 		024327001C7CA881009893B8 /* KSTimelineCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTimelineCollectionViewCell.swift; sourceTree = "<group>"; };
 		024327021C7CC9EA009893B8 /* CenterCellCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterCellCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		0256D2BB1C95988700B8CD4B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				4789AC1E1C99813C002907CA /* KSVoteCollectionViewCell.swift */,
 				0256D2BF1C95A35C00B8CD4B /* TimelineDetailTableViewCell.swift */,
 				0262DDFC1CA4A74300322D89 /* ThemesTableViewCell.swift */,
+				023BE99D1CB876700058AE57 /* TabBarAnimatedTransitioning.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				47AE58831C75730A007AB49E /* Firebase.swift in Sources */,
 				47B90F051C7F6F9B006B4BD6 /* KSCaptureViewController.swift in Sources */,
 				0256D3161C99790E00B8CD4B /* MJisBackViewController.swift in Sources */,
+				023BE99E1CB876700058AE57 /* TabBarAnimatedTransitioning.swift in Sources */,
 				0256D30D1C99775800B8CD4B /* SwiftWebVCActivitySafari.swift in Sources */,
 				A1E02DAD1C920F3B00F3BC92 /* KSConfirmViewController.swift in Sources */,
 				0256D2BE1C95989300B8CD4B /* DetailViewController.swift in Sources */,
