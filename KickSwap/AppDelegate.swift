@@ -37,18 +37,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.setApplicationId("dTJ68fMmNWlBTi5wI9ETdbKG2OK7zt2Wu1yvGcMQ",
                                clientKey: "jUsbH0WkF3fpK1RjJGQR0RpmpcC6wFoKVh3Sh2vl")
         
-        var gameScore = PFObject(className:"GameScore")
-        gameScore["score"] = 1337
-        gameScore["playerName"] = "Sean Plott"
-        gameScore["cheatMode"] = false
-        gameScore.saveInBackgroundWithBlock {
-            (success: Bool, error: NSError?) -> Void in
-            if (success) {
-                // The object has been saved.
-            } else {
-                // There was a problem, check error.description
-            }
-        }
+        //Setup Push Notifications
+        let userNotificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
+        let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
 
         //Handle user logout and subscribe to event
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
@@ -66,6 +59,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //reset entire program goto start view in storyboard
         let vc = storyboard.instantiateInitialViewController()
         window?.rootViewController = vc
+    }
+    
+    // Push Notifications
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        let installation = PFInstallation.currentInstallation()
+        print(deviceToken)
+        installation.setDeviceTokenFromData(deviceToken)
+        //Save device token for NSDefaults
+        
+        
+        installation.channels = ["global"]
+        installation.saveInBackground()
+    }
+
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        PFPush.handlePush(userInfo)
     }
 
     func applicationWillResignActive(application: UIApplication) {

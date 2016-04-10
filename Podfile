@@ -20,6 +20,7 @@ target 'KickSwap' do
   pod 'DZNEmptyDataSet'
   pod 'LiquidLoader'
   pod 'LTMorphingLabel'
+  pod 'IBAnimatable'	 
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'ASValueTrackingSlider'

@@ -26,6 +26,7 @@
 		02A3ACE11C9EFEBF00D429ED /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A3ACE01C9EFEBF00D429ED /* Themes.swift */; };
 		02DED1CE1C91D3460098DA39 /* KSTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DED1CD1C91D3450098DA39 /* KSTabBarController.swift */; };
 		02DED1D01C91D3740098DA39 /* KSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DED1CF1C91D3740098DA39 /* KSNavigationController.swift */; };
+		2122ED584FA8EA89F273B0CB /* Pods_KickSwap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 310E4412E4D23F83C1D891F7 /* Pods_KickSwap.framework */; };
 		472614811CB481AA0070CECA /* KSActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472614801CB481AA0070CECA /* KSActivityViewController.swift */; };
 		472614831CB482190070CECA /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472614821CB482190070CECA /* Notification.swift */; };
 		472614871CB482BA0070CECA /* KSNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472614861CB482BA0070CECA /* KSNotificationTableViewCell.swift */; };
@@ -52,7 +53,6 @@
 		A198C05F1C820287001C69E0 /* KSProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A198C05E1C820287001C69E0 /* KSProfileViewController.swift */; };
 		A198C0611C82136B001C69E0 /* KSProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A198C0601C82136B001C69E0 /* KSProfileCollectionViewCell.swift */; };
 		A1E02DAD1C920F3B00F3BC92 /* KSConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E02DAC1C920F3B00F3BC92 /* KSConfirmViewController.swift */; };
-		C922DECE75B0D0D097EEE4FB /* Pods_KickSwap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B37B91BB1F057D6A88A8B1E0 /* Pods_KickSwap.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +75,8 @@
 		02A3ACE01C9EFEBF00D429ED /* Themes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
 		02DED1CD1C91D3450098DA39 /* KSTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTabBarController.swift; sourceTree = "<group>"; };
 		02DED1CF1C91D3740098DA39 /* KSNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSNavigationController.swift; sourceTree = "<group>"; };
+		0867FD7A28CB1F17815AD610 /* Pods-KickSwap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KickSwap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KickSwap/Pods-KickSwap.debug.xcconfig"; sourceTree = "<group>"; };
+		310E4412E4D23F83C1D891F7 /* Pods_KickSwap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KickSwap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		472614801CB481AA0070CECA /* KSActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSActivityViewController.swift; sourceTree = "<group>"; };
 		472614821CB482190070CECA /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Notification.swift; path = ../Notification.swift; sourceTree = "<group>"; };
 		472614861CB482BA0070CECA /* KSNotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSNotificationTableViewCell.swift; sourceTree = "<group>"; };
@@ -100,12 +102,10 @@
 		47BBC0F61C7E8B6D007DFF67 /* GreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreenViewController.swift; sourceTree = "<group>"; };
 		47BBC0F71C7E8B6D007DFF67 /* YellowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YellowViewController.swift; sourceTree = "<group>"; };
 		47BBC0F81C7E8B6D007DFF67 /* KSMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSMenuViewController.swift; sourceTree = "<group>"; };
-		6F35B138EDE8CF7C0303D6A0 /* Pods-KickSwap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KickSwap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KickSwap/Pods-KickSwap.debug.xcconfig"; sourceTree = "<group>"; };
 		A198C05E1C820287001C69E0 /* KSProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSProfileViewController.swift; sourceTree = "<group>"; };
 		A198C0601C82136B001C69E0 /* KSProfileCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		A1E02DAC1C920F3B00F3BC92 /* KSConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSConfirmViewController.swift; sourceTree = "<group>"; };
-		B37B91BB1F057D6A88A8B1E0 /* Pods_KickSwap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KickSwap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CDE7BCE1566EC89CC580D339 /* Pods-KickSwap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KickSwap.release.xcconfig"; path = "Pods/Target Support Files/Pods-KickSwap/Pods-KickSwap.release.xcconfig"; sourceTree = "<group>"; };
+		FE76C2C7EF0E648EAF4EA733 /* Pods-KickSwap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KickSwap.release.xcconfig"; path = "Pods/Target Support Files/Pods-KickSwap/Pods-KickSwap.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,7 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C922DECE75B0D0D097EEE4FB /* Pods_KickSwap.framework in Frameworks */,
+				2122ED584FA8EA89F273B0CB /* Pods_KickSwap.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,8 +157,8 @@
 			children = (
 				477970DB1C630306000F1196 /* KickSwap */,
 				477970DA1C630306000F1196 /* Products */,
-				47BCAC7B66E2747BFDF95827 /* Pods */,
-				77B8A9D7EB74A0CB9A5F135F /* Frameworks */,
+				4BE04F2D3285A5733924F2F9 /* Pods */,
+				E90AE90C7D166E4C461055CC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -247,19 +247,19 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		47BCAC7B66E2747BFDF95827 /* Pods */ = {
+		4BE04F2D3285A5733924F2F9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6F35B138EDE8CF7C0303D6A0 /* Pods-KickSwap.debug.xcconfig */,
-				CDE7BCE1566EC89CC580D339 /* Pods-KickSwap.release.xcconfig */,
+				0867FD7A28CB1F17815AD610 /* Pods-KickSwap.debug.xcconfig */,
+				FE76C2C7EF0E648EAF4EA733 /* Pods-KickSwap.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		77B8A9D7EB74A0CB9A5F135F /* Frameworks */ = {
+		E90AE90C7D166E4C461055CC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B37B91BB1F057D6A88A8B1E0 /* Pods_KickSwap.framework */,
+				310E4412E4D23F83C1D891F7 /* Pods_KickSwap.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -271,12 +271,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 477970EE1C630306000F1196 /* Build configuration list for PBXNativeTarget "KickSwap" */;
 			buildPhases = (
-				9CDAAA1C415B5115BADCF788 /* Check Pods Manifest.lock */,
+				3639F98D299755C95AAFA058 /* Check Pods Manifest.lock */,
 				477970D51C630306000F1196 /* Sources */,
 				477970D61C630306000F1196 /* Frameworks */,
 				477970D71C630306000F1196 /* Resources */,
-				34628A9A6D5E76C989FC1F76 /* Embed Pods Frameworks */,
-				4DEF5160F87E02E36F80D517 /* Copy Pods Resources */,
+				617B36266F21B8B86CCFF7F6 /* Embed Pods Frameworks */,
+				082E97FEC562B478B06E8821 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -300,6 +300,11 @@
 					477970D81C630306000F1196 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = GDB3SZ2MTH;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -336,22 +341,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		34628A9A6D5E76C989FC1F76 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KickSwap/Pods-KickSwap-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4DEF5160F87E02E36F80D517 /* Copy Pods Resources */ = {
+		082E97FEC562B478B06E8821 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -366,7 +356,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KickSwap/Pods-KickSwap-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9CDAAA1C415B5115BADCF788 /* Check Pods Manifest.lock */ = {
+		3639F98D299755C95AAFA058 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -379,6 +369,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		617B36266F21B8B86CCFF7F6 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KickSwap/Pods-KickSwap-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -539,7 +544,7 @@
 		};
 		477970EF1C630306000F1196 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6F35B138EDE8CF7C0303D6A0 /* Pods-KickSwap.debug.xcconfig */;
+			baseConfigurationReference = 0867FD7A28CB1F17815AD610 /* Pods-KickSwap.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -547,7 +552,7 @@
 				INFOPLIST_FILE = KickSwap/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = hamtech.KickSwap.me;
+				PRODUCT_BUNDLE_IDENTIFIER = d3vcon.kickSwap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -555,7 +560,7 @@
 		};
 		477970F01C630306000F1196 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CDE7BCE1566EC89CC580D339 /* Pods-KickSwap.release.xcconfig */;
+			baseConfigurationReference = FE76C2C7EF0E648EAF4EA733 /* Pods-KickSwap.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -563,7 +568,7 @@
 				INFOPLIST_FILE = KickSwap/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = hamtech.KickSwap.me;
+				PRODUCT_BUNDLE_IDENTIFIER = d3vcon.kickSwap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
