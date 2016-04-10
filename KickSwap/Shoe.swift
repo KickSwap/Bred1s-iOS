@@ -70,7 +70,7 @@ class Shoe: NSObject {
     
     func getBids() {
         FirebaseClient.sharedClient.getBids(self, completion: { (f_bids, error) in
-            if error == nil {
+            if f_bids != nil {
                 let myBids = f_bids as! NSDictionary
                 for price in myBids {
                     self.bids?.append(price.value as! Double)
