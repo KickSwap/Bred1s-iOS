@@ -17,6 +17,7 @@ import Firebase
 import LiquidLoader
 import Crashlytics
 import ASValueTrackingSlider
+import Parse
 
 class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, TextDelegate, TextViewDelegate, PagingMenuControllerDelegate {
 
@@ -83,6 +84,12 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         prepareTextView()
         addToolBar(textView)
         //instantiateMenuController()
+        
+        let installation = PFInstallation.currentInstallation()
+        installation["firebaseUserId"] = User.currentUser?.uid
+        
+        installation.channels = ["global"]
+        installation.saveInBackground()
     
         //set image initially
         pictureIndex = 0
@@ -653,6 +660,14 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                 self.displayAlert("Error", message: "Something went wrong, please try again.")
             }
         }
+        
+        let pushQuery = PFInstallation.query()!
+        pushQuery.whereKey("firebaseUserId", equalTo: shoeToBidOn.ownerId!)
+        
+        let push = PFPush()
+        push.setQuery(pushQuery)
+        push.setMessage("New value of \(currentBid.bidPrice) for your \(shoeToBidOn.name).")
+        push.sendPushInBackground()
         
         cardView.removeFromSuperview()
         
