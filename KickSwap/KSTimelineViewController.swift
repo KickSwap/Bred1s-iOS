@@ -17,6 +17,8 @@ import Firebase
 import LiquidLoader
 import Crashlytics
 import ASValueTrackingSlider
+import LTMorphingLabel
+import DynamicBlurView
 
 class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, TextDelegate, TextViewDelegate, PagingMenuControllerDelegate {
 
@@ -32,7 +34,14 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     @IBOutlet var profileTrayView: CardView!
     @IBOutlet var trayViewButton: UIButton!
     @IBOutlet var profileName: UILabel!
-
+    
+    
+    @IBOutlet var nameBlurView: CardView!
+    @IBOutlet var shoeTagView: UIVisualEffectView!
+    @IBOutlet var shoeNameLabel: LTMorphingLabel!
+    @IBOutlet var shoeSizeLabel: LTMorphingLabel!
+    @IBOutlet var shoeConditionLabel: LTMorphingLabel!
+    
 //    //Variables to pass to DetailViewController
 //    var shoeImage: UIImage!
 //    var shoeName: UILabel = UILabel(frame: CGRectMake(0, 0, 200, 21))
@@ -59,6 +68,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     var animateChart: Bool?
     var doneLoading: Bool = false
     var loader: LiquidLoader!
+    var delay = 0.0
 
 
     /// A Text storage object that monitors the changes within the textView.
@@ -74,14 +84,17 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         liquidLoader()
         alpha0()
         hideTrayView()
+        hideNameView()
         animateChart = true
         getShoesFromFirebase()
         prefersStatusBarHidden()
         timeline.dataSource = self
         timeline.delegate = self
-        prepareView()
-        prepareTextView()
-        addToolBar(textView)
+        
+        self.profileTrayView.translatesAutoresizingMaskIntoConstraints = false
+        //prepareView()
+        //prepareTextView()
+        //addToolBar(textView)
         //instantiateMenuController()
     
         //set image initially
@@ -125,6 +138,8 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                     UIView.animateWithDuration(0.5, delay: 0, options: [], animations: {
                         self.alpha1()
                         self.animateTrayView()
+                        self.delay = 0.0
+                        self.animateNameView()
                     }, completion: { (Bool) in
                 })
             })
@@ -140,7 +155,9 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         self.timeline.alpha = 0
         self.profileName.alpha = 0
         self.userProfileImage.alpha = 0
-        self.profileTrayView.alpha = 1
+        //self.profileTrayView.alpha = 0
+        //self.hideTrayView()
+        //self.shoeTagView.alpha = 0
     }
 
     func alpha1() {
@@ -148,6 +165,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         self.profileName.alpha = 1
         self.userProfileImage.alpha = 1
         self.profileTrayView.alpha = 1
+        //self.shoeTagView.alpha = 1
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -160,6 +178,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
         // set initial tray view location
         //animateTrayView()
     }
@@ -180,6 +199,48 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: [], animations: {
             self.profileTrayView.layoutIfNeeded()
         }) { (Bool) in
+        }
+    }
+    
+    func hideNameView() {
+        self.nameBlurView.alpha = 0
+        self.nameBlurView.snp_makeConstraints { (make) in
+            //make.bottom.equalTo((self.timeline.snp_bottom)).constraint
+            make.bottom.equalTo((nameBlurView.superview?.centerYAnchor)!).constraint
+            //make.centerY.equalTo(self.view.center).constraint
+        }
+    }
+    
+    func animateHideNameView() {
+        self.nameBlurView.snp_remakeConstraints { (make) in
+            //make.bottom.equalTo((self.timeline.snp_bottom)).constraint
+            make.bottom.equalTo((nameBlurView.superview?.centerYAnchor)!).constraint
+            //make.bottom.equalTo(self.timeline.topAnchor).constraint
+        }
+        //self.nameBlurView.alpha = 0
+        nameBlurView.setNeedsLayout()
+        UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            self.nameBlurView.alpha = 0
+            self.nameBlurView.layoutIfNeeded()
+        }) { (Bool) in
+        }
+    }
+    
+    func animateNameView() {
+        
+        self.nameBlurView.snp_remakeConstraints { (make) in
+            make.top.equalTo((nameBlurView.superview?.topAnchor)!).offset(76).constraint
+            //make.bottom.equalTo(self.timeline.snp_top).constraint
+        }
+        //nameBlurView.backgroundColor = profileTrayViewColor
+        nameBlurView.setNeedsLayout()
+        UIView.animateWithDuration(1, delay: self.delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: {
+            
+            self.nameBlurView.alpha = 1
+            self.nameBlurView.layoutIfNeeded()
+            
+        }) { (Bool) in
+            self.delay = 0.3
         }
     }
 
@@ -343,8 +404,8 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                 }
                 //trayView.superview?.userInteractionEnabled = false
                 //ignoreView.hidden = false
-                textView.userInteractionEnabled = false
-                textView.hidden = true
+                //textView.userInteractionEnabled = false
+                //textView.hidden = true
                 tapCount += 1
                 profileTrayView.setNeedsLayout()
                 UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options:[] , animations: { () -> Void in
@@ -381,8 +442,8 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
             }
             //trayView.superview?.userInteractionEnabled = false
             //ignoreView.hidden = false
-            textView.userInteractionEnabled = false
-            textView.hidden = true
+            //textView.userInteractionEnabled = false
+            //textView.hidden = true
             profileTrayView.setNeedsLayout()
             UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.2, options:[] , animations: { () -> Void in
                 //self.trayView.center = self.trayDown
@@ -482,13 +543,9 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 
     func collectionView(timeline: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = timeline.dequeueReusableCellWithReuseIdentifier("TimelineCell", forIndexPath: indexPath) as! KSTimelineCollectionViewCell
-
-        cell.shoeNameLabel.text = shoeTimeline![indexPath.row].name
+        
         cell.shoeImageView.image = shoeTimeline![indexPath.row].shoeImage
-        cell.sizeLabel.text = shoeTimeline![indexPath.row].size!
-        cell.conditionLabel.text = shoeTimeline![indexPath.row].condition
-        cell.shoeTagView.backgroundColor = shoeTagViewColor
-
+        
         return cell
     }
 
@@ -497,8 +554,8 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         self.profileTrayView.snp_remakeConstraints { (make) -> Void in
             make.top.equalTo((profileTrayView.superview?.snp_top)!).offset(0).constraint
         }
-        textView.userInteractionEnabled = false
-        textView.hidden = true
+        //textView.userInteractionEnabled = false
+        //textView.hidden = true
         profileTrayView.setNeedsLayout()
         UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.85, initialSpringVelocity: 0.5, options:[] , animations: { () -> Void in
             self.profileTrayView.layoutIfNeeded()
@@ -515,6 +572,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                 self.checkLoader() // start animation
                 self.shoeTimeline = shoes as! [Shoe]
                 self.getUserById(self.shoeTimeline![0].ownerId!)
+                self.layoutTagView()
                 self.timeline.reloadData()
             } else {
                 print("Error: KSTimelineViewController.getShoes")
@@ -522,6 +580,13 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
             }
         })
 
+    }
+    
+    func layoutTagView() {
+        self.shoeNameLabel.text = shoeTimeline![0].name
+        self.shoeSizeLabel.text = shoeTimeline![0].size!
+        self.shoeConditionLabel.text = shoeTimeline![0].condition
+        //self.shoeTagView.backgroundColor = UIColor.clearColor()//shoeTagViewColor
     }
 
     func getUserById(userId: String) {
@@ -551,6 +616,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 
         UIView.transitionWithView(profileTrayView, duration: 1, options: transitionOptions, animations: {
             //self.profileTrayView = self.profileTrayView
+            self.animateHideNameView()
             self.profileTrayView.hidden = true
         }) { (Bool) in
         }
@@ -560,6 +626,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         let transitionOptions: UIViewAnimationOptions = [.TransitionFlipFromTop, .ShowHideTransitionViews]
 
         UIView.transitionWithView(profileTrayView, duration: 1, options: transitionOptions, animations: {
+            self.animateNameView()
             self.profileTrayView.hidden = false
         }) { (Bool) in
         }
@@ -590,8 +657,13 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         print(self.shoeTimeline![mainCollectionViewCellIndexPath!.row].price)
 
         if(self.mainCollectionViewCellIndexPath != nil){
+            self.shoeNameLabel.text = shoeTimeline![mainCollectionViewCellIndexPath!.row].name
+            self.shoeSizeLabel.text = shoeTimeline![mainCollectionViewCellIndexPath!.row].size!
+            self.shoeConditionLabel.text = shoeTimeline![mainCollectionViewCellIndexPath!.row].condition
+            //self.shoeTagView.backgroundColor = UIColor.clearColor()//shoeTagViewColor
             getUserById(shoeTimeline![(mainCollectionViewCellIndexPath?.row)!].ownerId!)
             flipUp()
+            //animateNameView()
         }
         
     }
@@ -608,7 +680,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                 //getUserById(shoeTimeline![(mainCollectionViewCellIndexPath?.row)!].ownerId!)
                 
             } else { //user just dragging
-                flipUp()
+                //flipUp()
             }
             
         }
@@ -619,9 +691,32 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         self.timelineColorBackground.backgroundColor = timelineBackgroundColor
         self.profileTrayView.backgroundColor = profileTrayViewColor
         self.profileTrayView.pulseColor = pulseColor
+        //self.shoeTagView.layer.cornerRadius = 10
+        nameBlurView.layer.cornerRadius = 10
+        nameBlurView.backgroundColor = profileTrayViewColor
+//        nameBlurView.blurRadius = 60
+//        nameBlurView.blurRatio = 0.1
+//        nameBlurView.blendColor = profileTrayViewColor
+        
+        shoeNameLabel.morphingEffect = .Evaporate
+        shoeConditionLabel.morphingEffect = .Anvil
+        shoeSizeLabel.morphingEffect = .Burn
+        shoeNameLabel.textColor = MaterialColor.black
+        shoeConditionLabel.textColor = MaterialColor.black
+        shoeSizeLabel.textColor = MaterialColor.black
+        shoeNameLabel.font = RobotoFont.boldWithSize(18)
+        shoeConditionLabel.font = RobotoFont.boldWithSize(14)
+        shoeSizeLabel.font = RobotoFont.boldWithSize(22)
         //trayViewButton.setBackgroundImage(UIImage(named: ""), forState: .Normal)
         //trayViewButton.setBackgroundImage(UIImage(named: ""), forState: .Highlighted)
         profileName.textColor = textColor
+    }
+    
+    func addBlurViews() {
+        var blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        var blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.shoeNameLabel.bounds
+        //shoeNameLabel.addSubview(blurEffectView)
     }
 
 

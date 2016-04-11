@@ -41,7 +41,7 @@ public class CardView : MaterialPulseView {
 	*/
 	public var dividerColor: UIColor? {
 		didSet {
-			dividerLayer?.backgroundColor = dividerColor?.CGColor
+			dividerLayer?.backgroundColor = UIColor.clearColor().CGColor//dividerColor?.CGColor
 		}
 	}
 	
@@ -407,7 +407,7 @@ public class CardView : MaterialPulseView {
 		super.prepareView()
 		pulseColor = MaterialColor.grey.lighten1
 		depth = .Depth1
-		dividerColor = MaterialColor.grey.lighten3
+		dividerColor = UIColor.clearColor() //MaterialColor.grey.lighten3
 		cornerRadiusPreset = .Radius1
 	}
 	

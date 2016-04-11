@@ -25,4 +25,5 @@ target 'KickSwap' do
   pod 'Crashlytics'
   pod 'ASValueTrackingSlider'
   pod 'Charts/Realm'
+  pod 'DynamicBlurView'
 end
