@@ -645,6 +645,12 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         print(bidValue)
         let currentBid = Bid(user: User.currentUser!, price: bidValue!) //form bid object
         let shoeToBidOn = shoeTimeline![mainCollectionViewCellIndexPath!.row] //get shoe we are bidding on
+        
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .CurrencyStyle
+        // formatter.locale = NSLocale.currentLocale() // This is the default
+
+        
 //        var tempBidArray = shoeTimeline![mainCollectionViewCellIndexPath!.row].bids
 //        tempBidArray?.append("\(bidValue)")
 //        shoeTimeline![mainCollectionViewCellIndexPath!.row].bids = tempBidArray
@@ -666,7 +672,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         
         let push = PFPush()
         push.setQuery(pushQuery)
-        push.setMessage("New value of \(currentBid.bidPrice) for your \(shoeToBidOn.name).")
+        push.setMessage("New value of \(formatter.stringFromNumber(currentBid.bidPrice!)!) for your \(shoeToBidOn.name!).")
         push.sendPushInBackground()
         
         cardView.removeFromSuperview()
