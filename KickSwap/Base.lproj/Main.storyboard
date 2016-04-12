@@ -164,35 +164,9 @@
                             <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="eKb-Zf-R6p">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aT8-6h-6Lv" customClass="CardView" customModule="Material">
-                                        <rect key="frame" x="20" y="76" width="332" height="53"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="10.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPl-mX-PfJ" customClass="LTMorphingLabel" customModule="LTMorphingLabel">
-                                                <rect key="frame" x="124" y="28" width="39" height="22"/>
-                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yeezy Boost Low Oxford Tan" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z8U-pU-StR" customClass="LTMorphingLabel" customModule="LTMorphingLabel">
-                                                <rect key="frame" x="45" y="5" width="245" height="22"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wtS-V7-RTt" customClass="LTMorphingLabel" customModule="LTMorphingLabel">
-                                                <rect key="frame" x="166" y="32" width="21" height="17"/>
-                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="14"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="DPl-mX-PfJ" firstAttribute="top" secondItem="z8U-pU-StR" secondAttribute="bottom" constant="1" id="KCj-rz-gKG"/>
-                                            <constraint firstItem="wtS-V7-RTt" firstAttribute="baseline" secondItem="DPl-mX-PfJ" secondAttribute="baseline" id="N4Y-Ur-gUV"/>
-                                            <constraint firstItem="DPl-mX-PfJ" firstAttribute="leading" secondItem="aT8-6h-6Lv" secondAttribute="leading" constant="124" id="Tjf-h3-WaF"/>
-                                            <constraint firstItem="z8U-pU-StR" firstAttribute="centerX" secondItem="aT8-6h-6Lv" secondAttribute="centerX" constant="1.5" id="aGH-PZ-bzC"/>
-                                            <constraint firstItem="wtS-V7-RTt" firstAttribute="leading" secondItem="DPl-mX-PfJ" secondAttribute="trailing" constant="3" id="dK6-Ok-nEX"/>
-                                            <constraint firstItem="z8U-pU-StR" firstAttribute="top" secondItem="aT8-6h-6Lv" secondAttribute="top" constant="5" id="wR7-Y4-1X0"/>
-                                        </constraints>
+                                    <view alpha="0.050000000000000003" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aT8-6h-6Lv">
+                                        <rect key="frame" x="-6" y="80" width="387" height="49"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Re8-1B-Ztw">
                                         <rect key="frame" x="0.0" y="129" width="375" height="408"/>
@@ -294,26 +268,52 @@
                                         <color key="backgroundColor" red="0.83529411764705885" green="0.20392156862745098" blue="0.15294117647058825" alpha="0.53000000000000003" colorSpace="calibratedRGB"/>
                                         <gestureRecognizers/>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="10.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPl-mX-PfJ" customClass="AnimatableLabel" customModule="IBAnimatable">
+                                        <rect key="frame" x="154" y="103" width="39" height="22"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yeezy Boost Low Oxford Tan" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z8U-pU-StR" customClass="AnimatableLabel" customModule="IBAnimatable">
+                                        <rect key="frame" x="65" y="80" width="245" height="22"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wtS-V7-RTt" customClass="AnimatableLabel" customModule="IBAnimatable">
+                                        <rect key="frame" x="196" y="107" width="21" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="aT8-6h-6Lv" firstAttribute="centerX" secondItem="eKb-Zf-R6p" secondAttribute="centerX" constant="-1.5" id="4yR-uB-hWe"/>
+                                    <constraint firstItem="aT8-6h-6Lv" firstAttribute="centerX" secondItem="eKb-Zf-R6p" secondAttribute="centerX" id="4yR-uB-hWe"/>
+                                    <constraint firstItem="DPl-mX-PfJ" firstAttribute="leading" secondItem="eKb-Zf-R6p" secondAttribute="leading" constant="154" id="Ggr-YW-7yl"/>
                                     <constraint firstItem="773-sl-Ouj" firstAttribute="top" secondItem="Re8-1B-Ztw" secondAttribute="bottom" constant="7" id="Nwe-C2-id5"/>
                                     <constraint firstAttribute="bottom" secondItem="773-sl-Ouj" secondAttribute="bottom" constant="-714" id="OUb-su-zKs"/>
+                                    <constraint firstItem="DPl-mX-PfJ" firstAttribute="top" secondItem="z8U-pU-StR" secondAttribute="bottom" constant="1" id="PJX-Qe-Z4X"/>
+                                    <constraint firstItem="wtS-V7-RTt" firstAttribute="leading" secondItem="DPl-mX-PfJ" secondAttribute="trailing" constant="3" id="Sdp-oK-2ld"/>
                                     <constraint firstItem="773-sl-Ouj" firstAttribute="leading" secondItem="eKb-Zf-R6p" secondAttribute="leading" id="Uph-HX-MgN"/>
                                     <constraint firstAttribute="trailing" secondItem="Re8-1B-Ztw" secondAttribute="trailing" id="cB0-T0-2GN"/>
                                     <constraint firstAttribute="trailing" secondItem="773-sl-Ouj" secondAttribute="trailing" id="fPh-u8-Qts"/>
                                     <constraint firstItem="Re8-1B-Ztw" firstAttribute="leading" secondItem="eKb-Zf-R6p" secondAttribute="leading" id="fZI-Qc-xfG"/>
                                     <constraint firstItem="773-sl-Ouj" firstAttribute="top" secondItem="Re8-1B-Ztw" secondAttribute="bottom" constant="7" placeholder="YES" id="iM5-4C-7uU"/>
+                                    <constraint firstItem="z8U-pU-StR" firstAttribute="leading" secondItem="eKb-Zf-R6p" secondAttribute="leading" constant="65" id="jZ0-tt-enc"/>
                                     <constraint firstItem="Re8-1B-Ztw" firstAttribute="centerX" secondItem="eKb-Zf-R6p" secondAttribute="centerX" id="mZ1-6O-10D"/>
-                                    <constraint firstItem="aT8-6h-6Lv" firstAttribute="top" secondItem="eKb-Zf-R6p" secondAttribute="top" constant="76" placeholder="YES" id="pln-Xj-5qb"/>
+                                    <constraint firstItem="z8U-pU-StR" firstAttribute="top" secondItem="eKb-Zf-R6p" secondAttribute="top" constant="80" id="mtg-p2-ky9"/>
+                                    <constraint firstItem="aT8-6h-6Lv" firstAttribute="top" secondItem="eKb-Zf-R6p" secondAttribute="top" constant="80" placeholder="YES" id="pln-Xj-5qb"/>
                                     <constraint firstItem="Re8-1B-Ztw" firstAttribute="top" secondItem="eKb-Zf-R6p" secondAttribute="top" constant="129" id="qjn-2i-nFy"/>
+                                    <constraint firstItem="Re8-1B-Ztw" firstAttribute="centerX" secondItem="eKb-Zf-R6p" secondAttribute="centerX" id="qvz-vS-RY4"/>
                                     <constraint firstItem="Re8-1B-Ztw" firstAttribute="top" secondItem="aT8-6h-6Lv" secondAttribute="bottom" id="tRu-H7-JUT"/>
-                                    <constraint firstItem="aT8-6h-6Lv" firstAttribute="leading" secondItem="eKb-Zf-R6p" secondAttribute="leading" constant="20" id="tk8-fQ-7sK"/>
+                                    <constraint firstItem="aT8-6h-6Lv" firstAttribute="leading" secondItem="eKb-Zf-R6p" secondAttribute="leading" constant="-6" id="tk8-fQ-7sK"/>
+                                    <constraint firstItem="z8U-pU-StR" firstAttribute="centerX" secondItem="eKb-Zf-R6p" secondAttribute="centerX" id="vgv-Eg-9DX"/>
                                     <constraint firstItem="Re8-1B-Ztw" firstAttribute="centerY" secondItem="eKb-Zf-R6p" secondAttribute="centerY" id="wDx-MZ-WeB"/>
                                     <constraint firstItem="Re8-1B-Ztw" firstAttribute="top" secondItem="aT8-6h-6Lv" secondAttribute="bottom" id="zby-ag-21e"/>
+                                    <constraint firstItem="wtS-V7-RTt" firstAttribute="baseline" secondItem="DPl-mX-PfJ" secondAttribute="baseline" id="zir-1H-Av6"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="jZ0-tt-enc"/>
                                         <exclude reference="zby-ag-21e"/>
                                         <exclude reference="Nwe-C2-id5"/>
                                     </mask>

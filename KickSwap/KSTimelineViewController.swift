@@ -36,11 +36,11 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     @IBOutlet var profileName: UILabel!
     
     
-    @IBOutlet var nameBlurView: CardView!
+    @IBOutlet var nameBlurView: UIView!
     @IBOutlet var shoeTagView: UIVisualEffectView!
-    @IBOutlet var shoeNameLabel: LTMorphingLabel!
-    @IBOutlet var shoeSizeLabel: LTMorphingLabel!
-    @IBOutlet var shoeConditionLabel: LTMorphingLabel!
+    @IBOutlet var shoeNameLabel: AnimatableLabel!
+    @IBOutlet var shoeSizeLabel: AnimatableLabel!
+    @IBOutlet var shoeConditionLabel: AnimatableLabel!
     
 //    //Variables to pass to DetailViewController
 //    var shoeImage: UIImage!
@@ -232,11 +232,11 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
             make.top.equalTo((nameBlurView.superview?.topAnchor)!).offset(76).constraint
             //make.bottom.equalTo(self.timeline.snp_top).constraint
         }
-        //nameBlurView.backgroundColor = profileTrayViewColor
+        nameBlurView.backgroundColor = MaterialColor.white
         nameBlurView.setNeedsLayout()
         UIView.animateWithDuration(1, delay: self.delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: {
             
-            self.nameBlurView.alpha = 1
+            self.nameBlurView.alpha = 0.3
             self.nameBlurView.layoutIfNeeded()
             
         }) { (Bool) in
@@ -616,7 +616,8 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 
         UIView.transitionWithView(profileTrayView, duration: 1, options: transitionOptions, animations: {
             //self.profileTrayView = self.profileTrayView
-            self.animateHideNameView()
+            //self.animateHideNameView()
+            self.hideLabels()
             self.profileTrayView.hidden = true
         }) { (Bool) in
         }
@@ -624,12 +625,15 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 
     func flipUp() {
         let transitionOptions: UIViewAnimationOptions = [.TransitionFlipFromTop, .ShowHideTransitionViews]
-
+        self.animateLabels()
         UIView.transitionWithView(profileTrayView, duration: 1, options: transitionOptions, animations: {
-            self.animateNameView()
+            //self.animateNameView()
+            
             self.profileTrayView.hidden = false
         }) { (Bool) in
         }
+        
+        
     }
 
 // ScrollView Delegate Functions
@@ -692,18 +696,19 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         self.profileTrayView.backgroundColor = profileTrayViewColor
         self.profileTrayView.pulseColor = pulseColor
         //self.shoeTagView.layer.cornerRadius = 10
-        nameBlurView.layer.cornerRadius = 10
-        nameBlurView.backgroundColor = profileTrayViewColor
+        //nameBlurView.layer.cornerRadius = 10
+        nameBlurView.backgroundColor = MaterialColor.white
+        nameBlurView.alpha = 0.3
 //        nameBlurView.blurRadius = 60
 //        nameBlurView.blurRatio = 0.1
 //        nameBlurView.blendColor = profileTrayViewColor
         
-        shoeNameLabel.morphingEffect = .Evaporate
-        shoeConditionLabel.morphingEffect = .Anvil
-        shoeSizeLabel.morphingEffect = .Burn
-        shoeNameLabel.textColor = MaterialColor.black
-        shoeConditionLabel.textColor = MaterialColor.black
-        shoeSizeLabel.textColor = MaterialColor.black
+//        shoeNameLabel.morphingEffect = .Evaporate
+//        shoeConditionLabel.morphingEffect = .Evaporate
+//        shoeSizeLabel.morphingEffect = .Evaporate
+        shoeNameLabel.textColor = MaterialColor.white
+        shoeConditionLabel.textColor = MaterialColor.white
+        shoeSizeLabel.textColor = MaterialColor.white
         shoeNameLabel.font = RobotoFont.boldWithSize(18)
         shoeConditionLabel.font = RobotoFont.boldWithSize(14)
         shoeSizeLabel.font = RobotoFont.boldWithSize(22)
@@ -745,6 +750,38 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 //        sender.setValue(ceil(((sender.value + 2.5) / 5) * 5), animated: false)
         sender.value = ceil(sender.value)
         bidValue = ceil(sender.value)
+    }
+    
+    func animateLabels() {
+        self.shoeNameLabel.alpha = 1
+        self.shoeConditionLabel.alpha = 1
+        self.shoeSizeLabel.alpha = 1
+        //shoeNameLabel.animationType = "squeezeInLeft"
+        shoeNameLabel.delay = 0.5
+        shoeNameLabel.force = 0.5
+        shoeNameLabel.velocity = 0.5
+        shoeNameLabel.damping = 1
+        shoeSizeLabel.delay = 0.5
+        shoeSizeLabel.force = 0.5
+        shoeSizeLabel.velocity = 0.5
+        shoeSizeLabel.damping = 1
+        shoeConditionLabel.delay = 0.5
+        shoeConditionLabel.force = 0.5
+        shoeConditionLabel.velocity = 0.5
+        shoeConditionLabel.damping = 1
+        shoeNameLabel.squeezeInLeft()
+        shoeConditionLabel.squeezeInLeft()
+        shoeSizeLabel.squeezeInLeft()
+    }
+    
+    func hideLabels() {
+        UIView.animateWithDuration(0.7, delay: 0, usingSpringWithDamping: 0, initialSpringVelocity: 0, options: UIViewAnimationOptions.AllowUserInteraction, animations: {
+            self.shoeNameLabel.alpha = 0
+            self.shoeConditionLabel.alpha = 0
+            self.shoeSizeLabel.alpha = 0
+            }, completion: { (Bool) in
+        })
+
     }
 
     /*
