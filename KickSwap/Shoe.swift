@@ -17,7 +17,7 @@ class Shoe: NSObject {
     var imageString: NSString?
     var shoeImage: UIImage?
     var uid:String?
-    
+
     var condition: String?
     var size: String?
     var originalBox: String?
@@ -27,14 +27,14 @@ class Shoe: NSObject {
     var price: String?
     var createdAt: NSDate?
     var createdAtString: String?
-    
+
     //var willingToTradeFor: [Shoe]?
     var bids:[Double]?
-    
+
     override init() {
 
     }
-    
+
     // changed everything to string **Priority to figure out how to handle data**
     init(data:NSDictionary) {
         self.name = data["name"] as? String
@@ -52,7 +52,7 @@ class Shoe: NSObject {
         self.bids = [Double]()
         self.shoeImage = UIImage()
     }
-    
+
     func getShoe() -> [String:AnyObject]{
         return ["name": name!,
                 "color": "",
@@ -67,7 +67,7 @@ class Shoe: NSObject {
                 "imageString": imageString! as String
         ]
     }
-    
+    //f_Bids.exists()
     func getBids() {
         FirebaseClient.sharedClient.getBids(self, completion: { (f_bids, error) in
             if f_bids != nil {
@@ -80,7 +80,7 @@ class Shoe: NSObject {
             }
         })
     }
-    
+
     func printShoe(){
         print(name)
         print(price)
@@ -92,4 +92,3 @@ class Shoe: NSObject {
         print(receipt)
     }
 }
-

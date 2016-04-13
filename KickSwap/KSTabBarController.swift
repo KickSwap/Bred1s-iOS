@@ -8,7 +8,7 @@
 
 import UIKit
 
-class KSTabBarController: UITabBarController {
+class KSTabBarController: UITabBarController, UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +18,8 @@ class KSTabBarController: UITabBarController {
         //set current User
         let profile = self.viewControllers![2] as! KSProfileViewController
         profile.profileUser = User.currentUser
+        
+        delegate = self
         
         // Do any additional setup after loading the view.
     }
@@ -46,6 +48,25 @@ class KSTabBarController: UITabBarController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+    }
+    
+    func tabBarController(tabBarController: UITabBarController, animationControllerForTransitionFromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        var fromIndex = 0
+        var toIndex = 0
+        
+        for index in 0...viewControllers!.count - 1 {
+            
+            if viewControllers![index] == fromVC {
+                fromIndex = index
+            }
+            if viewControllers![index] == toVC {
+                toIndex = index
+            }
+        }
+        
+        return TabBarAnimatedTransitioning(fromIndex: fromIndex, toIndex: toIndex)
         
     }
 
