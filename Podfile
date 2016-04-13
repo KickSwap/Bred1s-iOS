@@ -10,7 +10,6 @@ target 'KickSwap' do
   pod 'Material', '~> 1.35.0'
   pod 'ChameleonFramework/Swift'
   pod 'Canvas'
-  pod 'IBAnimatable'
   pod 'SnapKit'
   pod 'AFNetworking'
   pod 'DropDown'
@@ -21,8 +20,9 @@ target 'KickSwap' do
   pod 'DZNEmptyDataSet'
   pod 'LiquidLoader'
   pod 'LTMorphingLabel'
+  pod 'IBAnimatable'
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'ASValueTrackingSlider'
-  pod 'Charts/Realm'
+  pod 'Parse'
 end

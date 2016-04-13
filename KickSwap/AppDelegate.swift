@@ -14,6 +14,7 @@ import FBSDKLoginKit
 import ChameleonFramework
 import Fabric
 import Crashlytics
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,6 +32,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
        // FirebaseClient.sharedClient.addBid(Shoe(), bid:Bid())
        // FirebaseClient.sharedClient.getBids(Shoe())
+        
+        // Set up parse
+        Parse.setApplicationId("dTJ68fMmNWlBTi5wI9ETdbKG2OK7zt2Wu1yvGcMQ",
+                               clientKey: "jUsbH0WkF3fpK1RjJGQR0RpmpcC6wFoKVh3Sh2vl")
+        
+        //Setup Push Notifications
+        let userNotificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
+        let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
+        
+        if let launchOptions = launchOptions as? [String : AnyObject] {
+            if let notificationDictionary = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey] as? [NSObject : AnyObject] {
+                self.application(application, didReceiveRemoteNotification: notificationDictionary)
+            }
+        }
 
         //Handle user logout and subscribe to event
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
@@ -48,6 +65,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //reset entire program goto start view in storyboard
         let vc = storyboard.instantiateInitialViewController()
         window?.rootViewController = vc
+    }
+    
+    // Push Notifications
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        let installation = PFInstallation.currentInstallation()
+        print(deviceToken)
+        installation.setDeviceTokenFromData(deviceToken)
+        //Save device token for NSDefaults
+        
+        
+        installation.channels = ["global"]
+        installation.saveInBackground()
+    }
+
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        PFPush.handlePush(userInfo)
     }
 
     func applicationWillResignActive(application: UIApplication) {
