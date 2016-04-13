@@ -38,7 +38,18 @@ var detailBackgroundColor: UIColor?
 
 struct Style{
     
-    // MARK: Blue Color Schemes
+    static func chartTheme () -> [UIColor]
+    {
+        return [
+            palletteView1Color!,
+            palletteView2Color!,
+            palletteView3Color!,
+            palletteView4Color!,
+            palletteView5Color!
+        ]
+    }
+    
+    // MARK:
     static func themeNeon(){
         //hex strings
         let quartsHex = "dbd7ef"

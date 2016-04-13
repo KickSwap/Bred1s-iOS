@@ -17,7 +17,7 @@ class Shoe: NSObject {
     var imageString: NSString?
     var shoeImage: UIImage?
     var uid:String?
-    
+
     var condition: String?
     var size: String?
     var originalBox: String?
@@ -27,14 +27,14 @@ class Shoe: NSObject {
     var price: String?
     var createdAt: NSDate?
     var createdAtString: String?
-    
+
     //var willingToTradeFor: [Shoe]?
-    var bids:[Float]?
-    
+    var bids:[Double]?
+
     override init() {
 
     }
-    
+
     // changed everything to string **Priority to figure out how to handle data**
     init(data:NSDictionary) {
         self.name = data["name"] as? String
@@ -49,10 +49,10 @@ class Shoe: NSObject {
         self.originalBox = data["originalBox"] as? String
         self.receipt = data["receipt"] as? String
         self.imageString = data["imageString"] as? NSString
-        self.bids = [Float]()
+        self.bids = [Double]()
         self.shoeImage = UIImage()
     }
-    
+
     func getShoe() -> [String:AnyObject]{
         return ["name": name!,
                 "color": "",
@@ -63,7 +63,7 @@ class Shoe: NSObject {
                 "size": size!,
                 "originalBox": originalBox!,
                 "receipt": receipt!,
-                //"bids": bids!, //Causing error in current build once we arrange Bids comment back Issues
+                "bids": bids!, //Causing error in current build once we arrange Bids comment back Issues
                 "imageString": imageString! as String
         ]
     }
@@ -71,18 +71,16 @@ class Shoe: NSObject {
     func getBids() {
         FirebaseClient.sharedClient.getBids(self, completion: { (f_bids, error) in
             if f_bids != nil {
-                print(error)
-                print(f_bids)
                 let myBids = f_bids as! NSDictionary
                 for price in myBids {
-                    self.bids?.append(price.value as! Float)
+                    self.bids?.append(price.value as! Double)
                 }
             } else {
                 print("Error: Shoe.getBids")
             }
         })
     }
-    
+
     func printShoe(){
         print(name)
         print(price)
@@ -94,4 +92,3 @@ class Shoe: NSObject {
         print(receipt)
     }
 }
-

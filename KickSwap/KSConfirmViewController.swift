@@ -308,6 +308,13 @@ class KSConfirmViewController: UIViewController, MaterialSwitchDelegate {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+//    var votes = [];
+//    votesRef.on('value', function(snapshot) {
+//    snapshot.forEach(function(vote) {
+//    votes.push({ ip: vote.key(), stars: vote.val() });
+//    });
+//    alert('There are '+votes.length+' votes');
+//    })
 
 //    // In a storyboard-based application, you will often want to do a little preparation before navigation
 //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

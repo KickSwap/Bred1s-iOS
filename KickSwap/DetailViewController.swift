@@ -11,12 +11,17 @@ import SwiftCharts
 import IBAnimatable
 //import Charts
 import Material
-
-class DetailViewController: UIViewController, UIScrollViewDelegate {
+import ChameleonFramework
+                                                            //Put ChartViewDelegate Back
+class DetailViewController: UIViewController, UIScrollViewDelegate{
 
     //@IBOutlet var shoeDetailImage: UIImageView!
-    private var chart: Chart? // arc
-    @IBOutlet var chartView: AnimatableView!
+    //private var chart: Chart? // arc
+    
+    @IBOutlet var chartViewCardViewBackground: CardView!
+    @IBOutlet var shoeImageCardView: CardView!
+    @IBOutlet var shoeDetailsCardView: CardView!
+    //@IBOutlet var chartView: LineChartView!
     @IBOutlet var scrollView: UIScrollView!
     var animateChart: Bool = true
     var chartSubview: UIView? = nil
@@ -28,20 +33,21 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var sizePlaceholderLabel: UILabel!
     @IBOutlet var averagePlaceholderLabel: UILabel!
     @IBOutlet var last5ValuesLabel: UILabel!
-    @IBOutlet var averagePriceLabel: UILabel!
+    @IBOutlet var averagePriceLabel: AnimatableLabel!
     @IBOutlet var thanksLabel: UILabel!
-    @IBOutlet var lineView: UIView!
-    @IBOutlet var lineView2: UIView!
-    @IBOutlet var lineView3: UIView!
     @IBOutlet var backgroundView: AnimatableView!
     
+    @IBOutlet var noDataLabel: UILabel!
     var visibleShoe: Shoe?
     var visibleUser: User?
+    var shoeBids = [Double]()
+    let shoeValues = ["5", "4", "3", "2", "1"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         scrollView.delegate = self
+        scrollView.bounces = false
 //        shoeNameLabel.layer.cornerRadius = 4
 //        shoeNameLabel.layer.shadowOffset = CGSize(width: 3, height: 10)
 //        shoeNameLabel.layer.shadowColor = UIColor.flatBlackColor().CGColor
@@ -71,11 +77,10 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         
         let text = UIColor.flatWhiteColorDark()
         
-        self.backgroundView.backgroundColor = detailBackgroundColor
+        self.backgroundView.backgroundColor = palletteView5Color
         self.shoeNameLabel.textColor = textColor
         self.shoeNameLabel.font = RobotoFont.medium
         shoeImage.clipsToBounds = true
-        shoeImage.sizeToFit()
         shoeImage.layer.borderWidth = 5
         shoeImage.layer.cornerRadius = 4
         shoeImage.layer.borderColor = UIColor.flatBlackColorDark().CGColor
@@ -89,53 +94,17 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         sizePlaceholderLabel.font = RobotoFont.medium
         averagePriceLabel.textColor = textColor
         averagePriceLabel.font = RobotoFont.medium
+        averagePriceLabel.alpha = 0
+        averagePlaceholderLabel.font = RobotoFont.medium
+        averagePlaceholderLabel.textColor = textColor
         last5ValuesLabel.textColor = textColor
         last5ValuesLabel.font = RobotoFont.medium
         thanksLabel.textColor = textColor
         thanksLabel.font = RobotoFont.medium
-        lineView.backgroundColor = palletteView1Color
-        lineView2.backgroundColor = palletteView1Color
-        lineView3.backgroundColor = palletteView1Color
-    }
-    
-    func instantiateChart() {
-        //let labelSettings = ChartLabelSettings(font: ExamplesDefaults.labelFont)
-        
-        //let chartPoints: [ChartPoint] = [(5, 105), (2, 110), (3, 95), (4, 90), (1, 80)].map{ChartPoint(x: ChartAxisValueDouble($0.0, labelSettings: labelSettings), y: ChartAxisValueDouble($0.1))}
-        
-        //let xValues = chartPoints.map{$0.x}
-        //let yValues = ChartAxisValuesGenerator.generateYAxisValuesWithChartPoints(chartPoints, minSegmentCount: 10, maxSegmentCount: 20, multiple: 10, axisValueGenerator: {ChartAxisValueDouble($0, labelSettings: labelSettings)}, addPaddingSegmentIfEdge: false)
-        
-        //let lineModel = ChartLineModel(chartPoints: chartPoints, lineColor: palletteView2Color!, animDuration: 1, animDelay: 0)
-        
-        //let trendLineModel = ChartLineModel(chartPoints: TrendlineGenerator.trendline(chartPoints), lineColor: palletteView4Color!, animDuration: 0.5, animDelay: 1)
-        
-        //let xModel = ChartAxisModel(axisValues: xValues, axisTitleLabel: ChartAxisLabel(text: "Last 5 Values", settings: labelSettings))
-        //let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "Value", settings: labelSettings.defaultVertical()))
-        //let chartFrame = ExamplesDefaults.chartFrame(self.chartView.bounds)
-        //let coordsSpace = ChartCoordsSpaceLeftBottomSingleAxis(chartSettings: ExamplesDefaults.chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
-        //let (xAxis, yAxis, innerFrame) = (coordsSpace.xAxis, coordsSpace.yAxis, coordsSpace.chartInnerFrame)
-        
-        //let chartPointsLineLayer = ChartPointsLineLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, lineModels: [lineModel])
-        
-        //let trendLineLayer = ChartPointsLineLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, lineModels: [trendLineModel])
-        
-        //let settings = ChartGuideLinesDottedLayerSettings(linesColor: UIColor.blackColor(), linesWidth: ExamplesDefaults.guidelinesWidth)
-        //let guidelinesLayer = ChartGuideLinesDottedLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, settings: settings)
-        
-//        let chart = Chart(
-//            frame: chartFrame,
-//            layers: [
-//                xAxis,
-//                yAxis,
-//                guidelinesLayer,
-//                chartPointsLineLayer,
-//                trendLineLayer
-//            ]
-//        )
-        
-        //self.chart = chart
-        //self.chartSubview = chart.view
+        //chartView.layer.cornerRadius = 4
+        shoeImageCardView.backgroundColor = GradientColor(UIGradientStyle.TopToBottom, frame: shoeImageCardView.frame, colors: [palletteView1Color!, palletteView2Color!])//palletteView2Color
+        shoeDetailsCardView.backgroundColor = palletteView1Color//GradientColor(UIGradientStyle.TopToBottom, frame: shoeDetailsCardView.frame, colors: [palletteView2Color!, palletteView1Color!])//palletteView1Color
+        chartViewCardViewBackground.backgroundColor = GradientColor(UIGradientStyle.TopToBottom, frame: chartViewCardViewBackground.frame, colors: [palletteView2Color!, palletteView1Color!])//detailBackgroundColor
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -182,33 +151,44 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
 
     func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
         if (scrollView.contentOffset.y + scrollView.frame.size.height) >= self.view.frame.height / 2{
-            print(animateChart)
-            if animateChart == true {
-                animateChartView()
-                animateChart = false
-            }
+            
+//            let newArray = (visibleShoe?.bids)! as [Double]
+//            
+//            if animateChart == true {
+//                setChart(Array(shoeValues.suffix(newArray.count)), values: newArray)
+//                animateChartView()
+//                animateChart = false
+//            }
         }
-        print(visibleShoe?.bids)
+        
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        // needed to add to shoebids
+        let newArray = (visibleShoe?.bids)! as [Double]
+        shoeBids += newArray
+        
+        print(newArray)
+        if animateChart == true {
+            print(String((visibleShoe?.bids?.average)!))
+            
+            // Calculatin & Printing Average Bids
+            let formatter = NSNumberFormatter()
+            formatter.numberStyle = .CurrencyStyle
+            let averagePrice = formatter.stringFromNumber((visibleShoe?.bids?.average)!)
+            averagePriceLabel.text = averagePrice
+            averagePriceLabel.alpha = 0
+            averagePriceLabel.squeezeInRight()
+            
+            //Setting Chart
+            setChart(Array(shoeValues.suffix(shoeBids.count)), values: newArray)
+            animateChart = false
+        }
     }
     
     func scrollViewDidScrollToTop(scrollView: UIScrollView) {
         
-    }
-    
-    func animateChartView() {
-//        UIView.animateWithDuration(2, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [], animations: { () -> Void in
-//            self.chartView.alpha = 1
-//            }, completion: { (completed) -> Void in
-//        })
-        // Setup the animation
-        //chartView.animationType = "SqueezeInLeft"
-//        chartView.delay = 0.5
-//        chartView.damping = 0.5
-//        chartView.velocity = 2
-//        chartView.force = 1
-//        
-//        self.chartView.addSubview(chartSubview!)
-//        chartView.squeezeInRight()
     }
     
     func loadPage() {
@@ -229,6 +209,65 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         
         visibleShoe?.getBids() //set user bid object for graphs
     }
+    
+    func setChart(dataPoints: [String], values: [Double]) {
+        
+//        var dataEntries: [ChartDataEntry] = []
+//        
+//        for i in 0..<dataPoints.count {
+//            let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
+//            dataEntries.append(dataEntry)
+//        }
+//        
+//        let chartDataSet = LineChartDataSet(yVals: dataEntries, label: "Values")
+//        let chartData = LineChartData(xVals: shoeValues, dataSet: chartDataSet)
+//        chartView.data = chartData
+//        
+//        //Placeholder text if data is nil
+//        if chartView.data == nil {
+//            chartView.noDataText = ""
+//            noDataLabel.text = "No one's gotten around to valuing these kicks. Be a nice guy and value them."
+//            noDataLabel.textAlignment = .Center
+//            noDataLabel.textColor = UIColor.orangeColor()
+//        } else {
+//            noDataLabel.text = ""
+//            noDataLabel.backgroundColor = UIColor.clearColor()
+//        }
+//        
+//        //Description of chart
+//        chartView.descriptionText = "Shoe Value"
+//        
+//        chartDataSet.colors = [UIColor.redColor()]//Style.chartTheme() //[UIColor(red: 230/255, green: 126/255, blue: 34/255, alpha: 1)]
+//        
+//        chartDataSet.colors = Style.chartTheme()
+//        
+//        chartView.xAxis.labelPosition = .Bottom
+//        
+//        chartView.backgroundColor = palletteView5Color //UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
+//        
+//        chartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
+//        
+//        chartDataSet.circleRadius = 10
+//        chartDataSet.circleColors = [palletteView2Color!]
+//        chartDataSet.circleHoleColor = palletteView1Color!
+//        chartDataSet.valueTextColor = palletteView1Color!
+//        
+//        chartDataSet.valueFont = chartDataSet.valueFont.fontWithSize(15)
+//        
+//        chartDataSet.valueFormatter?.currencySymbol
+//        chartDataSet.valueFormatter?.numberStyle = .CurrencyStyle
+//        chartView.drawGridBackgroundEnabled = false
+//        chartView.pinchZoomEnabled = false
+//        chartView.legend.enabled = false
+//        chartView.layer.cornerRadius = 4
+//        //chartView.gridBackgroundColor = UIColor.clearColor()
+//        chartView.xAxis.labelFont.fontWithSize(15)
+//        chartView.chartYMax.advancedBy(100)
+//        chartView.leftAxis.calcMinMax(min: shoeBids.minElement()! - 20, max: shoeBids.maxElement()! + 50)
+//        
+        //chartDataSet.drawVerticalHighlightIndicatorEnabled = false
+    }
+
 
 
 
@@ -242,5 +281,16 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     }
     */
 
+}
+
+extension _ArrayType where Generator.Element == Double {
+    var total: Double {
+        guard !isEmpty else { return 0 }
+        return  reduce(0, combine: +)
+    }
+    var average: Double {
+        guard !isEmpty else { return 0 }
+        return  total / Double(count)
+    }
 }
 

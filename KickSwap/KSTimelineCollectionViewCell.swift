@@ -13,23 +13,30 @@ import Material
 class KSTimelineCollectionViewCell: MaterialCollectionViewCell {
     
 
-    @IBOutlet var shoeTagView: UIView!
+
     @IBOutlet var shoeImageView: UIImageView!
-    @IBOutlet var shoeNameLabel: UILabel!
-    @IBOutlet var sizeLabel: UILabel!
-    @IBOutlet var conditionLabel: UILabel!
-
-
     
     override func awakeFromNib() {
         //backgroundColorView.backgroundColor = UIColor(hexString: "FA4A07")
         shoeImageView.image = UIImage(named: "blackYeezy")
         shoeImageView.clipsToBounds = true
-        shoeNameLabel.textColor = UIColor.flatWhiteColor()
-        conditionLabel.textColor = UIColor.flatWhiteColor()
-        sizeLabel.textColor = MaterialColor.white
-        shoeNameLabel.font = RobotoFont.boldWithSize(18)
-        conditionLabel.font = RobotoFont.boldWithSize(14)
-        sizeLabel.font = RobotoFont.boldWithSize(22)
+//        shoeNameLabel.textColor = UIColor.flatWhiteColor()
+//        conditionLabel.textColor = UIColor.flatWhiteColor()
+//        sizeLabel.textColor = MaterialColor.white
+//        shoeNameLabel.font = RobotoFont.boldWithSize(18)
+//        conditionLabel.font = RobotoFont.boldWithSize(14)
+//        sizeLabel.font = RobotoFont.boldWithSize(22)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.makeItCircle()
+    }
+    
+    func makeItCircle() {
+        self.shoeImageView.layer.masksToBounds = true
+        self.shoeImageView.layer.cornerRadius  = 10
+            //CGFloat(roundf(Float(self.shoeImageView.frame.size.width/6)))
     }
 }

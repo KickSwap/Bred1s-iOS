@@ -79,7 +79,7 @@ class KSNewsViewController: UIViewController, PagingMenuControllerDelegate, UISc
 //Animate MenuView
     func hideMenuBar() {
         let pagingMenuController = self.childViewControllers.first as! PagingMenuController
-        pagingMenuController.animateMenuView()
+        //pagingMenuController.animateMenuView()
         UIView.animateWithDuration(0.7, delay: 0, usingSpringWithDamping: 0, initialSpringVelocity: 0, options: UIViewAnimationOptions.AllowUserInteraction, animations: {
             self.menuViewController?.menuView.alpha = 0
             }, completion: { (Bool) in
@@ -89,7 +89,7 @@ class KSNewsViewController: UIViewController, PagingMenuControllerDelegate, UISc
     
     func showMenuBar(animated animated: Bool = true) {
         let pagingMenuController = self.childViewControllers.first as! PagingMenuController
-        pagingMenuController.showMenuView()
+        //pagingMenuController.showMenuView()
         print(self.parentViewController)
         //self.tabBarController?.tabBar.hidden = false
         UIView.animateWithDuration(0.7, delay: 0, usingSpringWithDamping: 0, initialSpringVelocity: 0, options: UIViewAnimationOptions.AllowUserInteraction, animations: { 
