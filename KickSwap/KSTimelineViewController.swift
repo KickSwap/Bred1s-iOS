@@ -219,11 +219,23 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         }
         //self.nameBlurView.alpha = 0
         nameBlurView.setNeedsLayout()
-        UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-            self.nameBlurView.alpha = 0
-            self.nameBlurView.layoutIfNeeded()
-        }) { (Bool) in
+        UIView.animateKeyframesWithDuration(1, delay: 0, options: UIViewKeyframeAnimationOptions.AllowUserInteraction, animations: { 
+            UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 0.1, animations: {
+                self.nameBlurView.alpha = 0
+            })
+            UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 1, animations: {
+                self.nameBlurView.layoutIfNeeded()
+            })
+            }) { (Bool) in
         }
+        
+//        UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+//            self.nameBlurView.layoutIfNeeded()
+//        }) { (Bool) in
+//        }
+//        UIView.animateWithDuration(0, animations: {
+//                    self.nameBlurView.alpha = 0
+//                })
     }
     
     func animateNameView() {
@@ -234,11 +246,21 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         }
         //nameBlurView.backgroundColor = profileTrayViewColor
         nameBlurView.setNeedsLayout()
-        UIView.animateWithDuration(1, delay: self.delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: {
-            
-            self.nameBlurView.alpha = 1
-            self.nameBlurView.layoutIfNeeded()
-            
+//        UIView.animateWithDuration(1, delay: self.delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: {
+//            
+//            self.nameBlurView.alpha = 1
+//            self.nameBlurView.layoutIfNeeded()
+//            
+//        }) { (Bool) in
+//            self.delay = 0.3
+//        }
+        UIView.animateKeyframesWithDuration(1, delay: 0, options: UIViewKeyframeAnimationOptions.AllowUserInteraction, animations: {
+            UIView.addKeyframeWithRelativeStartTime(0.8, relativeDuration: 0.1, animations: {
+                self.nameBlurView.alpha = 1
+            })
+            UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 1, animations: {
+                self.nameBlurView.layoutIfNeeded()
+            })
         }) { (Bool) in
             self.delay = 0.3
         }
