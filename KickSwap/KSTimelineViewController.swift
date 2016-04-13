@@ -84,13 +84,13 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         prepareTextView()
         addToolBar(textView)
         //instantiateMenuController()
-        
+
         let installation = PFInstallation.currentInstallation()
         installation["firebaseUserId"] = User.currentUser?.uid
-        
+
         installation.channels = ["global"]
         installation.saveInBackground()
-    
+
         //set image initially
         pictureIndex = 0
         timelineBackground.image = backgroundImages[pictureIndex!]
@@ -427,8 +427,8 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                 cardView.detailView = shoeValueSlider
                 self.mainCollectionViewCellIndexPath = NSIndexPath(forRow: 0, inSection: 0)
         }
-        
-        
+
+
 
 
         // Yes button.
@@ -457,7 +457,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         MaterialLayout.alignToParentHorizontally(view, child: cardView, left: 20, right: 20)
     }
 
-    
+
 
     @IBAction func logOutPressed(sender: AnyObject) {
         User.currentUser?.logout()
@@ -600,24 +600,24 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
             getUserById(shoeTimeline![(mainCollectionViewCellIndexPath?.row)!].ownerId!)
             flipUp()
         }
-        
+
     }
-    
+
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        
+
         var currentCellCenter = CGPointMake(self.timeline.center.x + self.timeline.contentOffset.x,
                                             self.timeline.center.y + self.timeline.contentOffset.y)
         self.mainCollectionViewCellIndexPath = self.timeline.indexPathForItemAtPoint(currentCellCenter)
-        
-        
+
+
         if(self.mainCollectionViewCellIndexPath != nil){ //save from middle not being referenced
             if(decelerate) {//user scrolling fast
                 //getUserById(shoeTimeline![(mainCollectionViewCellIndexPath?.row)!].ownerId!)
-                
+
             } else { //user just dragging
                 flipUp()
             }
-            
+
         }
     }
 
@@ -645,18 +645,18 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         print(bidValue)
         let currentBid = Bid(user: User.currentUser!, price: bidValue!) //form bid object
         let shoeToBidOn = shoeTimeline![mainCollectionViewCellIndexPath!.row] //get shoe we are bidding on
-        
+
         let formatter = NSNumberFormatter()
         formatter.numberStyle = .CurrencyStyle
         // formatter.locale = NSLocale.currentLocale() // This is the default
 
-        
+
 //        var tempBidArray = shoeTimeline![mainCollectionViewCellIndexPath!.row].bids
 //        tempBidArray?.append("\(bidValue)")
 //        shoeTimeline![mainCollectionViewCellIndexPath!.row].bids = tempBidArray
 //        print(shoeTimeline![mainCollectionViewCellIndexPath!.row].bids)
         //FirebaseClient.sharedClient.addBid(shoeToBidOn, bid: currentBid)
-        
+
         FirebaseClient.sharedClient.addBid(shoeToBidOn, bid: currentBid) { (check, error) in
             if error == nil {
                 //display message good ting...
@@ -666,18 +666,18 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                 self.displayAlert("Error", message: "Something went wrong, please try again.")
             }
         }
-        
+
         let pushQuery = PFInstallation.query()!
         pushQuery.whereKey("firebaseUserId", equalTo: shoeToBidOn.ownerId!)
-        
+
         let push = PFPush()
         push.setQuery(pushQuery)
         push.setMessage("New value of \(formatter.stringFromNumber(currentBid.bidPrice!)!) for your \(shoeToBidOn.name!).")
         push.sendPushInBackground()
-        
+
         cardView.removeFromSuperview()
-        
-        
+
+
     }
 
     func bidSliderDidChange(sender: UISlider) {
@@ -685,16 +685,16 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         sender.value = ceil(sender.value)
         bidValue = ceil(sender.value)
     }
-    
+
     func displayAlert(title: String, message: String) {
-        
+
         var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction((UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
             self.dismissViewControllerAnimated(true, completion: nil)
         })))
-        
+
         self.presentViewController(alert, animated: true, completion: nil)
-        
+
     }
 
 

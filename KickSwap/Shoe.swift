@@ -29,7 +29,7 @@ class Shoe: NSObject {
     var createdAtString: String?
     
     //var willingToTradeFor: [Shoe]?
-    var bids:[Float]?
+    var bids:[Double]?
     
     override init() {
 
@@ -49,7 +49,7 @@ class Shoe: NSObject {
         self.originalBox = data["originalBox"] as? String
         self.receipt = data["receipt"] as? String
         self.imageString = data["imageString"] as? NSString
-        self.bids = [Float]()
+        self.bids = [Double]()
         self.shoeImage = UIImage()
     }
     
@@ -63,7 +63,7 @@ class Shoe: NSObject {
                 "size": size!,
                 "originalBox": originalBox!,
                 "receipt": receipt!,
-                //"bids": bids!, //Causing error in current build once we arrange Bids comment back Issues
+                "bids": bids!, //Causing error in current build once we arrange Bids comment back Issues
                 "imageString": imageString! as String
         ]
     }
@@ -73,7 +73,7 @@ class Shoe: NSObject {
             if f_bids != nil {
                 let myBids = f_bids as! NSDictionary
                 for price in myBids {
-                    self.bids?.append(price.value as! Float)
+                    self.bids?.append(price.value as! Double)
                 }
             } else {
                 print("Error: Shoe.getBids")

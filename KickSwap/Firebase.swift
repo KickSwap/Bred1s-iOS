@@ -235,7 +235,7 @@ class FirebaseClient: NSObject {
             }
         })
     }
-    
+
     func addBid(toShoe:Shoe, bid: Bid, completion:CompletionBlock.AnyObj){
         if let ref = getRefWith(myURIs.bids).childByAppendingPath(toShoe.uid!) {
             ref.updateChildValues(bid.dict, withCompletionBlock: { (error, firebase) in
@@ -246,14 +246,14 @@ class FirebaseClient: NSObject {
                     completion(nil,nil)
                     print("Error: Add bid")
                 }
-                
+
             })
         }
     }
-    
+
     func getBids(forShoe:Shoe, completion:CompletionBlock.AnyObj){
         if let ref = getRefWith(myURIs.bids).childByAppendingPath(forShoe.uid){
-            ref.observeEventType(.Value, withBlock: { snapshot in
+            ref.queryLimitedToLast(5).observeEventType(.Value, withBlock: { snapshot in
                 if snapshot.exists() {
                     print(snapshot.value)
                     completion(snapshot.value, nil)
@@ -262,17 +262,17 @@ class FirebaseClient: NSObject {
                 }
             })
         }
-        
+
 //        let temp = getRefWith(myURIs.bids).childByAppendingPath("-KEfQU77wsUzYkaUihMM")
 //        ref.observeEventType(.ChildAdded, withBlock: { snapshot in
 //            if snapshot != nil {
 //                print(snapshot.value)
 //            } else {
-//                
+//
 //            }
 //        })
     }
-    
+
 
     func logOut() {
         return getRef().unauth()
