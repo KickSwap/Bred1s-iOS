@@ -117,7 +117,7 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         if segue.identifier == "themeSegue" {
             let toView = segue.destinationViewController as? KSThemesViewController
             transitionMgr.configureTransition(0.5, toViewController: toView!,
-                handGestureEnable: true, transitionType: WYTransitoinType.Zoom)
+                                              handGestureEnable: true, transitionType: WYTransitoinType.Zoom)
         }
     }
     

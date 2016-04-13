@@ -19,6 +19,7 @@ import Crashlytics
 import ASValueTrackingSlider
 import LTMorphingLabel
 import DynamicBlurView
+import Parse
 
 class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, TextDelegate, TextViewDelegate, PagingMenuControllerDelegate {
 
@@ -34,14 +35,14 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
     @IBOutlet var profileTrayView: CardView!
     @IBOutlet var trayViewButton: UIButton!
     @IBOutlet var profileName: UILabel!
-    
-    
+
+
     @IBOutlet var nameBlurView: CardView!
     @IBOutlet var shoeTagView: UIVisualEffectView!
     @IBOutlet var shoeNameLabel: LTMorphingLabel!
     @IBOutlet var shoeSizeLabel: LTMorphingLabel!
     @IBOutlet var shoeConditionLabel: LTMorphingLabel!
-    
+
 //    //Variables to pass to DetailViewController
 //    var shoeImage: UIImage!
 //    var shoeName: UILabel = UILabel(frame: CGRectMake(0, 0, 200, 21))
@@ -90,13 +91,19 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         prefersStatusBarHidden()
         timeline.dataSource = self
         timeline.delegate = self
-        
+
         self.profileTrayView.translatesAutoresizingMaskIntoConstraints = false
         //prepareView()
         //prepareTextView()
         //addToolBar(textView)
         //instantiateMenuController()
-    
+
+        let installation = PFInstallation.currentInstallation()
+        installation["firebaseUserId"] = User.currentUser?.uid
+
+        installation.channels = ["global"]
+        installation.saveInBackground()
+
         //set image initially
         pictureIndex = 0
         timelineBackground.image = backgroundImages[pictureIndex!]
@@ -178,7 +185,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         // set initial tray view location
         //animateTrayView()
     }
@@ -201,7 +208,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         }) { (Bool) in
         }
     }
-    
+
     func hideNameView() {
         self.nameBlurView.alpha = 0
         self.nameBlurView.snp_makeConstraints { (make) in
@@ -210,7 +217,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
             //make.centerY.equalTo(self.view.center).constraint
         }
     }
-    
+
     func animateHideNameView() {
         self.nameBlurView.snp_remakeConstraints { (make) in
             //make.bottom.equalTo((self.timeline.snp_bottom)).constraint
@@ -219,7 +226,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         }
         //self.nameBlurView.alpha = 0
         nameBlurView.setNeedsLayout()
-        UIView.animateKeyframesWithDuration(1, delay: 0, options: UIViewKeyframeAnimationOptions.AllowUserInteraction, animations: { 
+        UIView.animateKeyframesWithDuration(1, delay: 0, options: UIViewKeyframeAnimationOptions.AllowUserInteraction, animations: {
             UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 0.1, animations: {
                 self.nameBlurView.alpha = 0
             })
@@ -229,9 +236,9 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
             }) { (Bool) in
         }
     }
-    
+
     func animateNameView() {
-        
+
         self.nameBlurView.snp_remakeConstraints { (make) in
             make.top.equalTo((nameBlurView.superview?.topAnchor)!).offset(76).constraint
             //make.bottom.equalTo(self.timeline.snp_top).constraint
@@ -487,8 +494,8 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
                 cardView.detailView = shoeValueSlider
                 self.mainCollectionViewCellIndexPath = NSIndexPath(forRow: 0, inSection: 0)
         }
-        
-        
+
+
 
 
         // Yes button.
@@ -517,7 +524,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         MaterialLayout.alignToParentHorizontally(view, child: cardView, left: 20, right: 20)
     }
 
-    
+
 
     @IBAction func logOutPressed(sender: AnyObject) {
         User.currentUser?.logout()
@@ -549,9 +556,9 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 
     func collectionView(timeline: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = timeline.dequeueReusableCellWithReuseIdentifier("TimelineCell", forIndexPath: indexPath) as! KSTimelineCollectionViewCell
-        
+
         cell.shoeImageView.image = shoeTimeline![indexPath.row].shoeImage
-        
+
         return cell
     }
 
@@ -587,7 +594,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         })
 
     }
-    
+
     func layoutTagView() {
         self.shoeNameLabel.text = shoeTimeline![0].name
         self.shoeSizeLabel.text = shoeTimeline![0].size!
@@ -671,24 +678,24 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
             flipUp()
             //animateNameView()
         }
-        
+
     }
-    
+
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        
+
         var currentCellCenter = CGPointMake(self.timeline.center.x + self.timeline.contentOffset.x,
                                             self.timeline.center.y + self.timeline.contentOffset.y)
         self.mainCollectionViewCellIndexPath = self.timeline.indexPathForItemAtPoint(currentCellCenter)
-        
-        
+
+
         if(self.mainCollectionViewCellIndexPath != nil){ //save from middle not being referenced
             if(decelerate) {//user scrolling fast
                 //getUserById(shoeTimeline![(mainCollectionViewCellIndexPath?.row)!].ownerId!)
-                
+
             } else { //user just dragging
                 //flipUp()
             }
-            
+
         }
     }
 
@@ -703,7 +710,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
 //        nameBlurView.blurRadius = 60
 //        nameBlurView.blurRatio = 0.1
 //        nameBlurView.blendColor = profileTrayViewColor
-        
+
         shoeNameLabel.morphingEffect = .Evaporate
         shoeConditionLabel.morphingEffect = .Evaporate
         shoeSizeLabel.morphingEffect = .Evaporate
@@ -717,7 +724,7 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         //trayViewButton.setBackgroundImage(UIImage(named: ""), forState: .Highlighted)
         profileName.textColor = textColor
     }
-    
+
     func addBlurViews() {
         var blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
         var blurEffectView = UIVisualEffectView(effect: blurEffect)
@@ -739,12 +746,39 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         print(bidValue)
         let currentBid = Bid(user: User.currentUser!, price: bidValue!) //form bid object
         let shoeToBidOn = shoeTimeline![mainCollectionViewCellIndexPath!.row] //get shoe we are bidding on
+
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .CurrencyStyle
+        // formatter.locale = NSLocale.currentLocale() // This is the default
+
+
 //        var tempBidArray = shoeTimeline![mainCollectionViewCellIndexPath!.row].bids
 //        tempBidArray?.append("\(bidValue)")
 //        shoeTimeline![mainCollectionViewCellIndexPath!.row].bids = tempBidArray
 //        print(shoeTimeline![mainCollectionViewCellIndexPath!.row].bids)
-        FirebaseClient.sharedClient.addBid(shoeToBidOn, bid: currentBid)
+        //FirebaseClient.sharedClient.addBid(shoeToBidOn, bid: currentBid)
+
+        FirebaseClient.sharedClient.addBid(shoeToBidOn, bid: currentBid) { (check, error) in
+            if error == nil {
+                //display message good ting...
+                self.displayAlert("Value Submission Successful!", message: "You have successfully submitted a value.")
+            } else {
+                //error....
+                self.displayAlert("Error", message: "Something went wrong, please try again.")
+            }
+        }
+
+        let pushQuery = PFInstallation.query()!
+        pushQuery.whereKey("firebaseUserId", equalTo: shoeToBidOn.ownerId!)
+
+        let push = PFPush()
+        push.setQuery(pushQuery)
+        push.setMessage("New value of \(formatter.stringFromNumber(currentBid.bidPrice!)!) for your \(shoeToBidOn.name!).")
+        push.sendPushInBackground()
+
         cardView.removeFromSuperview()
+
+
     }
 
     func bidSliderDidChange(sender: UISlider) {
@@ -752,6 +786,18 @@ class KSTimelineViewController: UIViewController, UICollectionViewDataSource, UI
         sender.value = ceil(sender.value)
         bidValue = ceil(sender.value)
     }
+
+    func displayAlert(title: String, message: String) {
+
+        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction((UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        })))
+
+        self.presentViewController(alert, animated: true, completion: nil)
+
+    }
+
 
     /*
     // MARK: - Navigation
