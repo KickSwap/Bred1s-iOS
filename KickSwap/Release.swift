@@ -17,6 +17,8 @@ class Release:NSObject {
     var releaseDate: NSDate?
     var voteCount:Int?
     var color:String?
+    var releaseMonth:String?
+    var releaseDay:String?
 
     init(name:String, data: NSDictionary) {
         super.init()
@@ -35,6 +37,8 @@ class Release:NSObject {
             releaseDateAsString = data["releaseDate"] as? String
             //Make releaseDate into NSDate
             releaseDate = stringToNSDate(releaseDateAsString!)
+            let calendar = NSCalendar.currentCalendar()
+            let components = calendar.components([.Day , .Month , .Year], fromDate: releaseDate!)
         }
 
         if data["voteCount"] != nil {
@@ -47,9 +51,16 @@ class Release:NSObject {
         }
 
         if data["color"] != nil {
-            color = data["color"] as! String
+            color = data["color"] as? String
         }
-
+        
+        if data ["month"] != nil {
+            releaseMonth = data["month"] as? String
+        }
+        
+        if data ["day"] != nil {
+            releaseDay = data["day"] as? String
+        }
     }
 
     func stringToNSDate(date:String) -> NSDate {

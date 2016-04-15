@@ -9,7 +9,7 @@
 import UIKit
 import SwiftCharts
 import IBAnimatable
-//import Charts
+import Charts
 import Material
 import ChameleonFramework
                                                             //Put ChartViewDelegate Back
@@ -21,7 +21,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate{
     @IBOutlet var chartViewCardViewBackground: CardView!
     @IBOutlet var shoeImageCardView: CardView!
     @IBOutlet var shoeDetailsCardView: CardView!
-    //@IBOutlet var chartView: LineChartView!
+    @IBOutlet var chartView: LineChartView!
     @IBOutlet var scrollView: UIScrollView!
     var animateChart: Bool = true
     var chartSubview: UIView? = nil
@@ -165,11 +165,14 @@ class DetailViewController: UIViewController, UIScrollViewDelegate{
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         
+        var newArray:[Double]
         // needed to add to shoebids
-        let newArray = (visibleShoe?.bids)! as [Double]
+        
+        newArray = (visibleShoe?.bids)! as [Double]
         shoeBids += newArray
         
-        print(newArray)
+        
+        //print(newArray)
         if animateChart == true {
             print(String((visibleShoe?.bids?.average)!))
             
@@ -182,8 +185,19 @@ class DetailViewController: UIViewController, UIScrollViewDelegate{
             averagePriceLabel.squeezeInRight()
             
             //Setting Chart
+            if (visibleShoe?.bids?.average)! != 0.0 {
+            noDataLabel.text = ""
+            noDataLabel.backgroundColor = UIColor.clearColor()
             setChart(Array(shoeValues.suffix(shoeBids.count)), values: newArray)
             animateChart = false
+            } else {
+                chartView.noDataText = ""
+                noDataLabel.sizeToFit()
+//                noDataLabel.text = "No one's gotten around to valuing these kicks. Be a nice guy and value them."
+//                noDataLabel.textAlignment = .Center
+//                noDataLabel.textColor = UIColor.orangeColor()            
+            }
+            
         }
     }
     
@@ -212,60 +226,61 @@ class DetailViewController: UIViewController, UIScrollViewDelegate{
     
     func setChart(dataPoints: [String], values: [Double]) {
         
-//        var dataEntries: [ChartDataEntry] = []
-//        
-//        for i in 0..<dataPoints.count {
-//            let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
-//            dataEntries.append(dataEntry)
-//        }
-//        
-//        let chartDataSet = LineChartDataSet(yVals: dataEntries, label: "Values")
-//        let chartData = LineChartData(xVals: shoeValues, dataSet: chartDataSet)
-//        chartView.data = chartData
-//        
-//        //Placeholder text if data is nil
-//        if chartView.data == nil {
-//            chartView.noDataText = ""
-//            noDataLabel.text = "No one's gotten around to valuing these kicks. Be a nice guy and value them."
-//            noDataLabel.textAlignment = .Center
-//            noDataLabel.textColor = UIColor.orangeColor()
-//        } else {
-//            noDataLabel.text = ""
-//            noDataLabel.backgroundColor = UIColor.clearColor()
-//        }
-//        
-//        //Description of chart
-//        chartView.descriptionText = "Shoe Value"
-//        
-//        chartDataSet.colors = [UIColor.redColor()]//Style.chartTheme() //[UIColor(red: 230/255, green: 126/255, blue: 34/255, alpha: 1)]
-//        
-//        chartDataSet.colors = Style.chartTheme()
-//        
-//        chartView.xAxis.labelPosition = .Bottom
-//        
-//        chartView.backgroundColor = palletteView5Color //UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
-//        
-//        chartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
-//        
-//        chartDataSet.circleRadius = 10
-//        chartDataSet.circleColors = [palletteView2Color!]
-//        chartDataSet.circleHoleColor = palletteView1Color!
-//        chartDataSet.valueTextColor = palletteView1Color!
-//        
-//        chartDataSet.valueFont = chartDataSet.valueFont.fontWithSize(15)
-//        
-//        chartDataSet.valueFormatter?.currencySymbol
-//        chartDataSet.valueFormatter?.numberStyle = .CurrencyStyle
-//        chartView.drawGridBackgroundEnabled = false
-//        chartView.pinchZoomEnabled = false
-//        chartView.legend.enabled = false
-//        chartView.layer.cornerRadius = 4
-//        //chartView.gridBackgroundColor = UIColor.clearColor()
-//        chartView.xAxis.labelFont.fontWithSize(15)
-//        chartView.chartYMax.advancedBy(100)
-//        chartView.leftAxis.calcMinMax(min: shoeBids.minElement()! - 20, max: shoeBids.maxElement()! + 50)
-//        
-        //chartDataSet.drawVerticalHighlightIndicatorEnabled = false
+        var dataEntries: [ChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+            let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
+            dataEntries.append(dataEntry)
+        }
+        
+        let chartDataSet = LineChartDataSet(yVals: dataEntries, label: "Values")
+        let chartData = LineChartData(xVals: shoeValues, dataSet: chartDataSet)
+        chartView.data = chartData
+        
+        chartView.noDataText = ""
+        //Placeholder text if data is nil
+        if chartView.data == [0] {
+            chartView.noDataText = ""
+            noDataLabel.text = "No one's gotten around to valuing these kicks. Be a nice guy and value them."
+            noDataLabel.textAlignment = .Center
+            noDataLabel.textColor = UIColor.orangeColor()
+        } else {
+            noDataLabel.text = ""
+            noDataLabel.backgroundColor = UIColor.clearColor()
+        }
+        
+        //Description of chart
+        chartView.descriptionText = "Shoe Value"
+        
+        chartDataSet.colors = [UIColor.redColor()]//Style.chartTheme() //[UIColor(red: 230/255, green: 126/255, blue: 34/255, alpha: 1)]
+        
+        chartDataSet.colors = Style.chartTheme()
+        
+        chartView.xAxis.labelPosition = .Bottom
+        
+        chartView.backgroundColor = palletteView5Color //UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
+        
+        chartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
+        
+        chartDataSet.circleRadius = 10
+        chartDataSet.circleColors = [palletteView2Color!]
+        chartDataSet.circleHoleColor = palletteView1Color!
+        chartDataSet.valueTextColor = palletteView1Color!
+        
+        chartDataSet.valueFont = chartDataSet.valueFont.fontWithSize(15)
+        
+        chartDataSet.valueFormatter?.currencySymbol
+        chartDataSet.valueFormatter?.numberStyle = .CurrencyStyle
+        chartView.drawGridBackgroundEnabled = false
+        chartView.pinchZoomEnabled = false
+        chartView.legend.enabled = false
+        chartView.layer.cornerRadius = 4
+        //chartView.gridBackgroundColor = UIColor.clearColor()
+        chartView.xAxis.labelFont.fontWithSize(15)
+        chartView.chartYMax.advancedBy(100)
+        chartView.leftAxis.calcMinMax(min: shoeBids.minElement()! - 20, max: shoeBids.maxElement()! + 50)
+        
+        chartDataSet.drawVerticalHighlightIndicatorEnabled = false
     }
 
 

@@ -20,6 +20,14 @@ class KSVoteViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.releaseCollectionView.delegate = self
         self.releaseCollectionView.dataSource = self
         
+        let release1 = []
+        let release2 = []
+        let release3 = []
+        let release4 = []
+        let release5 = []
+        
+        //self.releaseDates = shoeArray
+        
         FirebaseClient.sharedClient.getReleaseDate({ (shoes, error) in
             if error == nil { //YASSSS
                 self.releaseDates = shoes as? [Release]

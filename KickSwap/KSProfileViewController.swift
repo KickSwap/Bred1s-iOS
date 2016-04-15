@@ -41,7 +41,7 @@ class KSProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         
         nameLabel.text = profileUser?.displayName
     
-        //profilePicImageView.setImageWithURL(NSURL(string: (profileUser?.profilePicUrl)!)!)
+        profilePicImageView.setImageWithURL(NSURL(string: (profileUser?.profilePicUrl)!)!)
         
         getShoes()
         

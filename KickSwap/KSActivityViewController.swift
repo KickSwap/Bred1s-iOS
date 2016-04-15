@@ -27,12 +27,10 @@ class KSActivityViewController: UIViewController, UITableViewDataSource, UITable
         //Do any additional setup after loading the view.
         self.notificationTableView.delegate = self
         self.notificationTableView.dataSource = self
+    
+        let push1 = ["ownerId":"@kickswap", "message":"Welcome to Kickswap"]
         
-        let push1 = ["ownerId":"@yanelis", "message":"Has accepted your offer for AJ 1 UNC"]
-        let push2 = ["ownerId":"@gonzalo", "message":"Has requested to borrow your Adidas Yeezy Boost Tan"]
-        let push3 = ["ownerId":"@xChange", "message":"Welcome to xChange"]
-        
-        notifs = [Notification(data: push1),Notification(data: push2), Notification(data: push3)]
+        notifs = [Notification(data: push1)]
     }
     
     override func didReceiveMemoryWarning() {

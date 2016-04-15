@@ -407,8 +407,7 @@ public class CardView : MaterialPulseView {
 		super.prepareView()
 		pulseColor = MaterialColor.grey.lighten1
 		depth = .Depth1
-		dividerColor = MaterialColor.grey.lighten3
-		cornerRadiusPreset = .Radius1
+		dividerColor = MaterialColor.clear
 	}
 	
 	/**

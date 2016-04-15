@@ -27,6 +27,9 @@ class KSVoteCollectionViewCell: UICollectionViewCell {
             shoeNameLabel.text = shoe.sneakerName
             shoePriceLabel.text = shoe.price
             colorLabel.text = shoe.color
+            print(shoe.releaseDay)
+            monthLabel.text = shoe.releaseMonth
+            dayLabel.text = shoe.releaseDay
             
         }
     }

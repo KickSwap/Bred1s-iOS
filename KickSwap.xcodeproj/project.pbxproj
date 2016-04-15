@@ -302,7 +302,7 @@
 				TargetAttributes = {
 					477970D81C630306000F1196 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 4CFBTQ63L7;
+						DevelopmentTeam = GDB3SZ2MTH;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -556,7 +556,7 @@
 				INFOPLIST_FILE = KickSwap/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = d3vcon.kickSwap.egs;
+				PRODUCT_BUNDLE_IDENTIFIER = d3vcon.kickSwap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -572,7 +572,7 @@
 				INFOPLIST_FILE = KickSwap/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = d3vcon.kickSwap.egs;
+				PRODUCT_BUNDLE_IDENTIFIER = d3vcon.kickSwap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
