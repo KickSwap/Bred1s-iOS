@@ -25,7 +25,7 @@ Time spent: X hours spent in total
 - [ ] User can create a wish list of shoes they want
 - [ ] User can set meetup point using Google Maps api inside private chat room
 - [ ] User can send Venmo request via chat room when transaction is about to occur
-- [ ] User will recieve push notifications for any activity with bids, chat, and news if permissions allow
+- [X] User will recieve push notifications for any activity with bids, chat, and news if permissions allow
 - [X] Loading indicator upon launch
 - [X] Loading indicator fades out of view while data fades into view
 - [X] Implemented placeholder image for empty states in collection views
